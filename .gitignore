@@ -23,7 +23,6 @@ htmlcov/
 .ipynb_checkpoints/
 
 # Frontend dependencies and generated assets
-/ui-prototype/
 node_modules/
 .next/
 .nuxt/
