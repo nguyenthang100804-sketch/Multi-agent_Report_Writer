@@ -60,9 +60,6 @@ class AdaptiveModel:
                     "query": query, "fiscal_year": 2025, "sections": ["NOTES"]}}
                    for query in ("Nguyên tắc và thời điểm ghi nhận doanh thu",
                                  "Các giao dịch và số dư với bên liên quan")]})
-        observations = json.loads(context)[-1]["observations"]
-        ids = {item["arguments"]["item_code"]: item["observation_id"]
-               for item in observations if "item_code" in item["arguments"]}
         return json.dumps({"action": "propose", "proposal": {
             "outline": {"outline_id": "adaptive-hut", "calculation_policy": "explicit",
                         "sections": [
@@ -76,18 +73,24 @@ class AdaptiveModel:
                                                   "query": "Loại ý kiến kiểm toán", "fiscal_year": 2025,
                                                   "sections": ["AUDIT_REPORT"]}]
                                                 if sid == "S2" else
+                                                [{"task_type": "time_series", "task_id": task_id,
+                                                  "metric_name": name, "item_code": code,
+                                                  "report_type": report_type,
+                                                  "start_year": 2022, "end_year": 2025}]
+                                                if sid in ("S4", "S5") else
                                                 [{"task_type": "notes", "task_id": f"{sid}:note:2025",
                                                   "query": query, "fiscal_year": 2025,
                                                   "sections": ["NOTES"]}]
                                                 if sid in ("S6", "S7") else [])}
-                            for sid, query in (("S1", ""), ("S2", ""), ("S3", ""),
-                                               ("S6", "Nguyên tắc và thời điểm ghi nhận doanh thu"),
-                                               ("S7", "Các giao dịch và số dư với bên liên quan"))]},
-            "decisions": [
-                {"action": "omit", "basis": "data", "template_section_ids": [sid],
-                 "reason": "No source rows in the requested period",
-                 "observation_ids": [ids[code]]}
-                for sid, code in (("S4", "270"), ("S5", "20"))]}})
+                            for sid, query, task_id, name, code, report_type in (
+                                               ("S1", "", "", "", "", ""),
+                                               ("S2", "", "", "", "", ""),
+                                               ("S3", "", "", "", "", ""),
+                                               ("S4", "", "assets", "Tổng tài sản", "270", "BALANCE_SHEET"),
+                                               ("S5", "", "operating_cash_flow", "Lưu chuyển tiền thuần từ hoạt động kinh doanh", "20", "CASH_FLOW"),
+                                               ("S6", "Nguyên tắc và thời điểm ghi nhận doanh thu", "", "", "", ""),
+                                               ("S7", "Các giao dịch và số dư với bên liên quan", "", "", "", ""))]},
+            "decisions": []}})
 
 
 class InvalidModel:
@@ -226,7 +229,7 @@ class PlannerAgentTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "section S7 needs a notes research task"):
             _validate_proposal(PlannerProposal(outline=empty_s7, decisions=[]),
                                box, template)
-        with self.assertRaisesRegex(ValueError, "cannot omit or merge S6/S7"):
+        with self.assertRaisesRegex(ValueError, "cannot omit or merge S1–S7"):
             _validate_proposal(PlannerProposal(outline=template, decisions=[{
                 "action": "omit", "basis": "audience",
                 "template_section_ids": ["S6"], "reason": "Không cần mục này"}]),
@@ -242,15 +245,14 @@ class PlannerAgentTests(unittest.TestCase):
         self.assertEqual(pending["run_status"], "awaiting_approval")
         self.assertIsNone(pending.get("outline_approved_version"))
 
-    def test_llm_may_omit_sections_using_tool_observations(self):
+    def test_llm_keeps_seven_sections_using_tool_observations(self):
         result = build_planner_agent(AdaptiveModel(), FakeTools(),
                                      note_snapshot_version="notes-v1", max_turns=3)(REQUEST)
         self.assertEqual(result.status, "ready")
         self.assertFalse(result.used_fallback)
         self.assertEqual([s.section_id for s in result.outline.sections],
-                         ["S1", "S2", "S3", "S6", "S7"])
-        self.assertEqual({d.template_section_ids[0] for d in result.decisions},
-                         {"S4", "S5"})
+                         ["S1", "S2", "S3", "S4", "S5", "S6", "S7"])
+        self.assertEqual(result.decisions, [])
         self.assertEqual(len(result.observations), 6)
         state = {"request": REQUEST, "outline": result.outline,
                  "planner_observations": {x.observation_id: x for x in result.observations},
@@ -271,7 +273,7 @@ class PlannerAgentTests(unittest.TestCase):
         self.assertFalse(result.used_fallback)
         self.assertEqual(len(result.observations), 6)
 
-    def test_backend_error_cannot_justify_omitting_a_section(self):
+    def test_backend_error_cannot_justify_omitting_a_main_section(self):
         class BrokenNotes(FakeTools):
             def execute(self, name, args):
                 if name == "search_notes_tool":
@@ -281,7 +283,7 @@ class PlannerAgentTests(unittest.TestCase):
         result = build_planner_agent(ErrorOmissionModel(), BrokenNotes(),
                                      note_snapshot_version="notes-v1", max_turns=2)(REQUEST)
         self.assertTrue(result.used_fallback)
-        self.assertIn("Tool failure", result.notes[-1].message)
+        self.assertIn("Full report requires section S2", result.notes[-1].message)
 
     def test_toolbox_rejects_scope_or_code_bypass(self):
         box = PlannerToolbox(REQUEST, FakeTools(), "notes-v1")
@@ -370,8 +372,8 @@ class PlannerAgentTests(unittest.TestCase):
         pending = graph.invoke({"request": REQUEST}, config)
         self.assertEqual(calls, [])
         self.assertEqual([s.section_id for s in pending["outline"].sections],
-                         ["S1", "S2", "S3", "S6", "S7"])
-        self.assertEqual(len(pending["outline_decisions"]), 2)
+                         ["S1", "S2", "S3", "S4", "S5", "S6", "S7"])
+        self.assertEqual(len(pending["outline_decisions"]), 0)
         completed = graph.invoke(Command(resume={"action": "approve", "outline_version": 1}),
                                  config)
         self.assertEqual(calls, ["research"])

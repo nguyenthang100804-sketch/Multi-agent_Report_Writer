@@ -11,10 +11,11 @@ type ReportRequest = {
   scope: Scope; instructions?: string | null;
 };
 type Task = { task_id: string; task_type: string; metric_name?: string; item_code?: string; query?: string };
+type Subsection = { subsection_id: string; title: string; objective: string; task_ids: string[]; calculation_ids: string[] };
 type Section = {
   section_id: string; title: string; objective: string;
   research_tasks?: Task[];
-  subsections?: Array<{ subsection_id: string; title: string }>;
+  subsections?: Subsection[];
   [key: string]: unknown;
 };
 type Outline = { outline_id: string; sections: Section[]; [key: string]: unknown };
@@ -120,11 +121,61 @@ function ReviewCard({ payload, snapshot, resolve, refresh, onApprovalStart, onAp
   onApprovalFinish: () => void;
 }) {
   const [sections, setSections] = useState(payload.outline.sections);
+  const [edited, setEdited] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
 
-  function edit(index: number, field: "title" | "objective", value: string) {
-    setSections(current => current.map((section, i) => i === index ? { ...section, [field]: value } : section));
+  function editSubsection(sectionIndex: number, subsectionIndex: number,
+                          field: "title" | "objective", value: string) {
+    setEdited(true);
+    setSections(current => current.map((section, i) => i === sectionIndex ? {
+      ...section, subsections: section.subsections?.map((item, j) =>
+        j === subsectionIndex ? { ...item, [field]: value } : item),
+    } : section));
+  }
+
+  function addSubsection(sectionIndex: number) {
+    setEdited(true);
+    setSections(current => current.map((section, i) => {
+      if (i !== sectionIndex) return section;
+      const ids = new Set(section.subsections?.map(item => item.subsection_id));
+      let number = 1;
+      while (ids.has(`${section.section_id}:custom:${number}`)) number++;
+      return { ...section, subsections: [...(section.subsections ?? []), {
+        subsection_id: `${section.section_id}:custom:${number}`,
+        title: "", objective: "", task_ids: [], calculation_ids: [],
+      }] };
+    }));
+  }
+
+  function removeSubsection(sectionIndex: number, subsectionIndex: number) {
+    setEdited(true);
+    setSections(current => current.map((section, i) => i === sectionIndex ? {
+      ...section, subsections: section.subsections?.filter((_, j) => j !== subsectionIndex),
+    } : section));
+  }
+
+  function toggleSubsectionTask(sectionIndex: number, subsectionIndex: number, taskId: string) {
+    setEdited(true);
+    setSections(current => current.map((section, i) => i === sectionIndex ? {
+      ...section, subsections: section.subsections?.map((item, j) => j === subsectionIndex ? {
+        ...item, task_ids: item.task_ids.includes(taskId) ?
+          item.task_ids.filter(id => id !== taskId) : [...item.task_ids, taskId],
+      } : item),
+    } : section));
+  }
+
+  function createSubsectionsFromTasks(sectionIndex: number) {
+    setEdited(true);
+    setSections(current => current.map((section, i) => i === sectionIndex ? {
+      ...section,
+      subsections: (section.research_tasks ?? []).map(task => ({
+        subsection_id: `${section.section_id}:${task.task_id}`,
+        title: task.metric_name ?? task.query ?? task.task_id,
+        objective: task.metric_name ?? task.query ?? task.task_id,
+        task_ids: [task.task_id], calculation_ids: [],
+      })),
+    } : section));
   }
 
   async function submit(action: "approve" | "revise" | "reject") {
@@ -150,9 +201,18 @@ function ReviewCard({ payload, snapshot, resolve, refresh, onApprovalStart, onAp
     {snapshot?.planner_used_fallback && <div className="notice">Planner đã dùng dàn ý dự phòng. Xem ghi chú trước khi duyệt.</div>}
     {sections.map((section, index) => <div className="section-review" key={section.section_id}>
       <div className="section-id">{section.section_id} · {section.research_tasks?.length ?? 0} tác vụ nghiên cứu</div>
-      <label>Tiêu đề<input value={section.title} onChange={event => edit(index, "title", event.target.value)} /></label>
-      <label>Mục tiêu<textarea value={section.objective} onChange={event => edit(index, "objective", event.target.value)} rows={2} /></label>
-      {!!section.subsections?.length && <p className="hint">Mục con: {section.subsections.map(item => item.title).join(" · ")}</p>}
+      <strong>{section.title}</strong><p className="hint">{section.objective}</p>
+      {(section.subsections ?? []).map((item, subsectionIndex) => <div className="subsection-review" key={item.subsection_id}>
+        <div className="section-id">Mục con {subsectionIndex + 1}</div>
+        <label>Tiêu đề<input value={item.title} onChange={event => editSubsection(index, subsectionIndex, "title", event.target.value)} /></label>
+        <label>Mục tiêu<textarea value={item.objective} onChange={event => editSubsection(index, subsectionIndex, "objective", event.target.value)} rows={2} /></label>
+        {!!section.research_tasks?.length && <div className="subsection-tasks">Tác vụ liên quan: {section.research_tasks.map(task =>
+          <label key={task.task_id}><input type="checkbox" checked={item.task_ids.includes(task.task_id)} onChange={() => toggleSubsectionTask(index, subsectionIndex, task.task_id)} />{task.metric_name ?? task.query ?? task.task_id}</label>)}</div>}
+        <button className="text-button" type="button" onClick={() => removeSubsection(index, subsectionIndex)}>Xóa mục con</button>
+      </div>)}
+      {!section.subsections?.length && !!section.research_tasks?.length &&
+        <button className="secondary" type="button" onClick={() => createSubsectionsFromTasks(index)}>Tạo mục con từ tác vụ</button>}
+      <button className="secondary" type="button" onClick={() => addSubsection(index)}>Thêm mục con</button>
       {!!section.research_tasks?.length && <ul className="task-list">{section.research_tasks.map(task =>
         <li key={task.task_id}>{task.task_id} · {task.task_type} {task.metric_name ?? task.item_code ?? task.query ?? ""}</li>)}</ul>}
     </div>)}
@@ -161,12 +221,13 @@ function ReviewCard({ payload, snapshot, resolve, refresh, onApprovalStart, onAp
     {!!payload.planner_notes?.length && <div className="review-details"><h4>Ghi chú</h4><ul>{payload.planner_notes.map((note, i) => <li key={i}>{note.message}</li>)}</ul></div>}
     {!!snapshot?.planner_observations.length && <div className="review-details"><h4>Quan sát dữ liệu</h4><ul>{snapshot.planner_observations.map(item =>
       <li key={item.observation_id}>{item.observation_id} · {item.tool_name}: {item.status}{item.missing_years.length > 0 && ` · thiếu năm ${item.missing_years.join(", ")}`}{item.warnings.length > 0 && ` · ${item.warnings.join("; ")}`}</li>)}</ul></div>}
-    <p className="hint">Có thể sửa tiêu đề và mục tiêu; tác vụ nghiên cứu được giữ nguyên. Lưu bản sửa để tạo revision mới.</p>
+    <p className="hint">Bảy mục chính được giữ cố định. Mục con hướng dẫn Writer chọn nội dung, chưa tạo heading riêng trong báo cáo. Có thể thêm, xóa, sửa mục con và gắn tác vụ hiện có. Lưu bản sửa để tạo revision mới; tác vụ nghiên cứu vẫn được giữ nguyên.</p>
     <div className="actions">
-      <button disabled={busy} onClick={() => submit("approve")}>{busy ? "Graph đang xử lý…" : "Duyệt dàn ý"}</button>
-      <button className="secondary" disabled={busy || sections.some(item => !item.title.trim() || !item.objective.trim())} onClick={() => submit("revise")}>Lưu bản sửa</button>
+      <button disabled={busy || edited} onClick={() => submit("approve")}>{busy ? "Graph đang xử lý…" : "Duyệt dàn ý"}</button>
+      <button className="secondary" disabled={busy || sections.some(section => section.subsections?.some(item => !item.title.trim() || !item.objective.trim()))} onClick={() => submit("revise")}>Lưu bản sửa</button>
       <button className="text-button" disabled={busy} onClick={() => submit("reject")}>Từ chối</button>
     </div>
+    {edited && <p className="hint">Lưu bản sửa rồi duyệt revision mới để áp dụng thay đổi.</p>}
     {error && <p className="error" role="alert">{error}</p>}
   </section>;
 }

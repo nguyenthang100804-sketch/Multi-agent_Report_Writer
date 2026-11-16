@@ -3,7 +3,7 @@
 UI dùng CopilotKit để gọi Planner Agent hiện có (`GeminiPlannerModel` và
 `AgentTools`) và hiển thị dàn ý trước điểm `interrupt()` của LangGraph. Ghi chú,
 quyết định, quan sát dữ liệu và cảnh báo fallback được hiển thị để người dùng
-duyệt. Có thể sửa tiêu đề/mục tiêu của từng section trước khi tạo revision mới.
+duyệt. Có thể thêm, xóa, sửa mục con và gắn tác vụ hiện có trước khi tạo revision mới; S1–S7 được giữ cố định. Mục con hướng dẫn Writer chọn nội dung, chưa tạo heading riêng trong báo cáo.
 Sau khi duyệt, Researcher chạy các tác vụ tra cứu và UI hiển thị trạng thái,
 số bằng chứng, dữ liệu thiếu và cảnh báo theo từng tác vụ. Writer dùng Gemini để
 tạo bản nháp theo section, với mẫu dự phòng khi một section không đạt.

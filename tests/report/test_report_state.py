@@ -82,6 +82,28 @@ class ReportStateTests(unittest.TestCase):
                                  "synthetic-report-state.json").read_text(encoding="utf-8"))
         self.assertEqual(complete_run(state), {"run_status": "completed"})
 
+    def test_full_report_cannot_complete_after_main_section_is_removed(self):
+        outline = ReportOutline(sections=[SectionPlan(
+            section_id=f"S{number}", title=f"Mục {number}", objective="Phân tích")
+            for number in range(1, 8)])
+        state = {"outline": outline, "outline_version": 1,
+                 "outline_approved_version": 1,
+                 "full_outline_required": True,
+                 "outlines_by_revision": {1: outline.model_copy(deep=True)},
+                 "section_drafts": {(f"S{number}", 1): SectionDraft(
+                     section_id=f"S{number}", outline_version=1, revision=1,
+                     blocks=[DraftBlock(block_id="b", text="Bản nháp")])
+                     for number in range(1, 8)},
+                 "verification_results": {(f"S{number}", 1): VerificationResult(
+                     section_id=f"S{number}", revision=1, level="full", status="passed")
+                     for number in range(1, 8)}}
+        self.assertTrue(can_complete(state))
+        state["outline"] = outline.model_copy(deep=True)
+        state["outline"].sections.pop()
+        self.assertFalse(can_complete(state))
+        with self.assertRaises(ValueError):
+            complete_run(state)
+
     def test_revision_conflict(self):
         with self.assertRaises(ValueError):
             merge_revisions({("a", 1): "old"}, {("a", 1): "new"})

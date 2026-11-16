@@ -12,6 +12,15 @@ from src.schemas.report_schema import ReportOutline, ReportRequest, SectionDraft
 
 
 class ReportGraphTests(unittest.TestCase):
+    def test_full_report_rejects_incomplete_initial_outline(self):
+        outline = ReportOutline(outline_id="partial", sections=[SectionPlan(
+            section_id="S1", title="Thông tin", objective="Phạm vi")])
+        graph = build_report_graph(lambda _request: outline, lambda _state: {},
+                                   lambda _state: {}, require_full_outline=True)
+        with self.assertRaisesRegex(ValueError, "requires S1–S7"):
+            graph.invoke({"request": ReportRequest(
+                ticker="HUT", start_year=2022, end_year=2025, audience="demo")})
+
     def test_outline_approval_interrupts_before_research(self):
         calls = []
         outline = ReportOutline(outline_id="approval-demo", sections=[SectionPlan(

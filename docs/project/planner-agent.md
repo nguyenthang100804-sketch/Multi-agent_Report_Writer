@@ -44,7 +44,7 @@ Graph bật Human in the Loop khi `require_outline_approval=True` và có checkp
 
 `preflight()` kiểm tra **khả năng bắt đầu**. Hiện `check_coverage()` chỉ yêu cầu ít nhất một fact không nghi vấn cho mỗi năm của ticker/scope; `has_standard_codes` kiểm tra sự hiện diện của mã `270` trong `BALANCE_SHEET`. Đây không phải cam kết mọi chỉ tiêu hay note đều có dữ liệu. Ticker ngoài corpus bị từ chối. Sáu mã ngân hàng ABB, ACB, BAB, MSB, NAB, NVB và nhóm tài chính chưa duyệt bị dừng theo quy tắc hiện tại. Nếu scope yêu cầu thiếu năm, Planner đưa `available_scopes` và chờ người dùng chọn lại; nó không tự chuyển sang scope khác.
 
-`_validate_proposal()` kiểm tra **proposal có thể chuyển tiếp**. Nó yêu cầu ít nhất một quan sát; `OutlineDecision` dựa trên dữ liệu phải dẫn đến observation ID có thật và không thể chỉ dựa vào `error`/`invalid_input`. S1–S5 phải có section tương ứng hoặc quyết định rõ ràng; S2–S5 cần task hoặc quyết định. S6 và S7 phải là hai section riêng, mỗi section có ít nhất một task tìm thuyết minh. Task fact/time series phải có tên, mã, loại báo cáo khớp duy nhất với resolver và đã được đọc bằng tool tương ứng trong khoảng năm cần dùng. Task note phải khớp truy vấn, năm và nhóm tài liệu đã tìm. Outline cần ID và `calculation_policy="explicit"`.
+`_validate_proposal()` kiểm tra **proposal có thể chuyển tiếp**. Nó yêu cầu ít nhất một quan sát; `OutlineDecision` dựa trên dữ liệu phải dẫn đến observation ID có thật và không thể chỉ dựa vào `error`/`invalid_input`. Dàn ý phải có đúng S1–S7 theo thứ tự; S2–S5 cần task hoặc quyết định rõ ràng; S6 và S7 mỗi section cần ít nhất một task tìm thuyết minh. Task fact/time series phải có tên, mã, loại báo cáo khớp duy nhất với resolver và đã được đọc bằng tool tương ứng trong khoảng năm cần dùng. Task note phải khớp truy vấn, năm và nhóm tài liệu đã tìm. Outline cần ID và `calculation_policy="explicit"`.
 
 Kiểm tra này xác nhận **cấu trúc và dấu vết truy vấn**, không xác nhận rằng lý do phân tích của LLM đúng, nguồn đã đầy đủ hoặc section nên được bỏ. Đó là lý do proposal còn đi qua bước duyệt của người dùng khi bật HITL.
 
@@ -52,9 +52,9 @@ Kiểm tra này xác nhận **cấu trúc và dấu vết truy vấn**, không x
 
 `plan_report()` tạo khung tham chiếu S1–S7 cho mọi đối tượng đọc. Prompt chuyên biệt giải thích B01/B02/B03, thuyết minh, kiểm toán, ý nghĩa trạng thái tool, điều kiện phép tính và cách xử lý thiếu dữ liệu. LLM thấy request, khung tham chiếu và các scope có sẵn; sau đó chủ động gọi `observe` để khảo sát trước khi trả `propose`.
 
-Khi dữ liệu đủ, LLM được hướng dẫn bám khung. Khi dữ liệu thiếu hoặc đối tượng đọc cần trọng tâm khác, LLM có thể giữ, bỏ, gộp, tách hoặc thêm section/mục con, nhưng phải giữ S6 và S7 thành hai section riêng. Mỗi thay đổi được trình bày bằng `OutlineDecision`: hành động, các section tham chiếu, section kết quả, lý do và observation ID nếu quyết định dựa trên dữ liệu. Thiếu một phép tính riêng lẻ không mặc nhiên làm mất cả section.
+LLM giữ bảy section chính và có thể điều chỉnh task hoặc mục con theo dữ liệu và đối tượng đọc. Người dùng có thể thêm, xóa, sửa tiêu đề/mục tiêu mục con và gắn tác vụ hiện có khi duyệt dàn ý; một revision mới giữ nguyên ID, tiêu đề và mục tiêu của bảy section chính. Thiếu một phép tính riêng lẻ không làm mất cả section.
 
-Ví dụ giả định: S5 cần phân tích dòng tiền ba năm, nhưng truy vấn time series trả `partial` và thiếu năm 2023. LLM có thể giữ S5 với phạm vi phân tích hẹp hơn và ghi giới hạn, hoặc gộp phần có dữ liệu vào section khác. Nó phải thể hiện quyết định bằng observation ID. Nếu truy vấn trả `error`, Planner không được coi đó là bằng chứng rằng dòng tiền không tồn tại.
+Ví dụ giả định: S5 cần phân tích dòng tiền ba năm, nhưng truy vấn time series trả `partial` và thiếu năm 2023. LLM giữ S5, thu hẹp nội dung mục con và ghi giới hạn. Nếu truy vấn trả `error`, Planner không được coi đó là bằng chứng rằng dòng tiền không tồn tại.
 
 ## 5. Dữ liệu Planner được phép đọc
 
@@ -74,7 +74,7 @@ Planner chỉ **khai báo** `CalculationSpec` (`yoy`, `cagr`, `difference`, `tre
 | `PlannerObservation` | Kết quả đọc dữ liệu có ID và snapshot để giải thích proposal, kiểm tra lại và dùng lại ở Researcher. |
 | `OutlineDecision` / `PlannerNote` | Lý do điều chỉnh dàn ý và giới hạn hoặc quyết định dừng cần hiển thị cho người duyệt. |
 
-Trong graph, dàn ý bắt đầu ở revision 1. `approve` chỉ chấp nhận revision đang chờ. `revise` giữ `outline_id`, tạo revision mới, lưu bản cũ và hủy trạng thái duyệt cũ; người dùng phải duyệt lại. `reject` chuyển sang `needs_clarification`. `can_complete()` chỉ đúng khi mọi section của revision hiện tại có bản nháp được duyệt và verification mức `full` đạt yêu cầu.
+Trong graph, dàn ý bắt đầu ở revision 1. `approve` chỉ chấp nhận revision đang chờ. `revise` giữ `outline_id` và bảy section chính, tạo revision mới, lưu bản cũ và hủy trạng thái duyệt cũ; người dùng phải duyệt lại. `reject` chuyển sang `needs_clarification`. `can_complete()` chỉ đúng khi bảy section chính còn nguyên và mọi section của revision hiện tại có bản nháp được duyệt và verification mức `full` đạt yêu cầu. Mục con được chuyển vào ngữ cảnh Writer để hướng dẫn chọn nội dung; renderer chưa bảo đảm tạo heading riêng cho từng mục con.
 
 ## 7. Mã nguồn cần trình bày
 

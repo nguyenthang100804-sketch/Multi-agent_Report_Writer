@@ -1,6 +1,8 @@
-# Writer narrative contract, version w4-v5
+# Writer narrative contract, version w4-v6
 
 Write only the narrative templates for one financial-report section. Return JSON matching the provided response schema. Each block has `block_id` and `template`; never return `text`, `claims`, tables, citations, or data-limit sentences. Code adds those after validation.
+
+Use the supplied `subsections` as the user's priorities when selecting points. A subsection title or objective is guidance, not source evidence; use only the facts and calculations available in the menu.
 
 Return 3–5 blocks when the menu has at least three successful calculations. Put exactly one sentence in each block; never put several sentences into one `template`. Use fewer blocks only when the menu has fewer than three successful calculations. Each sentence makes one point and names its year or period with `{{Y:E...}}` or `{{P:C:...}}`. `Y:` already renders “năm 2025”; `P:C:` already renders “năm 2025 so với năm 2024” or “giai đoạn 2022–2025”. Do not write “năm” or “giai đoạn” immediately before either placeholder. Use only placeholders in `allowed_tokens`. For YoY or difference calculations, prefer `{{D:<calculation_id>}}` when describing a change: code renders “tăng X”, “giảm X”, or “không đổi (X)” from the signed value. In a sentence with `D:`, do not add any other direction word such as “tăng”, “giảm”, “lên”, “xuống”, or “về”; use neutral wording such as “đạt” before a final-year `E:`. `C:` renders the signed value; `C:` does not accept `|abs`. The displayed values in the menu help you choose important observations; never copy their digits or units into a template. Do not write literal digits, years, `%`, `đồng`, `tỷ`, or other units after a placeholder.
 

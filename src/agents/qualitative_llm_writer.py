@@ -16,7 +16,7 @@ from src.tools.schemas import NoteEvidence
 
 
 PROMPT_PATH = Path(__file__).parent / "prompts" / "qualitative_writer_system.md"
-PROMPT_VERSION = "w6-v1"
+PROMPT_VERSION = "w6-v2"
 
 
 def build_qualitative_view(section, state: dict) -> dict:
@@ -46,7 +46,9 @@ def build_qualitative_view(section, state: dict) -> dict:
                       "research_status": result.status if result else "no_evidence",
                       "evidence_aliases": available})
     return {"section_id": section.section_id, "title": section.title,
-            "objective": section.objective, "tasks": tasks, "chunks": chunks}
+            "objective": section.objective,
+            "subsections": [item.model_dump(mode="json") for item in section.subsections],
+            "tasks": tasks, "chunks": chunks}
 
 
 def _compose(output: QualitativeOutput, section, state: dict,

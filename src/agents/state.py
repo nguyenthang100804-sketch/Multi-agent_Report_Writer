@@ -45,6 +45,20 @@ def merge_revisions(left: dict[tuple[str, int], object],
     return merged
 
 
+FULL_SECTION_IDS = ("S1", "S2", "S3", "S4", "S5", "S6", "S7")
+
+
+def _full_outline_sections_preserved(state: ReportState, outline: ReportOutline) -> bool:
+    original = state.get("outlines_by_revision", {}).get(1)
+    if original is None or tuple(section.section_id for section in original.sections) != FULL_SECTION_IDS:
+        return True
+    return all(
+        (current.section_id, current.title, current.objective) ==
+        (first.section_id, first.title, first.objective)
+        for current, first in zip(outline.sections, original.sections)
+    ) and len(outline.sections) == len(FULL_SECTION_IDS)
+
+
 def install_outline_revision(state: ReportState, outline: ReportOutline) -> dict:
     """Keep earlier outlines and revoke approval when a new revision is installed."""
     version = state.get("outline_version", 0) + 1
@@ -53,6 +67,8 @@ def install_outline_revision(state: ReportState, outline: ReportOutline) -> dict
         raise ValueError(f"Outline revision {version} already exists")
     if state.get("outline") and state["outline"].outline_id != outline.outline_id:
         raise ValueError("A revision must keep the outline ID")
+    if not _full_outline_sections_preserved(state, outline):
+        raise ValueError("A full report must keep S1–S7 and their main titles and objectives")
     history[version] = outline.model_copy(deep=True)
     return {"outline": outline, "outline_version": version,
             "outlines_by_revision": history, "outline_approved_version": None,
@@ -88,7 +104,10 @@ def approved_draft(state: ReportState, section_id: str) -> SectionDraft | None:
 
 def can_complete(state: ReportState) -> bool:
     outline = state.get("outline")
-    return bool(outline) and all(
+    if state.get("full_outline_required") and (not outline or
+            tuple(section.section_id for section in outline.sections) != FULL_SECTION_IDS):
+        return False
+    return bool(outline) and _full_outline_sections_preserved(state, outline) and all(
         approved_draft(state, section.section_id) is not None
         for section in outline.sections
     )
@@ -224,6 +243,7 @@ def state_from_json(source: str) -> ReportState:
 class ReportState(TypedDict, total=False):
     request: ReportRequest
     outline: ReportOutline
+    full_outline_required: bool
     outline_version: int
     outline_approved_version: int | None
     outlines_by_revision: Annotated[dict[int, ReportOutline], merge_immutable]

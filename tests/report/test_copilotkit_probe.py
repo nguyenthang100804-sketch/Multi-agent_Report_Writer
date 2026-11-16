@@ -15,7 +15,36 @@ def sample_plan(_request):
         section_id="S1", title="Tổng quan HUT", objective="Mục tiêu mẫu")])
 
 
+def full_plan(_request):
+    return ReportOutline(outline_id="full-HUT", sections=[SectionPlan(
+        section_id=f"S{number}", title=f"Mục {number}", objective="Phân tích")
+        for number in range(1, 8)])
+
+
 class CopilotKitProbeTests(unittest.TestCase):
+    def test_full_outline_allows_subsection_edit_but_rejects_missing_section(self):
+        with tempfile.TemporaryDirectory() as directory:
+            with TestClient(create_app(Path(directory) / "checkpoints.sqlite", full_plan,
+                                       lambda _state: {}, Mock())) as client:
+                outline = client.post("/runs/full", json={
+                    "ticker": "HUT", "start_year": 2022, "end_year": 2025,
+                    "audience": "demo"}).json()["outline"]
+                without_s7 = {**outline, "sections": outline["sections"][:-1]}
+                refused = client.post("/runs/full/resume", json={
+                    "action": "revise", "outline_version": 1, "outline": without_s7})
+                self.assertEqual(refused.status_code, 422)
+                self.assertIn("must keep S1", refused.json()["detail"])
+                outline["sections"][0]["subsections"] = [{
+                    "subsection_id": "S1:scope", "title": "Phạm vi",
+                    "objective": "Nguồn dữ liệu", "task_ids": [],
+                    "calculation_ids": []}]
+                revised = client.post("/runs/full/resume", json={
+                    "action": "revise", "outline_version": 1, "outline": outline})
+                self.assertEqual(revised.status_code, 200, revised.text)
+                self.assertEqual(revised.json()["outline_version"], 2)
+                self.assertEqual(revised.json()["outline"]["sections"][0][
+                    "subsections"][0]["title"], "Phạm vi")
+
     def test_revise_restart_approve(self):
         with tempfile.TemporaryDirectory() as directory:
             database = Path(directory) / "checkpoints.sqlite"

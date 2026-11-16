@@ -3,11 +3,11 @@
 Phạm vi: một ticker, khoảng năm trong 2022–2025, một scope, doanh nghiệp phi tài chính (có bộ mã chuẩn B01/B02/B03).
 Căn cứ khung: B01/B02/B03/B09 theo TT200/TT202; thứ tự trình bày bám bộ BCTC. Đây là **bản đồ nội dung** để đối chiếu với outline hiện hành, không phải yêu cầu mỗi mục con hoặc bảng phải là một object trong `ReportOutline`.
 
-**Kết luận đối chiếu:** template hiện có task cho 12 chỉ tiêu đã được resolver hỗ trợ, phép tính của S3–S5, note nền của S1–S2 và các chủ đề note của S4/S6/S7. Nó chưa lập task cho S3.6; chưa mang metadata thống kê tài liệu S1.1, kết quả kiểm đẳng thức parser S4.5 hoặc danh mục nguồn S9. Các nội dung này không được xem là đã có chỉ vì section tương ứng tồn tại. LLM được quyền điều chỉnh outline dựa trên quan sát dữ liệu, nhưng S6/S7 luôn là hai section riêng trong outline được duyệt.
+**Kết luận đối chiếu:** template hiện có task cho 12 chỉ tiêu đã được resolver hỗ trợ, phép tính của S3–S5, note nền của S1–S2 và các chủ đề note của S4/S6/S7. Nó chưa lập task cho S3.6; chưa mang metadata thống kê tài liệu S1.1, kết quả kiểm đẳng thức parser S4.5 hoặc danh mục nguồn S9. Các nội dung này không được xem là đã có chỉ vì section tương ứng tồn tại. LLM giữ S1–S7 thành bảy section riêng và điều chỉnh task/mục con theo quan sát dữ liệu.
 
 ## 0. Quy ước dùng chung
 
-- **Loại section:** `Bắt buộc` ở S1–S5 chỉ khung tham chiếu của template, không ngăn LLM bỏ/gộp khi có quyết định và quan sát hợp lệ. S6/S7 bắt buộc là hai section riêng và có task tìm thuyết minh; `Code` nằm ngoài outline Planner.
+- **Loại section:** S1–S7 là bảy section chính cố định. S6/S7 mỗi section có task tìm thuyết minh; `Code` nằm ngoài outline Planner.
 - **Nguồn:** `DuckDB` = `query_fact_tool` / `query_time_series_tool`; `Qdrant` = `search_notes_tool` (lọc cứng ticker, năm, scope, section; tối đa 5 chunk).
 - **ID hiện hành:** section có ID như `S3`; task và phép tính có ID riêng. Schema hỗ trợ `SubsectionPlan`, nhưng template hiện để `subsections=[]`. `S3.2` và `T3.2` dưới đây là nhãn nội dung tham chiếu, chưa phải ID object hoặc bảng được Planner/renderer bảo đảm tạo ra. Claim trỏ về evidence/phép tính qua ID của chính nó.
 - **Mọi task fact phải khai `report_type`** (mã 20/30/40 trùng giữa các báo cáo).
@@ -42,7 +42,7 @@ Thứ tự S3 → S4 → S5 bám thứ tự B02 → B01 → B03 để người �
 | S1.2 Đặc điểm hoạt động | Ngành nghề, vốn điều lệ, cơ cấu công ty (chỉ mô tả) | Qdrant `MANAGEMENT_REPORT`, `NOTES` | Không |
 | S1.3 Cơ sở lập báo cáo | Chế độ kế toán áp dụng (TT200/TT202), kỳ kế toán, đơn vị | Qdrant `NOTES` | Không |
 
-Template tạo task S1.2; LLM có thể bỏ/gộp khi có quan sát phù hợp và ghi `OutlineDecision`. Researcher lọc chunk theo cụm từ chủ đề; không có chunk liên quan được ghi là `not_found_yet`, chưa chứng minh tài liệu không có nội dung đó.
+Template tạo task S1.2; LLM có thể điều chỉnh task/mục con khi có quan sát phù hợp. Researcher lọc chunk theo cụm từ chủ đề; không có chunk liên quan được ghi là `not_found_yet`, chưa chứng minh tài liệu không có nội dung đó.
 
 ### S2. Ý kiến kiểm toán (Bắt buộc)
 
@@ -138,7 +138,7 @@ Luồng hiện có ghi `cannot_compute`, `data_gap` và cảnh báo kỳ trong t
 | Ban giám đốc | S6, S7 | S4 (S4.3, S4.4) |
 | Kiểm toán/tuân thủ | S6, S7 | S2 |
 
-LLM được giữ, bỏ, gộp, tách hoặc thêm các section khác và mục con dựa trên quan sát dữ liệu; S6/S7 luôn giữ riêng. Quyết định được ghi trong `OutlineDecision` trước HITL. Task số phải được resolver phân giải duy nhất và đã được truy vấn; task note phải có quan sát cùng query/năm/nhóm tài liệu. Validator không bảo đảm mọi nội dung tham chiếu ở bảng trên đều xuất hiện trong outline đã duyệt.
+LLM giữ S1–S7 và có thể điều chỉnh task/mục con dựa trên quan sát dữ liệu. Người dùng có thể sửa mục con trong bước HITL; ID, tiêu đề và mục tiêu của bảy section chính được giữ qua các revision. Task số phải được resolver phân giải duy nhất và đã được truy vấn; task note phải có quan sát cùng query/năm/nhóm tài liệu. Validator không bảo đảm mọi nội dung tham chiếu ở bảng trên đều xuất hiện trong outline đã duyệt.
 
 ## 4. Điều kiện từ chối hoặc dừng sớm (trước khi lập outline)
 

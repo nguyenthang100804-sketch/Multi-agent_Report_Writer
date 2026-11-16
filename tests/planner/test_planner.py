@@ -10,7 +10,7 @@ from src.agents.state import (
     approve_outline_revision, can_complete, install_outline_revision,
     state_from_json, state_to_json,
 )
-from src.schemas.report_schema import CalculationSpec, ReportRequest
+from src.schemas.report_schema import CalculationSpec, ReportRequest, SubsectionPlan
 from src.tools.agent_tools import AgentTools
 
 
@@ -129,7 +129,8 @@ class PlannerTests(unittest.TestCase):
         state.update(approve_outline_revision(state))
         self.assertEqual(state["outline_approved_version"], 1)
         revised = outline.model_copy(deep=True)
-        revised.sections[0].objective = "Đã sửa mục tiêu"
+        revised.sections[0].subsections = [SubsectionPlan(
+            subsection_id="S1:overview", title="Tổng quan", objective="Phạm vi và nguồn")]
         state.update(install_outline_revision(state, revised))
         self.assertEqual(state["outline_version"], 2)
         self.assertIsNone(state["outline_approved_version"])
@@ -139,6 +140,26 @@ class PlannerTests(unittest.TestCase):
         self.assertEqual(restored["outline_version"], 2)
         self.assertEqual(restored["outlines_by_revision"], state["outlines_by_revision"])
         self.assertEqual(restored["outline_approved_version"], None)
+
+    def test_full_outline_revision_keeps_main_sections(self):
+        outline = plan_report(request()).outline
+        state = {"outline": outline, "outline_version": 1,
+                 "outlines_by_revision": {1: outline.model_copy(deep=True)}}
+        removed = outline.model_copy(deep=True)
+        removed.sections.pop()
+        with self.assertRaisesRegex(ValueError, "must keep S1–S7"):
+            install_outline_revision(state, removed)
+        renamed = outline.model_copy(deep=True)
+        renamed.sections[0].title = "Tiêu đề khác"
+        with self.assertRaisesRegex(ValueError, "must keep S1–S7"):
+            install_outline_revision(state, renamed)
+        revised = outline.model_copy(deep=True)
+        revised.sections[0].subsections.append(SubsectionPlan(
+            subsection_id="S1:scope", title="Phạm vi", objective="Giới hạn nguồn",
+            task_ids=["S1:business:2025"]))
+        installed = install_outline_revision(state, revised)
+        self.assertEqual(installed["outline_version"], 2)
+        self.assertEqual(installed["outline"].sections[0].subsections[0].title, "Phạm vi")
 
 
 if __name__ == "__main__":

@@ -8,7 +8,7 @@ from langgraph.graph import END, START, StateGraph
 from langgraph.types import interrupt
 
 from src.agents.state import (
-    ReportState, approve_outline_revision, can_complete, complete_run,
+    FULL_SECTION_IDS, ReportState, approve_outline_revision, can_complete, complete_run,
     install_outline_revision,
 )
 from src.agents.planner import plan_report
@@ -31,7 +31,8 @@ def build_report_graph(
     write: Callable[[ReportState], dict],
     *, verifier_model: VerifierModel | None = None,
     verifier_mode: Literal["blocking", "shadow"] = "blocking",
-    require_outline_approval: bool = False, checkpointer=None,
+    require_outline_approval: bool = False, require_full_outline: bool = False,
+    checkpointer=None,
     progress: Callable[[str, str], None] | None = None,
 ):
     """Run injected planning/research/writing steps, then deterministic checks.
@@ -50,7 +51,10 @@ def build_report_graph(
             notes = planned.notes
         else:
             outline, notes = planned, []
+        if require_full_outline and tuple(section.section_id for section in outline.sections) != FULL_SECTION_IDS:
+            raise ValueError("Full report requires S1–S7 in order")
         return {"outline": outline, "outline_version": 1,
+                "full_outline_required": require_full_outline,
                 "outlines_by_revision": {1: outline.model_copy(deep=True)},
                 "planner_notes": notes,
                 "planner_available_scopes": (planned.available_scopes
@@ -203,4 +207,5 @@ def build_agent_report_graph(model: PlannerModel, tools: AgentTools,
                               build_researcher(tools), write,
                               verifier_model=verifier_model,
                               verifier_mode=verifier_mode,
-                              require_outline_approval=True, checkpointer=checkpointer)
+                              require_outline_approval=True, require_full_outline=True,
+                              checkpointer=checkpointer)

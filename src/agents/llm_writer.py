@@ -26,7 +26,7 @@ from src.tools.schemas import FactEvidence
 
 
 PROMPT_PATH = Path(__file__).parent / "prompts" / "writer_system.md"
-PROMPT_VERSION = "w4-v5"
+PROMPT_VERSION = "w4-v6"
 _HANDWRITTEN_UNIT = re.compile(
     r"^\s*\(?\s*(?:%|(?:nghìn\s+)?tỷ\b|triệu\b|đồng\b|điểm\s+phần\s+trăm\b)", re.I)
 _INTERNAL_ID = re.compile(r"\b[a-z]+(?:_[a-z]+)+(?:[:][\w-]+)*\b", re.I)
@@ -40,6 +40,7 @@ class SectionView(BaseModel):
     section_id: str
     title: str
     objective: str
+    subsections: list[dict] = Field(default_factory=list)
     facts: dict
     calculations: dict
     trends: dict
@@ -75,7 +76,9 @@ def build_section_view(section, state: dict, fallback_draft: SectionDraft) -> Se
     limitations = _render_limitations(fallback_draft.limitations, evidence,
                                      calculations, state["research_results"], section)
     return SectionView(section_id=section.section_id, title=section.title,
-                       objective=section.objective, facts=facts, calculations=numeric,
+                       objective=section.objective,
+                       subsections=[item.model_dump(mode="json") for item in section.subsections],
+                       facts=facts, calculations=numeric,
                        trends=trends, allowed_tokens=menu["allowed_tokens"],
                        known_limitations=limitations,
                        revision_instructions=instructions)

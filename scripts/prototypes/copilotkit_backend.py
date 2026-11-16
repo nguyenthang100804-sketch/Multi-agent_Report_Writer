@@ -32,7 +32,9 @@ from src.agents.planner_model import GeminiPlannerModel, _gemini_client, _read_a
 from src.agents.researcher import build_researcher
 from src.agents.report_graph import build_report_graph
 from src.agents.report_tables import render_section_tables
-from src.agents.state import ReportState, is_run_complete, report_checkpoint_serde
+from src.agents.state import (
+    ReportState, install_outline_revision, is_run_complete, report_checkpoint_serde,
+)
 from src.agents.verifier_contract import VerifierModel
 from src.agents.verifier_model import GeminiVerifierModel
 from src.agents.writer_model import GeminiWriterModel
@@ -137,7 +139,8 @@ def create_app(checkpoint_path: Path = DEFAULT_CHECKPOINT,
                     research_node,
                     writer_node,
                     verifier_model=verifier, verifier_mode="blocking",
-                    require_outline_approval=True, checkpointer=saver,
+                    require_outline_approval=True, require_full_outline=planner is None,
+                    checkpointer=saver,
                     progress=emit_progress,
                 )
                 app.state.graph = graph
@@ -332,6 +335,12 @@ def create_app(checkpoint_path: Path = DEFAULT_CHECKPOINT,
             raise HTTPException(409, "No pending approval")
         if response.outline_version != snapshot.values.get("outline_version"):
             raise HTTPException(409, "Stale outline version")
+        if response.action == "revise":
+            try:
+                install_outline_revision(snapshot.values,
+                                         ReportOutline.model_validate(response.outline))
+            except ValueError as exc:
+                raise HTTPException(422, str(exc)) from exc
         payload = response.model_dump(exclude_none=True)
         await graph.ainvoke(Command(resume=payload), config)
         return await get_run(thread_id)

@@ -4,6 +4,7 @@ import unittest
 from pathlib import Path
 
 from src.agents.llm_writer import build_llm_writer
+from src.schemas.report_schema import SubsectionPlan
 from src.agents.state import state_from_json
 from src.agents.verification import verify_section_deterministically
 from src.agents.writer_contract import WriterResponse
@@ -69,14 +70,20 @@ class QualitativeLLMWriterTests(unittest.TestCase):
 
     def test_valid_selection_creates_claim_and_passes_verifier(self):
         state, section = fpt_s7_state()
+        section.subsections.append(SubsectionPlan(
+            subsection_id="S7:fx", title="Rủi ro tỷ giá",
+            objective="Ưu tiên bằng chứng về phòng ngừa rủi ro tỷ giá",
+            task_ids=["S7:financial_risks:2025"]))
         model = SelectingModel()
         output = build_llm_writer(model, max_repairs=0,
                                   record_raw_outputs=True)(state)
         draft = next(iter(output["section_drafts"].values()))
         log = next(iter(output["writer_run_logs"].values()))
         self.assertEqual(len(model.calls), 1)
+        self.assertEqual(json.loads(model.calls[0].section_view)["subsections"][0]["title"],
+                         "Rủi ro tỷ giá")
         self.assertFalse(log.used_fallback)
-        self.assertEqual(log.prompt_version, "w6-v1")
+        self.assertEqual(log.prompt_version, "w6-v2")
         self.assertEqual(log.block_counts_by_attempt, [1])
         self.assertIsNotNone(log.raw_outputs_by_attempt[0])
         self.assertIn("Tập đoàn dùng giao dịch ngoại tệ", draft.blocks[1].text)
