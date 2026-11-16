@@ -55,7 +55,11 @@ class AdaptiveModel:
                              "Lưu chuyển tiền thuần từ hoạt động kinh doanh")]
                 + [{"tool_name": "search_notes_tool", "arguments": {
                     "query": "Loại ý kiến kiểm toán", "fiscal_year": 2025,
-                    "sections": ["AUDIT_REPORT"]}}]})
+                    "sections": ["AUDIT_REPORT"]}}]
+                + [{"tool_name": "search_notes_tool", "arguments": {
+                    "query": query, "fiscal_year": 2025, "sections": ["NOTES"]}}
+                   for query in ("Nguyên tắc và thời điểm ghi nhận doanh thu",
+                                 "Các giao dịch và số dư với bên liên quan")]})
         observations = json.loads(context)[-1]["observations"]
         ids = {item["arguments"]["item_code"]: item["observation_id"]
                for item in observations if "item_code" in item["arguments"]}
@@ -71,8 +75,14 @@ class AdaptiveModel:
                                                 [{"task_type": "notes", "task_id": "audit_2025",
                                                   "query": "Loại ý kiến kiểm toán", "fiscal_year": 2025,
                                                   "sections": ["AUDIT_REPORT"]}]
-                                                if sid == "S2" else [])}
-                            for sid in ("S1", "S2", "S3")]},
+                                                if sid == "S2" else
+                                                [{"task_type": "notes", "task_id": f"{sid}:note:2025",
+                                                  "query": query, "fiscal_year": 2025,
+                                                  "sections": ["NOTES"]}]
+                                                if sid in ("S6", "S7") else [])}
+                            for sid, query in (("S1", ""), ("S2", ""), ("S3", ""),
+                                               ("S6", "Nguyên tắc và thời điểm ghi nhận doanh thu"),
+                                               ("S7", "Các giao dịch và số dư với bên liên quan"))]},
             "decisions": [
                 {"action": "omit", "basis": "data", "template_section_ids": [sid],
                  "reason": "No source rows in the requested period",
@@ -111,8 +121,13 @@ class ErrorOmissionModel:
         observation_id = json.loads(context)[-1]["observations"][0]["observation_id"]
         return json.dumps({"action": "propose", "proposal": {
             "outline": {"outline_id": "bad-omit", "calculation_policy": "explicit",
-                        "sections": [{"section_id": sid, "title": sid, "objective": sid}
-                                     for sid in ("S1", "S3", "S4", "S5")]},
+                        "sections": [{"section_id": sid, "title": sid, "objective": sid,
+                                      "research_tasks": ([{"task_type": "notes",
+                                                          "task_id": f"{sid}:note:2025",
+                                                          "query": "Thuyết minh", "fiscal_year": 2025,
+                                                          "sections": ["NOTES"]}]
+                                                         if sid in ("S6", "S7") else [])}
+                                     for sid in ("S1", "S3", "S4", "S5", "S6", "S7")]},
             "decisions": [{"action": "omit", "basis": "data",
                            "template_section_ids": ["S2"],
                            "reason": "No audit evidence", "observation_ids": [observation_id]}]}})
@@ -180,8 +195,8 @@ class PlannerAgentTests(unittest.TestCase):
         self.assertIn("tool error/invalid_input=['revenue']", message)
         self.assertIn("queried but not_found=['S1:business:2025']", message)
 
-    def test_optional_template_section_cannot_disappear_without_decision(self):
-        request = REQUEST.model_copy(update={"audience": "Kiểm toán"})
+    def test_required_section_cannot_disappear_even_with_decision(self):
+        request = REQUEST
         template = plan_report(request).outline
         self.assertIn("S7", [section.section_id for section in template.sections])
         outline = template.model_copy(update={
@@ -190,7 +205,7 @@ class PlannerAgentTests(unittest.TestCase):
         box = PlannerToolbox(request, FakeTools(), "notes-v1")
         box.observe(PlannerToolCall(tool_name="metric_name_resolver",
                                     arguments={"metric_name": "Doanh thu thuần"}))
-        with self.assertRaisesRegex(ValueError, "Template section S7"):
+        with self.assertRaisesRegex(ValueError, "Full report requires section S7"):
             _validate_proposal(PlannerProposal(outline=outline, decisions=[]),
                                box, template)
         implicit_merge = outline.model_copy(update={
@@ -198,14 +213,24 @@ class PlannerAgentTests(unittest.TestCase):
                 "template_section_ids": ["S4", "S7"]})
                 if section.section_id == "S4" else section
                 for section in outline.sections]})
-        with self.assertRaisesRegex(ValueError, "Template section S7"):
+        with self.assertRaisesRegex(ValueError, "Full report requires section S7"):
             _validate_proposal(PlannerProposal(outline=implicit_merge, decisions=[]),
                                box, template)
-        with self.assertRaisesRegex(ValueError, "destination section IDs"):
+        with self.assertRaisesRegex(ValueError, "Full report requires section S7"):
             _validate_proposal(PlannerProposal(outline=outline, decisions=[{
                 "action": "merge", "basis": "audience",
-                "template_section_ids": ["S7"], "resulting_section_ids": [],
+                "template_section_ids": ["S7"], "resulting_section_ids": ["S4"],
                 "reason": "Gộp nội dung liên quan"}]), box, template)
+        empty_s7 = template.model_copy(deep=True)
+        empty_s7.sections[-1].research_tasks = []
+        with self.assertRaisesRegex(ValueError, "section S7 needs a notes research task"):
+            _validate_proposal(PlannerProposal(outline=empty_s7, decisions=[]),
+                               box, template)
+        with self.assertRaisesRegex(ValueError, "cannot omit or merge S6/S7"):
+            _validate_proposal(PlannerProposal(outline=template, decisions=[{
+                "action": "omit", "basis": "audience",
+                "template_section_ids": ["S6"], "reason": "Không cần mục này"}]),
+                box, template)
 
     def test_agent_graph_requires_review_before_research(self):
         graph = build_agent_report_graph(AdaptiveModel(), FakeTools(),
@@ -223,10 +248,10 @@ class PlannerAgentTests(unittest.TestCase):
         self.assertEqual(result.status, "ready")
         self.assertFalse(result.used_fallback)
         self.assertEqual([s.section_id for s in result.outline.sections],
-                         ["S1", "S2", "S3"])
+                         ["S1", "S2", "S3", "S6", "S7"])
         self.assertEqual({d.template_section_ids[0] for d in result.decisions},
                          {"S4", "S5"})
-        self.assertEqual(len(result.observations), 4)
+        self.assertEqual(len(result.observations), 6)
         state = {"request": REQUEST, "outline": result.outline,
                  "planner_observations": {x.observation_id: x for x in result.observations},
                  "outline_decisions": result.decisions}
@@ -237,14 +262,14 @@ class PlannerAgentTests(unittest.TestCase):
     def test_invalid_llm_output_falls_back_with_visible_reason(self):
         result = build_planner_agent(InvalidModel(), FakeTools(), max_turns=2)(REQUEST)
         self.assertTrue(result.used_fallback)
-        self.assertEqual(len(result.outline.sections), 5)
+        self.assertEqual(len(result.outline.sections), 7)
         self.assertEqual(result.notes[-1].code, "planner_fallback")
 
     def test_llm_repairs_invalid_json_before_human_review(self):
         result = build_planner_agent(RepairingModel(), FakeTools(),
                                      note_snapshot_version="notes-v1", max_turns=3)(REQUEST)
         self.assertFalse(result.used_fallback)
-        self.assertEqual(len(result.observations), 4)
+        self.assertEqual(len(result.observations), 6)
 
     def test_backend_error_cannot_justify_omitting_a_section(self):
         class BrokenNotes(FakeTools):
@@ -345,7 +370,7 @@ class PlannerAgentTests(unittest.TestCase):
         pending = graph.invoke({"request": REQUEST}, config)
         self.assertEqual(calls, [])
         self.assertEqual([s.section_id for s in pending["outline"].sections],
-                         ["S1", "S2", "S3"])
+                         ["S1", "S2", "S3", "S6", "S7"])
         self.assertEqual(len(pending["outline_decisions"]), 2)
         completed = graph.invoke(Command(resume={"action": "approve", "outline_version": 1}),
                                  config)

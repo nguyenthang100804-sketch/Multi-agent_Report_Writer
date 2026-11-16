@@ -3,11 +3,11 @@
 Phạm vi: một ticker, khoảng năm trong 2022–2025, một scope, doanh nghiệp phi tài chính (có bộ mã chuẩn B01/B02/B03).
 Căn cứ khung: B01/B02/B03/B09 theo TT200/TT202; thứ tự trình bày bám bộ BCTC. Đây là **bản đồ nội dung** để đối chiếu với outline hiện hành, không phải yêu cầu mỗi mục con hoặc bảng phải là một object trong `ReportOutline`.
 
-**Kết luận đối chiếu:** template hiện có task cho 12 chỉ tiêu đã được resolver hỗ trợ, phép tính của S3–S5, note nền của S1–S2 và các chủ đề note tùy chọn của S4/S6/S7. Nó chưa lập task cho S3.6; chưa mang metadata thống kê tài liệu S1.1, kết quả kiểm đẳng thức parser S4.5 hoặc danh mục nguồn S9. Các nội dung này không được xem là đã có chỉ vì section tương ứng tồn tại. LLM được quyền điều chỉnh outline dựa trên quan sát dữ liệu, nên outline được duyệt có thể ít nội dung hơn template.
+**Kết luận đối chiếu:** template hiện có task cho 12 chỉ tiêu đã được resolver hỗ trợ, phép tính của S3–S5, note nền của S1–S2 và các chủ đề note của S4/S6/S7. Nó chưa lập task cho S3.6; chưa mang metadata thống kê tài liệu S1.1, kết quả kiểm đẳng thức parser S4.5 hoặc danh mục nguồn S9. Các nội dung này không được xem là đã có chỉ vì section tương ứng tồn tại. LLM được quyền điều chỉnh outline dựa trên quan sát dữ liệu, nhưng S6/S7 luôn là hai section riêng trong outline được duyệt.
 
 ## 0. Quy ước dùng chung
 
-- **Loại section:** `Bắt buộc` chỉ khung tham chiếu S1–S5 của template, không ngăn LLM bỏ/gộp khi có quyết định và quan sát hợp lệ; `Tùy chọn` bật theo `instructions` hoặc đối tượng đọc; `Code` nằm ngoài outline Planner.
+- **Loại section:** `Bắt buộc` ở S1–S5 chỉ khung tham chiếu của template, không ngăn LLM bỏ/gộp khi có quyết định và quan sát hợp lệ. S6/S7 bắt buộc là hai section riêng và có task tìm thuyết minh; `Code` nằm ngoài outline Planner.
 - **Nguồn:** `DuckDB` = `query_fact_tool` / `query_time_series_tool`; `Qdrant` = `search_notes_tool` (lọc cứng ticker, năm, scope, section; tối đa 5 chunk).
 - **ID hiện hành:** section có ID như `S3`; task và phép tính có ID riêng. Schema hỗ trợ `SubsectionPlan`, nhưng template hiện để `subsections=[]`. `S3.2` và `T3.2` dưới đây là nhãn nội dung tham chiếu, chưa phải ID object hoặc bảng được Planner/renderer bảo đảm tạo ra. Claim trỏ về evidence/phép tính qua ID của chính nó.
 - **Mọi task fact phải khai `report_type`** (mã 20/30/40 trùng giữa các báo cáo).
@@ -25,8 +25,8 @@ Căn cứ khung: B01/B02/B03/B09 theo TT200/TT202; thứ tự trình bày bám b
 | S3 | Kết quả kinh doanh | Bắt buộc | DuckDB | B02 |
 | S4 | Tình hình tài chính | Bắt buộc | DuckDB (+ Qdrant cho S4.4) | B01 |
 | S5 | Lưu chuyển tiền tệ | Bắt buộc | DuckDB | B03 |
-| S6 | Chính sách kế toán và thuyết minh chọn lọc | Tùy chọn | Qdrant `NOTES` | B09 IV–V |
-| S7 | Bên liên quan, rủi ro, sự kiện sau niên độ | Tùy chọn | Qdrant `NOTES` | B09 VIII |
+| S6 | Chính sách kế toán và thuyết minh chọn lọc | Bắt buộc | Qdrant `NOTES` | B09 IV–V |
+| S7 | Bên liên quan, rủi ro, sự kiện sau niên độ | Bắt buộc | Qdrant `NOTES` | B09 VIII |
 | S8 | Giới hạn và phương pháp | Code | `planner_notes`, cảnh báo kỳ | — |
 | S9 | Nguồn trích dẫn | Code (renderer) | `evidence_by_id` | — |
 
@@ -90,9 +90,9 @@ Vì resolver hiện chưa hỗ trợ mã 320/338, template chỉ lập phần th
 
 Hai chỉ tiêu cùng mã `20` nhưng khác báo cáo: task phải khai hai `report_type` khác nhau, không dùng chung evidence ID.
 
-### S6. Chính sách kế toán và thuyết minh chọn lọc (Tùy chọn)
+### S6. Chính sách kế toán và thuyết minh chọn lọc
 
-Bật khi `instructions` nhắc chính sách, thuyết minh hoặc đối tượng đọc là kiểm toán/ban giám đốc. Mỗi mục con là một truy vấn note độc lập, diễn đạt lại bằng từ đồng nghĩa (không chép tiêu đề).
+S6 luôn có trong dàn ý mẫu. Mỗi mục con là một truy vấn note độc lập, diễn đạt lại bằng từ đồng nghĩa (không chép tiêu đề).
 
 | Mục con | Nội dung |
 |---|---|
@@ -103,7 +103,7 @@ Bật khi `instructions` nhắc chính sách, thuyết minh hoặc đối tượ
 
 Giới hạn tối đa 5 chunk mỗi truy vấn. Outline tạo task note; việc viết claim định tính trỏ về note thuộc Writer và chưa được bảo đảm bởi Planner.
 
-### S7. Bên liên quan, rủi ro, sự kiện sau niên độ (Tùy chọn)
+### S7. Bên liên quan, rủi ro, sự kiện sau niên độ
 
 | Mục con | Nội dung |
 |---|---|
@@ -130,15 +130,15 @@ Luồng hiện có ghi `cannot_compute`, `data_gap` và cảnh báo kỳ trong t
 
 `evidence_by_id` có metadata nguồn để renderer gắn citation vào nội dung. Chưa có section S9 tổng hợp danh mục tài liệu, trang vật lý và trang in.
 
-## 3. Bảng bật/tắt theo đối tượng đọc
+## 3. Trọng tâm theo đối tượng đọc
 
-| Đối tượng | Giữ nguyên | Nhấn mạnh | Bật thêm |
-|---|---|---|---|
-| Nhà đầu tư | S1–S5 | S3, S5 | Không |
-| Ban giám đốc | S1–S5 | S4 (S4.3, S4.4) | Template hiện bật cả S6; LLM có thể điều chỉnh |
-| Kiểm toán/tuân thủ | S1–S5 | S2 | S6, S7 |
+| Đối tượng | Giữ nguyên | Nhấn mạnh |
+|---|---|---|
+| Nhà đầu tư | S6, S7 | S3, S5 |
+| Ban giám đốc | S6, S7 | S4 (S4.3, S4.4) |
+| Kiểm toán/tuân thủ | S6, S7 | S2 |
 
-LLM hiện được giữ, bỏ, gộp, tách hoặc thêm section/mục con dựa trên quan sát dữ liệu; quyết định được ghi trong `OutlineDecision` trước HITL. Task số phải được resolver phân giải duy nhất và đã được truy vấn; task note phải có quan sát cùng query/năm/nhóm tài liệu. Validator không bảo đảm mọi nội dung tham chiếu ở bảng trên đều xuất hiện trong outline đã duyệt.
+LLM được giữ, bỏ, gộp, tách hoặc thêm các section khác và mục con dựa trên quan sát dữ liệu; S6/S7 luôn giữ riêng. Quyết định được ghi trong `OutlineDecision` trước HITL. Task số phải được resolver phân giải duy nhất và đã được truy vấn; task note phải có quan sát cùng query/năm/nhóm tài liệu. Validator không bảo đảm mọi nội dung tham chiếu ở bảng trên đều xuất hiện trong outline đã duyệt.
 
 ## 4. Điều kiện từ chối hoặc dừng sớm (trước khi lập outline)
 

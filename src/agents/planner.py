@@ -134,18 +134,11 @@ def plan_report(request: ReportRequest, db_path: str | Path = DEFAULT_DB_PATH) -
             f"{task.task_id}:{year}" for task in section.research_tasks
             if isinstance(task, RatioTask) for year in task.years)
 
-    audience = request.audience.casefold()
-    instructions = (request.instructions or "").casefold()
-    enable_s6 = (any(word in audience for word in ("kiểm toán", "ban giám đốc", "audit", "management"))
-                 or any(word in instructions for word in ("chính sách", "thuyết minh", "policy")))
-    enable_s7 = (any(word in audience for word in ("kiểm toán", "tuân thủ", "audit", "compliance"))
-                 or any(word in instructions for word in ("bên liên quan", "rủi ro", "sự kiện", "cam kết")))
-    for sid, enabled in (("S6", enable_s6), ("S7", enable_s7)):
-        if enabled:
-            sections[sid] = SectionPlan(section_id=sid, title=SECTION_TITLES[sid],
-                                        objective=SECTION_TITLES[sid])
-            for key, query in OPTIONAL_NOTE_TOPICS[sid]:
-                note_task(sid, key, query, last)
+    for sid in ("S6", "S7"):
+        sections[sid] = SectionPlan(section_id=sid, title=SECTION_TITLES[sid],
+                                    objective=SECTION_TITLES[sid])
+        for key, query in OPTIONAL_NOTE_TOPICS[sid]:
+            note_task(sid, key, query, last)
 
     for sid, message in (("S3", "Mã 23 và 62 chưa có trong resolver; chưa lập task cho chi phí lãi vay và phần cổ đông không kiểm soát"),
                          ("S4", "Mã 140, 320, 338 và 440 chưa có trong resolver; chưa lập task số cho hàng tồn kho, vay nợ và kiểm tra cân đối")):

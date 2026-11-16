@@ -39,7 +39,7 @@ class PlannerTests(unittest.TestCase):
             self.assertEqual(first.status, "ready")
             outline = first.outline
             self.assertEqual([section.section_id for section in outline.sections],
-                             ["S1", "S2", "S3", "S4", "S5"])
+                             ["S1", "S2", "S3", "S4", "S5", "S6", "S7"])
             self.assertEqual(outline.calculation_policy, "explicit")
             series = [task for section in outline.sections for task in section.research_tasks
                       if task.task_type == "time_series"]

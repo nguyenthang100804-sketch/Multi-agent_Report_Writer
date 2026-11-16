@@ -19,7 +19,7 @@ from src.tools.schemas import MetricResolverInput
 from src.tools.schemas import FactQueryInput, NotesSearchInput, TimeSeriesQueryInput
 
 PROMPT_PATH = Path(__file__).parent / "prompts" / "planner_system.md"
-PROMPT_VERSION = "v3"
+PROMPT_VERSION = "v4"
 
 
 def _tool_argument_schemas() -> dict:
@@ -69,10 +69,18 @@ def _validate_proposal(proposal: PlannerProposal, toolbox: PlannerToolbox,
         raise ValueError("Planner must inspect source data before proposing")
     observed_ids = set(toolbox.observations)
     section_ids = {section.section_id for section in outline.sections}
+    for sid in ("S6", "S7"):
+        if sid not in section_ids:
+            raise ValueError(f"Full report requires section {sid}")
+        section = next(section for section in outline.sections if section.section_id == sid)
+        if not any(isinstance(task, NotesTask) for task in section.research_tasks):
+            raise ValueError(f"Full report section {sid} needs a notes research task")
     template_ids = ({section.section_id for section in template.sections}
                     if template is not None else set())
     for decision in proposal.decisions:
         if decision.action in {"omit", "merge"}:
+            if set(decision.template_section_ids) & {"S6", "S7"}:
+                raise ValueError("Full report cannot omit or merge S6/S7")
             if not decision.template_section_ids or (template is not None and
                 not set(decision.template_section_ids) <= template_ids):
                 raise ValueError("Omit/merge decision needs existing template source IDs")
