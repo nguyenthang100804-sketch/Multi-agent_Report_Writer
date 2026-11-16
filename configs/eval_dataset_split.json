@@ -1,0 +1,64 @@
+{
+  "split_version": "v1.0",
+  "created_at": "2026-10-29T16:26:00+07:00",
+  "description": "Phân chia tập Dev và Test theo cấp độ công ty (Company-level split) để đánh giá mô hình Embedding và Retrieval, tránh rò rỉ dữ liệu cùng mã cổ phiếu giữa các năm.",
+  "total_companies": 35,
+  "dev_count": 25,
+  "test_count": 10,
+  "dev_tickers": [
+    "ABB",
+    "ACB",
+    "BAB",
+    "BSR",
+    "BWE",
+    "DCM",
+    "DHG",
+    "FPT",
+    "GAS",
+    "GEX",
+    "GMD",
+    "GVR",
+    "HAH",
+    "HUT",
+    "MSB",
+    "MSN",
+    "MVN",
+    "PET",
+    "PVT",
+    "QNS",
+    "SAB",
+    "SSH",
+    "VEA",
+    "VIC",
+    "VRE"
+  ],
+  "test_tickers": [
+    "GEE",
+    "LGC",
+    "MCH",
+    "NAB",
+    "NVB",
+    "OIL",
+    "PAP",
+    "PVI",
+    "SJG",
+    "VCR"
+  ],
+  "industry_distribution": {
+    "dev": {
+      "banking": ["ABB", "ACB", "BAB", "MSB"],
+      "energy_oil_gas": ["BSR", "GAS", "PVT"],
+      "technology": ["FPT"],
+      "real_estate_conglomerate": ["VIC", "VRE", "SSH", "GEX", "HUT"],
+      "consumer_fnb": ["MSN", "SAB", "QNS"],
+      "manufacturing_utilities_logistics": ["BWE", "DCM", "DHG", "GMD", "GVR", "HAH", "MVN", "PET", "VEA"]
+    },
+    "test": {
+      "banking": ["NAB", "NVB"],
+      "energy_oil_gas": ["OIL", "GEE"],
+      "real_estate_construction": ["VCR", "SJG"],
+      "consumer_fnb": ["MCH"],
+      "manufacturing_insurance_infrastructure": ["LGC", "PAP", "PVI"]
+    }
+  }
+}

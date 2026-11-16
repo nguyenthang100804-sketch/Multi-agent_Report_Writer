@@ -1,0 +1,3387 @@
+{
+  "status": "ready",
+  "outline": {
+    "outline_id": "outline:3056624fe6b56f6b",
+    "sections": [
+      {
+        "section_id": "S1",
+        "title": "Thông tin doanh nghiệp và phạm vi dữ liệu",
+        "objective": "Thông tin doanh nghiệp và phạm vi dữ liệu",
+        "template_section_ids": [],
+        "subsections": [],
+        "research_tasks": [
+          {
+            "task_type": "notes",
+            "task_id": "S1:business:2025",
+            "query": "Ngành nghề hoạt động và cơ cấu doanh nghiệp",
+            "fiscal_year": 2025,
+            "sections": [
+              "NOTES",
+              "MANAGEMENT_REPORT"
+            ]
+          },
+          {
+            "task_type": "notes",
+            "task_id": "S1:accounting_basis:2025",
+            "query": "Kỳ kế toán đơn vị tiền tệ và chế độ kế toán áp dụng",
+            "fiscal_year": 2025,
+            "sections": [
+              "NOTES"
+            ]
+          }
+        ],
+        "calculation_specs": [],
+        "calculations_allowed": [],
+        "status": "pending"
+      },
+      {
+        "section_id": "S2",
+        "title": "Ý kiến kiểm toán",
+        "objective": "Ý kiến kiểm toán",
+        "template_section_ids": [],
+        "subsections": [],
+        "research_tasks": [
+          {
+            "task_type": "notes",
+            "task_id": "S2:audit:2022",
+            "query": "Ý kiến kiểm toán và đơn vị kiểm toán",
+            "fiscal_year": 2022,
+            "sections": [
+              "AUDIT_REPORT"
+            ]
+          },
+          {
+            "task_type": "notes",
+            "task_id": "S2:audit:2023",
+            "query": "Ý kiến kiểm toán và đơn vị kiểm toán",
+            "fiscal_year": 2023,
+            "sections": [
+              "AUDIT_REPORT"
+            ]
+          },
+          {
+            "task_type": "notes",
+            "task_id": "S2:audit:2024",
+            "query": "Ý kiến kiểm toán và đơn vị kiểm toán",
+            "fiscal_year": 2024,
+            "sections": [
+              "AUDIT_REPORT"
+            ]
+          },
+          {
+            "task_type": "notes",
+            "task_id": "S2:audit:2025",
+            "query": "Ý kiến kiểm toán và đơn vị kiểm toán",
+            "fiscal_year": 2025,
+            "sections": [
+              "AUDIT_REPORT"
+            ]
+          }
+        ],
+        "calculation_specs": [],
+        "calculations_allowed": [],
+        "status": "pending"
+      },
+      {
+        "section_id": "S3",
+        "title": "Kết quả kinh doanh",
+        "objective": "Kết quả kinh doanh",
+        "template_section_ids": [],
+        "subsections": [],
+        "research_tasks": [
+          {
+            "metric_name": "Doanh thu thuần",
+            "item_code": "10",
+            "report_type": "INCOME_STATEMENT",
+            "task_id": "revenue",
+            "task_type": "time_series",
+            "start_year": 2022,
+            "end_year": 2025
+          },
+          {
+            "metric_name": "Lợi nhuận gộp",
+            "item_code": "20",
+            "report_type": "INCOME_STATEMENT",
+            "task_id": "gross_profit",
+            "task_type": "time_series",
+            "start_year": 2022,
+            "end_year": 2025
+          },
+          {
+            "metric_name": "Lợi nhuận trước thuế",
+            "item_code": "50",
+            "report_type": "INCOME_STATEMENT",
+            "task_id": "profit_before_tax",
+            "task_type": "time_series",
+            "start_year": 2022,
+            "end_year": 2025
+          },
+          {
+            "metric_name": "Lợi nhuận sau thuế",
+            "item_code": "60",
+            "report_type": "INCOME_STATEMENT",
+            "task_id": "net_income",
+            "task_type": "time_series",
+            "start_year": 2022,
+            "end_year": 2025
+          },
+          {
+            "metric_name": "Lợi nhuận sau thuế của cổ đông công ty mẹ",
+            "item_code": "61",
+            "report_type": "INCOME_STATEMENT",
+            "task_id": "parent_profit",
+            "task_type": "time_series",
+            "start_year": 2022,
+            "end_year": 2025
+          },
+          {
+            "task_type": "ratio",
+            "task_id": "gross_margin",
+            "numerator_task_id": "gross_profit",
+            "denominator_task_id": "revenue",
+            "years": [
+              2022,
+              2023,
+              2024,
+              2025
+            ],
+            "positive_denominator": false
+          },
+          {
+            "task_type": "ratio",
+            "task_id": "net_margin",
+            "numerator_task_id": "net_income",
+            "denominator_task_id": "revenue",
+            "years": [
+              2022,
+              2023,
+              2024,
+              2025
+            ],
+            "positive_denominator": false
+          }
+        ],
+        "calculation_specs": [
+          {
+            "calculation_id": "revenue:yoy:2023",
+            "operation": "yoy",
+            "source_task_id": "revenue",
+            "start_year": 2022,
+            "end_year": 2023
+          },
+          {
+            "calculation_id": "profit_before_tax:difference:2023",
+            "operation": "difference",
+            "source_task_id": "profit_before_tax",
+            "start_year": 2022,
+            "end_year": 2023
+          },
+          {
+            "calculation_id": "net_income:difference:2023",
+            "operation": "difference",
+            "source_task_id": "net_income",
+            "start_year": 2022,
+            "end_year": 2023
+          },
+          {
+            "calculation_id": "revenue:yoy:2024",
+            "operation": "yoy",
+            "source_task_id": "revenue",
+            "start_year": 2023,
+            "end_year": 2024
+          },
+          {
+            "calculation_id": "profit_before_tax:difference:2024",
+            "operation": "difference",
+            "source_task_id": "profit_before_tax",
+            "start_year": 2023,
+            "end_year": 2024
+          },
+          {
+            "calculation_id": "net_income:difference:2024",
+            "operation": "difference",
+            "source_task_id": "net_income",
+            "start_year": 2023,
+            "end_year": 2024
+          },
+          {
+            "calculation_id": "revenue:yoy:2025",
+            "operation": "yoy",
+            "source_task_id": "revenue",
+            "start_year": 2024,
+            "end_year": 2025
+          },
+          {
+            "calculation_id": "profit_before_tax:difference:2025",
+            "operation": "difference",
+            "source_task_id": "profit_before_tax",
+            "start_year": 2024,
+            "end_year": 2025
+          },
+          {
+            "calculation_id": "net_income:difference:2025",
+            "operation": "difference",
+            "source_task_id": "net_income",
+            "start_year": 2024,
+            "end_year": 2025
+          },
+          {
+            "calculation_id": "revenue:cagr:2025",
+            "operation": "cagr",
+            "source_task_id": "revenue",
+            "start_year": 2022,
+            "end_year": 2025
+          }
+        ],
+        "calculations_allowed": [],
+        "status": "pending"
+      },
+      {
+        "section_id": "S4",
+        "title": "Tình hình tài chính",
+        "objective": "Tình hình tài chính",
+        "template_section_ids": [],
+        "subsections": [],
+        "research_tasks": [
+          {
+            "task_type": "notes",
+            "task_id": "S4:borrowings:2025",
+            "query": "Điều khoản và kỳ hạn các khoản vay",
+            "fiscal_year": 2025,
+            "sections": [
+              "NOTES"
+            ]
+          },
+          {
+            "metric_name": "Tổng tài sản",
+            "item_code": "270",
+            "report_type": "BALANCE_SHEET",
+            "task_id": "assets",
+            "task_type": "time_series",
+            "start_year": 2022,
+            "end_year": 2025
+          },
+          {
+            "metric_name": "Nợ phải trả",
+            "item_code": "300",
+            "report_type": "BALANCE_SHEET",
+            "task_id": "liabilities",
+            "task_type": "time_series",
+            "start_year": 2022,
+            "end_year": 2025
+          },
+          {
+            "metric_name": "Vốn chủ sở hữu",
+            "item_code": "400",
+            "report_type": "BALANCE_SHEET",
+            "task_id": "equity",
+            "task_type": "time_series",
+            "start_year": 2022,
+            "end_year": 2025
+          },
+          {
+            "metric_name": "Tiền và các khoản tương đương tiền",
+            "item_code": "110",
+            "report_type": "BALANCE_SHEET",
+            "task_id": "cash",
+            "task_type": "time_series",
+            "start_year": 2022,
+            "end_year": 2025
+          },
+          {
+            "task_type": "ratio",
+            "task_id": "debt_to_assets",
+            "numerator_task_id": "liabilities",
+            "denominator_task_id": "assets",
+            "years": [
+              2022,
+              2023,
+              2024,
+              2025
+            ],
+            "positive_denominator": false
+          },
+          {
+            "task_type": "ratio",
+            "task_id": "equity_to_assets",
+            "numerator_task_id": "equity",
+            "denominator_task_id": "assets",
+            "years": [
+              2022,
+              2023,
+              2024,
+              2025
+            ],
+            "positive_denominator": false
+          }
+        ],
+        "calculation_specs": [
+          {
+            "calculation_id": "assets:yoy:2023",
+            "operation": "yoy",
+            "source_task_id": "assets",
+            "start_year": 2022,
+            "end_year": 2023
+          },
+          {
+            "calculation_id": "assets:yoy:2024",
+            "operation": "yoy",
+            "source_task_id": "assets",
+            "start_year": 2023,
+            "end_year": 2024
+          },
+          {
+            "calculation_id": "assets:yoy:2025",
+            "operation": "yoy",
+            "source_task_id": "assets",
+            "start_year": 2024,
+            "end_year": 2025
+          }
+        ],
+        "calculations_allowed": [],
+        "status": "pending"
+      },
+      {
+        "section_id": "S5",
+        "title": "Lưu chuyển tiền tệ",
+        "objective": "Lưu chuyển tiền tệ",
+        "template_section_ids": [],
+        "subsections": [],
+        "research_tasks": [
+          {
+            "metric_name": "Lưu chuyển tiền thuần từ hoạt động kinh doanh",
+            "item_code": "20",
+            "report_type": "CASH_FLOW",
+            "task_id": "operating_cash_flow",
+            "task_type": "time_series",
+            "start_year": 2022,
+            "end_year": 2025
+          },
+          {
+            "metric_name": "Lưu chuyển tiền thuần từ hoạt động đầu tư",
+            "item_code": "30",
+            "report_type": "CASH_FLOW",
+            "task_id": "investing_cash_flow",
+            "task_type": "time_series",
+            "start_year": 2022,
+            "end_year": 2025
+          },
+          {
+            "metric_name": "Lưu chuyển tiền thuần từ hoạt động tài chính",
+            "item_code": "40",
+            "report_type": "CASH_FLOW",
+            "task_id": "financing_cash_flow",
+            "task_type": "time_series",
+            "start_year": 2022,
+            "end_year": 2025
+          },
+          {
+            "task_type": "ratio",
+            "task_id": "cfo_to_net_income",
+            "numerator_task_id": "operating_cash_flow",
+            "denominator_task_id": "net_income",
+            "years": [
+              2022,
+              2023,
+              2024,
+              2025
+            ],
+            "positive_denominator": true
+          }
+        ],
+        "calculation_specs": [
+          {
+            "calculation_id": "operating_cash_flow:difference:2023",
+            "operation": "difference",
+            "source_task_id": "operating_cash_flow",
+            "start_year": 2022,
+            "end_year": 2023
+          },
+          {
+            "calculation_id": "investing_cash_flow:difference:2023",
+            "operation": "difference",
+            "source_task_id": "investing_cash_flow",
+            "start_year": 2022,
+            "end_year": 2023
+          },
+          {
+            "calculation_id": "financing_cash_flow:difference:2023",
+            "operation": "difference",
+            "source_task_id": "financing_cash_flow",
+            "start_year": 2022,
+            "end_year": 2023
+          },
+          {
+            "calculation_id": "operating_cash_flow:difference:2024",
+            "operation": "difference",
+            "source_task_id": "operating_cash_flow",
+            "start_year": 2023,
+            "end_year": 2024
+          },
+          {
+            "calculation_id": "investing_cash_flow:difference:2024",
+            "operation": "difference",
+            "source_task_id": "investing_cash_flow",
+            "start_year": 2023,
+            "end_year": 2024
+          },
+          {
+            "calculation_id": "financing_cash_flow:difference:2024",
+            "operation": "difference",
+            "source_task_id": "financing_cash_flow",
+            "start_year": 2023,
+            "end_year": 2024
+          },
+          {
+            "calculation_id": "operating_cash_flow:difference:2025",
+            "operation": "difference",
+            "source_task_id": "operating_cash_flow",
+            "start_year": 2024,
+            "end_year": 2025
+          },
+          {
+            "calculation_id": "investing_cash_flow:difference:2025",
+            "operation": "difference",
+            "source_task_id": "investing_cash_flow",
+            "start_year": 2024,
+            "end_year": 2025
+          },
+          {
+            "calculation_id": "financing_cash_flow:difference:2025",
+            "operation": "difference",
+            "source_task_id": "financing_cash_flow",
+            "start_year": 2024,
+            "end_year": 2025
+          }
+        ],
+        "calculations_allowed": [],
+        "status": "pending"
+      },
+      {
+        "section_id": "S7",
+        "title": "Bên liên quan, rủi ro, sự kiện sau niên độ",
+        "objective": "Bên liên quan, rủi ro, sự kiện sau niên độ",
+        "template_section_ids": [],
+        "subsections": [],
+        "research_tasks": [
+          {
+            "task_type": "notes",
+            "task_id": "S7:related_parties:2025",
+            "query": "Các giao dịch và số dư với bên liên quan",
+            "fiscal_year": 2025,
+            "sections": [
+              "NOTES"
+            ]
+          },
+          {
+            "task_type": "notes",
+            "task_id": "S7:financial_risks:2025",
+            "query": "Rủi ro thanh khoản tín dụng tỷ giá lãi suất",
+            "fiscal_year": 2025,
+            "sections": [
+              "NOTES"
+            ]
+          },
+          {
+            "task_type": "notes",
+            "task_id": "S7:commitments:2025",
+            "query": "Cam kết và nghĩa vụ tiềm tàng",
+            "fiscal_year": 2025,
+            "sections": [
+              "NOTES"
+            ]
+          },
+          {
+            "task_type": "notes",
+            "task_id": "S7:subsequent_events:2025",
+            "query": "Sự kiện phát sinh sau ngày kết thúc niên độ",
+            "fiscal_year": 2025,
+            "sections": [
+              "NOTES"
+            ]
+          }
+        ],
+        "calculation_specs": [],
+        "calculations_allowed": [],
+        "status": "pending"
+      }
+    ],
+    "calculation_policy": "explicit"
+  },
+  "notes": [],
+  "available_scopes": {
+    "consolidated": [
+      2022,
+      2023,
+      2024,
+      2025
+    ]
+  },
+  "observations": [
+    {
+      "observation_id": "obs:0452cfd12b29d63e39c1",
+      "tool_name": "query_time_series_tool",
+      "arguments": {
+        "metric_name": "Doanh thu thuần",
+        "item_code": "10",
+        "report_type": "INCOME_STATEMENT",
+        "ticker": "HUT",
+        "start_year": 2022,
+        "end_year": 2025,
+        "scope": "consolidated"
+      },
+      "snapshot_version": "008db98b13c2cb13ece1f089b3e53781bd179eb560a38e670dd937bf81ffe86c",
+      "result": {
+        "status": "ok",
+        "message": "Current-period source values; formula-specific CAGR/YoY constraints still apply.",
+        "facts": [
+          {
+            "doc_id": "HUT_2022_Hopnhat",
+            "fact_index": 72,
+            "ticker": "HUT",
+            "fiscal_year": 2022,
+            "scope": "consolidated",
+            "report_type": "INCOME_STATEMENT",
+            "code": "10",
+            "label": "3.",
+            "value": 1073161354752.0,
+            "raw_value": "1.073.161.354.752",
+            "unit": "VND",
+            "prior_year": 870395087755.0,
+            "raw_prior": "870.395.087.755",
+            "suspect": false,
+            "source_file": "data/raw_docs/top_100/HUT/2022/HUT_2022_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_page": 11,
+            "printed_page": "8",
+            "citation_tag": "[Doc_HUT_2022_Hopnhat, p.11]",
+            "chunk_ids": [
+              "HUT_2022_Hopnhat_chunk_0027",
+              "HUT_2022_Hopnhat_chunk_0028",
+              "HUT_2022_Hopnhat_chunk_0029",
+              "HUT_2022_Hopnhat_chunk_0030"
+            ]
+          },
+          {
+            "doc_id": "HUT_2023_Hopnhat",
+            "fact_index": 87,
+            "ticker": "HUT",
+            "fiscal_year": 2023,
+            "scope": "consolidated",
+            "report_type": "INCOME_STATEMENT",
+            "code": "10",
+            "label": "3.",
+            "value": 10981750221964.0,
+            "raw_value": "10.981.750.221.964",
+            "unit": "VND",
+            "prior_year": 1073161354752.0,
+            "raw_prior": "1.073.161.354.752",
+            "suspect": false,
+            "source_file": "data/raw_docs/top_100/HUT/2023/HUT_2023_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_page": 11,
+            "printed_page": "8",
+            "citation_tag": "[Doc_HUT_2023_Hopnhat, p.11]",
+            "chunk_ids": [
+              "HUT_2023_Hopnhat_chunk_0022",
+              "HUT_2023_Hopnhat_chunk_0023",
+              "HUT_2023_Hopnhat_chunk_0024",
+              "HUT_2023_Hopnhat_chunk_0025"
+            ]
+          },
+          {
+            "doc_id": "HUT_2024_Hopnhat",
+            "fact_index": 90,
+            "ticker": "HUT",
+            "fiscal_year": 2024,
+            "scope": "consolidated",
+            "report_type": "INCOME_STATEMENT",
+            "code": "10",
+            "label": "3.",
+            "value": 30228885059484.0,
+            "raw_value": "30.228.885.059.484",
+            "unit": "VND",
+            "prior_year": 10981750221964.0,
+            "raw_prior": "10.981.750.221.964",
+            "suspect": false,
+            "source_file": "data/raw_docs/top_100/HUT/2024/HUT_2024_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_page": 11,
+            "printed_page": null,
+            "citation_tag": "[Doc_HUT_2024_Hopnhat, p.11]",
+            "chunk_ids": [
+              "HUT_2024_Hopnhat_chunk_0022",
+              "HUT_2024_Hopnhat_chunk_0023",
+              "HUT_2024_Hopnhat_chunk_0024",
+              "HUT_2024_Hopnhat_chunk_0025"
+            ]
+          },
+          {
+            "doc_id": "HUT_2025_Hopnhat",
+            "fact_index": 92,
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "report_type": "INCOME_STATEMENT",
+            "code": "10",
+            "label": "3.",
+            "value": 36317437528063.0,
+            "raw_value": "36.317.437.528.063",
+            "unit": "VND",
+            "prior_year": 30228885059484.0,
+            "raw_prior": "30.228.885.059.484",
+            "suspect": false,
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_page": 11,
+            "printed_page": "8",
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.11]",
+            "chunk_ids": [
+              "HUT_2025_Hopnhat_chunk_0027",
+              "HUT_2025_Hopnhat_chunk_0028",
+              "HUT_2025_Hopnhat_chunk_0029",
+              "HUT_2025_Hopnhat_chunk_0030"
+            ]
+          }
+        ],
+        "chunks": [],
+        "candidates": [],
+        "missing_years": [],
+        "warnings": [],
+        "safe_for_calculation": true
+      }
+    },
+    {
+      "observation_id": "obs:198f33986b6aa7f56ec1",
+      "tool_name": "query_time_series_tool",
+      "arguments": {
+        "metric_name": "Lợi nhuận gộp",
+        "item_code": "20",
+        "report_type": "INCOME_STATEMENT",
+        "ticker": "HUT",
+        "start_year": 2022,
+        "end_year": 2025,
+        "scope": "consolidated"
+      },
+      "snapshot_version": "008db98b13c2cb13ece1f089b3e53781bd179eb560a38e670dd937bf81ffe86c",
+      "result": {
+        "status": "ok",
+        "message": "Current-period source values; formula-specific CAGR/YoY constraints still apply.",
+        "facts": [
+          {
+            "doc_id": "HUT_2022_Hopnhat",
+            "fact_index": 74,
+            "ticker": "HUT",
+            "fiscal_year": 2022,
+            "scope": "consolidated",
+            "report_type": "INCOME_STATEMENT",
+            "code": "20",
+            "label": "5.",
+            "value": 390050611953.0,
+            "raw_value": "390.050.611.953",
+            "unit": "VND",
+            "prior_year": 280027398415.0,
+            "raw_prior": "280.027.398.415",
+            "suspect": false,
+            "source_file": "data/raw_docs/top_100/HUT/2022/HUT_2022_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_page": 11,
+            "printed_page": "8",
+            "citation_tag": "[Doc_HUT_2022_Hopnhat, p.11]",
+            "chunk_ids": [
+              "HUT_2022_Hopnhat_chunk_0027",
+              "HUT_2022_Hopnhat_chunk_0028",
+              "HUT_2022_Hopnhat_chunk_0029",
+              "HUT_2022_Hopnhat_chunk_0030"
+            ]
+          },
+          {
+            "doc_id": "HUT_2023_Hopnhat",
+            "fact_index": 89,
+            "ticker": "HUT",
+            "fiscal_year": 2023,
+            "scope": "consolidated",
+            "report_type": "INCOME_STATEMENT",
+            "code": "20",
+            "label": "5.",
+            "value": 1031790133908.0,
+            "raw_value": "1.031.790.133.908",
+            "unit": "VND",
+            "prior_year": 390050611953.0,
+            "raw_prior": "390.050.611.953",
+            "suspect": false,
+            "source_file": "data/raw_docs/top_100/HUT/2023/HUT_2023_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_page": 11,
+            "printed_page": "8",
+            "citation_tag": "[Doc_HUT_2023_Hopnhat, p.11]",
+            "chunk_ids": [
+              "HUT_2023_Hopnhat_chunk_0022",
+              "HUT_2023_Hopnhat_chunk_0023",
+              "HUT_2023_Hopnhat_chunk_0024",
+              "HUT_2023_Hopnhat_chunk_0025"
+            ]
+          },
+          {
+            "doc_id": "HUT_2024_Hopnhat",
+            "fact_index": 92,
+            "ticker": "HUT",
+            "fiscal_year": 2024,
+            "scope": "consolidated",
+            "report_type": "INCOME_STATEMENT",
+            "code": "20",
+            "label": "5.",
+            "value": 2674158909581.0,
+            "raw_value": "2.674.158.909.581",
+            "unit": "VND",
+            "prior_year": 1031790133908.0,
+            "raw_prior": "1.031.790.133.908",
+            "suspect": false,
+            "source_file": "data/raw_docs/top_100/HUT/2024/HUT_2024_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_page": 11,
+            "printed_page": null,
+            "citation_tag": "[Doc_HUT_2024_Hopnhat, p.11]",
+            "chunk_ids": [
+              "HUT_2024_Hopnhat_chunk_0022",
+              "HUT_2024_Hopnhat_chunk_0023",
+              "HUT_2024_Hopnhat_chunk_0024",
+              "HUT_2024_Hopnhat_chunk_0025"
+            ]
+          },
+          {
+            "doc_id": "HUT_2025_Hopnhat",
+            "fact_index": 94,
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "report_type": "INCOME_STATEMENT",
+            "code": "20",
+            "label": "5.",
+            "value": 3373702700546.0,
+            "raw_value": "3.373.702.700.546",
+            "unit": "VND",
+            "prior_year": 2674158909581.0,
+            "raw_prior": "2.674.158.909.581",
+            "suspect": false,
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_page": 11,
+            "printed_page": "8",
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.11]",
+            "chunk_ids": [
+              "HUT_2025_Hopnhat_chunk_0027",
+              "HUT_2025_Hopnhat_chunk_0028",
+              "HUT_2025_Hopnhat_chunk_0029",
+              "HUT_2025_Hopnhat_chunk_0030"
+            ]
+          }
+        ],
+        "chunks": [],
+        "candidates": [],
+        "missing_years": [],
+        "warnings": [],
+        "safe_for_calculation": true
+      }
+    },
+    {
+      "observation_id": "obs:8d4c4e0bf4b27dd40dbe",
+      "tool_name": "query_time_series_tool",
+      "arguments": {
+        "metric_name": "Lợi nhuận trước thuế",
+        "item_code": "50",
+        "report_type": "INCOME_STATEMENT",
+        "ticker": "HUT",
+        "start_year": 2022,
+        "end_year": 2025,
+        "scope": "consolidated"
+      },
+      "snapshot_version": "008db98b13c2cb13ece1f089b3e53781bd179eb560a38e670dd937bf81ffe86c",
+      "result": {
+        "status": "ok",
+        "message": "Current-period source values; formula-specific CAGR/YoY constraints still apply.",
+        "facts": [
+          {
+            "doc_id": "HUT_2022_Hopnhat",
+            "fact_index": 85,
+            "ticker": "HUT",
+            "fiscal_year": 2022,
+            "scope": "consolidated",
+            "report_type": "INCOME_STATEMENT",
+            "code": "50",
+            "label": "15.",
+            "value": 190982547638.0,
+            "raw_value": "190.982.547.638",
+            "unit": "VND",
+            "prior_year": 50180509489.0,
+            "raw_prior": "50.180.509.489",
+            "suspect": false,
+            "source_file": "data/raw_docs/top_100/HUT/2022/HUT_2022_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_page": 11,
+            "printed_page": "8",
+            "citation_tag": "[Doc_HUT_2022_Hopnhat, p.11]",
+            "chunk_ids": [
+              "HUT_2022_Hopnhat_chunk_0027",
+              "HUT_2022_Hopnhat_chunk_0028",
+              "HUT_2022_Hopnhat_chunk_0029",
+              "HUT_2022_Hopnhat_chunk_0030"
+            ]
+          },
+          {
+            "doc_id": "HUT_2023_Hopnhat",
+            "fact_index": 100,
+            "ticker": "HUT",
+            "fiscal_year": 2023,
+            "scope": "consolidated",
+            "report_type": "INCOME_STATEMENT",
+            "code": "50",
+            "label": "15.",
+            "value": 55845910188.0,
+            "raw_value": "55.845.910.188",
+            "unit": "VND",
+            "prior_year": 190982547638.0,
+            "raw_prior": "190.982.547.638",
+            "suspect": false,
+            "source_file": "data/raw_docs/top_100/HUT/2023/HUT_2023_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_page": 11,
+            "printed_page": "8",
+            "citation_tag": "[Doc_HUT_2023_Hopnhat, p.11]",
+            "chunk_ids": [
+              "HUT_2023_Hopnhat_chunk_0022",
+              "HUT_2023_Hopnhat_chunk_0023",
+              "HUT_2023_Hopnhat_chunk_0024",
+              "HUT_2023_Hopnhat_chunk_0025"
+            ]
+          },
+          {
+            "doc_id": "HUT_2024_Hopnhat",
+            "fact_index": 103,
+            "ticker": "HUT",
+            "fiscal_year": 2024,
+            "scope": "consolidated",
+            "report_type": "INCOME_STATEMENT",
+            "code": "50",
+            "label": "15.",
+            "value": 425822560804.0,
+            "raw_value": "425.822.560.804",
+            "unit": "VND",
+            "prior_year": 55845910188.0,
+            "raw_prior": "55.845.910.188",
+            "suspect": false,
+            "source_file": "data/raw_docs/top_100/HUT/2024/HUT_2024_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_page": 11,
+            "printed_page": null,
+            "citation_tag": "[Doc_HUT_2024_Hopnhat, p.11]",
+            "chunk_ids": [
+              "HUT_2024_Hopnhat_chunk_0022",
+              "HUT_2024_Hopnhat_chunk_0023",
+              "HUT_2024_Hopnhat_chunk_0024",
+              "HUT_2024_Hopnhat_chunk_0025"
+            ]
+          },
+          {
+            "doc_id": "HUT_2025_Hopnhat",
+            "fact_index": 105,
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "report_type": "INCOME_STATEMENT",
+            "code": "50",
+            "label": "15.",
+            "value": 787998482387.0,
+            "raw_value": "787.998.482.387",
+            "unit": "VND",
+            "prior_year": 425822560804.0,
+            "raw_prior": "425.822.560.804",
+            "suspect": false,
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_page": 11,
+            "printed_page": "8",
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.11]",
+            "chunk_ids": [
+              "HUT_2025_Hopnhat_chunk_0027",
+              "HUT_2025_Hopnhat_chunk_0028",
+              "HUT_2025_Hopnhat_chunk_0029",
+              "HUT_2025_Hopnhat_chunk_0030"
+            ]
+          }
+        ],
+        "chunks": [],
+        "candidates": [],
+        "missing_years": [],
+        "warnings": [],
+        "safe_for_calculation": true
+      }
+    },
+    {
+      "observation_id": "obs:5b79a32e946cb3dddaa9",
+      "tool_name": "query_time_series_tool",
+      "arguments": {
+        "metric_name": "Lợi nhuận sau thuế",
+        "item_code": "60",
+        "report_type": "INCOME_STATEMENT",
+        "ticker": "HUT",
+        "start_year": 2022,
+        "end_year": 2025,
+        "scope": "consolidated"
+      },
+      "snapshot_version": "008db98b13c2cb13ece1f089b3e53781bd179eb560a38e670dd937bf81ffe86c",
+      "result": {
+        "status": "ok",
+        "message": "Current-period source values; formula-specific CAGR/YoY constraints still apply.",
+        "facts": [
+          {
+            "doc_id": "HUT_2022_Hopnhat",
+            "fact_index": 88,
+            "ticker": "HUT",
+            "fiscal_year": 2022,
+            "scope": "consolidated",
+            "report_type": "INCOME_STATEMENT",
+            "code": "60",
+            "label": "18.",
+            "value": 143845522308.0,
+            "raw_value": "143.845.522.308",
+            "unit": "VND",
+            "prior_year": 44153012510.0,
+            "raw_prior": "44.153.012.510",
+            "suspect": false,
+            "source_file": "data/raw_docs/top_100/HUT/2022/HUT_2022_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_page": 11,
+            "printed_page": "8",
+            "citation_tag": "[Doc_HUT_2022_Hopnhat, p.11]",
+            "chunk_ids": [
+              "HUT_2022_Hopnhat_chunk_0027",
+              "HUT_2022_Hopnhat_chunk_0028",
+              "HUT_2022_Hopnhat_chunk_0029",
+              "HUT_2022_Hopnhat_chunk_0030"
+            ]
+          },
+          {
+            "doc_id": "HUT_2023_Hopnhat",
+            "fact_index": 103,
+            "ticker": "HUT",
+            "fiscal_year": 2023,
+            "scope": "consolidated",
+            "report_type": "INCOME_STATEMENT",
+            "code": "60",
+            "label": "18.",
+            "value": 56348664563.0,
+            "raw_value": "56.348.664.563",
+            "unit": "VND",
+            "prior_year": 143845522308.0,
+            "raw_prior": "143.845.522.308",
+            "suspect": false,
+            "source_file": "data/raw_docs/top_100/HUT/2023/HUT_2023_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_page": 11,
+            "printed_page": "8",
+            "citation_tag": "[Doc_HUT_2023_Hopnhat, p.11]",
+            "chunk_ids": [
+              "HUT_2023_Hopnhat_chunk_0022",
+              "HUT_2023_Hopnhat_chunk_0023",
+              "HUT_2023_Hopnhat_chunk_0024",
+              "HUT_2023_Hopnhat_chunk_0025"
+            ]
+          },
+          {
+            "doc_id": "HUT_2024_Hopnhat",
+            "fact_index": 106,
+            "ticker": "HUT",
+            "fiscal_year": 2024,
+            "scope": "consolidated",
+            "report_type": "INCOME_STATEMENT",
+            "code": "60",
+            "label": "18.",
+            "value": 304747090091.0,
+            "raw_value": "304.747.090.091",
+            "unit": "VND",
+            "prior_year": 56348664563.0,
+            "raw_prior": "56.348.664.563",
+            "suspect": false,
+            "source_file": "data/raw_docs/top_100/HUT/2024/HUT_2024_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_page": 11,
+            "printed_page": null,
+            "citation_tag": "[Doc_HUT_2024_Hopnhat, p.11]",
+            "chunk_ids": [
+              "HUT_2024_Hopnhat_chunk_0022",
+              "HUT_2024_Hopnhat_chunk_0023",
+              "HUT_2024_Hopnhat_chunk_0024",
+              "HUT_2024_Hopnhat_chunk_0025"
+            ]
+          },
+          {
+            "doc_id": "HUT_2025_Hopnhat",
+            "fact_index": 108,
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "report_type": "INCOME_STATEMENT",
+            "code": "60",
+            "label": "18.",
+            "value": 630263489956.0,
+            "raw_value": "630.263.489.956",
+            "unit": "VND",
+            "prior_year": 304747090091.0,
+            "raw_prior": "304.747.090.091",
+            "suspect": false,
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_page": 11,
+            "printed_page": "8",
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.11]",
+            "chunk_ids": [
+              "HUT_2025_Hopnhat_chunk_0027",
+              "HUT_2025_Hopnhat_chunk_0028",
+              "HUT_2025_Hopnhat_chunk_0029",
+              "HUT_2025_Hopnhat_chunk_0030"
+            ]
+          }
+        ],
+        "chunks": [],
+        "candidates": [],
+        "missing_years": [],
+        "warnings": [],
+        "safe_for_calculation": true
+      }
+    },
+    {
+      "observation_id": "obs:72d4026ff767a085c9db",
+      "tool_name": "query_time_series_tool",
+      "arguments": {
+        "metric_name": "Lợi nhuận sau thuế của cổ đông công ty mẹ",
+        "item_code": "61",
+        "report_type": "INCOME_STATEMENT",
+        "ticker": "HUT",
+        "start_year": 2022,
+        "end_year": 2025,
+        "scope": "consolidated"
+      },
+      "snapshot_version": "008db98b13c2cb13ece1f089b3e53781bd179eb560a38e670dd937bf81ffe86c",
+      "result": {
+        "status": "ok",
+        "message": "Current-period source values; formula-specific CAGR/YoY constraints still apply.",
+        "facts": [
+          {
+            "doc_id": "HUT_2022_Hopnhat",
+            "fact_index": 89,
+            "ticker": "HUT",
+            "fiscal_year": 2022,
+            "scope": "consolidated",
+            "report_type": "INCOME_STATEMENT",
+            "code": "61",
+            "label": "19.",
+            "value": 144565241241.0,
+            "raw_value": "144.565.241.241",
+            "unit": "VND",
+            "prior_year": 61583796257.0,
+            "raw_prior": "61.583.796.257",
+            "suspect": false,
+            "source_file": "data/raw_docs/top_100/HUT/2022/HUT_2022_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_page": 11,
+            "printed_page": "8",
+            "citation_tag": "[Doc_HUT_2022_Hopnhat, p.11]",
+            "chunk_ids": [
+              "HUT_2022_Hopnhat_chunk_0027",
+              "HUT_2022_Hopnhat_chunk_0028",
+              "HUT_2022_Hopnhat_chunk_0029",
+              "HUT_2022_Hopnhat_chunk_0030"
+            ]
+          },
+          {
+            "doc_id": "HUT_2023_Hopnhat",
+            "fact_index": 104,
+            "ticker": "HUT",
+            "fiscal_year": 2023,
+            "scope": "consolidated",
+            "report_type": "INCOME_STATEMENT",
+            "code": "61",
+            "label": "19.",
+            "value": 47195843779.0,
+            "raw_value": "47.195.843.779",
+            "unit": "VND",
+            "prior_year": 144565241241.0,
+            "raw_prior": "144.565.241.241",
+            "suspect": false,
+            "source_file": "data/raw_docs/top_100/HUT/2023/HUT_2023_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_page": 11,
+            "printed_page": "8",
+            "citation_tag": "[Doc_HUT_2023_Hopnhat, p.11]",
+            "chunk_ids": [
+              "HUT_2023_Hopnhat_chunk_0022",
+              "HUT_2023_Hopnhat_chunk_0023",
+              "HUT_2023_Hopnhat_chunk_0024",
+              "HUT_2023_Hopnhat_chunk_0025"
+            ]
+          },
+          {
+            "doc_id": "HUT_2024_Hopnhat",
+            "fact_index": 107,
+            "ticker": "HUT",
+            "fiscal_year": 2024,
+            "scope": "consolidated",
+            "report_type": "INCOME_STATEMENT",
+            "code": "61",
+            "label": "19.",
+            "value": 156254905986.0,
+            "raw_value": "156.254.905.986",
+            "unit": "VND",
+            "prior_year": 47195843779.0,
+            "raw_prior": "47.195.843.779",
+            "suspect": false,
+            "source_file": "data/raw_docs/top_100/HUT/2024/HUT_2024_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_page": 11,
+            "printed_page": null,
+            "citation_tag": "[Doc_HUT_2024_Hopnhat, p.11]",
+            "chunk_ids": [
+              "HUT_2024_Hopnhat_chunk_0022",
+              "HUT_2024_Hopnhat_chunk_0023",
+              "HUT_2024_Hopnhat_chunk_0024",
+              "HUT_2024_Hopnhat_chunk_0025"
+            ]
+          },
+          {
+            "doc_id": "HUT_2025_Hopnhat",
+            "fact_index": 109,
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "report_type": "INCOME_STATEMENT",
+            "code": "61",
+            "label": "19.",
+            "value": 492181070574.0,
+            "raw_value": "492.181.070.574",
+            "unit": "VND",
+            "prior_year": 156254905986.0,
+            "raw_prior": "156.254.905.986",
+            "suspect": false,
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_page": 11,
+            "printed_page": "8",
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.11]",
+            "chunk_ids": [
+              "HUT_2025_Hopnhat_chunk_0027",
+              "HUT_2025_Hopnhat_chunk_0028",
+              "HUT_2025_Hopnhat_chunk_0029",
+              "HUT_2025_Hopnhat_chunk_0030"
+            ]
+          }
+        ],
+        "chunks": [],
+        "candidates": [],
+        "missing_years": [],
+        "warnings": [],
+        "safe_for_calculation": true
+      }
+    },
+    {
+      "observation_id": "obs:26fa94be8ba6aa682ff4",
+      "tool_name": "query_time_series_tool",
+      "arguments": {
+        "metric_name": "Tổng tài sản",
+        "item_code": "270",
+        "report_type": "BALANCE_SHEET",
+        "ticker": "HUT",
+        "start_year": 2022,
+        "end_year": 2025,
+        "scope": "consolidated"
+      },
+      "snapshot_version": "008db98b13c2cb13ece1f089b3e53781bd179eb560a38e670dd937bf81ffe86c",
+      "result": {
+        "status": "ok",
+        "message": "Current-period source values; formula-specific CAGR/YoY constraints still apply.",
+        "facts": [
+          {
+            "doc_id": "HUT_2022_Hopnhat",
+            "fact_index": 39,
+            "ticker": "HUT",
+            "fiscal_year": 2022,
+            "scope": "consolidated",
+            "report_type": "BALANCE_SHEET",
+            "code": "270",
+            "label": "",
+            "value": 11632371921053.0,
+            "raw_value": "11.632.371.921.053",
+            "unit": "VND",
+            "prior_year": 10725495728954.0,
+            "raw_prior": "10.725.495.728.954",
+            "suspect": false,
+            "source_file": "data/raw_docs/top_100/HUT/2022/HUT_2022_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_page": 9,
+            "printed_page": "6",
+            "citation_tag": "[Doc_HUT_2022_Hopnhat, p.9]",
+            "chunk_ids": [
+              "HUT_2022_Hopnhat_chunk_0020",
+              "HUT_2022_Hopnhat_chunk_0021",
+              "HUT_2022_Hopnhat_chunk_0022",
+              "HUT_2022_Hopnhat_chunk_0023",
+              "HUT_2022_Hopnhat_chunk_0026"
+            ]
+          },
+          {
+            "doc_id": "HUT_2023_Hopnhat",
+            "fact_index": 52,
+            "ticker": "HUT",
+            "fiscal_year": 2023,
+            "scope": "consolidated",
+            "report_type": "BALANCE_SHEET",
+            "code": "270",
+            "label": "",
+            "value": 26748999132286.0,
+            "raw_value": "26.748.999.132.286",
+            "unit": "VND",
+            "prior_year": 11632371921053.0,
+            "raw_prior": "11.632.371.921.053",
+            "suspect": false,
+            "source_file": "data/raw_docs/top_100/HUT/2023/HUT_2023_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_page": 9,
+            "printed_page": "6",
+            "citation_tag": "[Doc_HUT_2023_Hopnhat, p.9]",
+            "chunk_ids": [
+              "HUT_2023_Hopnhat_chunk_0017",
+              "HUT_2023_Hopnhat_chunk_0018",
+              "HUT_2023_Hopnhat_chunk_0021"
+            ]
+          },
+          {
+            "doc_id": "HUT_2024_Hopnhat",
+            "fact_index": 53,
+            "ticker": "HUT",
+            "fiscal_year": 2024,
+            "scope": "consolidated",
+            "report_type": "BALANCE_SHEET",
+            "code": "270",
+            "label": "",
+            "value": 28987313377347.0,
+            "raw_value": "28.987.313.377.347",
+            "unit": "VND",
+            "prior_year": 26748999132286.0,
+            "raw_prior": "26.748.999.132.286",
+            "suspect": false,
+            "source_file": "data/raw_docs/top_100/HUT/2024/HUT_2024_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_page": 9,
+            "printed_page": "6",
+            "citation_tag": "[Doc_HUT_2024_Hopnhat, p.9]",
+            "chunk_ids": [
+              "HUT_2024_Hopnhat_chunk_0016",
+              "HUT_2024_Hopnhat_chunk_0017",
+              "HUT_2024_Hopnhat_chunk_0018",
+              "HUT_2024_Hopnhat_chunk_0021"
+            ]
+          },
+          {
+            "doc_id": "HUT_2025_Hopnhat",
+            "fact_index": 55,
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "report_type": "BALANCE_SHEET",
+            "code": "270",
+            "label": "",
+            "value": 52231240200353.0,
+            "raw_value": "52.231.240.200.353",
+            "unit": "VND",
+            "prior_year": 28987313377347.0,
+            "raw_prior": "28.987.313.377.347",
+            "suspect": false,
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_page": 9,
+            "printed_page": "105",
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.9]",
+            "chunk_ids": [
+              "HUT_2025_Hopnhat_chunk_0021",
+              "HUT_2025_Hopnhat_chunk_0022",
+              "HUT_2025_Hopnhat_chunk_0023",
+              "HUT_2025_Hopnhat_chunk_0026"
+            ]
+          }
+        ],
+        "chunks": [],
+        "candidates": [],
+        "missing_years": [],
+        "warnings": [],
+        "safe_for_calculation": true
+      }
+    },
+    {
+      "observation_id": "obs:87ab0e7c2af07e56221d",
+      "tool_name": "query_time_series_tool",
+      "arguments": {
+        "metric_name": "Nợ phải trả",
+        "item_code": "300",
+        "report_type": "BALANCE_SHEET",
+        "ticker": "HUT",
+        "start_year": 2022,
+        "end_year": 2025,
+        "scope": "consolidated"
+      },
+      "snapshot_version": "008db98b13c2cb13ece1f089b3e53781bd179eb560a38e670dd937bf81ffe86c",
+      "result": {
+        "status": "ok",
+        "message": "Current-period source values; formula-specific CAGR/YoY constraints still apply.",
+        "facts": [
+          {
+            "doc_id": "HUT_2022_Hopnhat",
+            "fact_index": 40,
+            "ticker": "HUT",
+            "fiscal_year": 2022,
+            "scope": "consolidated",
+            "report_type": "BALANCE_SHEET",
+            "code": "300",
+            "label": "C - NỘ PHẢI TRẢ",
+            "value": 7758904854694.0,
+            "raw_value": "7.758.904.854.694",
+            "unit": "VND",
+            "prior_year": 7007867084477.0,
+            "raw_prior": "7.007.867.084.477",
+            "suspect": false,
+            "source_file": "data/raw_docs/top_100/HUT/2022/HUT_2022_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_page": 10,
+            "printed_page": "7",
+            "citation_tag": "[Doc_HUT_2022_Hopnhat, p.10]",
+            "chunk_ids": [
+              "HUT_2022_Hopnhat_chunk_0023",
+              "HUT_2022_Hopnhat_chunk_0024",
+              "HUT_2022_Hopnhat_chunk_0025",
+              "HUT_2022_Hopnhat_chunk_0026"
+            ]
+          },
+          {
+            "doc_id": "HUT_2023_Hopnhat",
+            "fact_index": 53,
+            "ticker": "HUT",
+            "fiscal_year": 2023,
+            "scope": "consolidated",
+            "report_type": "BALANCE_SHEET",
+            "code": "300",
+            "label": "C - NỘ PHẢI TRẢ",
+            "value": 15435698347191.0,
+            "raw_value": "15.435.698.347.191",
+            "unit": "VND",
+            "prior_year": 7758904854694.0,
+            "raw_prior": "7.758.904.854.694",
+            "suspect": false,
+            "source_file": "data/raw_docs/top_100/HUT/2023/HUT_2023_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_page": 10,
+            "printed_page": "7",
+            "citation_tag": "[Doc_HUT_2023_Hopnhat, p.10]",
+            "chunk_ids": [
+              "HUT_2023_Hopnhat_chunk_0019",
+              "HUT_2023_Hopnhat_chunk_0020",
+              "HUT_2023_Hopnhat_chunk_0021"
+            ]
+          },
+          {
+            "doc_id": "HUT_2024_Hopnhat",
+            "fact_index": 54,
+            "ticker": "HUT",
+            "fiscal_year": 2024,
+            "scope": "consolidated",
+            "report_type": "BALANCE_SHEET",
+            "code": "300",
+            "label": "C - NỘ PHẢI TRẢ",
+            "value": 17436446915050.0,
+            "raw_value": "17.436.446.915.050",
+            "unit": "VND",
+            "prior_year": 15435698347191.0,
+            "raw_prior": "15.435.698.347.191",
+            "suspect": false,
+            "source_file": "data/raw_docs/top_100/HUT/2024/HUT_2024_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_page": 10,
+            "printed_page": null,
+            "citation_tag": "[Doc_HUT_2024_Hopnhat, p.10]",
+            "chunk_ids": [
+              "HUT_2024_Hopnhat_chunk_0018",
+              "HUT_2024_Hopnhat_chunk_0019",
+              "HUT_2024_Hopnhat_chunk_0020",
+              "HUT_2024_Hopnhat_chunk_0021"
+            ]
+          },
+          {
+            "doc_id": "HUT_2025_Hopnhat",
+            "fact_index": 56,
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "report_type": "BALANCE_SHEET",
+            "code": "300",
+            "label": "C - NỘ PHẢI TRẢ",
+            "value": 34288926372179.0,
+            "raw_value": "34.288.926.372.179",
+            "unit": "VND",
+            "prior_year": 17436446915050.0,
+            "raw_prior": "17.436.446.915.050",
+            "suspect": false,
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_page": 10,
+            "printed_page": "7",
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.10]",
+            "chunk_ids": [
+              "HUT_2025_Hopnhat_chunk_0023",
+              "HUT_2025_Hopnhat_chunk_0024",
+              "HUT_2025_Hopnhat_chunk_0025",
+              "HUT_2025_Hopnhat_chunk_0026"
+            ]
+          }
+        ],
+        "chunks": [],
+        "candidates": [],
+        "missing_years": [],
+        "warnings": [],
+        "safe_for_calculation": true
+      }
+    },
+    {
+      "observation_id": "obs:eb0a9b40ba956e76f641",
+      "tool_name": "query_time_series_tool",
+      "arguments": {
+        "metric_name": "Vốn chủ sở hữu",
+        "item_code": "400",
+        "report_type": "BALANCE_SHEET",
+        "ticker": "HUT",
+        "start_year": 2022,
+        "end_year": 2025,
+        "scope": "consolidated"
+      },
+      "snapshot_version": "008db98b13c2cb13ece1f089b3e53781bd179eb560a38e670dd937bf81ffe86c",
+      "result": {
+        "status": "ok",
+        "message": "Current-period source values; formula-specific CAGR/YoY constraints still apply.",
+        "facts": [
+          {
+            "doc_id": "HUT_2022_Hopnhat",
+            "fact_index": 58,
+            "ticker": "HUT",
+            "fiscal_year": 2022,
+            "scope": "consolidated",
+            "report_type": "BALANCE_SHEET",
+            "code": "400",
+            "label": "D - VỐN CHỦ SỞ HỮU",
+            "value": 3873467066359.0,
+            "raw_value": "3.873.467.066.359",
+            "unit": "VND",
+            "prior_year": 3717628644477.0,
+            "raw_prior": "3.717.628.644.477",
+            "suspect": false,
+            "source_file": "data/raw_docs/top_100/HUT/2022/HUT_2022_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_page": 10,
+            "printed_page": "7",
+            "citation_tag": "[Doc_HUT_2022_Hopnhat, p.10]",
+            "chunk_ids": [
+              "HUT_2022_Hopnhat_chunk_0023",
+              "HUT_2022_Hopnhat_chunk_0024",
+              "HUT_2022_Hopnhat_chunk_0025",
+              "HUT_2022_Hopnhat_chunk_0026"
+            ]
+          },
+          {
+            "doc_id": "HUT_2023_Hopnhat",
+            "fact_index": 73,
+            "ticker": "HUT",
+            "fiscal_year": 2023,
+            "scope": "consolidated",
+            "report_type": "BALANCE_SHEET",
+            "code": "400",
+            "label": "D - VỐN CHỦ SỞ HỮU",
+            "value": 11313300785095.0,
+            "raw_value": "11.313.300.785.095",
+            "unit": "VND",
+            "prior_year": 3873467066359.0,
+            "raw_prior": "3.873.467.066.359",
+            "suspect": false,
+            "source_file": "data/raw_docs/top_100/HUT/2023/HUT_2023_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_page": 10,
+            "printed_page": "7",
+            "citation_tag": "[Doc_HUT_2023_Hopnhat, p.10]",
+            "chunk_ids": [
+              "HUT_2023_Hopnhat_chunk_0019",
+              "HUT_2023_Hopnhat_chunk_0020",
+              "HUT_2023_Hopnhat_chunk_0021"
+            ]
+          },
+          {
+            "doc_id": "HUT_2024_Hopnhat",
+            "fact_index": 75,
+            "ticker": "HUT",
+            "fiscal_year": 2024,
+            "scope": "consolidated",
+            "report_type": "BALANCE_SHEET",
+            "code": "400",
+            "label": "D - VỐN CHỦ SỞ HỮU",
+            "value": 11550866462297.0,
+            "raw_value": "11.550.866.462.297",
+            "unit": "VND",
+            "prior_year": 11313300785095.0,
+            "raw_prior": "11.313.300.785.095",
+            "suspect": false,
+            "source_file": "data/raw_docs/top_100/HUT/2024/HUT_2024_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_page": 10,
+            "printed_page": null,
+            "citation_tag": "[Doc_HUT_2024_Hopnhat, p.10]",
+            "chunk_ids": [
+              "HUT_2024_Hopnhat_chunk_0018",
+              "HUT_2024_Hopnhat_chunk_0019",
+              "HUT_2024_Hopnhat_chunk_0020",
+              "HUT_2024_Hopnhat_chunk_0021"
+            ]
+          },
+          {
+            "doc_id": "HUT_2025_Hopnhat",
+            "fact_index": 77,
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "report_type": "BALANCE_SHEET",
+            "code": "400",
+            "label": "D - VỐN CHỦ SỞ HỮU",
+            "value": 17942313828174.0,
+            "raw_value": "17.942.313.828.174",
+            "unit": "VND",
+            "prior_year": 11550866462297.0,
+            "raw_prior": "11.550.866.462.297",
+            "suspect": false,
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_page": 10,
+            "printed_page": "7",
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.10]",
+            "chunk_ids": [
+              "HUT_2025_Hopnhat_chunk_0023",
+              "HUT_2025_Hopnhat_chunk_0024",
+              "HUT_2025_Hopnhat_chunk_0025",
+              "HUT_2025_Hopnhat_chunk_0026"
+            ]
+          }
+        ],
+        "chunks": [],
+        "candidates": [],
+        "missing_years": [],
+        "warnings": [],
+        "safe_for_calculation": true
+      }
+    },
+    {
+      "observation_id": "obs:89ee0bccf25d70a372c5",
+      "tool_name": "query_time_series_tool",
+      "arguments": {
+        "metric_name": "Tiền và các khoản tương đương tiền",
+        "item_code": "110",
+        "report_type": "BALANCE_SHEET",
+        "ticker": "HUT",
+        "start_year": 2022,
+        "end_year": 2025,
+        "scope": "consolidated"
+      },
+      "snapshot_version": "008db98b13c2cb13ece1f089b3e53781bd179eb560a38e670dd937bf81ffe86c",
+      "result": {
+        "status": "ok",
+        "message": "Current-period source values; formula-specific CAGR/YoY constraints still apply.",
+        "facts": [
+          {
+            "doc_id": "HUT_2022_Hopnhat",
+            "fact_index": 1,
+            "ticker": "HUT",
+            "fiscal_year": 2022,
+            "scope": "consolidated",
+            "report_type": "BALANCE_SHEET",
+            "code": "110",
+            "label": "I.",
+            "value": 953430125623.0,
+            "raw_value": "953.430.125.623",
+            "unit": "VND",
+            "prior_year": 641553582230.0,
+            "raw_prior": "641.553.582.230",
+            "suspect": false,
+            "source_file": "data/raw_docs/top_100/HUT/2022/HUT_2022_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_page": 9,
+            "printed_page": "6",
+            "citation_tag": "[Doc_HUT_2022_Hopnhat, p.9]",
+            "chunk_ids": [
+              "HUT_2022_Hopnhat_chunk_0020",
+              "HUT_2022_Hopnhat_chunk_0021",
+              "HUT_2022_Hopnhat_chunk_0022",
+              "HUT_2022_Hopnhat_chunk_0023",
+              "HUT_2022_Hopnhat_chunk_0026"
+            ]
+          },
+          {
+            "doc_id": "HUT_2023_Hopnhat",
+            "fact_index": 1,
+            "ticker": "HUT",
+            "fiscal_year": 2023,
+            "scope": "consolidated",
+            "report_type": "BALANCE_SHEET",
+            "code": "110",
+            "label": "I.",
+            "value": 1701723734047.0,
+            "raw_value": "1.701.723.734.047",
+            "unit": "VND",
+            "prior_year": 953430125623.0,
+            "raw_prior": "953.430.125.623",
+            "suspect": false,
+            "source_file": "data/raw_docs/top_100/HUT/2023/HUT_2023_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_page": 8,
+            "printed_page": "5",
+            "citation_tag": "[Doc_HUT_2023_Hopnhat, p.8]",
+            "chunk_ids": [
+              "HUT_2023_Hopnhat_chunk_0015",
+              "HUT_2023_Hopnhat_chunk_0016",
+              "HUT_2023_Hopnhat_chunk_0017",
+              "HUT_2023_Hopnhat_chunk_0021"
+            ]
+          },
+          {
+            "doc_id": "HUT_2024_Hopnhat",
+            "fact_index": 1,
+            "ticker": "HUT",
+            "fiscal_year": 2024,
+            "scope": "consolidated",
+            "report_type": "BALANCE_SHEET",
+            "code": "110",
+            "label": "I.",
+            "value": 2876158716774.0,
+            "raw_value": "2.876.158.716.774",
+            "unit": "VND",
+            "prior_year": 1701723734047.0,
+            "raw_prior": "1.701.723.734.047",
+            "suspect": false,
+            "source_file": "data/raw_docs/top_100/HUT/2024/HUT_2024_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_page": 8,
+            "printed_page": "5",
+            "citation_tag": "[Doc_HUT_2024_Hopnhat, p.8]",
+            "chunk_ids": [
+              "HUT_2024_Hopnhat_chunk_0014",
+              "HUT_2024_Hopnhat_chunk_0015",
+              "HUT_2024_Hopnhat_chunk_0016",
+              "HUT_2024_Hopnhat_chunk_0021"
+            ]
+          },
+          {
+            "doc_id": "HUT_2025_Hopnhat",
+            "fact_index": 1,
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "report_type": "BALANCE_SHEET",
+            "code": "110",
+            "label": "I.",
+            "value": 4843287293754.0,
+            "raw_value": "4.843.287.293.754",
+            "unit": "VND",
+            "prior_year": 2876158716774.0,
+            "raw_prior": "2.876.158.716.774",
+            "suspect": false,
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_page": 8,
+            "printed_page": null,
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.8]",
+            "chunk_ids": [
+              "HUT_2025_Hopnhat_chunk_0019",
+              "HUT_2025_Hopnhat_chunk_0020",
+              "HUT_2025_Hopnhat_chunk_0021",
+              "HUT_2025_Hopnhat_chunk_0026"
+            ]
+          }
+        ],
+        "chunks": [],
+        "candidates": [],
+        "missing_years": [],
+        "warnings": [],
+        "safe_for_calculation": true
+      }
+    },
+    {
+      "observation_id": "obs:cb40a0256fbd29dc8e6b",
+      "tool_name": "query_time_series_tool",
+      "arguments": {
+        "metric_name": "Lưu chuyển tiền thuần từ hoạt động kinh doanh",
+        "item_code": "20",
+        "report_type": "CASH_FLOW",
+        "ticker": "HUT",
+        "start_year": 2022,
+        "end_year": 2025,
+        "scope": "consolidated"
+      },
+      "snapshot_version": "008db98b13c2cb13ece1f089b3e53781bd179eb560a38e670dd937bf81ffe86c",
+      "result": {
+        "status": "ok",
+        "message": "Current-period source values; formula-specific CAGR/YoY constraints still apply.",
+        "facts": [
+          {
+            "doc_id": "HUT_2022_Hopnhat",
+            "fact_index": 110,
+            "ticker": "HUT",
+            "fiscal_year": 2022,
+            "scope": "consolidated",
+            "report_type": "CASH_FLOW",
+            "code": "20",
+            "label": "Lưu chuyển tiền thuần từ hoạt động kinh doanh",
+            "value": 479857130973.0,
+            "raw_value": "479.857.130.973",
+            "unit": "VND",
+            "prior_year": -214578901256.0,
+            "raw_prior": "(214.578.901.256)",
+            "suspect": false,
+            "source_file": "data/raw_docs/top_100/HUT/2022/HUT_2022_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_page": 12,
+            "printed_page": "9",
+            "citation_tag": "[Doc_HUT_2022_Hopnhat, p.12]",
+            "chunk_ids": [
+              "HUT_2022_Hopnhat_chunk_0031",
+              "HUT_2022_Hopnhat_chunk_0032",
+              "HUT_2022_Hopnhat_chunk_0033",
+              "HUT_2022_Hopnhat_chunk_0035"
+            ]
+          },
+          {
+            "doc_id": "HUT_2023_Hopnhat",
+            "fact_index": 126,
+            "ticker": "HUT",
+            "fiscal_year": 2023,
+            "scope": "consolidated",
+            "report_type": "CASH_FLOW",
+            "code": "20",
+            "label": "",
+            "value": 1592107846117.0,
+            "raw_value": "1.592.107.846.117",
+            "unit": "VND",
+            "prior_year": 479857130973.0,
+            "raw_prior": "479.857.130.973",
+            "suspect": false,
+            "source_file": "data/raw_docs/top_100/HUT/2023/HUT_2023_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_page": 12,
+            "printed_page": "9",
+            "citation_tag": "[Doc_HUT_2023_Hopnhat, p.12]",
+            "chunk_ids": [
+              "HUT_2023_Hopnhat_chunk_0026",
+              "HUT_2023_Hopnhat_chunk_0027",
+              "HUT_2023_Hopnhat_chunk_0028_p1",
+              "HUT_2023_Hopnhat_chunk_0028_p2",
+              "HUT_2023_Hopnhat_chunk_0030"
+            ]
+          },
+          {
+            "doc_id": "HUT_2024_Hopnhat",
+            "fact_index": 128,
+            "ticker": "HUT",
+            "fiscal_year": 2024,
+            "scope": "consolidated",
+            "report_type": "CASH_FLOW",
+            "code": "20",
+            "label": "Lưu chuyển tiền thuần từ hoạt động kinh doanh",
+            "value": 2062616106336.0,
+            "raw_value": "2.062.616.106.336",
+            "unit": "VND",
+            "prior_year": 1592107846117.0,
+            "raw_prior": "1.592.107.846.117",
+            "suspect": false,
+            "source_file": "data/raw_docs/top_100/HUT/2024/HUT_2024_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_page": 12,
+            "printed_page": "9",
+            "citation_tag": "[Doc_HUT_2024_Hopnhat, p.12]",
+            "chunk_ids": [
+              "HUT_2024_Hopnhat_chunk_0026",
+              "HUT_2024_Hopnhat_chunk_0027",
+              "HUT_2024_Hopnhat_chunk_0028",
+              "HUT_2024_Hopnhat_chunk_0030"
+            ]
+          },
+          {
+            "doc_id": "HUT_2025_Hopnhat",
+            "fact_index": 128,
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "report_type": "CASH_FLOW",
+            "code": "20",
+            "label": "Lưu chuyển tiền thuần từ hoạt động kinh doanh",
+            "value": -453676880970.0,
+            "raw_value": "(453.676.880.970)",
+            "unit": "VND",
+            "prior_year": 2062616106336.0,
+            "raw_prior": "2.062.616.106.336",
+            "suspect": false,
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_page": 12,
+            "printed_page": "9",
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.12]",
+            "chunk_ids": [
+              "HUT_2025_Hopnhat_chunk_0031",
+              "HUT_2025_Hopnhat_chunk_0032",
+              "HUT_2025_Hopnhat_chunk_0033",
+              "HUT_2025_Hopnhat_chunk_0035"
+            ]
+          }
+        ],
+        "chunks": [],
+        "candidates": [],
+        "missing_years": [],
+        "warnings": [],
+        "safe_for_calculation": true
+      }
+    },
+    {
+      "observation_id": "obs:956c6adfb979441b0d7b",
+      "tool_name": "query_time_series_tool",
+      "arguments": {
+        "metric_name": "Lưu chuyển tiền thuần từ hoạt động đầu tư",
+        "item_code": "30",
+        "report_type": "CASH_FLOW",
+        "ticker": "HUT",
+        "start_year": 2022,
+        "end_year": 2025,
+        "scope": "consolidated"
+      },
+      "snapshot_version": "008db98b13c2cb13ece1f089b3e53781bd179eb560a38e670dd937bf81ffe86c",
+      "result": {
+        "status": "ok",
+        "message": "Current-period source values; formula-specific CAGR/YoY constraints still apply.",
+        "facts": [
+          {
+            "doc_id": "HUT_2022_Hopnhat",
+            "fact_index": 119,
+            "ticker": "HUT",
+            "fiscal_year": 2022,
+            "scope": "consolidated",
+            "report_type": "CASH_FLOW",
+            "code": "30",
+            "label": "Lưu chuyển tiền thuần từ hoạt động đầu tư",
+            "value": 149582913769.0,
+            "raw_value": "149.582.913.769",
+            "unit": "VND",
+            "prior_year": 107659684259.0,
+            "raw_prior": "107.659.684.259",
+            "suspect": false,
+            "source_file": "data/raw_docs/top_100/HUT/2022/HUT_2022_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_page": 12,
+            "printed_page": "9",
+            "citation_tag": "[Doc_HUT_2022_Hopnhat, p.12]",
+            "chunk_ids": [
+              "HUT_2022_Hopnhat_chunk_0031",
+              "HUT_2022_Hopnhat_chunk_0032",
+              "HUT_2022_Hopnhat_chunk_0033",
+              "HUT_2022_Hopnhat_chunk_0035"
+            ]
+          },
+          {
+            "doc_id": "HUT_2023_Hopnhat",
+            "fact_index": 135,
+            "ticker": "HUT",
+            "fiscal_year": 2023,
+            "scope": "consolidated",
+            "report_type": "CASH_FLOW",
+            "code": "30",
+            "label": "",
+            "value": 88049477495.0,
+            "raw_value": "88.049.477.495",
+            "unit": "VND",
+            "prior_year": 149582913769.0,
+            "raw_prior": "149.582.913.769",
+            "suspect": false,
+            "source_file": "data/raw_docs/top_100/HUT/2023/HUT_2023_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_page": 12,
+            "printed_page": "9",
+            "citation_tag": "[Doc_HUT_2023_Hopnhat, p.12]",
+            "chunk_ids": [
+              "HUT_2023_Hopnhat_chunk_0026",
+              "HUT_2023_Hopnhat_chunk_0027",
+              "HUT_2023_Hopnhat_chunk_0028_p1",
+              "HUT_2023_Hopnhat_chunk_0028_p2",
+              "HUT_2023_Hopnhat_chunk_0030"
+            ]
+          },
+          {
+            "doc_id": "HUT_2024_Hopnhat",
+            "fact_index": 137,
+            "ticker": "HUT",
+            "fiscal_year": 2024,
+            "scope": "consolidated",
+            "report_type": "CASH_FLOW",
+            "code": "30",
+            "label": "Lưu chuyển tiền thuần từ hoạt động đầu tư",
+            "value": -1175624635435.0,
+            "raw_value": "(1.175.624.635.435)",
+            "unit": "VND",
+            "prior_year": 88049477495.0,
+            "raw_prior": "88.049.477.495",
+            "suspect": false,
+            "source_file": "data/raw_docs/top_100/HUT/2024/HUT_2024_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_page": 12,
+            "printed_page": "9",
+            "citation_tag": "[Doc_HUT_2024_Hopnhat, p.12]",
+            "chunk_ids": [
+              "HUT_2024_Hopnhat_chunk_0026",
+              "HUT_2024_Hopnhat_chunk_0027",
+              "HUT_2024_Hopnhat_chunk_0028",
+              "HUT_2024_Hopnhat_chunk_0030"
+            ]
+          },
+          {
+            "doc_id": "HUT_2025_Hopnhat",
+            "fact_index": 137,
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "report_type": "CASH_FLOW",
+            "code": "30",
+            "label": "Lưu chuyển tiền thuần từ hoạt động đầu tư",
+            "value": -2712004876529.0,
+            "raw_value": "(2.712.004.876.529)",
+            "unit": "VND",
+            "prior_year": -1175624635435.0,
+            "raw_prior": "(1.175.624.635.435)",
+            "suspect": false,
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_page": 12,
+            "printed_page": "9",
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.12]",
+            "chunk_ids": [
+              "HUT_2025_Hopnhat_chunk_0031",
+              "HUT_2025_Hopnhat_chunk_0032",
+              "HUT_2025_Hopnhat_chunk_0033",
+              "HUT_2025_Hopnhat_chunk_0035"
+            ]
+          }
+        ],
+        "chunks": [],
+        "candidates": [],
+        "missing_years": [],
+        "warnings": [],
+        "safe_for_calculation": true
+      }
+    },
+    {
+      "observation_id": "obs:8266228801e3abbcad9a",
+      "tool_name": "query_time_series_tool",
+      "arguments": {
+        "metric_name": "Lưu chuyển tiền thuần từ hoạt động tài chính",
+        "item_code": "40",
+        "report_type": "CASH_FLOW",
+        "ticker": "HUT",
+        "start_year": 2022,
+        "end_year": 2025,
+        "scope": "consolidated"
+      },
+      "snapshot_version": "008db98b13c2cb13ece1f089b3e53781bd179eb560a38e670dd937bf81ffe86c",
+      "result": {
+        "status": "ok",
+        "message": "Current-period source values; formula-specific CAGR/YoY constraints still apply.",
+        "facts": [
+          {
+            "doc_id": "HUT_2022_Hopnhat",
+            "fact_index": 125,
+            "ticker": "HUT",
+            "fiscal_year": 2022,
+            "scope": "consolidated",
+            "report_type": "CASH_FLOW",
+            "code": "40",
+            "label": "Lưu chuyển tiền thuần từ hoạt động tài chính",
+            "value": -317563501349.0,
+            "raw_value": "(317.563.501.349)",
+            "unit": "VND",
+            "prior_year": 529150087616.0,
+            "raw_prior": "529.150.087.616",
+            "suspect": false,
+            "source_file": "data/raw_docs/top_100/HUT/2022/HUT_2022_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_page": 13,
+            "printed_page": "54",
+            "citation_tag": "[Doc_HUT_2022_Hopnhat, p.13]",
+            "chunk_ids": [
+              "HUT_2022_Hopnhat_chunk_0033",
+              "HUT_2022_Hopnhat_chunk_0034",
+              "HUT_2022_Hopnhat_chunk_0035"
+            ]
+          },
+          {
+            "doc_id": "HUT_2023_Hopnhat",
+            "fact_index": 141,
+            "ticker": "HUT",
+            "fiscal_year": 2023,
+            "scope": "consolidated",
+            "report_type": "CASH_FLOW",
+            "code": "40",
+            "label": "",
+            "value": -931862690624.0,
+            "raw_value": "(931.862.690.624)",
+            "unit": "VND",
+            "prior_year": -317563501349.0,
+            "raw_prior": "(317.563.501.349)",
+            "suspect": false,
+            "source_file": "data/raw_docs/top_100/HUT/2023/HUT_2023_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_page": 13,
+            "printed_page": "10",
+            "citation_tag": "[Doc_HUT_2023_Hopnhat, p.13]",
+            "chunk_ids": [
+              "HUT_2023_Hopnhat_chunk_0028_p1",
+              "HUT_2023_Hopnhat_chunk_0028_p2",
+              "HUT_2023_Hopnhat_chunk_0029",
+              "HUT_2023_Hopnhat_chunk_0030"
+            ]
+          },
+          {
+            "doc_id": "HUT_2024_Hopnhat",
+            "fact_index": 144,
+            "ticker": "HUT",
+            "fiscal_year": 2024,
+            "scope": "consolidated",
+            "report_type": "CASH_FLOW",
+            "code": "40",
+            "label": "Lưu chuyển tiền thuần từ hoạt động tài chính",
+            "value": 287532855392.0,
+            "raw_value": "287.532.855.392",
+            "unit": "VND",
+            "prior_year": -931862690624.0,
+            "raw_prior": "(931.862.690.624)",
+            "suspect": false,
+            "source_file": "data/raw_docs/top_100/HUT/2024/HUT_2024_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_page": 13,
+            "printed_page": "10",
+            "citation_tag": "[Doc_HUT_2024_Hopnhat, p.13]",
+            "chunk_ids": [
+              "HUT_2024_Hopnhat_chunk_0028",
+              "HUT_2024_Hopnhat_chunk_0029",
+              "HUT_2024_Hopnhat_chunk_0030"
+            ]
+          },
+          {
+            "doc_id": "HUT_2025_Hopnhat",
+            "fact_index": 145,
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "report_type": "CASH_FLOW",
+            "code": "40",
+            "label": "Lưu chuyển tiền thuần từ hoạt động tài chính",
+            "value": 5132712277657.0,
+            "raw_value": "5.132.712.277.657",
+            "unit": "VND",
+            "prior_year": 287532855392.0,
+            "raw_prior": "287.532.855.392",
+            "suspect": false,
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_page": 13,
+            "printed_page": "10",
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.13]",
+            "chunk_ids": [
+              "HUT_2025_Hopnhat_chunk_0033",
+              "HUT_2025_Hopnhat_chunk_0034",
+              "HUT_2025_Hopnhat_chunk_0035"
+            ]
+          }
+        ],
+        "chunks": [],
+        "candidates": [],
+        "missing_years": [],
+        "warnings": [],
+        "safe_for_calculation": true
+      }
+    },
+    {
+      "observation_id": "obs:4618c7a7a5364f6d31cf",
+      "tool_name": "search_notes_tool",
+      "arguments": {
+        "query": "Ngành nghề hoạt động và cơ cấu doanh nghiệp",
+        "ticker": "HUT",
+        "fiscal_year": 2025,
+        "scope": "consolidated",
+        "sections": [
+          "NOTES",
+          "MANAGEMENT_REPORT"
+        ]
+      },
+      "snapshot_version": "note:8442fae31d6a1f4dda71ef0c984673b553c4b4a594ad62f4bf36d2584165ed01",
+      "result": {
+        "status": "ok",
+        "message": "",
+        "facts": [],
+        "chunks": [
+          {
+            "chunk_id": "HUT_2025_Hopnhat_chunk_0041",
+            "doc_id": "HUT_2025_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "section": "NOTES",
+            "text": "[HUT | 2025 | Hợp nhất | BẢN THUYẾT MINH BẢO CÁO TÀI CHÍNH HỢP NHẤT | Đơn vị: VND]\nTên | Địa chỉ | Ngành nghề kinh doanh | Tỷ lệ lợi ích (%) | Tỷ lệ quyền biểu quyết(%)\n--------------------------------------------------------------------------------\n- Công ty TNHH Thương mại và Dịch vụ ô tô Đồng Hiệp | Tây Ninh | Dịch vụ thương mại | 30,79% | 60,00%\n- Công ty cổ phần Dịch vụ Ô tô Thành phố Mới Bình Dương | Hồ Chí Minh | Dịch vụ thương mại | 42,97% | 94,00%\n- Công ty cổ phần Ô tô Sao Tây Nam | Cần Thơ | Dịch vụ thương mại | 35,92% | 70,00%",
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              15
+            ],
+            "printed_pages": [
+              "12"
+            ],
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.15]",
+            "rerank_score": null
+          },
+          {
+            "chunk_id": "HUT_2025_Hopnhat_chunk_0052",
+            "doc_id": "HUT_2025_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "section": "NOTES",
+            "text": "[HUT | 2025 | Hợp nhất | BẢN THUYẾT MINH BẢO CÁO TÀI CHÍNH HỢP NHẤT | Đơn vị: VND]\nTên | Địa chỉ | Ngành nghề kinh doanh | Tỷ lệ lợi ích (%) | Tỷ lệ quyền biểu quyết(%)\n--------------------------------------------------------------------------------\n- Công ty cổ phần Hạ tầng nước Sài Gòn | Hồ Chí Minh | Sản xuất và kinh doanh nước sạch | 14,81% | 50,61%\n- Công ty cổ phần Cấp thoát nước Củ Chi | Hồ Chí Minh | Khai thác, xử lý và cung cấp nước | 14,81% | 100,00%\n- Công ty cổ phần Cấp thoát nước Gia Lai | Gia Lai | Khai thác, xử lý và cung cấp nước | 7,55% | 51,00%\n- Công ty cổ phần cấp nước Sài Gòn - Đan Kia | Lâm Đồng | Khai thác, xử lý và cung cấp nước | 13,34% | 90,00%\n- Công ty TNHH Đầu tư và Phát triển Hạ tầng Công nghiệp PT | Phú Thọ | Bất động sản và Quyền sử dụng đất | 29,27% | 100,00%\n- Viện Khoa học và Công nghệ nước | Hà Nội | Nghiên cứu và triển khai dự án nước | 22,74% | 80,00%\n- Công ty cổ phần Nước Sài Gòn - An Khê | Gia Lai | Khai thác, xử lý và cung cấp nước | 11,46% | 77,33%\n- Công ty TNHH Giải pháp Ngành nước S&D | Hà Nội | Khai thác, xử lý và cung cấp nước | 29,26% | 100,00%\n- Công ty cổ phần Năng lượng Tasco Công ty liên doanh, liên kết | Hồ Chí Minh | Sản xuất điện | 14,88% | 50,90%\n- Công ty cổ phần NVT Holdings | Hà Nội | Kinh doanh bất động sản | 20,00% | 50,00%\n- Công ty TNHH BOT Hùng Thắng Phú Thọ | Phú Thọ | Hạ tầng giao thông | 30,00% | 30,00%",
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              18
+            ],
+            "printed_pages": [
+              "15"
+            ],
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.18]",
+            "rerank_score": null
+          },
+          {
+            "chunk_id": "HUT_2025_Hopnhat_chunk_0049",
+            "doc_id": "HUT_2025_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "section": "NOTES",
+            "text": "[HUT | 2025 | Hợp nhất | BẢN THUYẾT MINH BẢO CÁO TÀI CHÍNH HỢP NHẤT | Đơn vị: VND]\nTên | Địa chỉ | Ngành nghề kinh doanh | Tỷ lệ lợi ích (%) | Tỷ lệ quyền biểu quyết(%)\n--------------------------------------------------------------------------------\n- Công ty cổ phần Sản xuất Kinh doanh nước sạch số 3 Hà Nội | Hà Nội | Sản xuất và kinh doanh nước sạch | 25,99% | 89,24%\n- Công ty cổ phần Bình Hiệp | Lâm Đồng | Sản xuất và kinh doanh nước sạch | 25,73% | 97,04%\n- Công ty cổ phần Cấp thoát nước Bình Thuận | Lâm Đồng | Sản xuất và kinh doanh nước sạch | 16,76% | 57,26%\n- Công ty cổ phần Nhà máy Nước Đồng Tâm | Đồng Tháp | Sản xuất và kinh doanh nước sạch | 15,42% | 52,68%",
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              17
+            ],
+            "printed_pages": [
+              "14"
+            ],
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.17]",
+            "rerank_score": null
+          },
+          {
+            "chunk_id": "HUT_2025_Hopnhat_chunk_0051_p1",
+            "doc_id": "HUT_2025_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "section": "NOTES",
+            "text": "[HUT | 2025 | Hợp nhất | BẢN THUYẾT MINH BẢO CÁO TÀI CHÍNH HỢP NHẤT | Đơn vị: VND]\nTên | Địa chỉ | Ngành nghề kinh doanh | Tỷ lệ lợi ích (%) | Tỷ lệ quyền biểu quyết(%)\n--------------------------------------------------------------------------------\n- Công ty cổ phần Cấp thoát nước Tây Ninh | Tây Ninh | Sản xuất và kinh doanh nước sạch | 16,59% | 59,47%\n- Công ty cổ phần Quản lý và Vận hành hệ thống nước sạch | Đồng Tháp | Sản xuất và kinh doanh nước sạch | 29,26% | 99,97%\n- Công ty cổ phần Đầu tư nước Bình An | Lâm Đồng | Sản xuất và kinh doanh nước sạch | 23,08% | 99,93%\n- Công ty cổ phần DNP Hawaco | Hà Nội | Kinh doanh vật tư ngành nước | 28,43% | 50,00%\n- Công ty cổ phần DNP Hawaco Miền Nam | Hồ Chí Minh | Kinh doanh vật tư ngành cơ điện | 28,14% | 99,00%\n- Công ty cổ phần Đô thị Ninh Hòa | Khánh Hòa | Sản xuất và kinh doanh nước sạch | 15,08% | 51,51%\n- Công ty TNHH Kiểm định Đo lường Ninh Hòa | Khánh Hòa | Vật tư ngành nước | 15,08% | 100,00%\n- Công ty TNHH MTV Xây lắp Đô thị Ninh Hòa | Khánh Hoà | Thương mại dịch vụ sản xuất | 15,08% | 100,00%\n- Công ty cổ phần Cấp thoát nước Bình Phước | Đồng Nai | Sản xuất và kinh doanh nước sạch | 24,64% | 84,32%\n- Công ty TNHH Nước thô DNP - Sông Tiền | Đồng Tháp | Khai thác, xử lý và cung cấp nước | 27,02% | 99,99%\n- Công ty cổ phần Thiết bị và Công nghệ Eco Việt Nam | Hà Nội | Giải pháp và hạ tầng ngành nước | 19,89% | 70,00%",
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              18
+            ],
+            "printed_pages": [
+              "15"
+            ],
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.18]",
+            "rerank_score": null
+          },
+          {
+            "chunk_id": "HUT_2025_Hopnhat_chunk_0037",
+            "doc_id": "HUT_2025_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "section": "NOTES",
+            "text": "[HUT | 2025 | Hợp nhất | BẢN THUYẾT MINH BẢO CÁO TÀI CHÍNH HỢP NHẤT | Đơn vị: VND]\nCổ phiếu của Công ty được chính thức giao dịch tại Sở Giao dịch Chứng khoán Hà Nội (HNX) kể từ ngày 11/04/2008 với mã chứng khoán là HUT.\n\n1. Hình thức sở hữu vốn (tiếp theo)\n\nCông ty có trụ sở chính đặt tại Tầng 1 và tầng 20, tòa nhà Tasco, lô HH2-2, đường Phạm Hùng, phường Từ Liêm, thành phố Hà Nội.\n\n2. Lĩnh vực kinh doanh\n\n- Đại lý xe Ô tô;\n\n- Kinh doanh Bất động sản;\n\n- Dịch vụ;\n\n- Xây lắp;\n\n- Sản xuất.\n\n3. Ngành nghề kinh doanh\n\nHoạt động kinh doanh chính của Công ty trong năm:\n\n- Kinh doanh ô tô;\n\n- Kinh doanh bất động sản, quyền sử dụng đất thuộc chủ sở hữu, chủ sử dụng hoặc đi thuê;\n\n- Xây dựng nhà để ở;\n\n- Xây dựng công trình đường bộ;\n\n- Xây dựng công trình kỹ thuật dân dụng khác;\n\n- Sản xuất điện;\n\n- Dịch vụ thu cước phí và quản lý trạm thu cước phí đường bộ;\n\n- Hoạt động dịch vụ hỗ trợ trực tiếp cho vận tải đường bộ (Dịch vụ thu phí tự động đường bộ ETC);\n\n- Sản xuất và kinh doanh các sản phẩm về nhựa, bao bì, nước sạch, đất sét.\n\n4. Chu kỳ sản xuất kinh doanh thông thường\n\nChu kỳ hoạt động sản xuất kinh doanh thông thường của Công ty không quá 12 tháng.\n\n5. Đặc điểm hoạt động của doanh nghiệp trong năm có ảnh hưởng đến Báo cáo tài chính hợp nhất",
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              14
+            ],
+            "printed_pages": [
+              "11"
+            ],
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.14]",
+            "rerank_score": null
+          }
+        ],
+        "candidates": [],
+        "missing_years": [],
+        "warnings": [
+          "Retrieved candidates require evidence checking; RRF rank is not evidence confidence."
+        ],
+        "safe_for_calculation": false
+      }
+    },
+    {
+      "observation_id": "obs:7e964d4b4f14cbffc65d",
+      "tool_name": "search_notes_tool",
+      "arguments": {
+        "query": "Kỳ kế toán đơn vị tiền tệ và chế độ kế toán áp dụng",
+        "ticker": "HUT",
+        "fiscal_year": 2025,
+        "scope": "consolidated",
+        "sections": [
+          "NOTES"
+        ]
+      },
+      "snapshot_version": "note:8442fae31d6a1f4dda71ef0c984673b553c4b4a594ad62f4bf36d2584165ed01",
+      "result": {
+        "status": "ok",
+        "message": "",
+        "facts": [],
+        "chunks": [
+          {
+            "chunk_id": "HUT_2025_Hopnhat_chunk_0054",
+            "doc_id": "HUT_2025_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "section": "NOTES",
+            "text": "[HUT | 2025 | Hợp nhất | BẢN THUYẾT MINH BẢO CÁO TÀI CHÍNH HỢP NHẤT | Đơn vị: VND]\n7. Nhân viên\n\nTổng số cán bộ nhân viên của Công ty mẹ và các Công ty con tại ngày 31/12/2025 là 12.269 người (tại ngày 31/12/2024 là 7.652 người).\n\n8. Tuyên bố về khả năng so sánh thông tin trên Báo cáo tài chính hợp nhất\n\nThông tin so sánh được trình bày theo số liệu từ Báo cáo tài chính hợp nhất cho năm tài chính kết thúc ngày 31 tháng 12 năm 2024 đã được kiểm toán bởi Công ty TNHH Kiểm toán BDO.\n\nII. NĂM TÀI CHÍNH, ĐƠN VỊ TIỀN TỆ SỬ DỤNG TRONG KẾ TOÁN\n\n1. Kỳ kế toán năm: Kỳ kế toán hàng năm của Công ty bắt đầu từ ngày 01/01 và kết thúc vào ngày 31/12.\n\n2. Đơn vị tiền tệ sử dụng trong kế toán\n\nĐơn vị tiền tệ sử dụng trong kế toán là Đồng Việt Nam (VND).\n\nIII. CHUẦN MỤC VÀ CHẾ ĐỘ KẾ TOÁN ÁP DỤNG\n\n1. Cơ sở của việc lập Báo cáo tài chính hợp nhất và Chế độ kế toán áp dụng\n\nCông ty áp dụng Chế độ kế toán doanh nghiệp Việt Nam ban hành kèm theo Thông tư 200/2014/TT-BTC ngày 22/12/2014 (\"Thông tư 200\"), Thông tư 53/2016/TT-BTC ngày 21/03/2016 sửa đổi bổ sung một số điều của Thông tư 200 của Bộ Tài chính hướng dẫn chế độ kế toán doanh nghiệp và Thông tư 202/2014/TT-BTC ngày 22/12/2014 hướng dẫn phương pháp lập và trình bày Báo cáo tài chính hợp nhất.",
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              19
+            ],
+            "printed_pages": [
+              "16"
+            ],
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.19]",
+            "rerank_score": null
+          },
+          {
+            "chunk_id": "HUT_2025_Hopnhat_chunk_0055",
+            "doc_id": "HUT_2025_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "section": "NOTES",
+            "text": "[HUT | 2025 | Hợp nhất | BẢN THUYẾT MINH BẢO CÁO TÀI CHÍNH HỢP NHẤT | Đơn vị: VND]\nCông ty áp dụng Chế độ kế toán doanh nghiệp Việt Nam ban hành kèm theo Thông tư 200/2014/TT-BTC ngày 22/12/2014 (\"Thông tư 200\"), Thông tư 53/2016/TT-BTC ngày 21/03/2016 sửa đổi bổ sung một số điều của Thông tư 200 của Bộ Tài chính hướng dẫn chế độ kế toán doanh nghiệp và Thông tư 202/2014/TT-BTC ngày 22/12/2014 hướng dẫn phương pháp lập và trình bày Báo cáo tài chính hợp nhất.\n\n1. Cơ sở của việc lập Báo cáo tài chính hợp nhất và Chế độ kế toán áp dụng (tiếp theo)\n\nBáo cáo tài chính hợp nhất được lập theo nguyên tắc giá gốc và phù hợp với Chuẩn mực kế toán Việt Nam. Báo cáo tài chính hợp nhất kèm theo không nhằm phản ánh tỉnh hình tài chính hợp nhất, kết quả hoạt động kinh doanh hợp nhất và tỉnh hình lưu chuyển tiền tệ hợp nhất theo các nguyên tắc và thông lệ kế toán được chấp nhận chung tại các nước khác ngoài Việt Nam.\n\n2. Tuyên bố về việc tuân thủ Chuẩn mực kế toán và Chế độ kế toán\n\nBan Điều hành đảm bảo đã lập và trình bày Báo cáo tài chính hợp nhất tuân thủ các yêu cầu của Chuẩn mực kế toán Việt Nam, Chế độ kế toán doanh nghiệp Việt Nam hiện hành và các tài liệu hướng dẫn có liên quan đến việc lập và trình bày Báo cáo tài chính hợp nhất.\n\nIV. CÁC CHÍNH SÁCH KẾ TOÁN CHỦ YẾU",
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              19,
+              20
+            ],
+            "printed_pages": [
+              "16",
+              "17"
+            ],
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.19-20]",
+            "rerank_score": null
+          },
+          {
+            "chunk_id": "HUT_2025_Hopnhat_chunk_0064",
+            "doc_id": "HUT_2025_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "section": "NOTES",
+            "text": "[HUT | 2025 | Hợp nhất | BẢN THUYẾT MINH BẢO CÁO TÀI CHÍNH HỢP NHẤT | Đơn vị: VND]\n2. Các loại tỷ giá áp dụng trong kế toán (tiếp theo)\n\nĐược sử dụng để quy đổi ra đồng tiền ghi sổ kế toán đối với các giao dịch ghi tăng: Doanh thu, Thu nhập khác, Chi phí sản xuất kinh doanh, Chi phí khác, Tài sản, Vốn chủ sở hữu, Các khoản phải thu, Vốn bằng tiền, Trả trước cho người bán, Các khoản phải trả, Nhận trước tiền của người mua.\n\nTrường hợp bán hàng hoá, cung cấp dịch vụ có liên quan đến doanh thu nhận trước, hoặc nhận trước tiền của người mua: Doanh thu, thu nhập tương ứng với số tiền nhận trước được áp dụng tỷ giá giao dịch thực tế tại thời điểm nhận trước của người mua.\n\nTrường hợp mua tài sản có liên quan đến giao dịch trả trước cho người bán: Giá trị tài sản tương ứng với số tiền trả trước được áp dụng tỷ giá giao dịch thực tế tại thời điểm trả trước cho người bán.\n\n- Tỷ giá ghi số bình quân gia quyền di động:\n\nĐược sử dụng để quy đổi ra đồng tiền ghi số kế toán ở bên Có các tài khoản tiền, khi thực hiện thanh toán bằng ngoại tệ.\n\nCác loại tỷ giá áp dụng khi đánh giá lại cuối kỳ\n\nĐối với các khoản ngoại tệ gửi ngân hàng thì tỷ giá thực tế khi đánh giá lại là tỷ giá mua của chính ngân hàng nơi Công ty mở tài khoản ngoại tệ.",
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              21
+            ],
+            "printed_pages": [
+              "18"
+            ],
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.21]",
+            "rerank_score": null
+          },
+          {
+            "chunk_id": "HUT_2025_Hopnhat_chunk_0063",
+            "doc_id": "HUT_2025_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "section": "NOTES",
+            "text": "[HUT | 2025 | Hợp nhất | BẢN THUYẾT MINH BẢO CÁO TÀI CHÍNH HỢP NHẤT | Đơn vị: VND]\n- Chênh lệch giữa giá phí hợp nhất kinh doanh và giá trị tài sản thuần của bên bị hợp nhất được trình bày riêng biệt như một khoản phụ trội hay giảm trừ trong nguồn vốn chủ sở hữu;\n\n1. Cơ sở hợp nhất báo cáo tài chính (tiếp theo)\n\n- Bảng cân đối kế toán hợp nhất và báo cáo kết quả hoạt động kinh doanh hợp nhất phản ánh tình hình tài chính và kết quả hoạt động của các đơn vị hợp nhất kể từ ngày phát sinh nghiệp vụ hợp nhất kinh doanh.\n\nSau ngày hợp nhất kinh doanh, nếu Công ty chuyển nhượng và mất quyền kiểm soát khoản đầu tư vào các đơn vị này, phần chênh lệch giữa giá phí hợp nhất kinh doanh và giá trị tài sản thuần của bên bị hợp nhất đã được ghi nhận vào chỉ tiêu \"Vốn khác của chủ sở hữu\" tại ngày hợp nhất kinh doanh sẽ được kết chuyển sang chỉ tiêu \"Lợi nhuận sau thuế chưa phân phối\" trên Bảng cân đối kế toán hợp nhất.\n\n2. Các loại tỷ giá áp dụng trong kế toán\n\nCác nghiệp vụ phát sinh bằng ngoại tệ khác với đơn vị tiền tệ trong kế toán của Công ty (VND) được hạch toán theo tỷ giá của ngân hàng thương mại nơi Công ty thường xuyên có giao dịch bằng ngoại tệ.\n\nCác loại tỷ giá áp dụng khi ghi nhận các giao dịch\n\n- Tỷ giá giao dịch thực tế tại thời điểm phát sinh giao dịch:",
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              21
+            ],
+            "printed_pages": [
+              "18"
+            ],
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.21]",
+            "rerank_score": null
+          },
+          {
+            "chunk_id": "HUT_2025_Hopnhat_chunk_0056",
+            "doc_id": "HUT_2025_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "section": "NOTES",
+            "text": "[HUT | 2025 | Hợp nhất | BẢN THUYẾT MINH BẢO CÁO TÀI CHÍNH HỢP NHẤT | Đơn vị: VND]\nIV. CÁC CHÍNH SÁCH KẾ TOÁN CHỦ YẾU (tiếp theo)\n\nSau đây là những chính sách kể toán chủ yếu được Công ty áp dụng trong việc lập Báo cáo tài chính hợp nhất. Những chính sách kể toán này nhất quán với các chính sách kể toán áp dụng trong việc lập Báo cáo tài chính hợp nhất của năm tài chính gần nhất.\n\n1. Cơ sở hợp nhất báo cáo tài chính\n\nBáo cáo tài chính hợp nhất được lập trên cơ sở hợp nhất báo cáo tài chính của công ty mẹ và các công ty con do Công ty nằm quyền kiểm soát tại ngày 31/12/2025, phù hợp với Chuẩn mực kế toán Việt Nam.\n\nCác công ty con được hợp nhất toàn bộ kể từ ngày mua, là ngày Công ty thực sự nằm quyền kiểm soát công ty con và tiếp tục được hợp nhất cho đến ngày Công ty thực sự chấm dứt quyền kiểm soát đối với công ty con.",
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              20
+            ],
+            "printed_pages": [
+              "17"
+            ],
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.20]",
+            "rerank_score": null
+          }
+        ],
+        "candidates": [],
+        "missing_years": [],
+        "warnings": [
+          "Retrieved candidates require evidence checking; RRF rank is not evidence confidence."
+        ],
+        "safe_for_calculation": false
+      }
+    },
+    {
+      "observation_id": "obs:dc782dd0b35352a1b426",
+      "tool_name": "search_notes_tool",
+      "arguments": {
+        "query": "Ý kiến kiểm toán và đơn vị kiểm toán",
+        "ticker": "HUT",
+        "fiscal_year": 2022,
+        "scope": "consolidated",
+        "sections": [
+          "AUDIT_REPORT"
+        ]
+      },
+      "snapshot_version": "note:8442fae31d6a1f4dda71ef0c984673b553c4b4a594ad62f4bf36d2584165ed01",
+      "result": {
+        "status": "ok",
+        "message": "",
+        "facts": [],
+        "chunks": [
+          {
+            "chunk_id": "HUT_2022_Hopnhat_chunk_0017",
+            "doc_id": "HUT_2022_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2022,
+            "scope": "consolidated",
+            "section": "AUDIT_REPORT",
+            "text": "[HUT | 2022 | Hợp nhất | BÁO CÁO KIÊM TOÁN ĐỘC LẬP | Đơn vị: VND]\nCông việc kiểm toán bao gồm thực hiện các thủ tục nhằm thu thập các bằng chứng kiểm toán về các số liệu và thuyết minh trên Báo cáo tài chính hợp nhất. Các thủ tục kiểm toán được lựa chọn dựa trên xét đoán của kiểm toán viên, bao gồm đánh giá rủi ro có sai sót trọng yếu trong Báo cáo tài chính hợp nhất do gian lập hoặc nhằm lẫn. Khi thực hiện đánh giá các rủi ro này, kiểm toán viên đã xem xét kiểm soát nội bộ của Công ty liên quan đến việc lập và trình bày Báo cáo tài chính hợp nhất trung thực, hợp lý nhằm thiết kế các thủ tục kiểm toán phù hợp với tính hình thực tế, tuy nhiên không nhằm mục đích đưa ra ý kiến về hiệu quả của kiểm soát nội bộ của Công ty. Công việc kiểm toán cũng bao gồm đánh giá tính thích hợp của các chính sách kế toán được áp dụng và tính hợp lý của các ước tính kế toán của Ban Điều hành cũng như đánh giá việc trình bày tổng thể Báo cáo tài chính hợp nhất.\n\nChúng tôi tin tưởng rằng các bằng chứng kiểm toán mà chúng tôi đã thu thập được là đầy đủ và thích hợp làm cơ sở cho ý kiến kiểm toán của chúng tôi.\n\nÝ kiến của Kiểm toán viên",
+            "source_file": "data/raw_docs/top_100/HUT/2022/HUT_2022_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              7
+            ],
+            "printed_pages": [
+              "4"
+            ],
+            "citation_tag": "[Doc_HUT_2022_Hopnhat, p.7]",
+            "rerank_score": null
+          },
+          {
+            "chunk_id": "HUT_2022_Hopnhat_chunk_0016",
+            "doc_id": "HUT_2022_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2022,
+            "scope": "consolidated",
+            "section": "AUDIT_REPORT",
+            "text": "[HUT | 2022 | Hợp nhất | BÁO CÁO KIÊM TOÁN ĐỘC LẬP | Đơn vị: VND]\nTrách nhiệm của chúng tôi là đưa ra ý kiến về Báo cáo tài chính hợp nhất dựa trên kết quả của cuộc kiểm toán. Chúng tôi đã tiến hành kiểm toán theo các chuẩn mục kiểm toán Việt Nam. Các chuẩn mục này yêu cầu chúng tôi tuân thủ chuẩn mục và các quy định về đạo đức nghề nghiệp, lập kế hoạch và thực hiện cuộc kiểm toán để đạt được sự đảm bảo hợp lý về việc liệu Báo cáo tài chính hợp nhất của Công ty có còn sai sót trọng yếu hay không.\n\nCông việc kiểm toán bao gồm thực hiện các thủ tục nhằm thu thập các bằng chứng kiểm toán về các số liệu và thuyết minh trên Báo cáo tài chính hợp nhất. Các thủ tục kiểm toán được lựa chọn dựa trên xét đoán của kiểm toán viên, bao gồm đánh giá rủi ro có sai sót trọng yếu trong Báo cáo tài chính hợp nhất do gian lập hoặc nhằm lẫn. Khi thực hiện đánh giá các rủi ro này, kiểm toán viên đã xem xét kiểm soát nội bộ của Công ty liên quan đến việc lập và trình bày Báo cáo tài chính hợp nhất trung thực, hợp lý nhằm thiết kế các thủ tục kiểm toán phù hợp với tính hình thực tế, tuy nhiên không nhằm mục đích đưa ra ý kiến về hiệu quả của kiểm soát nội bộ của Công ty. Công việc kiểm toán cũng bao gồm đánh giá tính thích hợp của các chính sách kế toán được áp dụng và tính hợp lý của các ước tính kế toán của Ban Điều hành cũng như đánh giá việc trình bày tổng thể Báo cáo tài chính hợp nhất.",
+            "source_file": "data/raw_docs/top_100/HUT/2022/HUT_2022_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              7
+            ],
+            "printed_pages": [
+              "4"
+            ],
+            "citation_tag": "[Doc_HUT_2022_Hopnhat, p.7]",
+            "rerank_score": null
+          },
+          {
+            "chunk_id": "HUT_2022_Hopnhat_chunk_0015",
+            "doc_id": "HUT_2022_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2022,
+            "scope": "consolidated",
+            "section": "AUDIT_REPORT",
+            "text": "[HUT | 2022 | Hợp nhất | BÁO CÁO KIÊM TOÁN ĐỘC LẬP | Đơn vị: VND]\nBan Điều hành Công ty chịu trách nhiệm về việc lập và trình bày trung thực và hợp lý Báo cáo tài chính hợp nhất của Công ty theo chuẩn mục kế toán, chế độ kế toán doanh nghiệp Việt Nam và các quy định pháp lý có liên quan đến việc lập và trình bày Báo cáo tài chính hợp nhất và chịu trách nhiệm về kiểm soát nội bộ mà Ban Điều hành xác định là cần thiết để đảm bảo cho việc lập và trình bày Báo cáo tài chính hợp nhất không có sai sót trọng yếu do gian lận hoặc nhằm lẫn.\n\nTrách nhiệm của Kiểm toán viên\n\nTrách nhiệm của chúng tôi là đưa ra ý kiến về Báo cáo tài chính hợp nhất dựa trên kết quả của cuộc kiểm toán. Chúng tôi đã tiến hành kiểm toán theo các chuẩn mục kiểm toán Việt Nam. Các chuẩn mục này yêu cầu chúng tôi tuân thủ chuẩn mục và các quy định về đạo đức nghề nghiệp, lập kế hoạch và thực hiện cuộc kiểm toán để đạt được sự đảm bảo hợp lý về việc liệu Báo cáo tài chính hợp nhất của Công ty có còn sai sót trọng yếu hay không.",
+            "source_file": "data/raw_docs/top_100/HUT/2022/HUT_2022_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              7
+            ],
+            "printed_pages": [
+              "4"
+            ],
+            "citation_tag": "[Doc_HUT_2022_Hopnhat, p.7]",
+            "rerank_score": null
+          },
+          {
+            "chunk_id": "HUT_2022_Hopnhat_chunk_0019",
+            "doc_id": "HUT_2022_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2022,
+            "scope": "consolidated",
+            "section": "AUDIT_REPORT",
+            "text": "[HUT | 2022 | Hợp nhất | BÁO CÁO KIÊM TOÁN ĐỘC LẬP | Đơn vị: VND]\nMai Lan Phương - Tổng Giám đốc\n\nSố Giấy CNĐKHN kiểm toán 0077-2023-038-1\n\nPhạm Thị Tú - Kiểm toán viên\n\nSố Giấy CNĐKHN kiểm toán 2581-2023-038-1",
+            "source_file": "data/raw_docs/top_100/HUT/2022/HUT_2022_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              8
+            ],
+            "printed_pages": [
+              "5"
+            ],
+            "citation_tag": "[Doc_HUT_2022_Hopnhat, p.8]",
+            "rerank_score": null
+          },
+          {
+            "chunk_id": "HUT_2022_Hopnhat_chunk_0018",
+            "doc_id": "HUT_2022_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2022,
+            "scope": "consolidated",
+            "section": "AUDIT_REPORT",
+            "text": "[HUT | 2022 | Hợp nhất | BÁO CÁO KIÊM TOÁN ĐỘC LẬP | Đơn vị: VND]\nTheo ý kiến của chúng tôi, báo cáo tài chính kèm theo đã phần ánh trung thực và hợp lý, trên các khía cạnh trọng yếu tình hình tài chính hợp nhất của Công ty cổ phần Tasco tại ngày 31 tháng 12 năm 2022, cũng như kết quả hoạt động kinh doanh hợp nhất và tình hình lưu chuyển tiền tệ hợp nhất cho năm tài chính kết thúc cùng ngày, phù hợp với chuẩn mục kế toán, chế độ kế toán doanh nghiệp Việt Nam và các quy định pháp lý có liên quan đến việc lập và trình bày báo cáo tài chính hợp nhất.\n\nBDO Audit Services Co., Ltd, a limited liability company incorporated in Vietnam, is a member of BDO International Limited, a UK company limited by guarantee, and forms part of the International BDO network of independent member firms. BDO is the brand name for the BDO International network and for each of the BDO Member Firms.\n\nBDO\n\nVân đề khác\n\nSố liệu so sánh là số liệu trên Báo cáo tài chính hợp nhất của Công ty cổ phần Tasco cho năm tài chính kết thúc ngày 31/12/2021 đã được kiểm toán bởi một doanh nghiệp kiểm toán khác. Báo cáo kiểm toán độc lập số 130/2022/BCKT-CPA VIETNAM-NV1, ngày 24/03/2022 kiểm toán viên đưa ra ý kiến chấp nhận toàn phần.\n\nCÔNG TY TNHH KIỂM TOÁN BDO",
+            "source_file": "data/raw_docs/top_100/HUT/2022/HUT_2022_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              7,
+              8
+            ],
+            "printed_pages": [
+              "4",
+              "5"
+            ],
+            "citation_tag": "[Doc_HUT_2022_Hopnhat, p.7-8]",
+            "rerank_score": null
+          }
+        ],
+        "candidates": [],
+        "missing_years": [],
+        "warnings": [
+          "Retrieved candidates require evidence checking; RRF rank is not evidence confidence."
+        ],
+        "safe_for_calculation": false
+      }
+    },
+    {
+      "observation_id": "obs:2b35d199ee5f481f79d2",
+      "tool_name": "search_notes_tool",
+      "arguments": {
+        "query": "Ý kiến kiểm toán và đơn vị kiểm toán",
+        "ticker": "HUT",
+        "fiscal_year": 2023,
+        "scope": "consolidated",
+        "sections": [
+          "AUDIT_REPORT"
+        ]
+      },
+      "snapshot_version": "note:8442fae31d6a1f4dda71ef0c984673b553c4b4a594ad62f4bf36d2584165ed01",
+      "result": {
+        "status": "ok",
+        "message": "",
+        "facts": [],
+        "chunks": [
+          {
+            "chunk_id": "HUT_2023_Hopnhat_chunk_0013",
+            "doc_id": "HUT_2023_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2023,
+            "scope": "consolidated",
+            "section": "AUDIT_REPORT",
+            "text": "[HUT | 2023 | Hợp nhất | BÁO CÁO KIỂM TOÁN ĐỘC LẬP | Đơn vị: VND]\nCông việc kiểm toán bao gồm thực hiện các thủ tục nhằm thu thập các bằng chứng kiểm toán về các số liệu và thuyết minh trên Báo cáo tài chính hợp nhất. Các thủ tục kiểm toán được lựa chọn dựa trên xét đoán của kiểm toán viên, bao gồm đánh giá rủi ro có sai sót trọng yếu trong Báo cáo tài chính hợp nhất do gian lận hoặc nhằm lẫn. Khi thực hiện đánh giá các rủi ro này, kiểm toán viên đã xem xét kiểm soát nội bộ của Công ty liên quan đến việc lập và trình bày Báo cáo tài chính hợp nhất trung thực, hợp lý nhằm thiết kế các thủ tục kiểm toán phù hợp với tính hình thực tế, tuy nhiên không nhằm mục đích đưa ra ý kiến về hiệu quả của kiểm soát nội bộ của Công ty. Công việc kiểm toán cũng bao gồm đánh giá tính thích hợp của các chính sách kế toán được áp dụng và tính hợp lý của các ước tính kế toán của Ban Điều hành cũng như đánh giá việc trình bày tổng thể Báo cáo tài chính hợp nhất.\n\nChúng tôi tin tưởng rằng các bằng chứng kiểm toán mà chúng tôi đã thu thập được là đầy đủ và thích hợp làm cơ sở cho ý kiến kiểm toán của chúng tôi.\n\nÝ kiến của Kiểm toán viên",
+            "source_file": "data/raw_docs/top_100/HUT/2023/HUT_2023_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              7
+            ],
+            "printed_pages": [
+              "4"
+            ],
+            "citation_tag": "[Doc_HUT_2023_Hopnhat, p.7]",
+            "rerank_score": null
+          },
+          {
+            "chunk_id": "HUT_2023_Hopnhat_chunk_0012",
+            "doc_id": "HUT_2023_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2023,
+            "scope": "consolidated",
+            "section": "AUDIT_REPORT",
+            "text": "[HUT | 2023 | Hợp nhất | BÁO CÁO KIỂM TOÁN ĐỘC LẬP | Đơn vị: VND]\nTrách nhiệm của chúng tôi là đưa ra ý kiến về Báo cáo tài chính hợp nhất dựa trên kết quả của cuộc kiểm toán. Chứng tôi đã tiến hành kiểm toán theo các chuẩn mục kiểm toán Việt Nam. Các chuẩn mục này yêu cầu chúng tôi tuân thủ chuẩn mục và các quy định về đạo đức nghề nghiệp, lập kế hoạch và thực hiện cuộc kiểm toán để đạt được sự đảm bảo hợp lý về việc liệu Báo cáo tài chính hợp nhất của Công ty có còn sai sót trọng yếu hay không.\n\nCông việc kiểm toán bao gồm thực hiện các thủ tục nhằm thu thập các bằng chứng kiểm toán về các số liệu và thuyết minh trên Báo cáo tài chính hợp nhất. Các thủ tục kiểm toán được lựa chọn dựa trên xét đoán của kiểm toán viên, bao gồm đánh giá rủi ro có sai sót trọng yếu trong Báo cáo tài chính hợp nhất do gian lận hoặc nhằm lẫn. Khi thực hiện đánh giá các rủi ro này, kiểm toán viên đã xem xét kiểm soát nội bộ của Công ty liên quan đến việc lập và trình bày Báo cáo tài chính hợp nhất trung thực, hợp lý nhằm thiết kế các thủ tục kiểm toán phù hợp với tính hình thực tế, tuy nhiên không nhằm mục đích đưa ra ý kiến về hiệu quả của kiểm soát nội bộ của Công ty. Công việc kiểm toán cũng bao gồm đánh giá tính thích hợp của các chính sách kế toán được áp dụng và tính hợp lý của các ước tính kế toán của Ban Điều hành cũng như đánh giá việc trình bày tổng thể Báo cáo tài chính hợp nhất.",
+            "source_file": "data/raw_docs/top_100/HUT/2023/HUT_2023_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              7
+            ],
+            "printed_pages": [
+              "4"
+            ],
+            "citation_tag": "[Doc_HUT_2023_Hopnhat, p.7]",
+            "rerank_score": null
+          },
+          {
+            "chunk_id": "HUT_2023_Hopnhat_chunk_0011",
+            "doc_id": "HUT_2023_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2023,
+            "scope": "consolidated",
+            "section": "AUDIT_REPORT",
+            "text": "[HUT | 2023 | Hợp nhất | BÁO CÁO KIỂM TOÁN ĐỘC LẬP | Đơn vị: VND]\nBan Điều hành Công ty chịu trách nhiệm về việc lập và trình bày trung thực và hợp lý Báo cáo tài chính hợp nhất của Công ty theo chuẩn mục kế toán, chế độ kế toán doanh nghiệp Việt Nam và các quy định pháp lý có liên quan đến việc lập và trình bày Báo cáo tài chính hợp nhất và chịu trách nhiệm về kiểm soát nội bộ mà Ban Điều hành xác định là cần thiết để đảm bảo cho việc lập và trình bày Báo cáo tài chính hợp nhất không có sai sót trọng yếu do gian lận hoặc nhằm lẫn.\n\nTrách nhiệm của Kiểm toán viên\n\nTrách nhiệm của chúng tôi là đưa ra ý kiến về Báo cáo tài chính hợp nhất dựa trên kết quả của cuộc kiểm toán. Chứng tôi đã tiến hành kiểm toán theo các chuẩn mục kiểm toán Việt Nam. Các chuẩn mục này yêu cầu chúng tôi tuân thủ chuẩn mục và các quy định về đạo đức nghề nghiệp, lập kế hoạch và thực hiện cuộc kiểm toán để đạt được sự đảm bảo hợp lý về việc liệu Báo cáo tài chính hợp nhất của Công ty có còn sai sót trọng yếu hay không.",
+            "source_file": "data/raw_docs/top_100/HUT/2023/HUT_2023_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              7
+            ],
+            "printed_pages": [
+              "4"
+            ],
+            "citation_tag": "[Doc_HUT_2023_Hopnhat, p.7]",
+            "rerank_score": null
+          },
+          {
+            "chunk_id": "HUT_2023_Hopnhat_chunk_0014",
+            "doc_id": "HUT_2023_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2023,
+            "scope": "consolidated",
+            "section": "AUDIT_REPORT",
+            "text": "[HUT | 2023 | Hợp nhất | BÁO CÁO KIỂM TOÁN ĐỘC LẬP | Đơn vị: VND]\nTheo ý kiến của chúng tôi, báo cáo tài chính kèm theo đã phân ánh trung thực và hợp lý, trên các khía cạnh trọng yếu tình hình tài chính hợp nhất của Công ty cổ phần Tasco tại ngày 31 tháng 12 năm 2023, cũng như kết quả hoạt động kinh doanh hợp nhất và tình hình lưu chuyển tiền tệ hợp nhất cho năm tài chính kết thúc cùng ngày, phù hợp với chuẩn mục kế toán, chế độ kế toán doanh nghiệp Việt Nam và các quy định pháp lý có liên quan đến việc lập và trình bày báo cáo tài chính hợp nhất.\n\nCÔNG TY TNHH KIỂM TOÁN BDO\n\nBùi Văn Vương - Phó Tổng Giám đốc\nSố Giấy CNĐKHN kiểm toán 0780-2023-038-1\n\nNguyễn Hương Giang - Kiểm toán viên\nSố Giấy CNĐKHN kiểm toán 5118-2021-038-1\n\nBDO Audit Services Co., Ltd, a limited liability company incorporated in Vietnam, is a member of BDO International Limited, a UK company limited by guarantee, and forms part of the International BDO network of independent member firms. BDO is the brand name for the BDO International network and for each of the BDO member firms.",
+            "source_file": "data/raw_docs/top_100/HUT/2023/HUT_2023_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              7
+            ],
+            "printed_pages": [
+              "4"
+            ],
+            "citation_tag": "[Doc_HUT_2023_Hopnhat, p.7]",
+            "rerank_score": null
+          },
+          {
+            "chunk_id": "HUT_2023_Hopnhat_chunk_0010",
+            "doc_id": "HUT_2023_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2023,
+            "scope": "consolidated",
+            "section": "AUDIT_REPORT",
+            "text": "[HUT | 2023 | Hợp nhất | BÁO CÁO KIỂM TOÁN ĐỘC LẬP | Đơn vị: VND]\nBDO\n\nSố: BC/BDO/2024.261\n\nTel.: +84 (0) 24 37833911/12/13\nFax: +84 (0) 24 37833914\nwww.bdovietnam.vn\n\n20 (th) Floor, Icon 4 Tower\n243A De La Thanh Street\nDong Da District, Hanoi,\nVietnam\n\nHà Nội, ngày 29 tháng 03 năm 2024\n\nBÁO CÁO KIỂM TOÁN ĐỘC LẬP\n\nVề Báo cáo tài chính hợp nhất của Công ty cổ phần Tasco\n\nKính gửi: CỔ ĐÔNG, HỘI ĐỒNG QUẢN TRỊ VÀ BAN ĐIỀU HÀNH CÔNG TY CỔ PHẦN TASCO\n\nChúng tôi đã kiểm toán Báo cáo tài chính hợp nhất kèm theo của Công ty cổ phần Tasco, được lập ngày 29 tháng 03 năm 2024, từ trang 05 đến trang 55, bao gồm Băng cân đối kế toán hợp nhất tại ngày 31 tháng 12 năm 2023, Báo cáo kết quả hoạt động kinh doanh hợp nhất, Báo cáo lưu chuyển tiền tệ hợp nhất cho năm tài chính kết thúc cùng ngày và Bản thuyết minh Báo cáo tài chính hợp nhất.\n\nTrách nhiệm của Ban Điều hành",
+            "source_file": "data/raw_docs/top_100/HUT/2023/HUT_2023_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              7
+            ],
+            "printed_pages": [
+              "4"
+            ],
+            "citation_tag": "[Doc_HUT_2023_Hopnhat, p.7]",
+            "rerank_score": null
+          }
+        ],
+        "candidates": [],
+        "missing_years": [],
+        "warnings": [
+          "Retrieved candidates require evidence checking; RRF rank is not evidence confidence."
+        ],
+        "safe_for_calculation": false
+      }
+    },
+    {
+      "observation_id": "obs:3d6e668afa514e0f2c43",
+      "tool_name": "search_notes_tool",
+      "arguments": {
+        "query": "Ý kiến kiểm toán và đơn vị kiểm toán",
+        "ticker": "HUT",
+        "fiscal_year": 2024,
+        "scope": "consolidated",
+        "sections": [
+          "AUDIT_REPORT"
+        ]
+      },
+      "snapshot_version": "note:8442fae31d6a1f4dda71ef0c984673b553c4b4a594ad62f4bf36d2584165ed01",
+      "result": {
+        "status": "ok",
+        "message": "",
+        "facts": [],
+        "chunks": [
+          {
+            "chunk_id": "HUT_2024_Hopnhat_chunk_0012",
+            "doc_id": "HUT_2024_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2024,
+            "scope": "consolidated",
+            "section": "AUDIT_REPORT",
+            "text": "[HUT | 2024 | Hợp nhất | BÁO CÁO KIÊM TOÁN ĐỘC LẬP | Đơn vị: VND]\nCông việc kiểm toán bao gồm thực hiện các thủ tục nhằm thu thập các bằng chứng kiểm toán về các số liệu và thuyết minh trên Báo cáo tài chính hợp nhất. Các thủ tục kiểm toán được lựa chọn dựa trên xét đoán của kiểm toán viên, bao gồm đánh giá rủi ro có sai sót trọng yếu trong Báo cáo tài chính hợp nhất do gian lập hoặc nhằm lẫn. Khi thực hiện đánh giá các rủi ro này, kiểm toán viên đã xem xét kiểm soát nội bộ của Công ty liên quan đến việc lập và trình bày Báo cáo tài chính hợp nhất trung thực, hợp lý nhằm thiết kế các thủ tục kiểm toán phù hợp với tính hình thực tế, tuy nhiên không nhằm mục đích đưa ra ý kiến về hiệu quả của kiểm soát nội bộ của Công ty. Công việc kiểm toán cũng bao gồm đánh giá tính thích hợp của các chính sách kế toán được áp dụng và tính hợp lý của các ước tính kế toán của Ban Điều hành cũng như đánh giá việc trình bày tổng thể Báo cáo tài chính hợp nhất.\n\nChúng tôi tin tưởng rằng các bằng chứng kiểm toán mà chúng tôi đã thu thập được là đầy đủ và thích hợp làm cơ sở cho ý kiến kiểm toán của chúng tôi.\n\nÝ kiến của Kiểm toán viên",
+            "source_file": "data/raw_docs/top_100/HUT/2024/HUT_2024_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              7
+            ],
+            "printed_pages": [
+              "4"
+            ],
+            "citation_tag": "[Doc_HUT_2024_Hopnhat, p.7]",
+            "rerank_score": null
+          },
+          {
+            "chunk_id": "HUT_2024_Hopnhat_chunk_0011",
+            "doc_id": "HUT_2024_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2024,
+            "scope": "consolidated",
+            "section": "AUDIT_REPORT",
+            "text": "[HUT | 2024 | Hợp nhất | BÁO CÁO KIÊM TOÁN ĐỘC LẬP | Đơn vị: VND]\nTrách nhiệm của chúng tôi là đưa ra ý kiến về Báo cáo tài chính hợp nhất dựa trên kết quả của cuộc kiểm toán. Chúng tôi đã tiến hành kiểm toán theo các chuẩn mục kiểm toán Việt Nam. Các chuẩn mục này yêu cầu chúng tôi tuân thủ chuẩn mục và các quy định về đạo đức nghề nghiệp, lập kế hoạch và thực hiện cuộc kiểm toán để đạt được sự đảm bảo hợp lý về việc liệu Báo cáo tài chính hợp nhất của Công ty có còn sai sót trọng yếu hay không.\n\nCông việc kiểm toán bao gồm thực hiện các thủ tục nhằm thu thập các bằng chứng kiểm toán về các số liệu và thuyết minh trên Báo cáo tài chính hợp nhất. Các thủ tục kiểm toán được lựa chọn dựa trên xét đoán của kiểm toán viên, bao gồm đánh giá rủi ro có sai sót trọng yếu trong Báo cáo tài chính hợp nhất do gian lập hoặc nhằm lẫn. Khi thực hiện đánh giá các rủi ro này, kiểm toán viên đã xem xét kiểm soát nội bộ của Công ty liên quan đến việc lập và trình bày Báo cáo tài chính hợp nhất trung thực, hợp lý nhằm thiết kế các thủ tục kiểm toán phù hợp với tính hình thực tế, tuy nhiên không nhằm mục đích đưa ra ý kiến về hiệu quả của kiểm soát nội bộ của Công ty. Công việc kiểm toán cũng bao gồm đánh giá tính thích hợp của các chính sách kế toán được áp dụng và tính hợp lý của các ước tính kế toán của Ban Điều hành cũng như đánh giá việc trình bày tổng thể Báo cáo tài chính hợp nhất.",
+            "source_file": "data/raw_docs/top_100/HUT/2024/HUT_2024_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              7
+            ],
+            "printed_pages": [
+              "4"
+            ],
+            "citation_tag": "[Doc_HUT_2024_Hopnhat, p.7]",
+            "rerank_score": null
+          },
+          {
+            "chunk_id": "HUT_2024_Hopnhat_chunk_0010",
+            "doc_id": "HUT_2024_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2024,
+            "scope": "consolidated",
+            "section": "AUDIT_REPORT",
+            "text": "[HUT | 2024 | Hợp nhất | BÁO CÁO KIÊM TOÁN ĐỘC LẬP | Đơn vị: VND]\nBan Điều hành Công ty chịu trách nhiệm về việc lập và trình bày trung thực và hợp lý Báo cáo tài chính hợp nhất của Công ty theo chuẩn mục kế toán, chế độ kế toán doanh nghiệp Việt Nam và các quy định pháp lý có liên quan đến việc lập và trình bày Báo cáo tài chính hợp nhất và chịu trách nhiệm về kiểm soát nội bộ mà Ban Điều hành xác định là cần thiết để đảm bảo cho việc lập và trình bày Báo cáo tài chính hợp nhất không có sai sót trọng yếu do gian lận hoặc nhằm lẫn.\n\nTrách nhiệm của Kiểm toán viên\n\nTrách nhiệm của chúng tôi là đưa ra ý kiến về Báo cáo tài chính hợp nhất dựa trên kết quả của cuộc kiểm toán. Chúng tôi đã tiến hành kiểm toán theo các chuẩn mục kiểm toán Việt Nam. Các chuẩn mục này yêu cầu chúng tôi tuân thủ chuẩn mục và các quy định về đạo đức nghề nghiệp, lập kế hoạch và thực hiện cuộc kiểm toán để đạt được sự đảm bảo hợp lý về việc liệu Báo cáo tài chính hợp nhất của Công ty có còn sai sót trọng yếu hay không.",
+            "source_file": "data/raw_docs/top_100/HUT/2024/HUT_2024_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              7
+            ],
+            "printed_pages": [
+              "4"
+            ],
+            "citation_tag": "[Doc_HUT_2024_Hopnhat, p.7]",
+            "rerank_score": null
+          },
+          {
+            "chunk_id": "HUT_2024_Hopnhat_chunk_0013",
+            "doc_id": "HUT_2024_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2024,
+            "scope": "consolidated",
+            "section": "AUDIT_REPORT",
+            "text": "[HUT | 2024 | Hợp nhất | BÁO CÁO KIÊM TOÁN ĐỘC LẬP | Đơn vị: VND]\nTheo ý kiến của chúng tôi, báo cáo tài chính kèm theo đã phần ánh trung thực và hợp lý, trên các khóa cạnh trọng yếu tình hình tài chính hợp nhất của Công ty cổ phần Tasco tại ngày 31 tháng 12 năm 2024, cũng như kết quả hoạt động kinh doanh hợp nhất và tình hình lưu chuyển tiền tệ hợp nhất cho năm tài chính kết thúc cùng ngày, phù hợp với chuẩn mục kế toán, chế độ kế toán doanh nghiệp Việt Nam và các quy định pháp lý có liên quan đến việc lập và trình bày báo cáo tài chính hợp nhất.\n\nBùi Văn Vương - Phó Tổng Giám đốc\nSố Giấy CNĐKHN kiểm toán 0780-2023-038-1\n\nNguyễn Hương Giang - Kiểm toán viên\nSố Giấy CNĐKHN kiểm toán 5118-2021-038-1\n\nBDO Audit Services Co., Ltd, a limited liability company incorporated in Vietnam, is a member of BDO International Limited, a UK company limited by guarantee, and forms part of the International BDO network of independent member firms. BDO is the brand name for the BDO International network and for each of the BDO member firms.",
+            "source_file": "data/raw_docs/top_100/HUT/2024/HUT_2024_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              7
+            ],
+            "printed_pages": [
+              "4"
+            ],
+            "citation_tag": "[Doc_HUT_2024_Hopnhat, p.7]",
+            "rerank_score": null
+          },
+          {
+            "chunk_id": "HUT_2024_Hopnhat_chunk_0009",
+            "doc_id": "HUT_2024_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2024,
+            "scope": "consolidated",
+            "section": "AUDIT_REPORT",
+            "text": "[HUT | 2024 | Hợp nhất | BÁO CÁO KIÊM TOÁN ĐỘC LẬP | Đơn vị: VND]\nBDO\n\nTel.: +84 (0) 24 37833911/12/13\nFax: +84 (0) 24 37833914\nwww.bdovietnam.vn\n\n20 (th) Floor, Icon 4 Tower\n243A De La Thanh Street\nDong Da District, Hanoi,\nVietnam\n\nSố: BC/BDO/2025. 241\n\nHà Nội, ngày 26 tháng 03 năm 2025\n\nBÁO CÁO KIÊM TOÁN ĐỘC LẬP\n\nVề Báo cáo tài chính hợp nhất của Công ty cổ phần Tasco\n\nKính gửi: CỔ ĐÔNG, HỘI ĐỒNG QUẢN TRỊ VÀ BAN ĐIỀU HÀNH CÔNG TY CỔ PHẦN TASCO\n\nChúng tôi đã kiểm toán Báo cáo tài chính hợp nhất kèm theo của Công ty cổ phần Tasco, được lập ngày 26 tháng 03 năm 2025, từ trang 05 đến trang 57, bao gồm Bảng cân đối kế toán hợp nhất tại ngày 31 tháng 12 năm 2024, Báo cáo kết quả hoạt động kinh doanh hợp nhất, Báo cáo lưu chuyển tiền tệ hợp nhất cho năm tài chính kết thúc cùng ngày và Bản thuyết minh Báo cáo tài chính hợp nhất.\n\nTrách nhiệm của Ban Điều hành",
+            "source_file": "data/raw_docs/top_100/HUT/2024/HUT_2024_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              7
+            ],
+            "printed_pages": [
+              "4"
+            ],
+            "citation_tag": "[Doc_HUT_2024_Hopnhat, p.7]",
+            "rerank_score": null
+          }
+        ],
+        "candidates": [],
+        "missing_years": [],
+        "warnings": [
+          "Retrieved candidates require evidence checking; RRF rank is not evidence confidence."
+        ],
+        "safe_for_calculation": false
+      }
+    },
+    {
+      "observation_id": "obs:4e110f069d4f2d7ccea2",
+      "tool_name": "search_notes_tool",
+      "arguments": {
+        "query": "Ý kiến kiểm toán và đơn vị kiểm toán",
+        "ticker": "HUT",
+        "fiscal_year": 2025,
+        "scope": "consolidated",
+        "sections": [
+          "AUDIT_REPORT"
+        ]
+      },
+      "snapshot_version": "note:8442fae31d6a1f4dda71ef0c984673b553c4b4a594ad62f4bf36d2584165ed01",
+      "result": {
+        "status": "ok",
+        "message": "",
+        "facts": [],
+        "chunks": [
+          {
+            "chunk_id": "HUT_2025_Hopnhat_chunk_0017",
+            "doc_id": "HUT_2025_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "section": "AUDIT_REPORT",
+            "text": "[HUT | 2025 | Hợp nhất | BÁO CÁO KIÊM TOÁN ĐỘC LẬP | Đơn vị: VND]\nCông việc kiểm toán bao gồm thực hiện các thủ tục nhằm thu thập các bằng chứng kiểm toán về các số liệu và thuyết minh trên Báo cáo tài chính hợp nhất. Các thủ tục kiểm toán được lựa chọn dựa trên xét đoán của kiểm toán viên, bao gồm đánh giá rủi ro có sai sốt trọng yếu trong Báo cáo tài chính hợp nhất do gian lận hoặc nhằm lẫn. Khi thực hiện đánh giá các rủi ro này, kiểm toán viên đã xem xét kiểm soát nội bộ của Công ty liên quan đến việc lập và trình bày Báo cáo tài chính hợp nhất trung thực, hợp lý nhằm thiết kế các thủ tục kiểm toán phù hợp với tính hình thực tế, tuy nhiên không nhằm mục đích đưa ra ý kiến về hiệu quả của kiểm soát nội bộ của Công ty. Công việc kiểm toán cũng bao gồm đánh giá tính thích hợp của các chính sách kế toán được áp dụng và tính hợp lý của các ước tính kế toán của Ban Điều hành cũng như đánh giá việc trình bày tổng thể Báo cáo tài chính hợp nhất.\n\nChúng tôi tin tưởng rằng các bằng chứng kiểm toán mà chúng tôi đã thu thập được là đầy đủ và thích hợp làm cơ sở cho ý kiến kiểm toán của chúng tôi.\n\nÝ kiến của Kiểm toán viên",
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              7
+            ],
+            "printed_pages": [
+              "4"
+            ],
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.7]",
+            "rerank_score": null
+          },
+          {
+            "chunk_id": "HUT_2025_Hopnhat_chunk_0016",
+            "doc_id": "HUT_2025_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "section": "AUDIT_REPORT",
+            "text": "[HUT | 2025 | Hợp nhất | BÁO CÁO KIÊM TOÁN ĐỘC LẬP | Đơn vị: VND]\nTrách nhiệm của chúng tôi là đưa ra ý kiến về Báo cáo tài chính hợp nhất dựa trên kết quả của cuộc kiểm toán. Chúng tôi đã tiến hành kiểm toán theo các chuẩn mục kiểm toán Việt Nam. Các chuẩn mục này yêu cầu chúng tôi tuân thủ chuẩn mục và các quy định về đạo đức nghề nghiệp, lập kế hoạch và thực hiện cuộc kiểm toán để đạt được sự đảm bảo hợp lý về việc liệu Báo cáo tài chính hợp nhất của Công ty có còn sai sót trọng yếu hay không.\n\nCông việc kiểm toán bao gồm thực hiện các thủ tục nhằm thu thập các bằng chứng kiểm toán về các số liệu và thuyết minh trên Báo cáo tài chính hợp nhất. Các thủ tục kiểm toán được lựa chọn dựa trên xét đoán của kiểm toán viên, bao gồm đánh giá rủi ro có sai sốt trọng yếu trong Báo cáo tài chính hợp nhất do gian lận hoặc nhằm lẫn. Khi thực hiện đánh giá các rủi ro này, kiểm toán viên đã xem xét kiểm soát nội bộ của Công ty liên quan đến việc lập và trình bày Báo cáo tài chính hợp nhất trung thực, hợp lý nhằm thiết kế các thủ tục kiểm toán phù hợp với tính hình thực tế, tuy nhiên không nhằm mục đích đưa ra ý kiến về hiệu quả của kiểm soát nội bộ của Công ty. Công việc kiểm toán cũng bao gồm đánh giá tính thích hợp của các chính sách kế toán được áp dụng và tính hợp lý của các ước tính kế toán của Ban Điều hành cũng như đánh giá việc trình bày tổng thể Báo cáo tài chính hợp nhất.",
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              7
+            ],
+            "printed_pages": [
+              "4"
+            ],
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.7]",
+            "rerank_score": null
+          },
+          {
+            "chunk_id": "HUT_2025_Hopnhat_chunk_0015",
+            "doc_id": "HUT_2025_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "section": "AUDIT_REPORT",
+            "text": "[HUT | 2025 | Hợp nhất | BÁO CÁO KIÊM TOÁN ĐỘC LẬP | Đơn vị: VND]\nBan Điều hành Công ty chịu trách nhiệm về việc lập và trình bày trung thực và hợp lý Báo cáo tài chính hợp nhất của Công ty theo chuẩn mục kế toán, chế độ kế toán doanh nghiệp Việt Nam và các quy định pháp lý có liên quan đến việc lập và trình bày Báo cáo tài chính hợp nhất và chịu trách nhiệm về kiểm soát nội bộ mà Ban Điều hành xác định là cần thiết để đảm bảo cho việc lập và trình bày Báo cáo tài chính hợp nhất không có sai sót trọng yếu do gian lận hoặc nhằm lấn.\n\nTrách nhiệm của Kiểm toán viên\n\nTrách nhiệm của chúng tôi là đưa ra ý kiến về Báo cáo tài chính hợp nhất dựa trên kết quả của cuộc kiểm toán. Chúng tôi đã tiến hành kiểm toán theo các chuẩn mục kiểm toán Việt Nam. Các chuẩn mục này yêu cầu chúng tôi tuân thủ chuẩn mục và các quy định về đạo đức nghề nghiệp, lập kế hoạch và thực hiện cuộc kiểm toán để đạt được sự đảm bảo hợp lý về việc liệu Báo cáo tài chính hợp nhất của Công ty có còn sai sót trọng yếu hay không.",
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              7
+            ],
+            "printed_pages": [
+              "4"
+            ],
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.7]",
+            "rerank_score": null
+          },
+          {
+            "chunk_id": "HUT_2025_Hopnhat_chunk_0018",
+            "doc_id": "HUT_2025_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "section": "AUDIT_REPORT",
+            "text": "[HUT | 2025 | Hợp nhất | BÁO CÁO KIÊM TOÁN ĐỘC LẬP | Đơn vị: VND]\nTheo ý kiến của chúng tôi, báo cáo tài chính hợp nhất kèm theo đã phân ánh trung thực và hợp lý, trên các khía cạnh trọng yếu tình hình tài chính hợp nhất của Công ty cổ phần Tasco tại ngày 31 tháng 12 năm 2025, cũng như kết quả hoạt động kinh doanh hợp nhất và tình hình lưu chuyển tiền tệ hợp nhất cho năm tài chính kết thúc cùng ngày, phù hợp với chuẩn mục kế toán, chế độ kế toán doanh nghiệp Việt Nam và các quy định pháp lý có liên quan đến việc lập và trình bày báo cáo tài chính hợp nhất.\n\nCÔNG TY TNHH KIỂM TOÁN BDO\n\nNguyễn Tuân Anh - Phó Giám đốc\n\nSố Giấy CNDKHN kiểm toán 1906-2023-038-1\n\nNguyễn Hương Giang - Kiểm toán viên\n\nSố Giấy CNDKHN kiểm toán 5118-2026-038-1\n\nBDO Audit Services Co., Ltd, a limited liability company incorporated in Vietnam, is a member of BDO International Limited, a UK company limited by guarantee, and forms part of the International BDO network of independent member firms. BDO is the brand name for the BDO International network and for each of the BDO member firms. 107.",
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              7
+            ],
+            "printed_pages": [
+              "4"
+            ],
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.7]",
+            "rerank_score": null
+          },
+          {
+            "chunk_id": "HUT_2025_Hopnhat_chunk_0014",
+            "doc_id": "HUT_2025_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "section": "AUDIT_REPORT",
+            "text": "[HUT | 2025 | Hợp nhất | BÁO CÁO KIÊM TOÁN ĐỘC LẬP | Đơn vị: VND]\nBDO\n\nSố: BC/BDO/2026.305\n\nTel.: +84 (0) 24 37833911\n\nFax: +84 (0) 24 37833914\n\nwww.bdo.vn\n\nFloor 20, ICON4 Tower,\n\n243A De La Thanh Street,\n\nLang Ward, Hanof City, Vietnam\n\nHà Nội, ngày 30 tháng 03 năm 2026\n\nBÁO CÁO KIÊM TOÁN ĐỘC LẬP\n\nVề Báo cáo tài chính hợp nhất của Công ty cổ phần Tasco\n\nKính gửi: CỔ ĐÔNG, HỘI ĐÔNG QUẢN TRỊ VÀ BAN ĐIỀU HÀNH CÔNG TY CỔ PHẦN TASCO\n\nChúng tôi đã kiểm toán Báo cáo tài chính hợp nhất kèm theo của Công ty cổ phần Tasco, được lập ngày 30 tháng 03 năm 2026, từ trang 05 đến trang 67, bao gồm Bảng cân đối kế toán hợp nhất tại ngày 31 tháng 12 năm 2025, Báo cáo kết quả hoạt động kinh doanh hợp nhất, Báo cáo lưu chuyển tiền tệ hợp nhất cho năm tài chính kết thúc cùng ngày và Bản thuyết minh Báo cáo tài chính hợp nhất.\n\nTrách nhiệm của Ban Điều hành",
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              7
+            ],
+            "printed_pages": [
+              "4"
+            ],
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.7]",
+            "rerank_score": null
+          }
+        ],
+        "candidates": [],
+        "missing_years": [],
+        "warnings": [
+          "Retrieved candidates require evidence checking; RRF rank is not evidence confidence."
+        ],
+        "safe_for_calculation": false
+      }
+    },
+    {
+      "observation_id": "obs:177e8cecb69fddf55579",
+      "tool_name": "search_notes_tool",
+      "arguments": {
+        "query": "Điều khoản và kỳ hạn các khoản vay",
+        "ticker": "HUT",
+        "fiscal_year": 2025,
+        "scope": "consolidated",
+        "sections": [
+          "NOTES"
+        ]
+      },
+      "snapshot_version": "note:8442fae31d6a1f4dda71ef0c984673b553c4b4a594ad62f4bf36d2584165ed01",
+      "result": {
+        "status": "ok",
+        "message": "",
+        "facts": [],
+        "chunks": [
+          {
+            "chunk_id": "HUT_2025_Hopnhat_chunk_0091",
+            "doc_id": "HUT_2025_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "section": "NOTES",
+            "text": "[HUT | 2025 | Hợp nhất | BẢN THUYẾT MINH BẢO CÁO TÀI CHÍNH HỢP NHẤT | Đơn vị: VND]\n13. Nguyên tắc ghi nhận vay và nợ phải trả thuê tài chính (tiếp theo)\n\nNợ phải trả thuê tài chính được ghi nhận theo giá trị hợp lý của tài sản thuê.\n\nCác khoản vay và nợ thuê tài chính được theo dõi chi tiết theo từng đối tượng, kỳ hạn, nguyên tệ. Tại thời điểm lập Báo cáo tài chính, khoản vay và nợ thuê tài chính đến hạn trả trong vòng 12 tháng hoặc một chu kỳ kinh doanh tiếp theo được phân loại là vay và nợ thuê tài chính ngắn hạn, các khoản có thời gian trả nợ trên 12 tháng hoặc hơn một chu kỳ kinh doanh được ghi nhận là khoản vay và nợ thuê tài chính dài hạn.\n\n14. Nguyên tắc ghi nhận trái phiếu phát hành\n\nCông ty phát hành trái phiếu thường cho mục đích vay dài hạn.\n\nGiá trị ghi sở của trái phiếu thường được phản ánh trên cơ sở thuần bằng trị giá trái phiếu theo mệnh giá trừ (-) Chiết khấu trái phiếu cộng (+) Phụ trội trái phiếu.\n\nCông ty phát hành trái phiếu ngang giá (giá phát hành bằng mệnh giá) do đó không phát sinh Chiết khấu trái phiếu hoặc Phụ trội trái phiếu",
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              27
+            ],
+            "printed_pages": [
+              "24"
+            ],
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.27]",
+            "rerank_score": null
+          },
+          {
+            "chunk_id": "HUT_2025_Hopnhat_chunk_0090",
+            "doc_id": "HUT_2025_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "section": "NOTES",
+            "text": "[HUT | 2025 | Hợp nhất | BẢN THUYẾT MINH BẢO CÁO TÀI CHÍNH HỢP NHẤT | Đơn vị: VND]\n- Phải trả khác: Gồm các khoản phải trả không có tính thương mại, không liên quan đến giao dịch mua, bán, cung cấp hàng hóa dịch vụ (như: phải trả về lãi vay, cổ tức và lợi nhuận phải trả, chi phí hoạt động đầu tư tài chính phải trả; phải trả do bên thứ ba chi hộ; phải trả về các khoản BHXH, BHYT, BHTN, KPCĐ...)\n\n12. Nguyên tắc kê toán nợ phải trả (tiếp theo)\n\nTheo dõi các khoản phải trả\n\nCác khoản phải trả được theo dõi chi tiết theo kỳ hạn gốc, kỳ hạn còn lại tại thời điểm báo cáo, theo nguyên tệ và theo từng đối tượng. Tại thời điểm lập báo cáo tài chính, khoản phải trả có thời hạn trả nợ còn lại không quá 12 tháng hoặc một chu kỳ kinh doanh được phân loại là phải trả ngắn hạn, khoản phải trả có thời gian trả nợ còn lại trên 12 tháng hoặc hơn một chu kỳ kinh doanh được ghi nhận là khoản phải trả dài hạn.\n\nCác khoản phải trả thỏa mãn định nghĩa của các khoản mục tiền tệ có gốc ngoại tệ: Được đánh giá lại tại thời điểm 31/12/2025 theo tỷ giá giao dịch thực tế cuối kỳ (xem thêm Thuyết minh IV.2).\n\nCác khoản nợ phải trả được ghi nhận không thấp hơn giá trị phải thanh toán.\n\n13. Nguyên tắc ghi nhận vay và nợ phải trả thuê tài chính",
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              27
+            ],
+            "printed_pages": [
+              "24"
+            ],
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.27]",
+            "rerank_score": null
+          },
+          {
+            "chunk_id": "HUT_2025_Hopnhat_chunk_0070",
+            "doc_id": "HUT_2025_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "section": "NOTES",
+            "text": "[HUT | 2025 | Hợp nhất | BẢN THUYẾT MINH BẢO CÁO TÀI CHÍNH HỢP NHẤT | Đơn vị: VND]\n- Phải thu khách hàng: Gồm các khoản phải thu mang tính chất thương mại phát sinh từ giao dịch có tính chất mua, bán giữa Công ty và người mua là đơn vị độc lập với Công ty.\n\n5. Nguyên tắc kế toán nợ phải thu (tiếp theo)\n\n- Phải thu khác: Gồm các khoản phải thu không có tính thương mại, không liên quan đến giao dịch mua, bán (như: phải thu về lãi tiền gửi, lãi cho vay, cổ tức, lợi nhuận được chia; các khoản chi hộ bên thứ ba được quyền nhận lại; các khoản phải thu về cho mượn tài sản...).\n\nTheo dõi khoản phải thu\n\nCác khoản phải thu được theo dõi chi tiết theo kỳ hạn gốc, kỳ hạn còn lại tại thời điểm báo cáo, theo nguyên tệ và theo từng đối tượng. Tại thời điểm lập báo cáo tài chính, khoản phải thu có thời gian thu hồi còn lại không quá 12 tháng hoặc một chu kỳ kinh doanh được phân loại là phải thu ngắn hạn, khoản phải thu có thời gian thu hồi còn lại trên 12 tháng hoặc hơn một chu kỳ kinh doanh được ghi nhận là khoản phải thu dài hạn.\n\nCác khoản nợ phải thu được ghi nhận không vượt quá giá trị có thể thu hồi.\n\nPhương pháp lập dự phòng phải thu khó đòi",
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              22,
+              23
+            ],
+            "printed_pages": [
+              "19",
+              "20"
+            ],
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.22-23]",
+            "rerank_score": null
+          },
+          {
+            "chunk_id": "HUT_2025_Hopnhat_chunk_0067",
+            "doc_id": "HUT_2025_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "section": "NOTES",
+            "text": "[HUT | 2025 | Hợp nhất | BẢN THUYẾT MINH BẢO CÁO TÀI CHÍNH HỢP NHẤT | Đơn vị: VND]\n4. Nguyên tắc kế toán các khoản đầu tư tài chính (tiếp theo)\n\nCác khoản đầu tư nấm giữ đến ngày đáo hạn là các khoản đầu tư mà Ban Điều hành có ý định và khả năng nấm giữ đến ngày đáo hạn.\n\nCác khoản đầu tư nắm giữ đến ngày đáo hạn được ghi nhận ban đầu theo giá gốc. Sau ghi nhận ban đầu, nếu các khoản đầu tư nắm giữ đến ngày đáo hạn chưa được lập dự phòng phải thu khó đòi theo các quy định khác thì các khoản đầu tư này được ghi nhận theo giá trị có thể thu hồi. Các khoản suy giảm giá trị của khoản đầu tư nếu phát sinh được hạch toán vào chi phí tài chính trong báo cáo kết quả hoạt động kinh doanh và được giảm trừ trực tiếp vào giá trị khoản đầu tư.\n\nc. Đầu tư vào công ty liên doanh, liên kết\n\nCông ty liên kết là tất cả các đơn vị mà Công ty có ảnh hưởng đáng kể nhưng không kiểm soát, thường được thể hiện thông qua việc nằm giữ từ 20% đến 50% quyền biểu quyết ở các đơn vị đó.",
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              22
+            ],
+            "printed_pages": [
+              "19"
+            ],
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.22]",
+            "rerank_score": null
+          },
+          {
+            "chunk_id": "HUT_2025_Hopnhat_chunk_0094",
+            "doc_id": "HUT_2025_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "section": "NOTES",
+            "text": "[HUT | 2025 | Hợp nhất | BẢN THUYẾT MINH BẢO CÁO TÀI CHÍNH HỢP NHẤT | Đơn vị: VND]\nTrong năm, Công ty phát sinh 35.535.473.374 VND (năm trước phát sinh 449.866.667 VND) chi phí lãi vay được vốn hóa vào tài sản dở dang.\n\n15. Nguyên tắc ghi nhận và vốn hóa các khoản chi phí đi vay (tiếp theo)\n\nChi phí lãi vay của Công ty đối với các khoản vay cho các Dự án BOT được phân bổ vào kết quả kinh doanh trong năm theo tỷ trọng doanh thu thực hiện/Tổng doanh thu từ Dự án, riêng đối với 2 Dự án BOT: Đầu tư xây dựng trên quốc lộ 21 (trạm BOT Mỹ Lộc) và quốc lộ 10 (trạm BOT Đông Hưng) chi phí lãi vay được ghi nhận vào kết quả kinh doanh trong năm.\n\n16. Nguyên tắc ghi nhận chi phí phải trả\n\nChi phí phải trả bao gồm các khoản phải trả cho hàng hóa, dịch vụ đã nhận được từ người bán trong năm nhưng thực tế chưa chi trả do chưa có hóa đơn hoặc chưa đủ hồ sơ, tài liệu kế toán, được ghi nhận trong kỳ báo cáo dựa trên điều khoản ghi trong các hợp đồng tương ứng.\n\nCơ sở xác định các loại chỉ phí phải trả\n\n- Trích trước chi phí tiền điện, nước, điện thoại, phí kiểm toán, phí tham gia hội nghị, học tập, chi phí truyền thông, cước dịch vụ vận tải: Căn cứ Giấy báo thanh toán của đơn vị cung cấp dịch vụ hoặc hợp đồng kinh tế đã ký với nhà cung cấp.",
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              28
+            ],
+            "printed_pages": [
+              "25"
+            ],
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.28]",
+            "rerank_score": null
+          }
+        ],
+        "candidates": [],
+        "missing_years": [],
+        "warnings": [
+          "Retrieved candidates require evidence checking; RRF rank is not evidence confidence."
+        ],
+        "safe_for_calculation": false
+      }
+    },
+    {
+      "observation_id": "obs:331a8005a48a71917159",
+      "tool_name": "search_notes_tool",
+      "arguments": {
+        "query": "Các giao dịch và số dư với bên liên quan",
+        "ticker": "HUT",
+        "fiscal_year": 2025,
+        "scope": "consolidated",
+        "sections": [
+          "NOTES"
+        ]
+      },
+      "snapshot_version": "note:8442fae31d6a1f4dda71ef0c984673b553c4b4a594ad62f4bf36d2584165ed01",
+      "result": {
+        "status": "ok",
+        "message": "",
+        "facts": [],
+        "chunks": [
+          {
+            "chunk_id": "HUT_2025_Hopnhat_chunk_0064",
+            "doc_id": "HUT_2025_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "section": "NOTES",
+            "text": "[HUT | 2025 | Hợp nhất | BẢN THUYẾT MINH BẢO CÁO TÀI CHÍNH HỢP NHẤT | Đơn vị: VND]\n2. Các loại tỷ giá áp dụng trong kế toán (tiếp theo)\n\nĐược sử dụng để quy đổi ra đồng tiền ghi sổ kế toán đối với các giao dịch ghi tăng: Doanh thu, Thu nhập khác, Chi phí sản xuất kinh doanh, Chi phí khác, Tài sản, Vốn chủ sở hữu, Các khoản phải thu, Vốn bằng tiền, Trả trước cho người bán, Các khoản phải trả, Nhận trước tiền của người mua.\n\nTrường hợp bán hàng hoá, cung cấp dịch vụ có liên quan đến doanh thu nhận trước, hoặc nhận trước tiền của người mua: Doanh thu, thu nhập tương ứng với số tiền nhận trước được áp dụng tỷ giá giao dịch thực tế tại thời điểm nhận trước của người mua.\n\nTrường hợp mua tài sản có liên quan đến giao dịch trả trước cho người bán: Giá trị tài sản tương ứng với số tiền trả trước được áp dụng tỷ giá giao dịch thực tế tại thời điểm trả trước cho người bán.\n\n- Tỷ giá ghi số bình quân gia quyền di động:\n\nĐược sử dụng để quy đổi ra đồng tiền ghi số kế toán ở bên Có các tài khoản tiền, khi thực hiện thanh toán bằng ngoại tệ.\n\nCác loại tỷ giá áp dụng khi đánh giá lại cuối kỳ\n\nĐối với các khoản ngoại tệ gửi ngân hàng thì tỷ giá thực tế khi đánh giá lại là tỷ giá mua của chính ngân hàng nơi Công ty mở tài khoản ngoại tệ.",
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              21
+            ],
+            "printed_pages": [
+              "18"
+            ],
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.21]",
+            "rerank_score": null
+          },
+          {
+            "chunk_id": "HUT_2025_Hopnhat_chunk_0070",
+            "doc_id": "HUT_2025_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "section": "NOTES",
+            "text": "[HUT | 2025 | Hợp nhất | BẢN THUYẾT MINH BẢO CÁO TÀI CHÍNH HỢP NHẤT | Đơn vị: VND]\n- Phải thu khách hàng: Gồm các khoản phải thu mang tính chất thương mại phát sinh từ giao dịch có tính chất mua, bán giữa Công ty và người mua là đơn vị độc lập với Công ty.\n\n5. Nguyên tắc kế toán nợ phải thu (tiếp theo)\n\n- Phải thu khác: Gồm các khoản phải thu không có tính thương mại, không liên quan đến giao dịch mua, bán (như: phải thu về lãi tiền gửi, lãi cho vay, cổ tức, lợi nhuận được chia; các khoản chi hộ bên thứ ba được quyền nhận lại; các khoản phải thu về cho mượn tài sản...).\n\nTheo dõi khoản phải thu\n\nCác khoản phải thu được theo dõi chi tiết theo kỳ hạn gốc, kỳ hạn còn lại tại thời điểm báo cáo, theo nguyên tệ và theo từng đối tượng. Tại thời điểm lập báo cáo tài chính, khoản phải thu có thời gian thu hồi còn lại không quá 12 tháng hoặc một chu kỳ kinh doanh được phân loại là phải thu ngắn hạn, khoản phải thu có thời gian thu hồi còn lại trên 12 tháng hoặc hơn một chu kỳ kinh doanh được ghi nhận là khoản phải thu dài hạn.\n\nCác khoản nợ phải thu được ghi nhận không vượt quá giá trị có thể thu hồi.\n\nPhương pháp lập dự phòng phải thu khó đòi",
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              22,
+              23
+            ],
+            "printed_pages": [
+              "19",
+              "20"
+            ],
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.22-23]",
+            "rerank_score": null
+          },
+          {
+            "chunk_id": "HUT_2025_Hopnhat_chunk_0102",
+            "doc_id": "HUT_2025_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "section": "NOTES",
+            "text": "[HUT | 2025 | Hợp nhất | BẢN THUYẾT MINH BẢO CÁO TÀI CHÍNH HỢP NHẤT | Đơn vị: VND]\nDoanh thu cung cấp dịch vụ quản lý vận hành khu đô thị, dịch vụ thu phí đường bộ, dịch vụ thu phí tự động không dùng, dịch vụ cung cấp hóa đơn điện tử, dịch vụ cung cấp sản phẩm bảo hiểm phi nhân thọ, dịch vụ tư vấn quản lý và dịch vụ sửa chữa, bảo trì xe ô tô, xe gắn máy được ghi nhận khi kết quả giao dịch được xác định một cách đáng tin cây.\n\n20. Nguyên tắc và phương pháp ghi nhận doanh thu (tiếp theo)\n\nTrường hợp giao dịch về cung cấp dịch vụ liên quan đến nhiều kỳ thì doanh thu được ghi nhận theo tỷ lệ hoàn thành của giao dịch tại ngày kết thúc năm tài chính. Tỷ lệ hoàn thành giao dịch được đánh giá dựa trên khảo sát các công việc đã được thực hiện. Doanh thu không được ghi nhận nếu như có những yếu tố không chắc chắn trọng yếu liên quan tới khả năng thu hồi các khoản phải thu.\n\nNếu không thể xác định được kết quả hợp đồng một cách chắc chắn, doanh thu sẽ chỉ được ghi nhận ở mức có thể thu hồi được của các chi phí đã được ghi nhận.\n\nDoanh thu bán điện\n\nDoanh thu bán điện được xác định và ghi nhận dựa trên sản lượng và giá bán điện đã được cơ quan Nhà nước có thẩm quyền phê duyệt.\n\nDoanh thu hoạt động tài chính",
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              30
+            ],
+            "printed_pages": [
+              "27"
+            ],
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.30]",
+            "rerank_score": null
+          },
+          {
+            "chunk_id": "HUT_2025_Hopnhat_chunk_0103",
+            "doc_id": "HUT_2025_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "section": "NOTES",
+            "text": "[HUT | 2025 | Hợp nhất | BẢN THUYẾT MINH BẢO CÁO TÀI CHÍNH HỢP NHẤT | Đơn vị: VND]\n20. Nguyên tắc và phương pháp ghi nhận doanh thu (tiếp theo)\n\nDoanh thu hoạt động tài chính gồm: Lãi tiền gửi, tiền cho vay, cổ tức và lợi nhuận được chia và thu nhập từ hoạt động thanh lý các khoản đầu tư tài chính.\n\nLãi tiền gửi, lãi cho vay: Được ghi nhận trên cơ sở thời gian và lãi suất thực tế từng kỳ, trừ khi khả năng thu hồi tiền lãi không chắc chắn.\n\nCổ tức và lợi nhuận được chia: Được ghi nhận khi Công ty được quyền nhận cổ tức hoặc được quyền nhận lợi nhuận từ việc góp vốn. Riêng cổ tức nhận bằng cổ phiếu không ghi nhận vào thu nhập mà chỉ theo dõi số lượng tăng thêm.\n\nThu nhập từ hoạt động thanh lý các khoản đầu tư tài chính: Được ghi nhận khi phần lớn rủi ro và lợi ích gắn liền với quyền sở hữu khoản đầu tư được chuyển giao cho người mua. Phần lớn rủi ro và lợi ích gắn liền với quyền sở hữu chỉ được chuyển giao cho người mua khi hoàn thành giao dịch mua bán (đối với chứng khoán đã niêm yết) hoặc hoàn thành hợp đồng chuyển nhượng tài sản (đối với chứng khoán chưa niêm yết). Thu nhập này được xác định là phần chênh lệch giữa giá bán và giá vốn khoản đầu tư.\n\nDoanh thu hợp đồng xây dựng",
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              30
+            ],
+            "printed_pages": [
+              "27"
+            ],
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.30]",
+            "rerank_score": null
+          },
+          {
+            "chunk_id": "HUT_2025_Hopnhat_chunk_0101",
+            "doc_id": "HUT_2025_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "section": "NOTES",
+            "text": "[HUT | 2025 | Hợp nhất | BẢN THUYẾT MINH BẢO CÁO TÀI CHÍNH HỢP NHẤT | Đơn vị: VND]\nDoanh thu bán hàng hóa, thành phẩm bắt động sản được ghi nhận khi kết quả giao dịch được xác định một cách đáng tin cây và Công ty có khả năng thu được các lợi ích kinh tế từ giao dịch này. Doanh thu bán hàng được ghi nhận khi phần lớn những rủi ro và lợi ích về quyền sở hữu hàng hoá đã được chuyển giao cho người mua. Doanh thu không được ghi nhận khi có các yếu tố không chắc chắn mang tính trọng yếu về khả năng thu hồi các khoản tiền bán hàng hoặc có khả năng bị trả lại.\n\n20. Nguyên tắc và phương pháp ghi nhận doanh thu (tiếp theo)\n\nDoanh thu cung cấp dịch vụ\n\nDoanh thu cung cấp dịch vụ quản lý vận hành khu đô thị, dịch vụ thu phí đường bộ, dịch vụ thu phí tự động không dùng, dịch vụ cung cấp hóa đơn điện tử, dịch vụ cung cấp sản phẩm bảo hiểm phi nhân thọ, dịch vụ tư vấn quản lý và dịch vụ sửa chữa, bảo trì xe ô tô, xe gắn máy được ghi nhận khi kết quả giao dịch được xác định một cách đáng tin cây.",
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              29,
+              30
+            ],
+            "printed_pages": [
+              "26",
+              "27"
+            ],
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.29-30]",
+            "rerank_score": null
+          }
+        ],
+        "candidates": [],
+        "missing_years": [],
+        "warnings": [
+          "Retrieved candidates require evidence checking; RRF rank is not evidence confidence."
+        ],
+        "safe_for_calculation": false
+      }
+    },
+    {
+      "observation_id": "obs:52293d2472674cade973",
+      "tool_name": "search_notes_tool",
+      "arguments": {
+        "query": "Rủi ro thanh khoản tín dụng tỷ giá lãi suất",
+        "ticker": "HUT",
+        "fiscal_year": 2025,
+        "scope": "consolidated",
+        "sections": [
+          "NOTES"
+        ]
+      },
+      "snapshot_version": "note:8442fae31d6a1f4dda71ef0c984673b553c4b4a594ad62f4bf36d2584165ed01",
+      "result": {
+        "status": "ok",
+        "message": "",
+        "facts": [],
+        "chunks": [
+          {
+            "chunk_id": "HUT_2025_Hopnhat_chunk_0065",
+            "doc_id": "HUT_2025_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "section": "NOTES",
+            "text": "[HUT | 2025 | Hợp nhất | BẢN THUYẾT MINH BẢO CÁO TÀI CHÍNH HỢP NHẤT | Đơn vị: VND]\nĐối với các khoản ngoại tệ gửi ngân hàng thì tỷ giá thực tế khi đánh giá lại là tỷ giá mua của chính ngân hàng nơi Công ty mở tài khoản ngoại tệ.\n\n3. Nguyên tắc ghi nhận các khoản tiền và các khoản tương đương tiền (tiếp theo)\n\n3. Nguyên tắc ghi nhận các khoản tiền và các khoản tương đương tiền\n\nTiền và các khoản tương đương tiền bao gồm: tiền mặt, tiền gửi ngân hàng không kỳ hạn và có kỳ hạn, tiền đang chuyển và các khoản đầu tư ngắn hạn có thời hạn thu hồi không quá 3 tháng kể từ ngày đầu tư, có khá năng chuyển đổi dễ dàng thành một lượng tiền xác định và không có rủi ro trong việc chuyển đổi thành tiền tại thời điểm báo cáo. Việc xác định các khoản tương đương tiền đảm bảo theo quy định của Chuẩn mực kế toán Việt Nam số 24 “Báo cáo lưu chuyển tiền tệ”.\n\n4. Nguyên tắc kế toán các khoản đầu tư tài chính\n\na. Chứng khoán kinh doanh\n\nChứng khoán kinh doanh bao gồm các loại chứng khoán nằm giữ vì mục đích kinh doanh (kể cả các chứng khoán có thời gian đáo hạn trên 12 tháng) được mua đề bán lại đề tạo lợi nhuận.",
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              21,
+              22
+            ],
+            "printed_pages": [
+              "18",
+              "19"
+            ],
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.21-22]",
+            "rerank_score": null
+          },
+          {
+            "chunk_id": "HUT_2025_Hopnhat_chunk_0090",
+            "doc_id": "HUT_2025_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "section": "NOTES",
+            "text": "[HUT | 2025 | Hợp nhất | BẢN THUYẾT MINH BẢO CÁO TÀI CHÍNH HỢP NHẤT | Đơn vị: VND]\n- Phải trả khác: Gồm các khoản phải trả không có tính thương mại, không liên quan đến giao dịch mua, bán, cung cấp hàng hóa dịch vụ (như: phải trả về lãi vay, cổ tức và lợi nhuận phải trả, chi phí hoạt động đầu tư tài chính phải trả; phải trả do bên thứ ba chi hộ; phải trả về các khoản BHXH, BHYT, BHTN, KPCĐ...)\n\n12. Nguyên tắc kê toán nợ phải trả (tiếp theo)\n\nTheo dõi các khoản phải trả\n\nCác khoản phải trả được theo dõi chi tiết theo kỳ hạn gốc, kỳ hạn còn lại tại thời điểm báo cáo, theo nguyên tệ và theo từng đối tượng. Tại thời điểm lập báo cáo tài chính, khoản phải trả có thời hạn trả nợ còn lại không quá 12 tháng hoặc một chu kỳ kinh doanh được phân loại là phải trả ngắn hạn, khoản phải trả có thời gian trả nợ còn lại trên 12 tháng hoặc hơn một chu kỳ kinh doanh được ghi nhận là khoản phải trả dài hạn.\n\nCác khoản phải trả thỏa mãn định nghĩa của các khoản mục tiền tệ có gốc ngoại tệ: Được đánh giá lại tại thời điểm 31/12/2025 theo tỷ giá giao dịch thực tế cuối kỳ (xem thêm Thuyết minh IV.2).\n\nCác khoản nợ phải trả được ghi nhận không thấp hơn giá trị phải thanh toán.\n\n13. Nguyên tắc ghi nhận vay và nợ phải trả thuê tài chính",
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              27
+            ],
+            "printed_pages": [
+              "24"
+            ],
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.27]",
+            "rerank_score": null
+          },
+          {
+            "chunk_id": "HUT_2025_Hopnhat_chunk_0064",
+            "doc_id": "HUT_2025_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "section": "NOTES",
+            "text": "[HUT | 2025 | Hợp nhất | BẢN THUYẾT MINH BẢO CÁO TÀI CHÍNH HỢP NHẤT | Đơn vị: VND]\n2. Các loại tỷ giá áp dụng trong kế toán (tiếp theo)\n\nĐược sử dụng để quy đổi ra đồng tiền ghi sổ kế toán đối với các giao dịch ghi tăng: Doanh thu, Thu nhập khác, Chi phí sản xuất kinh doanh, Chi phí khác, Tài sản, Vốn chủ sở hữu, Các khoản phải thu, Vốn bằng tiền, Trả trước cho người bán, Các khoản phải trả, Nhận trước tiền của người mua.\n\nTrường hợp bán hàng hoá, cung cấp dịch vụ có liên quan đến doanh thu nhận trước, hoặc nhận trước tiền của người mua: Doanh thu, thu nhập tương ứng với số tiền nhận trước được áp dụng tỷ giá giao dịch thực tế tại thời điểm nhận trước của người mua.\n\nTrường hợp mua tài sản có liên quan đến giao dịch trả trước cho người bán: Giá trị tài sản tương ứng với số tiền trả trước được áp dụng tỷ giá giao dịch thực tế tại thời điểm trả trước cho người bán.\n\n- Tỷ giá ghi số bình quân gia quyền di động:\n\nĐược sử dụng để quy đổi ra đồng tiền ghi số kế toán ở bên Có các tài khoản tiền, khi thực hiện thanh toán bằng ngoại tệ.\n\nCác loại tỷ giá áp dụng khi đánh giá lại cuối kỳ\n\nĐối với các khoản ngoại tệ gửi ngân hàng thì tỷ giá thực tế khi đánh giá lại là tỷ giá mua của chính ngân hàng nơi Công ty mở tài khoản ngoại tệ.",
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              21
+            ],
+            "printed_pages": [
+              "18"
+            ],
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.21]",
+            "rerank_score": null
+          },
+          {
+            "chunk_id": "HUT_2025_Hopnhat_chunk_0095",
+            "doc_id": "HUT_2025_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "section": "NOTES",
+            "text": "[HUT | 2025 | Hợp nhất | BẢN THUYẾT MINH BẢO CÁO TÀI CHÍNH HỢP NHẤT | Đơn vị: VND]\n- Trích trước chi phí tiền điện, nước, điện thoại, phí kiểm toán, phí tham gia hội nghị, học tập, chi phí truyền thông, cước dịch vụ vận tải: Căn cứ Giấy báo thanh toán của đơn vị cung cấp dịch vụ hoặc hợp đồng kinh tế đã ký với nhà cung cấp.\n\n16. Nguyên tắc ghi nhận chi phí phải trả (tiếp theo)\n\n- Trích trước chi phí tiền lương nghi phép: Căn cứ Bảng theo dõi số ngày phép và đơn giá áp dụng.\n\n- Trích trước chi phí lãi tiền vay, lãi trái phiếu phải trả trong trường hợp vay/phát hành trái phiếu trả lãi sau: Căn cứ số dư nợ gốc, thời hạn, lãi suất áp dụng.\n\n- Trích trước chi phí đề tạm tính giá vốn hàng hóa, thành phẩm bắt động sản đã bán: Căn cứ phần chênh lệch giữa chi phí theo đơn giá dự toán và chi phí thực tế tổng hợp.\n\n17. Nguyên tắc và phương pháp ghi nhận các khoản dự phòng phải trả",
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              28
+            ],
+            "printed_pages": [
+              "25"
+            ],
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.28]",
+            "rerank_score": null
+          },
+          {
+            "chunk_id": "HUT_2025_Hopnhat_chunk_0107",
+            "doc_id": "HUT_2025_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "section": "NOTES",
+            "text": "[HUT | 2025 | Hợp nhất | BẢN THUYẾT MINH BẢO CÁO TÀI CHÍNH HỢP NHẤT | Đơn vị: VND]\n22. Nguyên tắc kế toán giá vốn hàng bán (tiếp theo)\n\nĐề đảm bảo nguyên tắc thận trọng, các chi phí vượt trên mức bình thường của hàng tồn kho được ghi nhận ngay vào chi phí trong kỳ (sau khi trừ đi các khoản bồi thường, nếu có), gồm: chi phí nguyên vật liệu trực tiếp tiêu hao vượt mức bình thường, chi phí nhân công, chi phí sản xuất chung cổ định không phân bổ vào giá trị sản phẩm nhập kho, hàng tồn kho hao hụt, mất mát...\n\nCác khoản ghi giảm giá vốn hàng bán bao gồm: Khoản hoàn nhập dự phòng giảm giá hàng tồn kho cuối năm tài chính (chênh lệch giữa số dự phòng phải lập năm nay nhỏ hơn số đã lập năm trước); Khoản hoàn nhập chi phí trích trước đối với công trình xây lắp được xác định là đã hoàn thành, bàn giao (chênh lệch giữa số chi phí trích trước còn lại cao hơn chi phí thực tế phát sinh).\n\n23. Nguyên tắc kế toán chi phí tài chính\n\nChi phí tài chính bao gồm: chi phí lãi vay, lỗ chênh lệch tỷ giá, lỗ thanh lý các khoản đầu tư tài chính, lỗ bán chứng khoán ngắn hạn, dự phòng các khoản đầu tư tài chính ...\n\nChi phí lãi vay (kể cả số trích trước), lỗ chênh lệch tỷ giá của kỳ báo cáo được ghi nhận đầy đủ trong kỳ.\n\n24. Nguyên tắc kế toán chi phí bán hàng và chi phí quản lý doanh nghiệp",
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              31
+            ],
+            "printed_pages": [
+              "28"
+            ],
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.31]",
+            "rerank_score": null
+          }
+        ],
+        "candidates": [],
+        "missing_years": [],
+        "warnings": [
+          "Retrieved candidates require evidence checking; RRF rank is not evidence confidence."
+        ],
+        "safe_for_calculation": false
+      }
+    },
+    {
+      "observation_id": "obs:84d0862d28f160b75622",
+      "tool_name": "search_notes_tool",
+      "arguments": {
+        "query": "Cam kết và nghĩa vụ tiềm tàng",
+        "ticker": "HUT",
+        "fiscal_year": 2025,
+        "scope": "consolidated",
+        "sections": [
+          "NOTES"
+        ]
+      },
+      "snapshot_version": "note:8442fae31d6a1f4dda71ef0c984673b553c4b4a594ad62f4bf36d2584165ed01",
+      "result": {
+        "status": "ok",
+        "message": "",
+        "facts": [],
+        "chunks": [
+          {
+            "chunk_id": "HUT_2025_Hopnhat_chunk_0096",
+            "doc_id": "HUT_2025_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "section": "NOTES",
+            "text": "[HUT | 2025 | Hợp nhất | BẢN THUYẾT MINH BẢO CÁO TÀI CHÍNH HỢP NHẤT | Đơn vị: VND]\n17. Nguyên tắc và phương pháp ghi nhận các khoản dự phòng phải trả (tiếp theo)\n\nCác khoản dự phòng được ghi nhận khi Công ty có nghĩa vụ nợ hiện tại (nghĩa vụ pháp lý hoặc nghĩa vụ liên đối) do kết quả từ một sự kiện đã xảy ra; có sự giảm sút về những lợi ích kinh tế có thể xảy ra dẫn đến việc yêu cầu phải thanh toán nghĩa vụ nợ; và đưa ra được một ước tính đáng tin cây về giá trị của nghĩa vụ nợ đó. Các khoản dự phòng phải trả được ghi nhận thoả mãn các điều kiện quy định trong Chuẩn mực kế toán số 18 “Các khoản dự phòng, tài sản và nợ tiềm tàng”.\n\nPhương pháp ghi nhận dự phòng phải trả\n\nCác khoản dự phòng phải trả được lập thêm (hoặc hoàn nhập) theo số chênh lệch lớn hơn (hoặc nhỏ hơn) giữa số dự phòng phải trả phải lập kỳ này so với số dự phòng phải trả đã lập kỳ trước chưa sử dụng đang ghi trên số kế toán.\n\nCăn cứ trích lập dự phòng phải trả\n\nDự phòng chi phí đại tu Dự án BOT định kỳ (theo yêu cầu kỹ thuật): được trích lập căn cứ vào nhu cầu, kể hoạch sửa chữa TSCĐ định kỳ của Công ty.\n\nDư phòng chi phí bảo dưỡng: được trích lập căn cứ vào giá trị còn lại của gói bảo dưỡng khách hàng được tặng kèm khi ký hợp đồng mua bán xe ô tô.",
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              28
+            ],
+            "printed_pages": [
+              "25"
+            ],
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.28]",
+            "rerank_score": null
+          },
+          {
+            "chunk_id": "HUT_2025_Hopnhat_chunk_0071",
+            "doc_id": "HUT_2025_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "section": "NOTES",
+            "text": "[HUT | 2025 | Hợp nhất | BẢN THUYẾT MINH BẢO CÁO TÀI CHÍNH HỢP NHẤT | Đơn vị: VND]\n5. Nguyên tắc kế toán nợ phải thu (tiếp theo)\n\nDự phòng nợ phải thu khó đòi thể hiện phần giá trị của các khoản phải thu mà Công ty dự kiến không có khả năng thu hồi tại ngày kết thúc năm tài chính. Tăng hoặc giảm số dư tài khoản dự phòng được ghi nhận vào chi phí quản lý doanh nghiệp trong năm. Dự phòng nợ phải thu khó đòi được trích lập cho từng khoản nợ phải thu, căn cứ vào thời gian quá hạn trả nợ gốc theo cam kết ban đầu (không tính đến việc gia hạn nợ giữa các bên), hoặc dự kiến mức tồn thất có thể xảy ra.\n\n6. Nguyên tắc ghi nhận hàng tồn kho\n\nHàng tồn kho được xác định trên cơ sở giá thấp hơn giữa giá gốc và giá trị thuần có thể thực hiện được. Việc xác định được thực hiện theo quy định của Chuẩn mục kế toán số 02 - “Hàng tồn kho”, cụ thể: Giá gốc hàng tồn kho bao gồm: Chi phí mua, chi phí chế biến và các chi phí liên quan trực tiếp khác phát sinh để có được hàng tồn kho tại địa điểm và trạng thái hiện tại. Giá trị thuần có thể thực hiện được, được xác định bằng giá bán ước tính trừ đi chi phí ước tính để hoàn thành sản phẩm và các chi phí ước tính cần thiết cho việc tiêu thụ.",
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              23
+            ],
+            "printed_pages": [
+              "20"
+            ],
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.23]",
+            "rerank_score": null
+          },
+          {
+            "chunk_id": "HUT_2025_Hopnhat_chunk_0061",
+            "doc_id": "HUT_2025_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "section": "NOTES",
+            "text": "[HUT | 2025 | Hợp nhất | BẢN THUYẾT MINH BẢO CÁO TÀI CHÍNH HỢP NHẤT | Đơn vị: VND]\n1. Cơ sở hợp nhất báo cáo tài chính (tiếp theo)\n\nTài sán, công nợ và nợ tiềm tàng của công ty con được xác định theo giá trị hợp lý tại ngày mua công ty con. Bắt kỳ khoản phụ trội nào giữa giá mua và tổng giá trị hợp lý của tài sản được mua được ghi nhận là lợi thế thương mại. Bắt kỳ khoản thiếu hụt nào giữa giá mua và tổng giá trị hợp lý của tài sản được ghi nhận vào kết quả hoạt động kinh doanh hợp nhất của kỳ kế toán phát sinh hoạt động mua công ty con.\n\nLợi ích của cổ đông không kiểm soát tại ngày hợp nhất kinh doanh ban đầu được xác định trên cơ sở tỷ lệ của cổ đông không kiểm soát trong tổng giá trị hợp lý của tài sản, công nợ và công nợ tiềm tàng được ghi nhận.\n\nHợp nhất kinh doanh liên quan đến các đơn vị chịu sự kiểm soát chung\n\nHợp nhất kinh doanh liên quan đến các doanh nghiệp chịu sự kiểm soát chung là hợp nhất kinh doanh trong đó tất cả các doanh nghiệp tham gia hợp nhất chịu sự kiểm soát lâu dài bởi cùng một bên hoặc nhiều bên kể cả trước hoặc sau khi hợp nhất kinh doanh và việc kiểm soát là lâu dài.\n\nBàn thuyết minh này là một bộ phận hợp thành và phải được đọc cùng với Báo cáo tài chính hợp nhất O1 ★ H'H N",
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              20
+            ],
+            "printed_pages": [
+              "17"
+            ],
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.20]",
+            "rerank_score": null
+          },
+          {
+            "chunk_id": "HUT_2025_Hopnhat_chunk_0090",
+            "doc_id": "HUT_2025_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "section": "NOTES",
+            "text": "[HUT | 2025 | Hợp nhất | BẢN THUYẾT MINH BẢO CÁO TÀI CHÍNH HỢP NHẤT | Đơn vị: VND]\n- Phải trả khác: Gồm các khoản phải trả không có tính thương mại, không liên quan đến giao dịch mua, bán, cung cấp hàng hóa dịch vụ (như: phải trả về lãi vay, cổ tức và lợi nhuận phải trả, chi phí hoạt động đầu tư tài chính phải trả; phải trả do bên thứ ba chi hộ; phải trả về các khoản BHXH, BHYT, BHTN, KPCĐ...)\n\n12. Nguyên tắc kê toán nợ phải trả (tiếp theo)\n\nTheo dõi các khoản phải trả\n\nCác khoản phải trả được theo dõi chi tiết theo kỳ hạn gốc, kỳ hạn còn lại tại thời điểm báo cáo, theo nguyên tệ và theo từng đối tượng. Tại thời điểm lập báo cáo tài chính, khoản phải trả có thời hạn trả nợ còn lại không quá 12 tháng hoặc một chu kỳ kinh doanh được phân loại là phải trả ngắn hạn, khoản phải trả có thời gian trả nợ còn lại trên 12 tháng hoặc hơn một chu kỳ kinh doanh được ghi nhận là khoản phải trả dài hạn.\n\nCác khoản phải trả thỏa mãn định nghĩa của các khoản mục tiền tệ có gốc ngoại tệ: Được đánh giá lại tại thời điểm 31/12/2025 theo tỷ giá giao dịch thực tế cuối kỳ (xem thêm Thuyết minh IV.2).\n\nCác khoản nợ phải trả được ghi nhận không thấp hơn giá trị phải thanh toán.\n\n13. Nguyên tắc ghi nhận vay và nợ phải trả thuê tài chính",
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              27
+            ],
+            "printed_pages": [
+              "24"
+            ],
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.27]",
+            "rerank_score": null
+          },
+          {
+            "chunk_id": "HUT_2025_Hopnhat_chunk_0097",
+            "doc_id": "HUT_2025_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "section": "NOTES",
+            "text": "[HUT | 2025 | Hợp nhất | BẢN THUYẾT MINH BẢO CÁO TÀI CHÍNH HỢP NHẤT | Đơn vị: VND]\nDư phòng chi phí bảo dưỡng: được trích lập căn cứ vào giá trị còn lại của gói bảo dưỡng khách hàng được tặng kèm khi ký hợp đồng mua bán xe ô tô.\n\n17. Nguyên tắc và phương pháp ghi nhận các khoản dự phòng phải trả (tiếp theo)\n\nBản thuyết minh này là một bộ phận hợp thành và phải được đọc cùng với Báo cáo tài chính hợp nhất C/★HHN\n\nM.S.D.\n\nDự phòng nghiệp vụ của Công ty bao gồm: Dự phòng phí chưa được hưởng, Dự phòng bổi thường, Dự phòng dao động lớn (với nghiệp vụ bảo hiểm phi nhân thọ)/Dự phòng đảm bảo cân đối (với nghiệp vụ bảo hiểm sức khoẻ dưới 01 năm): được trích lập theo quy định tại Thông tư số 67/2023/TT-BTC do Bộ Tài chính ban hành ngày 02 tháng 11 năm 2023 (\"Thông tư 67\") Hướng dẫn một số điều của Luật Kinh doanh bảo hiểm, Nghị định số 46/2023/NĐ-CP ngày 01 tháng 7 năm 2023 của Chính phủ quy định chi tiết thi hành một số điều của Luật Kinh doanh bảo hiểm và Công văn phê duyệt số 13692/BTC-QLBH ngày 04 tháng 9 năm 2025.\n\n18. Nguyên tắc ghi nhận doanh thu chưa thực hiện",
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              28,
+              29
+            ],
+            "printed_pages": [
+              "25",
+              "26"
+            ],
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.28-29]",
+            "rerank_score": null
+          }
+        ],
+        "candidates": [],
+        "missing_years": [],
+        "warnings": [
+          "Retrieved candidates require evidence checking; RRF rank is not evidence confidence."
+        ],
+        "safe_for_calculation": false
+      }
+    },
+    {
+      "observation_id": "obs:38e00501e4d6db1b2663",
+      "tool_name": "search_notes_tool",
+      "arguments": {
+        "query": "Sự kiện phát sinh sau ngày kết thúc niên độ",
+        "ticker": "HUT",
+        "fiscal_year": 2025,
+        "scope": "consolidated",
+        "sections": [
+          "NOTES"
+        ]
+      },
+      "snapshot_version": "note:8442fae31d6a1f4dda71ef0c984673b553c4b4a594ad62f4bf36d2584165ed01",
+      "result": {
+        "status": "ok",
+        "message": "",
+        "facts": [],
+        "chunks": [
+          {
+            "chunk_id": "HUT_2025_Hopnhat_chunk_0106",
+            "doc_id": "HUT_2025_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "section": "NOTES",
+            "text": "[HUT | 2025 | Hợp nhất | BẢN THUYẾT MINH BẢO CÁO TÀI CHÍNH HỢP NHẤT | Đơn vị: VND]\nCác khoản giảm trừ doanh thu gồm: chiết khấu thương mại, giảm giá hàng bán và hàng bán bị trả lại. Các khoản giảm trừ doanh thu phát sinh cùng kỳ tiêu thụ sản phẩm, hàng hóa dịch vụ được điều chỉnh giảm doanh thu của kỳ phát sinh.\n\n21. Nguyên tắc kế toán các khoản giảm trừ doanh thu (tiếp theo)\n\nTrường hợp sản phẩm, hàng hoá, dịch vụ đã tiêu thụ từ các kỳ trước, đến kỳ sau mới phát sinh khoản giảm trừ doanh thu, và sự kiện này phát sinh trước thời điểm phát hành Báo cáo tài chính: Công ty ghi giảm doanh thu trên Báo cáo tài chính của kỳ lập báo cáo (kỳ trước), theo quy định của Chuẩn mực kế toán Việt Nam số 23 “Các sự kiện phát sinh sau ngày kết thúc kỳ kế toán năm”.\n\nTrường hợp sản phẩm, hàng hoá, dịch vụ đã tiêu thụ từ các kỳ trước, đến sau thời điểm phát hành Báo cáo tài chính của kỳ sau mới phát sinh khoản giảm trừ doanh thu: Công ty ghi giảm doanh thu của kỳ phát sinh (kỳ sau).\n\n22. Nguyên tắc kế toán giá vốn hàng bán\n\nGiá vốn hàng bán được ghi nhận theo nguyên tắc phù hợp với doanh thu.",
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              31
+            ],
+            "printed_pages": [
+              "28"
+            ],
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.31]",
+            "rerank_score": null
+          },
+          {
+            "chunk_id": "HUT_2025_Hopnhat_chunk_0066",
+            "doc_id": "HUT_2025_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "section": "NOTES",
+            "text": "[HUT | 2025 | Hợp nhất | BẢN THUYẾT MINH BẢO CÁO TÀI CHÍNH HỢP NHẤT | Đơn vị: VND]\nChứng khoán kinh doanh bao gồm các loại chứng khoán nằm giữ vì mục đích kinh doanh (kể cả các chứng khoán có thời gian đáo hạn trên 12 tháng) được mua đề bán lại đề tạo lợi nhuận.\n\n4. Nguyên tắc kế toán các khoản đầu tư tài chính (tiếp theo)\n\nGiá trị ghi số: Chứng khoán kinh doanh được ghi nhận theo giá gốc, bao gồm: Giá mua cộng (+) các chi phí mua (nếu có) như chi phí môi giới, giao dịch, cung cấp thông tin, thuế, lệ phí và phí ngân hàng. Giá gốc của chứng khoán kinh doanh được xác định theo giá trị hợp lý của các khoản thanh toán tại thời điểm giao dịch phát sinh.\n\nThời điểm ghi nhận các khoản chứng khoán kinh doanh là thời điểm nhà đầu tư có quyền sở hữu, cụ thể như sau:\n\n- Chứng khoán niêm yết được ghi nhận tại thời điểm khớp lệnh (T+0).\n\n- Chứng khoán chưa niêm yết được ghi nhận tại thời điểm chính thức có quyền sở hữu theo quy định của pháp luật.\n\nCăn cứ trích lập dự phòng giảm giá: Cuối niên độ kế toán, Công ty thực hiện lập dự phòng giảm giá trong trường hợp giá trị thị trường của chứng khoán kinh doanh bị giảm xuống thấp hơn giá gốc.\n\nb. Các khoản đầu tư nằm giữ đến ngày đáo hạn",
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              22
+            ],
+            "printed_pages": [
+              "19"
+            ],
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.22]",
+            "rerank_score": null
+          },
+          {
+            "chunk_id": "HUT_2025_Hopnhat_chunk_0038",
+            "doc_id": "HUT_2025_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "section": "NOTES",
+            "text": "[HUT | 2025 | Hợp nhất | BẢN THUYẾT MINH BẢO CÁO TÀI CHÍNH HỢP NHẤT | Đơn vị: VND]\n5. Đặc điểm hoạt động của doanh nghiệp trong năm có ảnh hưởng đến Báo cáo tài chính hợp nhất (tiếp theo)\n\nTrong năm, Công ty đã hoàn thành thủ tục để góp vốn, đầu tư 100% vốn tại Công ty TNHH Tasco Investment và đầu tư mua cổ phần chi phối tại Công ty cổ phần DNP Holding. Ngoài ra, theo đánh giá của Ban Điều hành Công ty không có sự kiện hay hoạt động nào khác có ảnh hưởng đáng kể đến Báo cáo tài chính hợp nhất của Công ty.\n\n6. Câu trúc doanh nghiệp\n\nTại ngày 31/12/2025, Công ty có các công ty con và công ty liên doanh, liên kết như sau:",
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              14,
+              15
+            ],
+            "printed_pages": [
+              "11",
+              "12"
+            ],
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.14-15]",
+            "rerank_score": null
+          },
+          {
+            "chunk_id": "HUT_2025_Hopnhat_chunk_0093",
+            "doc_id": "HUT_2025_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "section": "NOTES",
+            "text": "[HUT | 2025 | Hợp nhất | BẢN THUYẾT MINH BẢO CÁO TÀI CHÍNH HỢP NHẤT | Đơn vị: VND]\n15. Nguyên tắc ghi nhận và vốn hóa các khoản chi phí đi vay (tiếp theo)\n\nChi phí đi vay phát sinh từ khoản vay riêng có liên quan trực tiếp đến việc đầu tư xây dựng hoặc sản xuất một tài sản dở dang được tính vào giá trị của tài sản đó (được vốn hoá) sau khi đã trừ di các khoản thu nhập phát sinh từ hoạt động đầu tư tạm thời của các khoản vay này. Chi phí đi vay được vốn hoá khi doanh nghiệp chắc chắn thu được lợi ích trong tương lai do sử dụng tài sản đó và chi phí lãi vay có thể xác định được một cách đáng tin cây.\n\nViệc vốn hoá các chi phí đi vay sẽ chấm dứt khi các hoạt động chủ yếu cần thiết cho việc chuẩn bị đưa tài sản dở dang vào sử dụng hoặc bán đã hoàn thành. Chi phí đi vay phát sinh sau đó được ghi nhận vào chi phí tài chính trong năm.\n\nTrong năm, Công ty phát sinh 35.535.473.374 VND (năm trước phát sinh 449.866.667 VND) chi phí lãi vay được vốn hóa vào tài sản dở dang.",
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              28
+            ],
+            "printed_pages": [
+              "25"
+            ],
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.28]",
+            "rerank_score": null
+          },
+          {
+            "chunk_id": "HUT_2025_Hopnhat_chunk_0079",
+            "doc_id": "HUT_2025_Hopnhat",
+            "ticker": "HUT",
+            "fiscal_year": 2025,
+            "scope": "consolidated",
+            "section": "NOTES",
+            "text": "[HUT | 2025 | Hợp nhất | BẢN THUYẾT MINH BẢO CÁO TÀI CHÍNH HỢP NHẤT | Đơn vị: VND]\nNguyên giá BĐSĐT là toàn bộ các chi phí (tiền hoặc tương đương tiền) mà Công ty bỏ ra hoặc giá trị hợp lý của các khoản khác đưa ra trao đổi để có được BĐSĐT tính đến thời điểm mua hoặc xây dựng hoàn thành BĐSĐT đó.\n\nCác chỉ phí liên quan đến BĐSĐT phát sinh sau ghi nhận ban đầu được ghi nhận là chỉ phí sản xuất, kinh doanh trong kỳ, trừ khi chỉ phí này có khả năng chắc chắn làm cho BĐSĐT tạo ra lợi ích kinh tế trong tương lai nhiều hơn mức hoạt động được đánh giá ban đầu thì được ghi tăng nguyên giá BĐSĐT.\n\nBĐSĐT được trích khấu hao trên cơ sở áp dụng chính sách khấu hao nhất quán với chính sách khấu hao của tài sản cùng loại thuộc sở hữu của Công ty.\n\n8. Nguyên tắc kế toán thuê tài sản\n\na) Trường hợp Công ty là bên cho thuê\n\nTài sản theo hợp đồng thuê hoạt động được hạch toán vào bất động sản đầu tư của Công ty trên bảng cân đối kế toán hợp nhất. Các chi phí phát sinh trực tiếp trong quá trình cho thuê hoạt động được ghi nhận vào báo cáo kết quả hoạt động kinh doanh hợp nhất khi phát sinh.",
+            "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+            "physical_pages": [
+              24,
+              25
+            ],
+            "printed_pages": [
+              "10",
+              "22"
+            ],
+            "citation_tag": "[Doc_HUT_2025_Hopnhat, p.24-25]",
+            "rerank_score": null
+          }
+        ],
+        "candidates": [],
+        "missing_years": [],
+        "warnings": [
+          "Retrieved candidates require evidence checking; RRF rank is not evidence confidence."
+        ],
+        "safe_for_calculation": false
+      }
+    }
+  ],
+  "decisions": [],
+  "prompt_version": "v3",
+  "used_fallback": false,
+  "model_turns": 4,
+  "repair_count": 1,
+  "tool_call_count": 23,
+  "elapsed_ms": 262232,
+  "token_usage": {
+    "input_tokens": 62178,
+    "output_tokens": 12180,
+    "thinking_tokens": 13040,
+    "total_tokens": 87398
+  }
+}

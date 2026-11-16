@@ -1,0 +1,157 @@
+{
+  "cases": [
+    {
+      "case_id": "hut_full",
+      "status": "ready",
+      "status_correct": true,
+      "required_sections_present": true,
+      "sections": [
+        "S1",
+        "S2",
+        "S3",
+        "S4",
+        "S5"
+      ],
+      "decision_count": 0,
+      "observation_count": 27,
+      "used_fallback": false,
+      "validator_pass": true,
+      "within_two_repairs": true,
+      "unexplained_template_sections": [],
+      "data_decisions_with_evidence": 0,
+      "data_decision_count": 0,
+      "model_turns": 4,
+      "repair_count": 1,
+      "tool_call_count": 27,
+      "token_usage": {
+        "input_tokens": 72856,
+        "output_tokens": 10347,
+        "thinking_tokens": 9996,
+        "total_tokens": 93199
+      },
+      "elapsed_ms": 180851,
+      "note_codes": []
+    },
+    {
+      "case_id": "gmd_full",
+      "status": "ready",
+      "status_correct": true,
+      "required_sections_present": true,
+      "sections": [
+        "S1",
+        "S2",
+        "S3",
+        "S4",
+        "S5",
+        "S6",
+        "S7"
+      ],
+      "decision_count": 0,
+      "observation_count": 34,
+      "used_fallback": false,
+      "validator_pass": true,
+      "within_two_repairs": true,
+      "unexplained_template_sections": [],
+      "data_decisions_with_evidence": 0,
+      "data_decision_count": 0,
+      "model_turns": 4,
+      "repair_count": 1,
+      "tool_call_count": 34,
+      "token_usage": {
+        "input_tokens": 87369,
+        "output_tokens": 10347,
+        "thinking_tokens": 9305,
+        "total_tokens": 107021
+      },
+      "elapsed_ms": 143405,
+      "note_codes": []
+    },
+    {
+      "case_id": "fpt_partial_metrics",
+      "status": "ready",
+      "status_correct": true,
+      "required_sections_present": true,
+      "sections": [
+        "S1",
+        "S2",
+        "S3",
+        "S4",
+        "S5"
+      ],
+      "decision_count": 0,
+      "observation_count": 27,
+      "used_fallback": false,
+      "validator_pass": true,
+      "within_two_repairs": true,
+      "unexplained_template_sections": [],
+      "data_decisions_with_evidence": 0,
+      "data_decision_count": 0,
+      "model_turns": 4,
+      "repair_count": 1,
+      "tool_call_count": 27,
+      "token_usage": {
+        "input_tokens": 65610,
+        "output_tokens": 9119,
+        "thinking_tokens": 13239,
+        "total_tokens": 87968
+      },
+      "elapsed_ms": 155776,
+      "note_codes": []
+    },
+    {
+      "case_id": "dhg_scope_gap",
+      "status": "needs_clarification",
+      "status_correct": true,
+      "required_sections_present": true,
+      "sections": [],
+      "decision_count": 0,
+      "observation_count": 0,
+      "used_fallback": false,
+      "validator_pass": false,
+      "within_two_repairs": false,
+      "unexplained_template_sections": [],
+      "data_decisions_with_evidence": 0,
+      "data_decision_count": 0,
+      "model_turns": 0,
+      "repair_count": 0,
+      "tool_call_count": 0,
+      "token_usage": {},
+      "elapsed_ms": 0,
+      "note_codes": [
+        "scope_or_year_missing"
+      ]
+    },
+    {
+      "case_id": "fox_outside_corpus",
+      "status": "rejected",
+      "status_correct": true,
+      "required_sections_present": true,
+      "sections": [],
+      "decision_count": 0,
+      "observation_count": 0,
+      "used_fallback": false,
+      "validator_pass": false,
+      "within_two_repairs": false,
+      "unexplained_template_sections": [],
+      "data_decisions_with_evidence": 0,
+      "data_decision_count": 0,
+      "model_turns": 0,
+      "repair_count": 0,
+      "tool_call_count": 0,
+      "token_usage": {},
+      "elapsed_ms": 0,
+      "note_codes": [
+        "ticker_not_in_corpus"
+      ]
+    }
+  ],
+  "status_accuracy": 1.0,
+  "validator_pass_rate": 1.0,
+  "within_two_repairs_rate": 1.0,
+  "fallback_count": 0,
+  "unexplained_section_count": 0,
+  "data_decision_evidence_rate": null,
+  "total_repairs": 3,
+  "total_elapsed_ms": 480032,
+  "total_tokens": 288188
+}

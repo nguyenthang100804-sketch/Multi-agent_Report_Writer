@@ -1,0 +1,65 @@
+================================================================================
+PROJECT CONTEXT & SYSTEM SPECIFICATION FOR AI ASSISTANTS
+Multi-Agent Framework to Write Report from Documents
+================================================================================
+
+[1. PROJECT OVERVIEW]
+- Project Name: Multi-Agent Framework to Write Report from Documents
+- Timeline: 5 Weeks (19/10/2026 - 20/11/2026) | Working days: Mon - Fri
+- Objective: Xây dựng hệ thống Multi-Agent AI tự động tổng hợp, phân tích tài liệu (PDF, Word, Markdown, Text) và tạo lập các bản báo cáo chuyên sâu (Executive/Technical Reports) có trích dẫn nguồn chính xác (Citations/Groundedness).
+- Primary Problem to Solve: Tránh hiện tượng ảo giác (hallucination), thiếu trích dẫn dẫn chứng, cấu trúc bài viết rời rạc khi tóm tắt/viết báo cáo từ khối lượng tài liệu lớn.
+
+--------------------------------------------------------------------------------
+[2. CORE ARCHITECTURE & TECH STACK]
+- Orchestration Framework: LangGraph / CrewAI / AutoGen (Primary recommendation: LangGraph for stateful cyclical flows)
+- LLMs: OpenAI (GPT-4o / GPT-4o-mini), Anthropic Claude 3.5 Sonnet, hoặc Local Models via Ollama (Llama 3.1)
+- Embedding Model: text-embedding-3-small / BAAI/bge-large-en-v1.5
+- Vector Store / Retrieval: Qdrant / ChromaDB / FAISS + Hybrid Search (Dense + BM25)
+- Document Parsing: PyPDF / PyMuPDF, Unstructured, Docling, hoặc LlamaParse
+- Evaluation & Guardrails: Ragas, TruLens, DeepEval
+- Output Format: Markdown, PDF, DOCX
+
+--------------------------------------------------------------------------------
+[3. AGENT ROLES & RESPONSIBILITIES]
+1. Document Parser & Ingestion Agent:
+   - Trích xuất text, bảng biểu, metadata từ các tài liệu đầu vào.
+   - Thực hiện chunking (Semantic/Recursive chunking) và lập chỉ mục (indexing).
+
+2. Outline & Planning Agent:
+   - Phân tích yêu cầu báo cáo (Topic, Target Audience, Scope).
+   - Truy vấn sơ bộ Vector DB để xác định các luận điểm chính.
+   - Sinh cây dàn ý chi tiết (Table of Contents / Report Skeleton) kèm các truy vấn retrieval cho từng section.
+
+3. Retrieval & Researcher Agent:
+   - Nhận task từ Outline Agent, thực hiện hybrid search và reranking (Cohere Rerank / Cross-Encoder).
+   - Trích xuất các đoạn trích dẫn (evidence chunks) kèm nguồn chính xác (Filename, Page, Section).
+
+4. Section Writer Agent:
+   - Viết từng phần của báo cáo dựa hoàn toàn trên các trích dẫn thu thập được từ Researcher Agent.
+   - Đảm bảo tuân thủ giọng văn học thuật/chuyên nghiệp, gắn citation tag dạng [Doc_X, p.Y].
+
+5. Fact-Checker & Critique Agent:
+   - So khớp từng câu, từng số liệu trong bản nháp với evidence chunks.
+   - Phát hiện hallucination, khẳng định không có căn cứ, hoặc lỗi logic.
+   - Trả phản hồi lặp lại (feedback loop) về Writer Agent để sửa nếu groundedness score < threshold.
+
+6. Lead / Editor Synthesis Agent:
+   - Ghép nối các phần, đồng bộ văn phong, viết Executive Summary và Kết luận.
+   - Xuất file báo cáo hoàn chỉnh.
+
+--------------------------------------------------------------------------------
+[4. CURRENT PROJECT STATUS & TIMELINE MILESTONES]
+- Phase 1 (19/10 - 23/10): System Architecture & Environment Setup
+- Phase 2 (26/10 - 30/10): Document Ingestion & Retrieval Pipeline
+- Phase 3 (02/11 - 06/11): Core Multi-Agent Graph Implementation (LangGraph)
+- Phase 4 (09/11 - 13/11): Critique Loop, Fact-Checking & Citation Alignment
+- Phase 5 (16/11 - 20/11): E2E Integration, Benchmarking & Final Demo
+
+--------------------------------------------------------------------------------
+[5. INSTRUCTIONS FOR THE AI ASSISTANT WORKING ON THIS PROJECT]
+Khi hỗ trợ code hoặc thiết kế hệ thống cho dự án này, vui lòng luôn tuân theo các nguyên tắc:
+1. Modular & Graph-based: Thiết kế code bám sát StateGraph (nếu dùng LangGraph), trạng thái (State) phải được định nghĩa rõ schema (TypedDict hoặc Pydantic BaseModel).
+2. Groundedness First: Mọi câu trả lời và code logic liên quan đến viết báo cáo phải bắt buộc cơ chế trích xuất citation metadata (không sinh text chay không căn cứ).
+3. Error Handling & Fallback: Các lệnh gọi LLM/Parser cần có cơ chế try-catch, retry logic và validation schema (dùng Pydantic/Instructor).
+4. Type Hints & Docstrings: Viết Python code theo chuẩn PEP 8, có type hint đầy đủ và chú thích rõ ràng.
+================================================================================

@@ -1,0 +1,494 @@
+{
+  "moves": [
+    {
+      "old": "docs/orchestration-and-tech-stack.md",
+      "new": "docs/architecture/orchestration-and-tech-stack.md",
+      "sha256_before": "b4f5b8611d9103f84ad811f4e7f50c2f0aac13a13727e82e9d05c8a5934869dc",
+      "sha256_after": "b4f5b8611d9103f84ad811f4e7f50c2f0aac13a13727e82e9d05c8a5934869dc"
+    },
+    {
+      "old": "docs/data-storage-and-serving.md",
+      "new": "docs/architecture/data-storage-and-serving.md",
+      "sha256_before": "4aeee35c386ec99ea6c4d403c22d9737b440e4c57b7944eeb7d05a62846146d5",
+      "sha256_after": "4aeee35c386ec99ea6c4d403c22d9737b440e4c57b7944eeb7d05a62846146d5"
+    },
+    {
+      "old": "docs/document-parser-and-ingestion.md",
+      "new": "docs/architecture/document-parser-and-ingestion.md",
+      "sha256_before": "ee739fd1731a148c9caa1123108281457e5fe343822f6786c54f2260b27738af",
+      "sha256_after": "63d8f972512b5b10f9ebc8ece86ff18612d10e09de69ce3375a18f2d8bacfb7c"
+    },
+    {
+      "old": "docs/financial-document-chunking.md",
+      "new": "docs/architecture/financial-document-chunking.md",
+      "sha256_before": "821dce29c06e74e1e93bd83f34c67148ba6d3b53ef842980d65dfe378a17f9c5",
+      "sha256_after": "16183b5470c8cd9c8706bf416bea97aeb32a11bc125e63fe16ec902dc6a8c636"
+    },
+    {
+      "old": "docs/embedding-and-sparse-indexing.md",
+      "new": "docs/architecture/embedding-and-sparse-indexing.md",
+      "sha256_before": "cd80a69dfc9e5d3e773e828c05b1a27bacb4fe8328b50e589590b6aac98beeed",
+      "sha256_after": "14435b763f2f31801f91d708ca9aba38c1769a82d998c1fdc2a553b97732070e"
+    },
+    {
+      "old": "docs/vietnam-financial-dataset.md",
+      "new": "docs/datasets/vietnam-financial-dataset.md",
+      "sha256_before": "400c8680ae5899bacd8abb368c33d764c37454d9dc446c05a090ae5aed4a6f54",
+      "sha256_after": "400c8680ae5899bacd8abb368c33d764c37454d9dc446c05a090ae5aed4a6f54"
+    },
+    {
+      "old": "docs/us-10k-dataset.md",
+      "new": "docs/datasets/us-10k-dataset.md",
+      "sha256_before": "7bb434e93c93c3fb153f0198fc4e84cd7febea68f19bae302d7b42c94d96330c",
+      "sha256_after": "7bb434e93c93c3fb153f0198fc4e84cd7febea68f19bae302d7b42c94d96330c"
+    },
+    {
+      "old": "docs/research-and-dataset-references.md",
+      "new": "docs/datasets/research-and-dataset-references.md",
+      "sha256_before": "11e818961f340013e3b203d36eb8e0b134a1f21acd860c868c63265d54dfac8e",
+      "sha256_after": "11e818961f340013e3b203d36eb8e0b134a1f21acd860c868c63265d54dfac8e"
+    },
+    {
+      "old": "docs/financial-text-token-optimization.md",
+      "new": "docs/datasets/financial-text-token-optimization.md",
+      "sha256_before": "03971592e351085190623692a36274d970a4c254457f410f84ad35feb1842716",
+      "sha256_after": "677042fe2377c382d62c40d34c9a8027054c7934c4cb8899460a44e33274e5ad"
+    },
+    {
+      "old": "docs/agent-tool-interface.md",
+      "new": "docs/contracts/agent-tool-interface.md",
+      "sha256_before": "70f8b78713efd44b74a452db2d1fee0074c335a7e8d10f9f79062594c5af1df8",
+      "sha256_after": "70f8b78713efd44b74a452db2d1fee0074c335a7e8d10f9f79062594c5af1df8"
+    },
+    {
+      "old": "docs/duckdb-facts-query.md",
+      "new": "docs/contracts/duckdb-facts-query.md",
+      "sha256_before": "2d9a3b9ea20279734daa19b7731011b900cd600f294366412b0dd9a14dbdac23",
+      "sha256_after": "2d9a3b9ea20279734daa19b7731011b900cd600f294366412b0dd9a14dbdac23"
+    },
+    {
+      "old": "docs/report-schema-and-state.md",
+      "new": "docs/contracts/report-schema-and-state.md",
+      "sha256_before": "9092273dfd97267ebc4779d0bba6dfec690f4088e643a6722713eb8812986dd3",
+      "sha256_after": "a654f4c5f38ddf3afcd9f352f1a1cc1cc1769b993054ef60d993754a96a38a4a"
+    },
+    {
+      "old": "docs/duplicate-2023-facts-audit.md",
+      "new": "docs/audits/duplicate-2023-facts-audit.md",
+      "sha256_before": "0509edb843b44c74142fb5d63c367f1b0c3c60fbd7daa8008588e25ba1e99e56",
+      "sha256_after": "0509edb843b44c74142fb5d63c367f1b0c3c60fbd7daa8008588e25ba1e99e56"
+    },
+    {
+      "old": "docs/empty-heading-facts-audit.md",
+      "new": "docs/audits/empty-heading-facts-audit.md",
+      "sha256_before": "373e1f567fd2bc56ca6b1a22690dd10d487b735f512f85d31008d7d6ff06b517",
+      "sha256_after": "373e1f567fd2bc56ca6b1a22690dd10d487b735f512f85d31008d7d6ff06b517"
+    },
+    {
+      "old": "docs/fpt-facts-reconciliation.md",
+      "new": "docs/audits/fpt-facts-reconciliation.md",
+      "sha256_before": "32258c4e75e97ba82f3a451c2c8931acd008428fc12d5530f63261adc591b22b",
+      "sha256_after": "3539f2cb8e62d869eba51446b57b232cfc6a74fc88c26f46b261bd9f558f49cc"
+    },
+    {
+      "old": "docs/metric-coverage-corpus-audit.md",
+      "new": "docs/audits/metric-coverage-corpus-audit.md",
+      "sha256_before": "54958b0e0caf46d828082a017d4251a0180ea2743ed29e0cb7af6da409589f02",
+      "sha256_after": "55cc3760456239c0a65673f1b6e743e6856b31aabf1cfc2de9cf4f463e9f1799"
+    },
+    {
+      "old": "docs/metric-coverage-demo-audit.md",
+      "new": "docs/audits/metric-coverage-demo-audit.md",
+      "sha256_before": "e8170b793268d670f9427260787e4cf7cd4d5b0a4ef06ffca146deef1fc8823e",
+      "sha256_after": "63a0486fa947bd3f82d5f7a0d133e508e23eeafd9e94f5925e2919466e3f34ad"
+    },
+    {
+      "old": "docs/period-consistency-audit.md",
+      "new": "docs/audits/period-consistency-audit.md",
+      "sha256_before": "bc4d25187d835e89ba453c4fa64ce612381939f213506c3e5fde51ff63ba608d",
+      "sha256_after": "39c39a72bdc8a72b031d9980165c548ec27be3e99b647f5ae35b361373c05c1d"
+    },
+    {
+      "old": "docs/cross-year-scope-decision.md",
+      "new": "docs/decisions/cross-year-scope-decision.md",
+      "sha256_before": "d06fe83a7ae0df8335673707b92764a07558c89ce0d3f75160dbc0cf0552b4bf",
+      "sha256_after": "a04eb0333177cb1c095b459bc19529c5fd4b4d8412d9949bb280922c946b8d04"
+    },
+    {
+      "old": "docs/writer-contract-decisions.md",
+      "new": "docs/decisions/writer-contract-decisions.md",
+      "sha256_before": "78c4899f08608b8d68fb203c08e4e0e7f0d1786e2aafa91cf5656ddd4ff88a6c",
+      "sha256_after": "60f83974ed236999a0c3bd5e41aaa3e37b9ad8e0ec98fc2054b5860fbc5ab33b"
+    },
+    {
+      "old": "docs/retrieval-and-citation-metrics.md",
+      "new": "docs/evaluation/retrieval-and-citation-metrics.md",
+      "sha256_before": "f922c2e8632b090fbc5f1cfec07288599b89a039f1fcad1861d7d4d3de428106",
+      "sha256_after": "88d3b3c6e515ae4228cc641585f596e060891efddd1da67e1da25c27890d0007"
+    },
+    {
+      "old": "docs/retrieval-and-facts-benchmark.md",
+      "new": "docs/evaluation/retrieval-and-facts-benchmark.md",
+      "sha256_before": "3f00854da94f04f7704ee48140f11f070e31be4a3e75adc89de6cfaaeeafa95b",
+      "sha256_after": "3f00854da94f04f7704ee48140f11f070e31be4a3e75adc89de6cfaaeeafa95b"
+    },
+    {
+      "old": "docs/top-100-token-cleaning-results.md",
+      "new": "docs/evaluation/top-100-token-cleaning-results.md",
+      "sha256_before": "ab1216d873449433b4d46975bb4b2aa248d50e92afa0463a4d5d7726a2ec27bb",
+      "sha256_after": "fb57193d633a30fa71a13694cf2796e1ae34db8ec8866804b558ac720f66b672"
+    },
+    {
+      "old": "docs/top-100-token-statistics.md",
+      "new": "docs/evaluation/top-100-token-statistics.md",
+      "sha256_before": "836ee0018d46f4761598ec9b6113a2ccab68e2a11dc5eaf08ce341b81b5dab4e",
+      "sha256_after": "33ad3aba2a5fb87711bdf01dfc0a8ad3640dda308caba92cdc9ced1bec82c9e0"
+    },
+    {
+      "old": "docs/early-project-progress.md",
+      "new": "docs/project/early-project-progress.md",
+      "sha256_before": "c256c864052c00df5aa1094ff7ff2f95eed34a3f7803d050e70cfeffe31025d3",
+      "sha256_after": "56eaae1fb29371ddb6e1c583c7e51defb1d80991d35022b6fbf8ef048d2821c9"
+    },
+    {
+      "old": "docs/real-tool-report-state.json",
+      "new": "docs/examples/real-tool-report-state.json",
+      "sha256_before": "5f8232ec7420dc261cedb846835b40415abf5b4dffbf08092579d76034200a49",
+      "sha256_after": "5f8232ec7420dc261cedb846835b40415abf5b4dffbf08092579d76034200a49"
+    },
+    {
+      "old": "docs/synthetic-report-state.json",
+      "new": "docs/examples/synthetic-report-state.json",
+      "sha256_before": "2fa3c66c110ccc0b43d02b9dcceaedeff22bf9acc87478a55a64c99dc626b7a8",
+      "sha256_after": "2fa3c66c110ccc0b43d02b9dcceaedeff22bf9acc87478a55a64c99dc626b7a8"
+    },
+    {
+      "old": "scripts/audit_latex_loop_removal.py",
+      "new": "scripts/audits/audit_latex_loop_removal.py",
+      "sha256_before": "d0288dae8bace826c61faf8c544a7aa3e55db30ab962edf270a30cb32c3b4581",
+      "sha256_after": "d0288dae8bace826c61faf8c544a7aa3e55db30ab962edf270a30cb32c3b4581"
+    },
+    {
+      "old": "scripts/audit_metric_safety.py",
+      "new": "scripts/audits/audit_metric_safety.py",
+      "sha256_before": "e9b74aa7c243fe896f23c2242e3245d091e9c177f7cf4b8c874c1b58e2ea5b66",
+      "sha256_after": "d9d2845ff235e9848faca65ec9dd14a0c6f6429adfc9d1514d493d7557badfdf"
+    },
+    {
+      "old": "scripts/audit_period_consistency.py",
+      "new": "scripts/audits/audit_period_consistency.py",
+      "sha256_before": "f1a3bb5cbf460e53a8b6a97bd8ba0e23e7361b4b83879c1391f64871b986e90f",
+      "sha256_after": "7c282407523c5898b51bbcfecf3314d5c16a6a2d0f9ae15adad8ef78da9dc815"
+    },
+    {
+      "old": "scripts/detailed_dry_test_audit.py",
+      "new": "scripts/audits/detailed_dry_test_audit.py",
+      "sha256_before": "f31e9b99e94695d0e7dfa7c8ad69f63e19835026a67d586380d578967c7b17dc",
+      "sha256_after": "2fe135f772f8c6df2ffa57a85447cb5a2d250445ba42c882aa7fbc5a3b50120f"
+    },
+    {
+      "old": "scripts/verify_corpus_invariants.py",
+      "new": "scripts/audits/verify_corpus_invariants.py",
+      "sha256_before": "d559b11ccabadefe92d17e30b1f4e1ed602e02776660110b177b8e184011469d",
+      "sha256_after": "d559b11ccabadefe92d17e30b1f4e1ed602e02776660110b177b8e184011469d"
+    },
+    {
+      "old": "scripts/check_abb_qns.py",
+      "new": "scripts/inspection/check_abb_qns.py",
+      "sha256_before": "129815b8c615462ed7da71e805fef9c82b658377425377c01c938d69643aaa98",
+      "sha256_after": "7f668aedfd1d947b47a61ccfb13d6d796cc27c74d774fe7d0054c5af2d539219"
+    },
+    {
+      "old": "scripts/check_fpt_hashes.py",
+      "new": "scripts/inspection/check_fpt_hashes.py",
+      "sha256_before": "1ee83551057b6b14772c53a313a6cdc09dca8b48276eca522805db2a3e23a1e9",
+      "sha256_after": "1ee83551057b6b14772c53a313a6cdc09dca8b48276eca522805db2a3e23a1e9"
+    },
+    {
+      "old": "scripts/check_fpt_heading_delta.py",
+      "new": "scripts/inspection/check_fpt_heading_delta.py",
+      "sha256_before": "7ff7bc7f253d1900b1e6181db50936580815a537936b22ff6a592d0fdd2d0038",
+      "sha256_after": "4f5f0d4a4ec457a6bfff501221dcdef5629fd7b6265a382ffd9877c7b492c9e6"
+    },
+    {
+      "old": "scripts/inspect_details.py",
+      "new": "scripts/inspection/inspect_details.py",
+      "sha256_before": "6452e14148eab3ad2ae41295f1a56c5e928e03e7b85a73bf26fe277623ffed9c",
+      "sha256_after": "5b420b64b43262193772304053c70f47803da338ac7ea92ad195014c6d7da562"
+    },
+    {
+      "old": "scripts/inspect_qns_cf.py",
+      "new": "scripts/inspection/inspect_qns_cf.py",
+      "sha256_before": "b014c870ff061e4de872922de9550fc939543d7c710b05c2f3906298b444956b",
+      "sha256_after": "b014c870ff061e4de872922de9550fc939543d7c710b05c2f3906298b444956b"
+    },
+    {
+      "old": "scripts/inspect_qns_facts.py",
+      "new": "scripts/inspection/inspect_qns_facts.py",
+      "sha256_before": "8f9b9e7f4fd7c749bb9917084f7c3a3fbdcc88bcd6592a3a39a10f731a470822",
+      "sha256_after": "59c9396d8aadc6ac75a281de89e2ea7a71a0ea13bb31181f5dd8846945f62325"
+    },
+    {
+      "old": "scripts/inspect_qns_pages.py",
+      "new": "scripts/inspection/inspect_qns_pages.py",
+      "sha256_before": "778fcab26b46987a905e39f165250822f78d93870d9a52236f83d9dab4202988",
+      "sha256_after": "778fcab26b46987a905e39f165250822f78d93870d9a52236f83d9dab4202988"
+    },
+    {
+      "old": "scripts/inspect_scope_duplicates.py",
+      "new": "scripts/inspection/inspect_scope_duplicates.py",
+      "sha256_before": "c9bef123975618a8a27911402a54fca4edba71be54a59cfc309a57a0ccc9c90b",
+      "sha256_after": "c9bef123975618a8a27911402a54fca4edba71be54a59cfc309a57a0ccc9c90b"
+    },
+    {
+      "old": "scripts/compare_candidate_corpus.py",
+      "new": "scripts/analysis/compare_candidate_corpus.py",
+      "sha256_before": "6727d649708a5892ceaf1c2c0e06af0c36aaf9ac0cdf1e42cd94d39d257648a9",
+      "sha256_after": "6727d649708a5892ceaf1c2c0e06af0c36aaf9ac0cdf1e42cd94d39d257648a9"
+    },
+    {
+      "old": "scripts/compare_corpus_tokens.py",
+      "new": "scripts/analysis/compare_corpus_tokens.py",
+      "sha256_before": "195ef802c9a1002a56044d89d9ad75a548dbff4fb19250a9e4746ce2f0e7e064",
+      "sha256_after": "0b33661c5c75ad81c9c1cca1d17dc7d6225981fdea40168fe4e629737406f22d"
+    },
+    {
+      "old": "scripts/measure_chunk_tokens.py",
+      "new": "scripts/analysis/measure_chunk_tokens.py",
+      "sha256_before": "f6e2d2eb6cb3a4c58202d83fdee63d4139d8b8764d8349d43e520efa0cb751ed",
+      "sha256_after": "f6e2d2eb6cb3a4c58202d83fdee63d4139d8b8764d8349d43e520efa0cb751ed"
+    },
+    {
+      "old": "scripts/rebuild_ingestion_summary.py",
+      "new": "scripts/maintenance/rebuild_ingestion_summary.py",
+      "sha256_before": "a50af6bd57b2972eef26f1709793715b15ee73de983929d763f289ff32e911a2",
+      "sha256_after": "a50af6bd57b2972eef26f1709793715b15ee73de983929d763f289ff32e911a2"
+    },
+    {
+      "old": "scripts/refresh_real_tool_state.py",
+      "new": "scripts/maintenance/refresh_real_tool_state.py",
+      "sha256_before": "c05db5714ff10c671bb2131322fb65c240dae4e8100bb84103550b9cb25c0972",
+      "sha256_after": "5eae865a82f9d05240ffaef1ab551189353dbced9e481bb20955ee9a0a601446"
+    },
+    {
+      "old": "scripts/test_cloud_connection.py",
+      "new": "scripts/diagnostics/test_cloud_connection.py",
+      "sha256_before": "03271f7ee233acf3442f6f5c4e7a89b851aa962d7a300567414b7bb4007be373",
+      "sha256_after": "03271f7ee233acf3442f6f5c4e7a89b851aa962d7a300567414b7bb4007be373"
+    },
+    {
+      "old": "scripts/test_env.py",
+      "new": "scripts/diagnostics/test_env.py",
+      "sha256_before": "5d40eb80a51a3cac62976733e7cf630d027ab88dbfe430188046216a902705a5",
+      "sha256_after": "5d40eb80a51a3cac62976733e7cf630d027ab88dbfe430188046216a902705a5"
+    },
+    {
+      "old": "scripts/test_hard_limits.py",
+      "new": "scripts/validation/test_hard_limits.py",
+      "sha256_before": "3cb47bb4918528565ea935faaff65251d89b510057c3a1892dd92378a37bb13b",
+      "sha256_after": "c99c69e654532ff740b4a09feed694fb740df45b0a3637809431f7cfed9777ec"
+    },
+    {
+      "old": "scripts/test_new_chunking.py",
+      "new": "scripts/validation/test_new_chunking.py",
+      "sha256_before": "2e6ef8dac618f5560d30482c4c65bee6bbb992a1156e96f138530e316f24d2d9",
+      "sha256_after": "d6a83830366ee9f947b26b083dcd4a1f0330c177a6716e565e4b49465abc5c9a"
+    },
+    {
+      "old": "scripts/test_pipe_conversion.py",
+      "new": "scripts/validation/test_pipe_conversion.py",
+      "sha256_before": "b62fd2ff912c5309899a97b77bfdfb28b2f3c71c01d2fd177a93b716ce546a44",
+      "sha256_after": "b62fd2ff912c5309899a97b77bfdfb28b2f3c71c01d2fd177a93b716ce546a44"
+    },
+    {
+      "old": "scripts/test_qns_cf_merge.py",
+      "new": "scripts/validation/test_qns_cf_merge.py",
+      "sha256_before": "93155b93eeefafca6ed540a6b343172d2cf0386d6e352c98b8ca86b60d8300d9",
+      "sha256_after": "b87d479b79b07841c9c444b3d9da127a76192a814456dab94bfd19b87a11cc69"
+    },
+    {
+      "old": "scripts/test_qns_p10.py",
+      "new": "scripts/validation/test_qns_p10.py",
+      "sha256_before": "a19f354268faef1e4080b2470fe6837f9bd0e277122f7eb81703419c98ea51bc",
+      "sha256_after": "cfbdf8c239725605fbb52f6cd4911d916e8e6f3213ee444ce5c0b885f0350086"
+    },
+    {
+      "old": "colab_test.ipynb",
+      "new": "notebooks/colab_test.ipynb",
+      "sha256_before": "a89b39f45e65381fe61066659ccd9a7f8449d838ea53e891a5a9c532cd545247",
+      "sha256_after": "8d02a34326088bfbcde193cdaa22d98b1a4b35d2dd9affc03e454f7289f2c71c"
+    },
+    {
+      "old": "project-scope-and-plan.txt",
+      "new": "docs/project/project-scope-and-plan.txt",
+      "sha256_before": "7c611ab8d15e56d3cd2cbb690834b0538124380175f67e77c6b2ba62b639aaff",
+      "sha256_after": "7c611ab8d15e56d3cd2cbb690834b0538124380175f67e77c6b2ba62b639aaff"
+    },
+    {
+      "old": "data/Danh-sách-toàn-bộ-công-ty-niêm-yết-trong-dataset.csv",
+      "new": "data/catalogs/Danh-sách-toàn-bộ-công-ty-niêm-yết-trong-dataset.csv",
+      "sha256_before": "e0cf8147db6a2acbd346e6ed62169744a2089780146f20d748d2932e3d299570",
+      "sha256_after": "e0cf8147db6a2acbd346e6ed62169744a2089780146f20d748d2932e3d299570"
+    },
+    {
+      "old": "scripts/corpus_token_comparison.json",
+      "new": "evaluation/token_statistics/comparisons/corpus_token_comparison.json",
+      "sha256_before": "7e4a447b46e812f9f61fcfba1a813c87dffec904a573d15bba9f0edcaabe8757",
+      "sha256_after": "7e4a447b46e812f9f61fcfba1a813c87dffec904a573d15bba9f0edcaabe8757"
+    },
+    {
+      "old": "evaluation/period_consistency_issues.csv",
+      "new": "evaluation/audits/period_consistency_issues.csv",
+      "sha256_before": "15584b835b6b3fe759c39672856317f6d01542f0420cb236b42e328b8f345ce0",
+      "sha256_after": "15584b835b6b3fe759c39672856317f6d01542f0420cb236b42e328b8f345ce0"
+    },
+    {
+      "old": "evaluation/evaluation_results/facts_benchmark_report.json",
+      "new": "evaluation/benchmarks/facts_benchmark_report.json",
+      "sha256_before": "4289bebb86cffbdded1736d687e48b968f3bfa7b636d14eb5e2b37a8b8b2a60f",
+      "sha256_after": "4289bebb86cffbdded1736d687e48b968f3bfa7b636d14eb5e2b37a8b8b2a60f"
+    },
+    {
+      "old": "evaluation/evaluation_results/retrieval_benchmark_report.json",
+      "new": "evaluation/benchmarks/retrieval_benchmark_report.json",
+      "sha256_before": "7160e03e030797085d62764bcdd38c96a98c07e310a29690fd68ab2a22607504",
+      "sha256_after": "7160e03e030797085d62764bcdd38c96a98c07e310a29690fd68ab2a22607504"
+    },
+    {
+      "old": "evaluation/token_count_results/danh_sach_loi_manual_review.csv",
+      "new": "evaluation/token_statistics/danh_sach_loi_manual_review.csv",
+      "sha256_before": "fb7f8aa6a10664675e9abffdd64a99e78a184f23f03b2285152e7afcacd2732e",
+      "sha256_after": "fb7f8aa6a10664675e9abffdd64a99e78a184f23f03b2285152e7afcacd2732e"
+    },
+    {
+      "old": "evaluation/token_count_results/danh_sach_loi_manual_review.xlsx",
+      "new": "evaluation/token_statistics/danh_sach_loi_manual_review.xlsx",
+      "sha256_before": "951ccdaeb63f15fbc5e6ffe789a4a0d3fa9fd511c9cf98c08d1f4ce36bf866c7",
+      "sha256_after": "951ccdaeb63f15fbc5e6ffe789a4a0d3fa9fd511c9cf98c08d1f4ce36bf866c7"
+    },
+    {
+      "old": "evaluation/token_count_results/bad_pages/file_summary.csv",
+      "new": "evaluation/token_statistics/bad_pages/file_summary.csv",
+      "sha256_before": "beb7c1036fdbd5549d8ef09946895e0cdd8e7cff44064b2de632b9f8caedac2a",
+      "sha256_after": "beb7c1036fdbd5549d8ef09946895e0cdd8e7cff44064b2de632b9f8caedac2a"
+    },
+    {
+      "old": "evaluation/token_count_results/bad_pages/flagged_pages.csv",
+      "new": "evaluation/token_statistics/bad_pages/flagged_pages.csv",
+      "sha256_before": "8aae2abbb277b35518f1088c4f6b98f30118ec38b212f8cf826863c7212314fb",
+      "sha256_after": "8aae2abbb277b35518f1088c4f6b98f30118ec38b212f8cf826863c7212314fb"
+    },
+    {
+      "old": "evaluation/token_count_results/bad_pages/page_scores.csv",
+      "new": "evaluation/token_statistics/bad_pages/page_scores.csv",
+      "sha256_before": "fbcad1d50dae74fbe0eca1ee31a06eb3671ac8d36a09f6c3503db63d21487ffd",
+      "sha256_after": "fbcad1d50dae74fbe0eca1ee31a06eb3671ac8d36a09f6c3503db63d21487ffd"
+    },
+    {
+      "old": "evaluation/token_count_results/cleaned_token_stats/scatter_tokens_by_company.png",
+      "new": "evaluation/token_statistics/cleaned_token_stats/scatter_tokens_by_company.png",
+      "sha256_before": "f7da3d7888b36f05d654a8ae06bb79a2257622ccf2c0f4b3b42be8744d823185",
+      "sha256_after": "f7da3d7888b36f05d654a8ae06bb79a2257622ccf2c0f4b3b42be8744d823185"
+    },
+    {
+      "old": "evaluation/token_count_results/cleaned_token_stats/scatter_tokens_by_report.png",
+      "new": "evaluation/token_statistics/cleaned_token_stats/scatter_tokens_by_report.png",
+      "sha256_before": "e83e08b2bc6adcecc5c3e419e3677553f6087bbb71cedb38e943995172d9db54",
+      "sha256_after": "e83e08b2bc6adcecc5c3e419e3677553f6087bbb71cedb38e943995172d9db54"
+    },
+    {
+      "old": "evaluation/token_count_results/cleaned_token_stats/token_reduction_comparison.csv",
+      "new": "evaluation/token_statistics/cleaned_token_stats/token_reduction_comparison.csv",
+      "sha256_before": "3b455a30c9004e2be337bd37c9c04963ceb83d88ba197450b0f86b03a5b0c177",
+      "sha256_after": "3b455a30c9004e2be337bd37c9c04963ceb83d88ba197450b0f86b03a5b0c177"
+    },
+    {
+      "old": "evaluation/token_count_results/cleaned_token_stats/token_stats_all_files.csv",
+      "new": "evaluation/token_statistics/cleaned_token_stats/token_stats_all_files.csv",
+      "sha256_before": "f849caed8d002d5ce860d516f05f30d97f7df3b89f68ad939c0f41bd20b90015",
+      "sha256_after": "f849caed8d002d5ce860d516f05f30d97f7df3b89f68ad939c0f41bd20b90015"
+    },
+    {
+      "old": "evaluation/token_count_results/cleaned_token_stats/token_stats_companies.csv",
+      "new": "evaluation/token_statistics/cleaned_token_stats/token_stats_companies.csv",
+      "sha256_before": "6a7dd90da11928e72051410cd1e9d802e51976cfa1cc8c64ea0310e63ec93d46",
+      "sha256_after": "6a7dd90da11928e72051410cd1e9d802e51976cfa1cc8c64ea0310e63ec93d46"
+    },
+    {
+      "old": "evaluation/token_count_results/cleaned_token_stats/token_stats_reports_merged.csv",
+      "new": "evaluation/token_statistics/cleaned_token_stats/token_stats_reports_merged.csv",
+      "sha256_before": "d5371689188d02dee0675681357d5f72ad97d73046e78955636f8ee44e4db21a",
+      "sha256_after": "d5371689188d02dee0675681357d5f72ad97d73046e78955636f8ee44e4db21a"
+    },
+    {
+      "old": "evaluation/token_count_results/raw_baseline_stats/scatter_tokens_by_company.png",
+      "new": "evaluation/token_statistics/raw_baseline_stats/scatter_tokens_by_company.png",
+      "sha256_before": "a3f19fc332bba677a55766bbc69eb83cfb39a23e7346dfeec910dcc67092a744",
+      "sha256_after": "a3f19fc332bba677a55766bbc69eb83cfb39a23e7346dfeec910dcc67092a744"
+    },
+    {
+      "old": "evaluation/token_count_results/raw_baseline_stats/scatter_tokens_by_report.png",
+      "new": "evaluation/token_statistics/raw_baseline_stats/scatter_tokens_by_report.png",
+      "sha256_before": "4282c2fa700b03ef12b53db2a432c93fad8af3d479ca9d90f71fd2b2d9c96045",
+      "sha256_after": "4282c2fa700b03ef12b53db2a432c93fad8af3d479ca9d90f71fd2b2d9c96045"
+    },
+    {
+      "old": "evaluation/token_count_results/raw_baseline_stats/token_stats_all_files.csv",
+      "new": "evaluation/token_statistics/raw_baseline_stats/token_stats_all_files.csv",
+      "sha256_before": "1f6641429a882295a49abd05dbf601bd69fc6d6a9513a2d1e37d14a464dd2a12",
+      "sha256_after": "1f6641429a882295a49abd05dbf601bd69fc6d6a9513a2d1e37d14a464dd2a12"
+    },
+    {
+      "old": "evaluation/token_count_results/raw_baseline_stats/token_stats_companies.csv",
+      "new": "evaluation/token_statistics/raw_baseline_stats/token_stats_companies.csv",
+      "sha256_before": "9d5c606a352cc9a033c0870b1ce2789b3da3e2c5cc19feecf6838141cd777404",
+      "sha256_after": "9d5c606a352cc9a033c0870b1ce2789b3da3e2c5cc19feecf6838141cd777404"
+    },
+    {
+      "old": "evaluation/token_count_results/raw_baseline_stats/token_stats_reports_merged.csv",
+      "new": "evaluation/token_statistics/raw_baseline_stats/token_stats_reports_merged.csv",
+      "sha256_before": "7a963a81b6b3776239bb6a5460bee76083a59b1fbb2e2715e2e4d0a5acbaf7f9",
+      "sha256_after": "7a963a81b6b3776239bb6a5460bee76083a59b1fbb2e2715e2e4d0a5acbaf7f9"
+    }
+  ],
+  "updated_references": [
+    "docs/architecture/document-parser-and-ingestion.md",
+    "docs/architecture/financial-document-chunking.md",
+    "docs/architecture/embedding-and-sparse-indexing.md",
+    "docs/audits/fpt-facts-reconciliation.md",
+    "docs/audits/metric-coverage-corpus-audit.md",
+    "docs/audits/metric-coverage-demo-audit.md",
+    "docs/audits/period-consistency-audit.md",
+    "docs/contracts/report-schema-and-state.md",
+    "docs/datasets/financial-text-token-optimization.md",
+    "docs/decisions/cross-year-scope-decision.md",
+    "docs/decisions/writer-contract-decisions.md",
+    "docs/evaluation/retrieval-and-citation-metrics.md",
+    "docs/evaluation/top-100-token-cleaning-results.md",
+    "docs/evaluation/top-100-token-statistics.md",
+    "docs/project/early-project-progress.md",
+    "notebooks/colab_test.ipynb",
+    "scripts/analysis/compare_corpus_tokens.py",
+    "scripts/audits/audit_metric_safety.py",
+    "scripts/audits/audit_period_consistency.py",
+    "scripts/audits/detailed_dry_test_audit.py",
+    "scripts/inspection/check_abb_qns.py",
+    "scripts/inspection/check_fpt_heading_delta.py",
+    "scripts/inspection/inspect_details.py",
+    "scripts/inspection/inspect_qns_facts.py",
+    "scripts/maintenance/refresh_real_tool_state.py",
+    "scripts/validation/test_hard_limits.py",
+    "scripts/validation/test_new_chunking.py",
+    "scripts/validation/test_qns_cf_merge.py",
+    "scripts/validation/test_qns_p10.py",
+    "src/evaluation/facts_benchmark.py",
+    "src/evaluation/retrieval_benchmark.py",
+    "src/ingestion/clean_and_recount_tokens.py",
+    "src/ingestion/export_manual_review_list.py",
+    "src/utils/count_gemini_tokens.py",
+    "tests/test_report_calculation_verification.py",
+    "tests/test_report_graph.py",
+    "tests/test_report_integration.py",
+    "tests/test_report_state.py"
+  ]
+}

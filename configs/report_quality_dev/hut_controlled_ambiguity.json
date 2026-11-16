@@ -1,0 +1,15 @@
+{
+  "case_id": "hut_controlled_ambiguity",
+  "case_kind": "controlled_ambiguity",
+  "corpus_version": "v2.1",
+  "request": {"ticker": "HUT", "start_year": 2022, "end_year": 2025, "scope": "consolidated", "audience": "Nhà đầu tư"},
+  "expected_planner_status": "ready",
+  "expected_run_status_phase_a": "incomplete",
+  "required_sections": ["S3"],
+  "required_points": [
+    {"id": "AMBIGUOUS_REVENUE", "kind": "research_status", "task_id": "revenue", "expected_status": "ambiguous", "safe_for_calculation": false, "weight": "must"},
+    {"id": "NO_YOY_2025", "kind": "calculation", "calculation_id": "revenue:yoy:2025", "expected_status": "cannot_compute", "weight": "must"}
+  ],
+  "required_limitations": [{"kind": "cannot_compute", "anchor_field": "calculation_id", "anchor": "revenue:yoy:2025", "output_text": "Không thể tính mức thay đổi của Doanh thu thuần năm 2025 so với năm 2024"}],
+  "forbidden_claims": [{"id": "CHOOSE_ROW", "description": "Không chọn ngẫu nhiên một trong hai dòng doanh thu 2025; dòng xung đột là dữ liệu tổng hợp chỉ dùng để kiểm thử."}]
+}

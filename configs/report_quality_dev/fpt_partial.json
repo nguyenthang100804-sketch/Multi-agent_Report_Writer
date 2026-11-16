@@ -1,0 +1,32 @@
+{
+  "case_id": "fpt_partial",
+  "case_kind": "live_graph",
+  "corpus_version": "v2.1",
+  "request": {"ticker": "FPT", "start_year": 2022, "end_year": 2025, "scope": "consolidated", "audience": "Nhà đầu tư"},
+  "expected_planner_status": "ready",
+  "expected_run_status_phase_a": "incomplete",
+  "required_sections": ["S1", "S2", "S3", "S4", "S5"],
+  "required_points": [
+    {
+      "id": "FPT_REVENUE", "kind": "fact_series", "section_hint": "S3", "metric": "Doanh thu thuần",
+      "item_code": "10", "report_type": "INCOME_STATEMENT", "expected_research_status": "sufficient", "weight": "must",
+      "expected_values": {
+        "2022": {"value": "44009527680911", "unit": "VND", "doc_id": "FPT_2022_Hopnhat", "physical_page": 13, "source_file": "data/raw_docs/top_100/FPT/2022/FPT_2022_BCTC_Kiemtoan_Hopnhat_extracted.txt", "source_line": 396, "source_label": "Doanh thu thuần về bán hàng và cung cấp dịch vụ", "verified_against_source": true},
+        "2023": {"value": "52617900827385", "unit": "VND", "doc_id": "FPT_2023_Hopnhat", "physical_page": 13, "source_file": "data/raw_docs/top_100/FPT/2023/FPT_2023_BCTC_Kiemtoan_Hopnhat_extracted.txt", "source_line": 369, "source_label": "Doanh thu thuần về bán hàng và cung cấp dịch vụ", "verified_against_source": true, "verified_against_pdf": true},
+        "2024": {"value": "62848794351367", "unit": "VND", "doc_id": "FPT_2024_Hopnhat", "physical_page": 13, "source_file": "data/raw_docs/top_100/FPT/2024/FPT_2024_BCTC_Kiemtoan_Hopnhat_extracted.txt", "source_line": 375, "source_label": "Doanh thu thuần về bán hàng và cung cấp dịch vụ", "verified_against_source": true},
+        "2025": {"value": "70112825100710", "unit": "VND", "doc_id": "FPT_2025_Hopnhat", "physical_page": 12, "source_file": "data/raw_docs/top_100/FPT/2025/FPT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt", "source_line": 373, "source_label": "Doanh thu thuần về bán hàng và cung cấp dịch vụ", "verified_against_source": true}
+      }
+    },
+    {
+      "id": "FPT_PARENT_PROFIT", "kind": "fact_series", "section_hint": "S3", "metric": "Lợi nhuận sau thuế của cổ đông công ty mẹ",
+      "item_code": "61", "report_type": "INCOME_STATEMENT", "expected_research_status": "partial", "expected_missing_years": [2024, 2025], "weight": "must",
+      "expected_values": {
+        "2022": {"value": "5310108591408", "unit": "VND", "doc_id": "FPT_2022_Hopnhat", "physical_page": 13, "source_file": "data/raw_docs/top_100/FPT/2022/FPT_2022_BCTC_Kiemtoan_Hopnhat_extracted.txt", "source_line": 413, "source_label": "Cổ đông của công ty mẹ", "verified_against_source": true},
+        "2023": {"value": "6465190432622", "unit": "VND", "doc_id": "FPT_2023_Hopnhat", "physical_page": 13, "source_file": "data/raw_docs/top_100/FPT/2023/FPT_2023_BCTC_Kiemtoan_Hopnhat_extracted.txt", "source_line": 387, "source_label": "Cổ đông của công ty mẹ", "verified_against_source": true, "verified_against_pdf": true}
+      }
+    },
+    {"id": "FPT_CFO_CHANGE_2025", "kind": "calculation", "calculation_id": "operating_cash_flow:difference:2025", "expected_status": "cannot_compute", "weight": "must"}
+  ],
+  "required_limitations": [{"kind": "data_gap", "anchor_field": "research_task_id", "anchor": "parent_profit", "output_text": "Giới hạn dữ liệu. Lợi nhuận sau thuế của cổ đông công ty mẹ (mã 61) chưa tìm thấy số liệu năm 2024, 2025."}, {"kind": "cannot_compute", "anchor_field": "calculation_id", "anchor": "operating_cash_flow:difference:2025", "output_text": "chênh lệch của Lưu chuyển tiền thuần từ hoạt động kinh doanh giai đoạn 2024–2025"}],
+  "forbidden_claims": [{"id": "INTERPOLATION", "description": "Không nội suy giá trị 2024 hoặc 2025 cho mã 61."}]
+}

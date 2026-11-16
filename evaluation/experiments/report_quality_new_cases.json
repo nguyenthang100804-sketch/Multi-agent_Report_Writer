@@ -1,0 +1,151 @@
+{
+  "phase": "A",
+  "generated_at_utc": "2026-11-10T07:42:21.303420+00:00",
+  "corpus": {
+    "version": "v2.1",
+    "processed_dir": "data/processed_chunks_v2_1",
+    "facts_db": "data/facts_storage/financial_facts_v2_1.duckdb",
+    "collection_name": "vnfin_v2_1_bge_m3_v1",
+    "manifest": "configs/manifests/manifest_vnfin_v2_1_bge_m3_v1.json",
+    "facts_snapshot_id": "4523348cb2f972ad2aa06dda0ad9ec74b5199a32d77f447e1b0c4fe042045655",
+    "notes_snapshot_id": "note:7feed332916ef1333a48ad5fffc9a09119493e9750516355ac22b7745d5ecd9d"
+  },
+  "source_audit": {
+    "medium": "ocr_extracted_text",
+    "ocr_checked_values": 3,
+    "pdf_checked_values": 0,
+    "pdf_audit": {
+      "path": "evaluation/benchmarks/report_quality_pdf_spot_check.json",
+      "sha256": "886b7b99ee6e6f28706a5019bc32498a293464f05d2645ceec9b6ae9393dd76a",
+      "checked_values": 0
+    }
+  },
+  "runtime": {
+    "planner": {
+      "implementation": "plan_report",
+      "model": null,
+      "prompt_version": null
+    },
+    "researcher": {
+      "implementation": "build_researcher",
+      "notes_embedding_model": "bge-m3"
+    },
+    "writer": {
+      "implementation": "TemplateWriter",
+      "model": null,
+      "prompt_version": null
+    },
+    "verifier": {
+      "implementation": "deterministic",
+      "model": null,
+      "prompt_version": null
+    },
+    "code_sha256": {
+      "src/agents/planner.py": "78715b02a12979f5e17ee574e9e9874b3b51a680d9b80e88374abd0862eb1667",
+      "src/agents/researcher.py": "9a03bf24b41b2c5ad707df27da0130fa58eaf5875ea5f3222a11b705e2673e1a",
+      "src/agents/template_writer.py": "29f1ec3d3a52df7cb3c534a8aae85b59c5eeef598df6899cff949bcc59ac5d06",
+      "src/agents/verification.py": "5c5eff08400b48e99e5670aad2bf0310d67030b336e18e921b87bd3661e081cb",
+      "src/evaluation/report_quality_benchmark.py": "73afaa9236b325a88bb9d82658000170c0353f1edaad7c5a74d8d714f75acc54"
+    },
+    "gold_sha256": {
+      "abb_unsupported_bank.json": "d2e8a07eb9030e0dad14bf4b877a8bd2bfc264294d4c964b3984c7bd427d3b90",
+      "dhg_general_2023_2025.json": "a990184b570ec5d9589a226dc7c64b6c7b5a02e8c54d79244dd78e713f6d8ebb",
+      "gmd_note_relevance_gap.json": "9c5acf6a1299194222a77eb42aae833a82e2120e690e214f1b1529dc0f494873"
+    }
+  },
+  "cases": [
+    {
+      "case_id": "abb_unsupported_bank",
+      "case_kind": "live_graph",
+      "planner_status": "rejected",
+      "run_status": "rejected",
+      "automatic_checks_pass": true,
+      "findings": [],
+      "manual_review_pending": false,
+      "forbidden_claims": [],
+      "final_report": null,
+      "verification": {}
+    },
+    {
+      "case_id": "dhg_general_2023_2025",
+      "case_kind": "live_graph",
+      "planner_status": "ready",
+      "run_status": "incomplete",
+      "automatic_checks_pass": true,
+      "findings": [],
+      "manual_review_pending": false,
+      "forbidden_claims": [],
+      "final_report": "## Thông tin doanh nghiệp và phạm vi dữ liệu\n\nTrích từ tài liệu năm 2025: “Ngành nghề kinh doanh chính của Công ty là sản xuất và kinh doanh được phẩm.” [Doc_DHG_2025_Chung, p.13-14]\nGiới hạn truy xuất. Không tìm thấy nội dung về kỳ kế toán đơn vị tiền tệ và chế độ kế toán áp dụng trong các đoạn đã truy xuất của báo cáo năm 2025.\n\n## Ý kiến kiểm toán\n\nTrích từ tài liệu năm 2023: “Theo ý kiến của chúng tôi, báo cáo tài chính đã phần ánh trung thực và hợp lý, trên các khóa cạnh trọng yếu, tỉnh hình tài chính của Công ty tại ngày 31 tháng 12 năm 2023, cũng như kết quả hoạt động kinh doanh và tình hình lưu chuyển tiên tệ cho năm tài chính kết thúc cùng ngày, phù hợp với chuẩn mục kế toán, chế độ kế toán doanh nghiệp Việt Nam và các quy định pháp lý có liên quan đến việc lập và trình bày báo cáo tài chính.” [Doc_DHG_2023_Chung, p.5]\n\nTrích từ tài liệu năm 2024: “Theo ý kiến của chứng tối, báo cáo tài chính đã phần ánh trung thực và hợp lý, trên các khóa cạnh trọng yếu, tình hình tài chính của Công ty tại ngày 31 tháng 12 năm 2024, cũng như kết quả hoạt động kinh doanh và tình hình lưu chuyển tiền tệ cho năm tài chính kết thúc cùng ngày, phù hợp với các Chuẩn mục kế toán Việt Nam, Chế độ kế toán doanh nghiệp Việt Nam và các quy định pháp lý có liên quan đến việc lập và trình bày báo cáo tài chính.” [Doc_DHG_2024_Chung, p.8]\n\nTrích từ tài liệu năm 2025: “Theo ý kiến của chúng tôi, báo cáo tài chính đã phản ánh trung thực và hợp lý, trên các khóa cạnh trọng yếu, tỉnh hình tài chính của Công ty tại ngày 31 tháng 12 năm 2025, cũng như kết quả hoạt động kinh doanh và tình hình lưu chuyển tiền tệ cho năm tài chính kết thúc cùng ngày, phù hợp với chuẩn mục kế toán, chế độ kế toán doanh nghiệp Việt Nam và các quy định pháp lý có liên quan đến việc lập và trình bày báo cáo tài chính.” [Doc_DHG_2025_Chung, p.5]\n\nChưa chọn được trích đoạn đủ nội dung cho đơn vị kiểm toán và ngày ký báo cáo trong các đoạn đã truy xuất.\nGiới hạn truy xuất. Không tìm thấy nội dung về vấn đề nhấn mạnh và cơ sở ý kiến ngoại trừ trong toàn bộ mục kiểm toán đã trích xuất của báo cáo năm 2023.\nGiới hạn truy xuất. Không tìm thấy nội dung về vấn đề nhấn mạnh và cơ sở ý kiến ngoại trừ trong toàn bộ mục kiểm toán đã trích xuất của báo cáo năm 2024.\nGiới hạn truy xuất. Không tìm thấy nội dung về vấn đề nhấn mạnh và cơ sở ý kiến ngoại trừ trong toàn bộ mục kiểm toán đã trích xuất của báo cáo năm 2025.\n\n## Kết quả kinh doanh\n\n### Số liệu theo năm (tỷ đồng)\n\n| Chỉ tiêu | 2023 | 2024 | 2025 |\n|---|---:|---:|---:|\n| Doanh thu thuần | 5.015,40 [Doc_DHG_2023_Chung, p.9] | 4.884,87 [Doc_DHG_2024_Chung, p.11] | 5.266,96 [Doc_DHG_2025_Chung, p.10] |\n| Lợi nhuận gộp | 2.343,55 [Doc_DHG_2023_Chung, p.9] | 2.137,77 [Doc_DHG_2024_Chung, p.11] | 2.506,37 [Doc_DHG_2025_Chung, p.10] |\n| Lợi nhuận trước thuế | 1.159,17 [Doc_DHG_2023_Chung, p.9] | 904,48 [Doc_DHG_2024_Chung, p.11] | 986,60 [Doc_DHG_2025_Chung, p.10] |\n| Lợi nhuận sau thuế | 1.050,66 [Doc_DHG_2023_Chung, p.9] | 778,92 [Doc_DHG_2024_Chung, p.11] | 852,35 [Doc_DHG_2025_Chung, p.10] |\n\n### Tỷ lệ theo năm\n\n| Chỉ tiêu | 2023 | 2024 | 2025 |\n|---|---:|---:|---:|\n| Biên lợi nhuận gộp | 46,73% [Doc_DHG_2023_Chung, p.9] | 43,76% [Doc_DHG_2024_Chung, p.11] | 47,59% [Doc_DHG_2025_Chung, p.10] |\n| Biên lợi nhuận ròng | 20,95% [Doc_DHG_2023_Chung, p.9] | 15,95% [Doc_DHG_2024_Chung, p.11] | 16,18% [Doc_DHG_2025_Chung, p.10] |\n\n### Biến động theo kỳ\n\n| Chỉ tiêu | 2023–2024 | 2024–2025 |\n|---|---:|---:|\n| Doanh thu thuần — YoY (%) | -2,60% [Doc_DHG_2023_Chung, p.9] [Doc_DHG_2024_Chung, p.11] | 7,82% [Doc_DHG_2024_Chung, p.11] [Doc_DHG_2025_Chung, p.10] |\n| Lợi nhuận trước thuế — chênh lệch (tỷ đồng) | -254,69 [Doc_DHG_2023_Chung, p.9] [Doc_DHG_2024_Chung, p.11] | 82,11 [Doc_DHG_2024_Chung, p.11] [Doc_DHG_2025_Chung, p.10] |\n| Lợi nhuận sau thuế — chênh lệch (tỷ đồng) | -271,74 [Doc_DHG_2023_Chung, p.9] [Doc_DHG_2024_Chung, p.11] | 73,43 [Doc_DHG_2024_Chung, p.11] [Doc_DHG_2025_Chung, p.10] |\n\nMức thay đổi của Doanh thu thuần năm 2025 so với năm 2024 là 7,82%. [Doc_DHG_2024_Chung, p.11] [Doc_DHG_2025_Chung, p.10]\n\nBiên lợi nhuận gộp năm 2025 là 47,59%. [Doc_DHG_2025_Chung, p.10]\n\nTốc độ tăng trưởng kép hằng năm của Doanh thu thuần giai đoạn 2023–2025 là 2,48%. [Doc_DHG_2023_Chung, p.9] [Doc_DHG_2024_Chung, p.11] [Doc_DHG_2025_Chung, p.10]\n\nDoanh thu thuần diễn biến không đều trong giai đoạn 2023–2025. [Doc_DHG_2023_Chung, p.9] [Doc_DHG_2024_Chung, p.11] [Doc_DHG_2025_Chung, p.10]\n\n## Tình hình tài chính\n\n### Số liệu theo năm (tỷ đồng)\n\n| Chỉ tiêu | 2023 | 2024 | 2025 |\n|---|---:|---:|---:|\n| Tổng tài sản | 6.110,47 [Doc_DHG_2023_Chung, p.7] | 5.959,24 [Doc_DHG_2024_Chung, p.9] | 5.173,88 [Doc_DHG_2025_Chung, p.8] |\n| Nợ phải trả | 1.257,54 [Doc_DHG_2023_Chung, p.8] | 1.864,49 [Doc_DHG_2024_Chung, p.10] | 1.036,62 [Doc_DHG_2025_Chung, p.9] |\n| Vốn chủ sở hữu | 4.852,93 [Doc_DHG_2023_Chung, p.8] | 4.094,76 [Doc_DHG_2024_Chung, p.10] | 4.137,27 [Doc_DHG_2025_Chung, p.9] |\n| Tiền và các khoản tương đương tiền | 94,13 [Doc_DHG_2023_Chung, p.6] | 62,86 [Doc_DHG_2024_Chung, p.9] | 129,90 [Doc_DHG_2025_Chung, p.7] |\n\n### Tỷ lệ theo năm\n\n| Chỉ tiêu | 2023 | 2024 | 2025 |\n|---|---:|---:|---:|\n| Tỷ trọng nợ trên tổng tài sản | 20,58% [Doc_DHG_2023_Chung, p.8] [Doc_DHG_2023_Chung, p.7] | 31,29% [Doc_DHG_2024_Chung, p.10] [Doc_DHG_2024_Chung, p.9] | 20,04% [Doc_DHG_2025_Chung, p.9] [Doc_DHG_2025_Chung, p.8] |\n| Tỷ trọng vốn chủ trên tổng tài sản | 79,42% [Doc_DHG_2023_Chung, p.8] [Doc_DHG_2023_Chung, p.7] | 68,71% [Doc_DHG_2024_Chung, p.10] [Doc_DHG_2024_Chung, p.9] | 79,96% [Doc_DHG_2025_Chung, p.9] [Doc_DHG_2025_Chung, p.8] |\n\n### Biến động theo kỳ\n\n| Chỉ tiêu | 2023–2024 | 2024–2025 |\n|---|---:|---:|\n| Tổng tài sản — YoY (%) | -2,47% [Doc_DHG_2023_Chung, p.7] [Doc_DHG_2024_Chung, p.9] | -13,18% [Doc_DHG_2024_Chung, p.9] [Doc_DHG_2025_Chung, p.8] |\n\nMức thay đổi của Tổng tài sản năm 2025 so với năm 2024 là -13,18%. [Doc_DHG_2024_Chung, p.9] [Doc_DHG_2025_Chung, p.8]\n\nTỷ trọng nợ trên tổng tài sản năm 2025 là 20,04%. [Doc_DHG_2025_Chung, p.9] [Doc_DHG_2025_Chung, p.8]\n\nTỷ trọng vốn chủ trên tổng tài sản năm 2025 là 79,96%. [Doc_DHG_2025_Chung, p.9] [Doc_DHG_2025_Chung, p.8]\nGiới hạn truy xuất. Không tìm thấy nội dung về điều khoản và kỳ hạn các khoản vay trong các đoạn đã truy xuất của báo cáo năm 2025.\n\n## Lưu chuyển tiền tệ\n\n### Số liệu theo năm (tỷ đồng)\n\n| Chỉ tiêu | 2023 | 2024 | 2025 |\n|---|---:|---:|---:|\n| Lưu chuyển tiền thuần từ hoạt động kinh doanh | 240,17 [Doc_DHG_2023_Chung, p.10] | 1.317,58 [Doc_DHG_2024_Chung, p.12] | 1.212,97 [Doc_DHG_2025_Chung, p.11] |\n| Lưu chuyển tiền thuần từ hoạt động đầu tư | -179,82 [Doc_DHG_2023_Chung, p.10] | -445,95 [Doc_DHG_2024_Chung, p.12] | 811,73 [Doc_DHG_2025_Chung, p.11] |\n| Lưu chuyển tiền thuần từ hoạt động tài chính | -0,17 [Doc_DHG_2023_Chung, p.10] | -902,85 [Doc_DHG_2024_Chung, p.12] | -1.957,37 [Doc_DHG_2025_Chung, p.11] |\n\n### Tỷ lệ theo năm\n\n| Chỉ tiêu | 2023 | 2024 | 2025 |\n|---|---:|---:|---:|\n| Tỷ lệ dòng tiền kinh doanh trên lợi nhuận sau thuế | 22,86% [Doc_DHG_2023_Chung, p.10] [Doc_DHG_2023_Chung, p.9] | 169,16% [Doc_DHG_2024_Chung, p.12] [Doc_DHG_2024_Chung, p.11] | 142,31% [Doc_DHG_2025_Chung, p.11] [Doc_DHG_2025_Chung, p.10] |\n\n### Biến động theo kỳ\n\n| Chỉ tiêu | 2023–2024 | 2024–2025 |\n|---|---:|---:|\n| Lưu chuyển tiền thuần từ hoạt động kinh doanh — chênh lệch (tỷ đồng) | 1.077,41 [Doc_DHG_2023_Chung, p.10] [Doc_DHG_2024_Chung, p.12] | -104,62 [Doc_DHG_2024_Chung, p.12] [Doc_DHG_2025_Chung, p.11] |\n| Lưu chuyển tiền thuần từ hoạt động đầu tư — chênh lệch (tỷ đồng) | -266,13 [Doc_DHG_2023_Chung, p.10] [Doc_DHG_2024_Chung, p.12] | 1.257,68 [Doc_DHG_2024_Chung, p.12] [Doc_DHG_2025_Chung, p.11] |\n| Lưu chuyển tiền thuần từ hoạt động tài chính — chênh lệch (tỷ đồng) | -902,68 [Doc_DHG_2023_Chung, p.10] [Doc_DHG_2024_Chung, p.12] | -1.054,53 [Doc_DHG_2024_Chung, p.12] [Doc_DHG_2025_Chung, p.11] |\n\nChênh lệch của Lưu chuyển tiền thuần từ hoạt động kinh doanh giai đoạn 2024–2025 là -104,6 tỷ đồng. [Doc_DHG_2024_Chung, p.12] [Doc_DHG_2025_Chung, p.11]\n\nChênh lệch của Lưu chuyển tiền thuần từ hoạt động tài chính giai đoạn 2024–2025 là -1,1 nghìn tỷ đồng. [Doc_DHG_2024_Chung, p.12] [Doc_DHG_2025_Chung, p.11]\n\nTỷ lệ dòng tiền kinh doanh trên lợi nhuận sau thuế năm 2025 là 142,31%. [Doc_DHG_2025_Chung, p.11] [Doc_DHG_2025_Chung, p.10]",
+      "verification": {
+        "S1": {
+          "status": "passed",
+          "level": "deterministic"
+        },
+        "S2": {
+          "status": "passed",
+          "level": "deterministic"
+        },
+        "S3": {
+          "status": "passed",
+          "level": "deterministic"
+        },
+        "S4": {
+          "status": "passed",
+          "level": "deterministic"
+        },
+        "S5": {
+          "status": "passed",
+          "level": "deterministic"
+        }
+      }
+    },
+    {
+      "case_id": "gmd_note_relevance_gap",
+      "case_kind": "live_graph",
+      "planner_status": "ready",
+      "run_status": "incomplete",
+      "automatic_checks_pass": true,
+      "findings": [],
+      "manual_review_pending": true,
+      "forbidden_claims": [
+        {
+          "id": "NOTE_EXTRAPOLATION",
+          "description": "Không biến đoạn truy xuất không liên quan thành kết luận về rủi ro tài chính."
+        }
+      ],
+      "final_report": "## Thông tin doanh nghiệp và phạm vi dữ liệu\n\nTrích từ tài liệu năm 2025: “Ban Tổng Giám đốc Công ty đảm bảo đã tuân thủ yêu cầu của các chuẩn mục kế toán Việt Nam, Chế độ Kế toán doanh nghiệp Việt Nam được ban hành theo Thông tư số 200/2014/TT-BTC ngày 22 tháng 12 năm 2014, Thông tư số 53/2016/TT-BTC ngày 21 tháng 3 năm 2016, Thông tư số 202/2014/TT-BTC ngày 22 tháng 12 năm 2014 cũng như các thông tư khác hướng dẫn thực hiện chuẩn mục kế toán của Bộ Tài chính trong việc lập và trình bày Báo cáo tài chính hợp nhất.” [Doc_GMD_2025_Hopnhat, p.17-18]\n\nChưa chọn được trích đoạn đủ nội dung cho ngành nghề hoạt động và cơ cấu doanh nghiệp trong các đoạn đã truy xuất.\n\n## Ý kiến kiểm toán\n\nTrích từ tài liệu năm 2022: “Theo ý kiến của chúng tôi, Báo cáo tài chính hợp nhất đã phần ánh trung thực và hợp lý, trên các khía cạnh trọng yếu tinh hình tài chính hợp nhất của Tập đoàn tại ngày 31 tháng 12 năm 2022, cũng như kết quả hoạt động kinh doanh hợp nhất và tinh hình lưu chuyển tiền tệ hợp nhất cho năm tài chính kết thúc cùng ngày, phù hợp với các Chuẩn mực Kế toán Việt Nam, Chế độ Kế toán doanh nghiệp Việt Nam và các quy định pháp lý có liên quan đến việc lập và trình bày Báo cáo tài chính hợp nhất.” [Doc_GMD_2022_Hopnhat, p.5]\n\nTrích từ tài liệu năm 2023: “Theo ý kiến của chúng tôi, Báo cáo tài chính hợp nhất đã phần ánh trung thực và hợp lý, trên các khía cạnh trọng yếu tính hình tài chính hợp nhất của Tập đoàn tại ngày 31 tháng 12 năm 2023, cũng như kết quả hoạt động kinh doanh hợp nhất và tính hình lưu chuyển tiền tệ hợp nhất cho năm tài chính kết thúc cùng ngày, phù hợp với các chuẩn mục kế toán Việt Nam, Chế độ Kế toán doanh nghiệp Việt Nam và các quy định pháp lý có liên quan đến việc lập và trình bày Báo cáo tài chính hợp nhất.” [Doc_GMD_2023_Hopnhat, p.5]\n\nTrích từ tài liệu năm 2024: “Theo ý kiến của chúng tôi, Báo cáo tài chính hợp nhất đã phần ánh trung thực và hợp lý, trên các khía cạnh trọng yếu tỉnh hình tài chính hợp nhất của Tập đoàn tại ngày 31 tháng 12 năm 2024, cũng như kết quả hoạt động kinh doanh hợp nhất và tỉnh hình lưu chuyển tiền tệ hợp nhất cho năm tài chính kết thúc cùng ngày, phù hợp với các chuẩn mục kế toán Việt Nam, Chế độ Kế toán doanh nghiệp Việt Nam và các quy định pháp lý có liên quản đến việc lập và trình bày Báo cáo tài chính hợp nhất.” [Doc_GMD_2024_Hopnhat, p.5]\n\nTrích từ tài liệu năm 2025: “Theo ý kiến của chúng tôi, Báo cáo tài chính hợp nhất đã phân ánh trung thực và hợp lý, trên các khía cạnh trọng yếu tính hình tài chính hợp nhất của Tập đoàn tại ngày 31 tháng 12 năm 2025, cũng như kết quả hoạt động kinh doanh hợp nhất và tính hình lưu chuyển tiền tệ hợp nhất cho năm tài chính kết thúc cùng ngày, phù hợp với các chuẩn mực kế toán Việt Nam, Chế độ Kế toán doanh nghiệp Việt Nam và các quy định pháp lý có liên quan đến việc lập và trình bày Báo cáo tài chính hợp nhất.” [Doc_GMD_2025_Hopnhat, p.5]\n\nChưa chọn được trích đoạn đủ nội dung cho đơn vị kiểm toán và ngày ký báo cáo trong các đoạn đã truy xuất.\nGiới hạn truy xuất. Không tìm thấy nội dung về vấn đề nhấn mạnh và cơ sở ý kiến ngoại trừ trong toàn bộ mục kiểm toán đã trích xuất của báo cáo năm 2022.\nGiới hạn truy xuất. Không tìm thấy nội dung về vấn đề nhấn mạnh và cơ sở ý kiến ngoại trừ trong toàn bộ mục kiểm toán đã trích xuất của báo cáo năm 2023.\nGiới hạn truy xuất. Không tìm thấy nội dung về vấn đề nhấn mạnh và cơ sở ý kiến ngoại trừ trong toàn bộ mục kiểm toán đã trích xuất của báo cáo năm 2024.\nGiới hạn truy xuất. Không tìm thấy nội dung về vấn đề nhấn mạnh và cơ sở ý kiến ngoại trừ trong toàn bộ mục kiểm toán đã trích xuất của báo cáo năm 2025.\n\n## Kết quả kinh doanh\n\n### Số liệu theo năm (tỷ đồng)\n\n| Chỉ tiêu | 2022 | 2023 | 2024 | 2025 |\n|---|---:|---:|---:|---:|\n| Doanh thu thuần | 3.898,24 [Doc_GMD_2022_Hopnhat, p.10] | 3.845,83 [Doc_GMD_2023_Hopnhat, p.10] | 4.832,02 [Doc_GMD_2024_Hopnhat, p.10] | 5.956,03 [Doc_GMD_2025_Hopnhat, p.10] |\n| Lợi nhuận gộp | 1.718,06 [Doc_GMD_2022_Hopnhat, p.10] | 1.778,02 [Doc_GMD_2023_Hopnhat, p.10] | 2.135,48 [Doc_GMD_2024_Hopnhat, p.10] | 2.739,47 [Doc_GMD_2025_Hopnhat, p.10] |\n| Lợi nhuận trước thuế | 1.308,48 [Doc_GMD_2022_Hopnhat, p.10] | 3.147,49 [Doc_GMD_2023_Hopnhat, p.10] | 2.098,59 [Doc_GMD_2024_Hopnhat, p.10] | 2.520,83 [Doc_GMD_2025_Hopnhat, p.10] |\n| Lợi nhuận sau thuế | 1.161,29 [Doc_GMD_2022_Hopnhat, p.10] | 2.533,93 [Doc_GMD_2023_Hopnhat, p.10] | 1.923,58 [Doc_GMD_2024_Hopnhat, p.10] | 2.302,52 [Doc_GMD_2025_Hopnhat, p.10] |\n| Lợi nhuận sau thuế của cổ đông công ty mẹ | 993,92 [Doc_GMD_2022_Hopnhat, p.10] | 2.250,58 [Doc_GMD_2023_Hopnhat, p.10] | 1.455,48 [Doc_GMD_2024_Hopnhat, p.10] | 1.755,63 [Doc_GMD_2025_Hopnhat, p.10] |\n\n### Tỷ lệ theo năm\n\n| Chỉ tiêu | 2022 | 2023 | 2024 | 2025 |\n|---|---:|---:|---:|---:|\n| Biên lợi nhuận gộp | 44,07% [Doc_GMD_2022_Hopnhat, p.10] | 46,23% [Doc_GMD_2023_Hopnhat, p.10] | 44,19% [Doc_GMD_2024_Hopnhat, p.10] | 45,99% [Doc_GMD_2025_Hopnhat, p.10] |\n| Biên lợi nhuận ròng | 29,79% [Doc_GMD_2022_Hopnhat, p.10] | 65,89% [Doc_GMD_2023_Hopnhat, p.10] | 39,81% [Doc_GMD_2024_Hopnhat, p.10] | 38,66% [Doc_GMD_2025_Hopnhat, p.10] |\n\n### Biến động theo kỳ\n\n| Chỉ tiêu | 2022–2023 | 2023–2024 | 2024–2025 |\n|---|---:|---:|---:|\n| Doanh thu thuần — YoY (%) | -1,34% [Doc_GMD_2022_Hopnhat, p.10] [Doc_GMD_2023_Hopnhat, p.10] | 25,64% [Doc_GMD_2023_Hopnhat, p.10] [Doc_GMD_2024_Hopnhat, p.10] | 23,26% [Doc_GMD_2024_Hopnhat, p.10] [Doc_GMD_2025_Hopnhat, p.10] |\n| Lợi nhuận trước thuế — chênh lệch (tỷ đồng) | 1.839,01 [Doc_GMD_2022_Hopnhat, p.10] [Doc_GMD_2023_Hopnhat, p.10] | -1.048,90 [Doc_GMD_2023_Hopnhat, p.10] [Doc_GMD_2024_Hopnhat, p.10] | 422,24 [Doc_GMD_2024_Hopnhat, p.10] [Doc_GMD_2025_Hopnhat, p.10] |\n| Lợi nhuận sau thuế — chênh lệch (tỷ đồng) | 1.372,64 [Doc_GMD_2022_Hopnhat, p.10] [Doc_GMD_2023_Hopnhat, p.10] | -610,35 [Doc_GMD_2023_Hopnhat, p.10] [Doc_GMD_2024_Hopnhat, p.10] | 378,94 [Doc_GMD_2024_Hopnhat, p.10] [Doc_GMD_2025_Hopnhat, p.10] |\n\nMức thay đổi của Doanh thu thuần năm 2025 so với năm 2024 là 23,26%. [Doc_GMD_2024_Hopnhat, p.10] [Doc_GMD_2025_Hopnhat, p.10]\n\nBiên lợi nhuận gộp năm 2025 là 45,99%. [Doc_GMD_2025_Hopnhat, p.10]\n\nTốc độ tăng trưởng kép hằng năm của Doanh thu thuần giai đoạn 2022–2025 là 15,18%. [Doc_GMD_2022_Hopnhat, p.10] [Doc_GMD_2023_Hopnhat, p.10] [Doc_GMD_2024_Hopnhat, p.10] [Doc_GMD_2025_Hopnhat, p.10]\n\nDoanh thu thuần diễn biến không đều trong giai đoạn 2022–2025. [Doc_GMD_2022_Hopnhat, p.10] [Doc_GMD_2023_Hopnhat, p.10] [Doc_GMD_2024_Hopnhat, p.10] [Doc_GMD_2025_Hopnhat, p.10]\n\n## Tình hình tài chính\n\n### Số liệu theo năm (tỷ đồng)\n\n| Chỉ tiêu | 2022 | 2023 | 2024 | 2025 |\n|---|---:|---:|---:|---:|\n| Tổng tài sản | 13.030,65 [Doc_GMD_2022_Hopnhat, p.7] | 13.546,03 [Doc_GMD_2023_Hopnhat, p.7] | 17.997,85 [Doc_GMD_2024_Hopnhat, p.7] | 19.826,40 [Doc_GMD_2025_Hopnhat, p.7] |\n| Nợ phải trả | 5.082,90 [Doc_GMD_2022_Hopnhat, p.8] | 3.813,65 [Doc_GMD_2023_Hopnhat, p.8] | 4.225,93 [Doc_GMD_2024_Hopnhat, p.8] | 4.908,15 [Doc_GMD_2025_Hopnhat, p.8] |\n| Vốn chủ sở hữu | 7.947,76 [Doc_GMD_2022_Hopnhat, p.9] | 9.732,37 [Doc_GMD_2023_Hopnhat, p.9] | 13.771,93 [Doc_GMD_2024_Hopnhat, p.9] | 14.918,25 [Doc_GMD_2025_Hopnhat, p.9] |\n| Tiền và các khoản tương đương tiền | 1.364,35 [Doc_GMD_2022_Hopnhat, p.6] | 1.471,68 [Doc_GMD_2023_Hopnhat, p.6] | 3.964,32 [Doc_GMD_2024_Hopnhat, p.6] | 1.622,29 [Doc_GMD_2025_Hopnhat, p.6] |\n\n### Tỷ lệ theo năm\n\n| Chỉ tiêu | 2022 | 2023 | 2024 | 2025 |\n|---|---:|---:|---:|---:|\n| Tỷ trọng nợ trên tổng tài sản | 39,01% [Doc_GMD_2022_Hopnhat, p.8] [Doc_GMD_2022_Hopnhat, p.7] | 28,15% [Doc_GMD_2023_Hopnhat, p.8] [Doc_GMD_2023_Hopnhat, p.7] | 23,48% [Doc_GMD_2024_Hopnhat, p.8] [Doc_GMD_2024_Hopnhat, p.7] | 24,76% [Doc_GMD_2025_Hopnhat, p.8] [Doc_GMD_2025_Hopnhat, p.7] |\n| Tỷ trọng vốn chủ trên tổng tài sản | 60,99% [Doc_GMD_2022_Hopnhat, p.9] [Doc_GMD_2022_Hopnhat, p.7] | 71,85% [Doc_GMD_2023_Hopnhat, p.9] [Doc_GMD_2023_Hopnhat, p.7] | 76,52% [Doc_GMD_2024_Hopnhat, p.9] [Doc_GMD_2024_Hopnhat, p.7] | 75,24% [Doc_GMD_2025_Hopnhat, p.9] [Doc_GMD_2025_Hopnhat, p.7] |\n\n### Biến động theo kỳ\n\n| Chỉ tiêu | 2022–2023 | 2023–2024 | 2024–2025 |\n|---|---:|---:|---:|\n| Tổng tài sản — YoY (%) | 3,96% [Doc_GMD_2022_Hopnhat, p.7] [Doc_GMD_2023_Hopnhat, p.7] | 32,86% [Doc_GMD_2023_Hopnhat, p.7] [Doc_GMD_2024_Hopnhat, p.7] | 10,16% [Doc_GMD_2024_Hopnhat, p.7] [Doc_GMD_2025_Hopnhat, p.7] |\n\nMức thay đổi của Tổng tài sản năm 2025 so với năm 2024 là 10,16%. [Doc_GMD_2024_Hopnhat, p.7] [Doc_GMD_2025_Hopnhat, p.7]\n\nTỷ trọng nợ trên tổng tài sản năm 2025 là 24,76%. [Doc_GMD_2025_Hopnhat, p.8] [Doc_GMD_2025_Hopnhat, p.7]\n\nTỷ trọng vốn chủ trên tổng tài sản năm 2025 là 75,24%. [Doc_GMD_2025_Hopnhat, p.9] [Doc_GMD_2025_Hopnhat, p.7]\nGiới hạn truy xuất. Không tìm thấy nội dung về điều khoản và kỳ hạn các khoản vay trong các đoạn đã truy xuất của báo cáo năm 2025.\n\n## Lưu chuyển tiền tệ\n\n### Số liệu theo năm (tỷ đồng)\n\n| Chỉ tiêu | 2022 | 2023 | 2024 | 2025 |\n|---|---:|---:|---:|---:|\n| Lưu chuyển tiền thuần từ hoạt động kinh doanh | 2.299,24 [Doc_GMD_2022_Hopnhat, p.11] | -2,87 [Doc_GMD_2023_Hopnhat, p.11] | 1.526,82 [Doc_GMD_2024_Hopnhat, p.11] | 2.142,02 [Doc_GMD_2025_Hopnhat, p.11] |\n| Lưu chuyển tiền thuần từ hoạt động đầu tư | -1.234,75 [Doc_GMD_2022_Hopnhat, p.11] | 915,40 [Doc_GMD_2023_Hopnhat, p.11] | -1.375,72 [Doc_GMD_2024_Hopnhat, p.11] | -3.384,15 [Doc_GMD_2025_Hopnhat, p.11] |\n| Lưu chuyển tiền thuần từ hoạt động tài chính | -337,55 [Doc_GMD_2022_Hopnhat, p.12] | -807,93 [Doc_GMD_2023_Hopnhat, p.12] | 2.338,59 [Doc_GMD_2024_Hopnhat, p.12] | -1.103,92 [Doc_GMD_2025_Hopnhat, p.12] |\n\n### Tỷ lệ theo năm\n\n| Chỉ tiêu | 2022 | 2023 | 2024 | 2025 |\n|---|---:|---:|---:|---:|\n| Tỷ lệ dòng tiền kinh doanh trên lợi nhuận sau thuế | 197,99% [Doc_GMD_2022_Hopnhat, p.11] [Doc_GMD_2022_Hopnhat, p.10] | -0,11% [Doc_GMD_2023_Hopnhat, p.11] [Doc_GMD_2023_Hopnhat, p.10] | 79,37% [Doc_GMD_2024_Hopnhat, p.11] [Doc_GMD_2024_Hopnhat, p.10] | 93,03% [Doc_GMD_2025_Hopnhat, p.11] [Doc_GMD_2025_Hopnhat, p.10] |\n\n### Biến động theo kỳ\n\n| Chỉ tiêu | 2022–2023 | 2023–2024 | 2024–2025 |\n|---|---:|---:|---:|\n| Lưu chuyển tiền thuần từ hoạt động kinh doanh — chênh lệch (tỷ đồng) | -2.302,11 [Doc_GMD_2022_Hopnhat, p.11] [Doc_GMD_2023_Hopnhat, p.11] | 1.529,69 [Doc_GMD_2023_Hopnhat, p.11] [Doc_GMD_2024_Hopnhat, p.11] | 615,20 [Doc_GMD_2024_Hopnhat, p.11] [Doc_GMD_2025_Hopnhat, p.11] |\n| Lưu chuyển tiền thuần từ hoạt động đầu tư — chênh lệch (tỷ đồng) | 2.150,14 [Doc_GMD_2022_Hopnhat, p.11] [Doc_GMD_2023_Hopnhat, p.11] | -2.291,12 [Doc_GMD_2023_Hopnhat, p.11] [Doc_GMD_2024_Hopnhat, p.11] | -2.008,43 [Doc_GMD_2024_Hopnhat, p.11] [Doc_GMD_2025_Hopnhat, p.11] |\n| Lưu chuyển tiền thuần từ hoạt động tài chính — chênh lệch (tỷ đồng) | -470,37 [Doc_GMD_2022_Hopnhat, p.12] [Doc_GMD_2023_Hopnhat, p.12] | 3.146,52 [Doc_GMD_2023_Hopnhat, p.12] [Doc_GMD_2024_Hopnhat, p.12] | -3.442,51 [Doc_GMD_2024_Hopnhat, p.12] [Doc_GMD_2025_Hopnhat, p.12] |\n\nChênh lệch của Lưu chuyển tiền thuần từ hoạt động kinh doanh giai đoạn 2024–2025 là 615,2 tỷ đồng. [Doc_GMD_2024_Hopnhat, p.11] [Doc_GMD_2025_Hopnhat, p.11]\n\nChênh lệch của Lưu chuyển tiền thuần từ hoạt động tài chính giai đoạn 2024–2025 là -3,4 nghìn tỷ đồng. [Doc_GMD_2024_Hopnhat, p.12] [Doc_GMD_2025_Hopnhat, p.12]\n\nTỷ lệ dòng tiền kinh doanh trên lợi nhuận sau thuế năm 2025 là 93,03%. [Doc_GMD_2025_Hopnhat, p.11] [Doc_GMD_2025_Hopnhat, p.10]\n\n## Chính sách kế toán và thuyết minh chọn lọc\n\nTrích từ tài liệu năm 2025: “Trường hợp dịch vụ được thực hiện trong nhiều kỳ thì doanh thu được ghi nhận trong kỳ được căn cứ vào kết quả phần công việc đã hoàn thành vào ngày kết thúc kỳ kế toán.” [Doc_GMD_2025_Hopnhat, p.28]\n\nTrích từ tài liệu năm 2025: “Quyền sử dụng đất là toàn bộ các chi phí thực tế Tập đoàn đã chi ra có liên quan trực tiếp tới đất sử dụng, bao gồm: tiền chi ra để có quyền sử dụng đất, chi phí cho đến bù, giải phóng mặt bằng, san lắp mặt bằng, lệ phí trước bạ,... Quyền sử dụng đất được khấu hao theo phương pháp đường thẳng theo thời gian giao đất, quyền sử dụng đất không xác định thời hạn không được tính khấu hao.” [Doc_GMD_2025_Hopnhat, p.25-26]\n\nTrích từ tài liệu năm 2025: “Dự phòng phải thu khó đòi được lập cho từng khoản nợ phải thu khó đòi căn cứ vào dự kiến mức tổn thất có thể xảy ra.” [Doc_GMD_2025_Hopnhat, p.23]\n\nTrích từ tài liệu năm 2025: “(iv) Khoản vay Ngân hàng TNHH MTV United Overseas Bank (Việt Nam) để bổ sung vốn lưu động với lãi suất được quy định theo từng lần nhận nợ, thời hạn vay 12 tháng. Khoản vay này được đảm bảo bằng việc thế chấp một số khoản phải thu luân chuyển (xem thuyết minh số V.3).” [Doc_GMD_2025_Hopnhat, p.42-43]\n\n## Bên liên quan, rủi ro, sự kiện sau niên độ\n\nTrích từ tài liệu năm 2025: “Tập đoàn không có công nợ với các thành viên quản lý chủ chốt và các cá nhân có liên quan với các thành viên quản lý chủ chốt.” [Doc_GMD_2025_Hopnhat, p.49-50]\n\nChưa chọn được trích đoạn đủ nội dung cho cam kết và nghĩa vụ tiềm tàng; sự kiện phát sinh sau ngày kết thúc niên độ trong các đoạn đã truy xuất.\nGiới hạn truy xuất. Không tìm thấy nội dung về rủi ro thanh khoản tín dụng tỷ giá lãi suất trong các đoạn đã truy xuất của báo cáo năm 2025.",
+      "verification": {
+        "S1": {
+          "status": "passed",
+          "level": "deterministic"
+        },
+        "S2": {
+          "status": "passed",
+          "level": "deterministic"
+        },
+        "S3": {
+          "status": "passed",
+          "level": "deterministic"
+        },
+        "S4": {
+          "status": "passed",
+          "level": "deterministic"
+        },
+        "S5": {
+          "status": "passed",
+          "level": "deterministic"
+        },
+        "S6": {
+          "status": "passed",
+          "level": "deterministic"
+        },
+        "S7": {
+          "status": "passed",
+          "level": "deterministic"
+        }
+      }
+    }
+  ],
+  "automatic_checks_pass_count": 3,
+  "manual_review_pending_count": 1
+}

@@ -1,0 +1,228 @@
+{
+  "request": {
+    "ticker": "OIL",
+    "start_year": 2022,
+    "end_year": 2025,
+    "scope": "consolidated",
+    "report_type": "multi_year_financial_analysis",
+    "audience": "Nhà đầu tư",
+    "language": "vi",
+    "instructions": null
+  },
+  "outline": {
+    "sections": [
+      {
+        "section_id": "financing_cash_flow",
+        "title": "Dòng tiền tài chính",
+        "objective": "Đối chiếu tiền trả nợ gốc vay 2022–2025",
+        "research_tasks": [
+          {
+            "metric_name": null,
+            "item_code": "34",
+            "report_type": "CASH_FLOW",
+            "task_id": "oil_cash_flow_34_2022_2025",
+            "task_type": "time_series",
+            "start_year": 2022,
+            "end_year": 2025
+          }
+        ],
+        "status": "incomplete"
+      }
+    ]
+  },
+  "outline_version": 1,
+  "outline_approved_version": 1,
+  "research_results": {
+    "oil_cash_flow_34_2022_2025": {
+      "research_task_id": "oil_cash_flow_34_2022_2025",
+      "evidence_ids": [
+        "fact:c9a1d269420c7ac85b6a4cfd4cc26e3bbec872a739d9b955ef37b76314d08c36",
+        "fact:4a5bc0aa9721cd0d0613777d00d4d959f0a48feb5300ea5f4382d670b663639c",
+        "fact:42e64a0cecca259564932cd61e771cc80c594df2df17dc437580681b3c7a6e5d",
+        "fact:d8659946ea18d2c0d02b901be7a61262f3e8997128f615a63cdaef87a899c6f3:2e4b4b520a316cd6:1",
+        "fact:d8659946ea18d2c0d02b901be7a61262f3e8997128f615a63cdaef87a899c6f3:c6c22a84f97c785b:1"
+      ],
+      "status": "ambiguous",
+      "missing": [],
+      "warnings": [
+        "Multiple source rows for the same year; resolve conflicts before selecting a value.",
+        "multiple_matching_rows",
+        "period_inconsistency:2024->2025"
+      ],
+      "issues": [],
+      "candidates": [],
+      "safe_for_calculation": false,
+      "next_action": "declare_limitation"
+    }
+  },
+  "evidence_by_id": {
+    "fact:c9a1d269420c7ac85b6a4cfd4cc26e3bbec872a739d9b955ef37b76314d08c36": {
+      "evidence_id": "fact:c9a1d269420c7ac85b6a4cfd4cc26e3bbec872a739d9b955ef37b76314d08c36",
+      "kind": "fact",
+      "snapshot_version": "008db98b13c2cb13ece1f089b3e53781bd179eb560a38e670dd937bf81ffe86c",
+      "payload": {
+        "doc_id": "OIL_2022_Hopnhat",
+        "fact_index": 136,
+        "ticker": "OIL",
+        "fiscal_year": 2022,
+        "scope": "consolidated",
+        "report_type": "CASH_FLOW",
+        "code": "34",
+        "label": "Tiền trả nợ gốc vay",
+        "value": -22740964770411.0,
+        "raw_value": "(22.740.964.770.411)",
+        "unit": "VND",
+        "prior_year": -21731239596360.0,
+        "raw_prior": "(21.731.239.596.360)",
+        "suspect": false,
+        "source_file": "data/raw_docs/top_100/OIL/2022/OIL_2022_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+        "physical_page": 14,
+        "printed_page": null,
+        "citation_tag": "[Doc_OIL_2022_Hopnhat, p.14]",
+        "chunk_ids": [
+          "OIL_2022_Hopnhat_chunk_0034",
+          "OIL_2022_Hopnhat_chunk_0035",
+          "OIL_2022_Hopnhat_chunk_0036"
+        ]
+      }
+    },
+    "fact:4a5bc0aa9721cd0d0613777d00d4d959f0a48feb5300ea5f4382d670b663639c": {
+      "evidence_id": "fact:4a5bc0aa9721cd0d0613777d00d4d959f0a48feb5300ea5f4382d670b663639c",
+      "kind": "fact",
+      "snapshot_version": "008db98b13c2cb13ece1f089b3e53781bd179eb560a38e670dd937bf81ffe86c",
+      "payload": {
+        "doc_id": "OIL_2023_Hopnhat",
+        "fact_index": 135,
+        "ticker": "OIL",
+        "fiscal_year": 2023,
+        "scope": "consolidated",
+        "report_type": "CASH_FLOW",
+        "code": "34",
+        "label": "Tiền trả nợ gốc vay",
+        "value": -23462907365897.0,
+        "raw_value": "(23.462.907.365.897)",
+        "unit": "VND",
+        "prior_year": -22740964770411.0,
+        "raw_prior": "(22.740.964.770.411)",
+        "suspect": false,
+        "source_file": "data/raw_docs/top_100/OIL/2023/OIL_2023_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+        "physical_page": 12,
+        "printed_page": null,
+        "citation_tag": "[Doc_OIL_2023_Hopnhat, p.12]",
+        "chunk_ids": [
+          "OIL_2023_Hopnhat_chunk_0030",
+          "OIL_2023_Hopnhat_chunk_0031",
+          "OIL_2023_Hopnhat_chunk_0032"
+        ]
+      }
+    },
+    "fact:42e64a0cecca259564932cd61e771cc80c594df2df17dc437580681b3c7a6e5d": {
+      "evidence_id": "fact:42e64a0cecca259564932cd61e771cc80c594df2df17dc437580681b3c7a6e5d",
+      "kind": "fact",
+      "snapshot_version": "008db98b13c2cb13ece1f089b3e53781bd179eb560a38e670dd937bf81ffe86c",
+      "payload": {
+        "doc_id": "OIL_2024_Hopnhat",
+        "fact_index": 132,
+        "ticker": "OIL",
+        "fiscal_year": 2024,
+        "scope": "consolidated",
+        "report_type": "CASH_FLOW",
+        "code": "34",
+        "label": "Tiền trả nợ gốc vay",
+        "value": -32325320093339.0,
+        "raw_value": "(32.325.320.093.339)",
+        "unit": "VND",
+        "prior_year": -23462907365897.0,
+        "raw_prior": "(23.462.907.365.897)",
+        "suspect": false,
+        "source_file": "data/raw_docs/top_100/OIL/2024/OIL_2024_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+        "physical_page": 12,
+        "printed_page": "10",
+        "citation_tag": "[Doc_OIL_2024_Hopnhat, p.12]",
+        "chunk_ids": [
+          "OIL_2024_Hopnhat_chunk_0033",
+          "OIL_2024_Hopnhat_chunk_0034",
+          "OIL_2024_Hopnhat_chunk_0035"
+        ]
+      }
+    },
+    "fact:d8659946ea18d2c0d02b901be7a61262f3e8997128f615a63cdaef87a899c6f3:2e4b4b520a316cd6:1": {
+      "evidence_id": "fact:d8659946ea18d2c0d02b901be7a61262f3e8997128f615a63cdaef87a899c6f3:2e4b4b520a316cd6:1",
+      "kind": "fact",
+      "snapshot_version": "008db98b13c2cb13ece1f089b3e53781bd179eb560a38e670dd937bf81ffe86c",
+      "payload": {
+        "doc_id": "OIL_2025_Hopnhat",
+        "fact_index": 127,
+        "ticker": "OIL",
+        "fiscal_year": 2025,
+        "scope": "consolidated",
+        "report_type": "CASH_FLOW",
+        "code": "34",
+        "label": "Tiền trả nợ gốc vay (*)",
+        "value": -885348286243.0,
+        "raw_value": "(885.348.286.243)",
+        "unit": "VND",
+        "prior_year": -4170391674018.0,
+        "raw_prior": "(4.170.391.674.018)",
+        "suspect": false,
+        "source_file": "data/raw_docs/top_100/OIL/2025/OIL_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+        "physical_page": 13,
+        "printed_page": "11",
+        "citation_tag": "[Doc_OIL_2025_Hopnhat, p.13]",
+        "chunk_ids": [
+          "OIL_2025_Hopnhat_chunk_0031",
+          "OIL_2025_Hopnhat_chunk_0032",
+          "OIL_2025_Hopnhat_chunk_0033",
+          "OIL_2025_Hopnhat_chunk_0034"
+        ]
+      }
+    },
+    "fact:d8659946ea18d2c0d02b901be7a61262f3e8997128f615a63cdaef87a899c6f3:c6c22a84f97c785b:1": {
+      "evidence_id": "fact:d8659946ea18d2c0d02b901be7a61262f3e8997128f615a63cdaef87a899c6f3:c6c22a84f97c785b:1",
+      "kind": "fact",
+      "snapshot_version": "008db98b13c2cb13ece1f089b3e53781bd179eb560a38e670dd937bf81ffe86c",
+      "payload": {
+        "doc_id": "OIL_2025_Hopnhat",
+        "fact_index": 137,
+        "ticker": "OIL",
+        "fiscal_year": 2025,
+        "scope": "consolidated",
+        "report_type": "CASH_FLOW",
+        "code": "34",
+        "label": "Tiền trả nợ gốc vay",
+        "value": -39144671502995.0,
+        "raw_value": "(39.144.671.502.995)",
+        "unit": "VND",
+        "prior_year": -28154928419321.0,
+        "raw_prior": "(28.154.928.419.321)",
+        "suspect": false,
+        "source_file": "data/raw_docs/top_100/OIL/2025/OIL_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt",
+        "physical_page": 13,
+        "printed_page": "11",
+        "citation_tag": "[Doc_OIL_2025_Hopnhat, p.13]",
+        "chunk_ids": [
+          "OIL_2025_Hopnhat_chunk_0031",
+          "OIL_2025_Hopnhat_chunk_0032",
+          "OIL_2025_Hopnhat_chunk_0033",
+          "OIL_2025_Hopnhat_chunk_0034"
+        ]
+      }
+    }
+  },
+  "calculations_by_id": {},
+  "revision_counts": {
+    "financing_cash_flow": 0
+  },
+  "tool_call_counts": {
+    "oil_cash_flow_34_2022_2025": 1
+  },
+  "retry_counts": {
+    "oil_cash_flow_34_2022_2025": 0
+  },
+  "run_status": "incomplete",
+  "errors": [],
+  "final_report": "Không thể chọn một số liệu duy nhất từ các dòng nguồn sau:\n- 2025: Tiền trả nợ gốc vay (*) = -885348286243 VND; [Doc_OIL_2025_Hopnhat, p.13]; evidence_id=fact:d8659946ea18d2c0d02b901be7a61262f3e8997128f615a63cdaef87a899c6f3:2e4b4b520a316cd6:1\n- 2025: Tiền trả nợ gốc vay = -39144671502995 VND; [Doc_OIL_2025_Hopnhat, p.13]; evidence_id=fact:d8659946ea18d2c0d02b901be7a61262f3e8997128f615a63cdaef87a899c6f3:c6c22a84f97c785b:1",
+  "messages": [],
+  "section_drafts": [],
+  "verification_results": []
+}

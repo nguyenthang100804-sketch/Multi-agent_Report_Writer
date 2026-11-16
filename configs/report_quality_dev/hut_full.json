@@ -1,0 +1,37 @@
+{
+  "case_id": "hut_full",
+  "case_kind": "live_graph",
+  "corpus_version": "v2.1",
+  "request": {"ticker": "HUT", "start_year": 2022, "end_year": 2025, "scope": "consolidated", "audience": "Nhà đầu tư"},
+  "expected_planner_status": "ready",
+  "expected_run_status_phase_a": "incomplete",
+  "required_sections": ["S1", "S2", "S3", "S4", "S5"],
+  "required_points": [
+    {
+      "id": "HUT_REVENUE", "kind": "fact_series", "section_hint": "S3", "metric": "Doanh thu thuần",
+      "item_code": "10", "report_type": "INCOME_STATEMENT", "expected_research_status": "sufficient", "weight": "must",
+      "expected_values": {
+        "2022": {"value": "1073161354752", "unit": "VND", "doc_id": "HUT_2022_Hopnhat", "physical_page": 11, "source_file": "data/raw_docs/top_100/HUT/2022/HUT_2022_BCTC_Kiemtoan_Hopnhat_extracted.txt", "source_line": 414, "source_label": "Doanh thu thuần về bán hàng và cung cấp dịch vụ", "verified_against_source": true},
+        "2023": {"value": "10981750221964", "unit": "VND", "doc_id": "HUT_2023_Hopnhat", "physical_page": 11, "source_file": "data/raw_docs/top_100/HUT/2023/HUT_2023_BCTC_Kiemtoan_Hopnhat_extracted.txt", "source_line": 442, "source_label": "Doanh thu thuần về bán hàng và cung cấp dịch vụ", "verified_against_source": true},
+        "2024": {"value": "30228885059484", "unit": "VND", "doc_id": "HUT_2024_Hopnhat", "physical_page": 11, "source_file": "data/raw_docs/top_100/HUT/2024/HUT_2024_BCTC_Kiemtoan_Hopnhat_extracted.txt", "source_line": 454, "source_label": "Doanh thu thuần về bán hàng và cung cấp dịch vụ", "verified_against_source": true},
+        "2025": {"value": "36317437528063", "unit": "VND", "doc_id": "HUT_2025_Hopnhat", "physical_page": 11, "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt", "source_line": 429, "source_label": "Doanh thu thuần về bán hàng và cung cấp dịch vụ", "verified_against_source": true, "verified_against_pdf": true}
+      }
+    },
+    {
+      "id": "HUT_ASSETS", "kind": "fact_series", "section_hint": "S4", "metric": "Tổng tài sản",
+      "item_code": "270", "report_type": "BALANCE_SHEET", "expected_research_status": "sufficient", "weight": "must",
+      "expected_values": {
+        "2022": {"value": "11632371921053", "unit": "VND", "doc_id": "HUT_2022_Hopnhat", "physical_page": 9, "source_file": "data/raw_docs/top_100/HUT/2022/HUT_2022_BCTC_Kiemtoan_Hopnhat_extracted.txt", "source_line": 344, "source_label": "TỔNG CỘNG TÀI SẢN", "verified_against_source": true},
+        "2023": {"value": "26748999132286", "unit": "VND", "doc_id": "HUT_2023_Hopnhat", "physical_page": 9, "source_file": "data/raw_docs/top_100/HUT/2023/HUT_2023_BCTC_Kiemtoan_Hopnhat_extracted.txt", "source_line": 369, "source_label": "TỔNG CỘNG TÀI SẢN", "verified_against_source": true},
+        "2024": {"value": "28987313377347", "unit": "VND", "doc_id": "HUT_2024_Hopnhat", "physical_page": 9, "source_file": "data/raw_docs/top_100/HUT/2024/HUT_2024_BCTC_Kiemtoan_Hopnhat_extracted.txt", "source_line": 372, "source_label": "TỔNG CỘNG TÀI SẢN", "verified_against_source": true},
+        "2025": {"value": "52231240200353", "unit": "VND", "doc_id": "HUT_2025_Hopnhat", "physical_page": 9, "source_file": "data/raw_docs/top_100/HUT/2025/HUT_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt", "source_line": 355, "source_label": "TỔNG CỘNG TÀI SẢN", "verified_against_source": true, "verified_against_pdf": true}
+      }
+    },
+    {"id": "HUT_REVENUE_YOY_2025", "kind": "calculation", "calculation_id": "revenue:yoy:2025", "operation": "yoy", "of": "HUT_REVENUE", "start_year": 2024, "end_year": 2025, "rounding_decimals": 2, "expected_status": "ok", "expected_value": "20.14", "tolerance": "0.0001", "weight": "must"}
+  ],
+  "required_limitations": [],
+  "forbidden_claims": [
+    {"id": "CAUSE", "description": "Không khẳng định nguyên nhân biến động nếu không có nguồn giải thích."},
+    {"id": "ABSENCE", "description": "Không đồng nhất không tìm thấy đoạn truy xuất với không có trong toàn corpus."}
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "processed_dir": "data/processed_chunks_v2_1",
+  "facts_db": "data/facts_storage/financial_facts_v2_1.duckdb",
+  "collection_name": "vnfin_v2_1_bge_m3_v1",
+  "manifest": "configs/manifests/manifest_vnfin_v2_1_bge_m3_v1.json"
+}

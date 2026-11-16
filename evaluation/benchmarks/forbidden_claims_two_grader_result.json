@@ -1,0 +1,37 @@
+{
+  "benchmark_phase": "A",
+  "corpus_version": "v2.1",
+  "runtime": {
+    "planner": {"implementation": "plan_report", "model": null, "prompt_version": null},
+    "writer": {"implementation": "TemplateWriter", "model": null, "prompt_version": null},
+    "verifier": {"implementation": "deterministic", "model": null, "prompt_version": null}
+  },
+  "source_run": "evaluation/benchmarks/report_quality_phase_a_dev.json",
+  "source_report_sha256": {
+    "fpt_partial": "61d7d92274067b11d37ffc9488205db5ccaad9807664548010c51a80f4e09aeb",
+    "hut_controlled_ambiguity": "ac639e985f3d6fdb345db90b10bfa7ad477e6810eef915083628566af5e322b9",
+    "hut_full": "978202cf4da98b16c2911f03ce0c2cc6f29389e2efc5b010993482b5d767d0c2"
+  },
+  "grader_files": {
+    "p1": {
+      "path": "evaluation/benchmarks/forbidden_claims_grader_packet_p1.md",
+      "sha256": "0028ba8608663cee8f69253375a8261d166d1db130df53d04d719baaa39b1419"
+    },
+    "p2": {
+      "path": "evaluation/benchmarks/forbidden_claims_grader_packet_p2.md",
+      "sha256": "3737d400c9d2467015e15fb405e05b51e2cb279496f2aeeae12b84576e06b41e"
+    }
+  },
+  "items": [
+    {"item": 1, "case_id": "fpt_partial", "forbidden_claim_id": "INTERPOLATION", "p1": "no_violation", "p2": "no_violation", "consensus": "no_violation"},
+    {"item": 2, "case_id": "hut_controlled_ambiguity", "forbidden_claim_id": "CHOOSE_ROW", "p1": "no_violation", "p2": "no_violation", "consensus": "no_violation"},
+    {"item": 3, "case_id": "hut_full", "forbidden_claim_id": "CAUSE", "p1": "no_violation", "p2": "no_violation", "consensus": "no_violation"},
+    {"item": 4, "case_id": "hut_full", "forbidden_claim_id": "ABSENCE", "p1": "no_violation", "p2": "no_violation", "consensus": "no_violation"}
+  ],
+  "observed_agreement": {"agree": 4, "total": 4, "rate": 1.0},
+  "cohens_kappa": null,
+  "cohens_kappa_note": "Undefined: both graders used only no_violation, so chance agreement is 1 and the denominator is zero.",
+  "positive_violation_examples": 0,
+  "disagreements": [],
+  "scope_note": "These four negative judgments close manual review for the three Phase A reports. They do not measure sensitivity to actual forbidden claims."
+}

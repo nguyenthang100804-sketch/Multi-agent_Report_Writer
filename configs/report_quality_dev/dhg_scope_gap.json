@@ -1,0 +1,11 @@
+{
+  "case_id": "dhg_scope_gap",
+  "case_kind": "live_graph",
+  "corpus_version": "v2.1",
+  "request": {"ticker": "DHG", "start_year": 2022, "end_year": 2025, "scope": "consolidated", "audience": "Nhà đầu tư"},
+  "expected_planner_status": "needs_clarification",
+  "expected_run_status_phase_a": "needs_clarification",
+  "expected_stop_reason": "scope_or_year_missing",
+  "must_not_create_report": true,
+  "required_points": [], "required_limitations": [], "forbidden_claims": []
+}

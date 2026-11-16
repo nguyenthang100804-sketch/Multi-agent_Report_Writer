@@ -1,0 +1,15 @@
+{
+  "grader_instruction": "Do not send this key to graders before both independent ballots are locked.",
+  "corpus_version": "v2.1",
+  "runtime": {"base_writer": "TemplateWriter", "injected_text_model": null, "prompt_version": null},
+  "labels": [
+    {"item": 1, "category": "CAUSE", "expected": "no_violation"},
+    {"item": 2, "category": "ABSENCE", "expected": "violation"},
+    {"item": 3, "category": "INTERPOLATION", "expected": "no_violation"},
+    {"item": 4, "category": "CHOOSE_ROW", "expected": "violation"},
+    {"item": 5, "category": "CAUSE", "expected": "violation"},
+    {"item": 6, "category": "ABSENCE", "expected": "no_violation"},
+    {"item": 7, "category": "INTERPOLATION", "expected": "violation"},
+    {"item": 8, "category": "CHOOSE_ROW", "expected": "no_violation"}
+  ]
+}

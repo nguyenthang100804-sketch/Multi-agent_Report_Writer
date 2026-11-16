@@ -1,0 +1,93 @@
+{
+  "phase": "A",
+  "purpose": "grader sensitivity, not report quality",
+  "generated_at_utc": "2026-11-10T07:42:08.558051+00:00",
+  "corpus_version": "v2.1",
+  "runtime": {
+    "writer": "saved TemplateWriter fixture",
+    "model": null,
+    "prompt_version": null
+  },
+  "fixture_sha256": {
+    "hut_research_state.json": "245c9c5177d91cf53c182549e351739a423fdccd44abc8c030e12b3ea39d51fc",
+    "fpt_research_state.json": "2fd5b90460d9541d475ff34d9d8815e20d1b1a9351d0f2458cffdcb25827067b"
+  },
+  "clean_controls": {
+    "hut": true,
+    "fpt": true
+  },
+  "mutations": [
+    {
+      "mutation": "digit",
+      "case_id": "hut_full",
+      "expected_finding": "missing_output_value",
+      "actual_findings": [
+        "missing_output_value"
+      ],
+      "detected": true
+    },
+    {
+      "mutation": "year",
+      "case_id": "hut_full",
+      "expected_finding": "table_period",
+      "actual_findings": [
+        "table_period"
+      ],
+      "detected": true
+    },
+    {
+      "mutation": "unit",
+      "case_id": "hut_full",
+      "expected_finding": "table_unit",
+      "actual_findings": [
+        "table_unit"
+      ],
+      "detected": true
+    },
+    {
+      "mutation": "citation_page",
+      "case_id": "hut_full",
+      "expected_finding": "output_citation_mismatch",
+      "actual_findings": [
+        "output_citation_mismatch"
+      ],
+      "detected": true
+    },
+    {
+      "mutation": "missing_limitation_text",
+      "case_id": "fpt_partial",
+      "expected_finding": "missing_limitation_text",
+      "actual_findings": [
+        "missing_limitation_text"
+      ],
+      "detected": true
+    },
+    {
+      "mutation": "invented_cause",
+      "case_id": "hut_full",
+      "expected_finding": "causal_claim_without_note_support",
+      "actual_findings": [
+        "causal_claim_without_note_support"
+      ],
+      "detected": true
+    },
+    {
+      "mutation": "absolute_absence",
+      "case_id": "hut_full",
+      "expected_finding": "absolute_absence_claim",
+      "actual_findings": [
+        "absolute_absence_claim"
+      ],
+      "detected": true
+    },
+    {
+      "mutation": "missing_limitation_contract",
+      "case_id": "fpt_partial",
+      "expected_finding": "missing_limitation",
+      "actual_findings": [
+        "missing_limitation"
+      ],
+      "detected": true
+    }
+  ]
+}

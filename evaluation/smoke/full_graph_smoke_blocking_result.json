@@ -1,0 +1,154 @@
+{
+  "ticker": "HUT",
+  "corpus_version": "v2.1",
+  "verifier_mode": "blocking",
+  "events": [
+    {
+      "node": "planner",
+      "run_status": "awaiting_approval",
+      "used_fallback": false,
+      "section_count": 5,
+      "notes": [],
+      "note_details": []
+    },
+    {
+      "node": "__interrupt__"
+    },
+    {
+      "node": "approval",
+      "run_status": "running"
+    },
+    {
+      "node": "researcher",
+      "run_status": null,
+      "research_results": 27,
+      "evidence": 81
+    },
+    {
+      "node": "writer",
+      "run_status": null,
+      "drafts": 5,
+      "fallback_sections": [],
+      "errors": {
+        "1:S1:1": [
+          [
+            "duplicate_task_id"
+          ],
+          []
+        ],
+        "1:S2:1": [
+          []
+        ],
+        "1:S3:1": [
+          []
+        ],
+        "1:S4:1": [
+          []
+        ],
+        "1:S5:1": [
+          []
+        ]
+      }
+    },
+    {
+      "node": "verifier",
+      "run_status": "completed",
+      "verification": {
+        "(1, 'S1', 1)": {
+          "status": "passed",
+          "level": "full",
+          "issues": []
+        },
+        "(1, 'S2', 1)": {
+          "status": "passed",
+          "level": "full",
+          "issues": []
+        },
+        "(1, 'S3', 1)": {
+          "status": "passed",
+          "level": "full",
+          "issues": []
+        },
+        "(1, 'S4', 1)": {
+          "status": "passed",
+          "level": "full",
+          "issues": []
+        },
+        "(1, 'S5', 1)": {
+          "status": "passed",
+          "level": "full",
+          "issues": []
+        }
+      },
+      "semantic_status": {
+        "1:S1:1": "passed",
+        "1:S2:1": "passed",
+        "1:S3:1": "passed",
+        "1:S4:1": "passed",
+        "1:S5:1": "passed"
+      },
+      "verifier_errors": {
+        "1:S1:1": [
+          []
+        ],
+        "1:S2:1": [
+          []
+        ],
+        "1:S3:1": [
+          []
+        ],
+        "1:S4:1": [
+          []
+        ],
+        "1:S5:1": [
+          []
+        ]
+      },
+      "verifier_usage": {
+        "1:S1:1": {
+          "elapsed_ms": 2593,
+          "token_usage": {
+            "input_tokens": 2206,
+            "output_tokens": 62,
+            "total_tokens": 2268
+          }
+        },
+        "1:S2:1": {
+          "elapsed_ms": 3398,
+          "token_usage": {
+            "input_tokens": 5680,
+            "output_tokens": 242,
+            "total_tokens": 5922
+          }
+        },
+        "1:S3:1": {
+          "elapsed_ms": 3335,
+          "token_usage": {
+            "input_tokens": 3049,
+            "output_tokens": 170,
+            "total_tokens": 3219
+          }
+        },
+        "1:S4:1": {
+          "elapsed_ms": 3299,
+          "token_usage": {
+            "input_tokens": 3136,
+            "output_tokens": 170,
+            "total_tokens": 3306
+          }
+        },
+        "1:S5:1": {
+          "elapsed_ms": 2952,
+          "token_usage": {
+            "input_tokens": 2723,
+            "output_tokens": 134,
+            "total_tokens": 2857
+          }
+        }
+      }
+    }
+  ],
+  "after_first_invoke": "awaiting_approval",
+  "final_status": "completed",
+  "final_report_chars": 9225
+}

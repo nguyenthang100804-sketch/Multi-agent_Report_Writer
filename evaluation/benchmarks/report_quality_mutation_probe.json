@@ -1,0 +1,114 @@
+{
+  "phase": "A",
+  "purpose": "benchmark sensitivity probe, not system quality scoring",
+  "generated_at_utc": "2026-11-10T04:00:04.479409+00:00",
+  "corpus_version": "v2.1",
+  "runtime": {
+    "planner_model": null,
+    "writer_model": null,
+    "verifier_model": null,
+    "prompt_version": null,
+    "writer_implementation": "TemplateWriter"
+  },
+  "test_command": ".venv/Scripts/python.exe -B -m unittest tests.test_report_quality_mutations -q",
+  "test_sha256": "99e4c361d1aa741b7a14a34be04c599678bc8ed81fbec44860a3268c424c268d",
+  "fixture_sha256": {
+    "hut_research_state.json": "245c9c5177d91cf53c182549e351739a423fdccd44abc8c030e12b3ea39d51fc",
+    "fpt_research_state.json": "2fd5b90460d9541d475ff34d9d8815e20d1b1a9351d0f2458cffdcb25827067b"
+  },
+  "clean_fixture_pass_count": 2,
+  "mutation_count": 10,
+  "detected_count": 10,
+  "mutations": [
+    {
+      "mutation": "digit",
+      "case_id": "hut_full",
+      "expected_finding": "missing_output_value",
+      "actual_findings": [
+        "missing_output_value"
+      ],
+      "detected": true
+    },
+    {
+      "mutation": "year_header",
+      "case_id": "hut_full",
+      "expected_finding": "table_period",
+      "actual_findings": [
+        "table_period"
+      ],
+      "detected": true
+    },
+    {
+      "mutation": "year_prose",
+      "case_id": "hut_full",
+      "expected_finding": "calculation_output",
+      "actual_findings": [
+        "calculation_output"
+      ],
+      "detected": true
+    },
+    {
+      "mutation": "unit",
+      "case_id": "hut_full",
+      "expected_finding": "table_unit",
+      "actual_findings": [
+        "table_unit"
+      ],
+      "detected": true
+    },
+    {
+      "mutation": "citation_page",
+      "case_id": "hut_full",
+      "expected_finding": "output_citation_mismatch",
+      "actual_findings": [
+        "output_citation_mismatch"
+      ],
+      "detected": true
+    },
+    {
+      "mutation": "missing_limitation_text",
+      "case_id": "fpt_partial",
+      "expected_finding": "missing_limitation_text",
+      "actual_findings": [
+        "missing_limitation_text"
+      ],
+      "detected": true
+    },
+    {
+      "mutation": "invented_cause",
+      "case_id": "hut_full",
+      "expected_finding": "causal_claim_without_note_support",
+      "actual_findings": [
+        "causal_claim_without_note_support"
+      ],
+      "detected": true
+    },
+    {
+      "mutation": "cause_with_table_citation",
+      "case_id": "hut_full",
+      "expected_finding": "causal_claim_without_note_support",
+      "actual_findings": [
+        "causal_claim_without_note_support"
+      ],
+      "detected": true
+    },
+    {
+      "mutation": "absolute_absence",
+      "case_id": "hut_full",
+      "expected_finding": "absolute_absence_claim",
+      "actual_findings": [
+        "absolute_absence_claim"
+      ],
+      "detected": true
+    },
+    {
+      "mutation": "missing_limitation_contract",
+      "case_id": "fpt_partial",
+      "expected_finding": "missing_limitation",
+      "actual_findings": [
+        "missing_limitation"
+      ],
+      "detected": true
+    }
+  ]
+}

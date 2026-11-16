@@ -1,0 +1,150 @@
+{
+  "plan_version": "sv1-shadow-eval-plan-v3",
+  "created_at": "2026-11-10T09:05:30+07:00",
+  "status": "pre_registered_before_shadow_runs",
+  "verifier_mode": "shadow",
+  "locked_code_and_data_hashes": {
+    "verifier_prompt": {
+      "path": "src/agents/prompts/verifier_system.md",
+      "version": "sv1-v1",
+      "mtime": "2026-11-09T15:43:47.657776",
+      "sha256": "a3f2ff6f947ea3667ca8d67f85fc024a4057b26a74a6f6ddca280100e3ee4243"
+    },
+    "writer_citation_recall_validator": {
+      "path": "src/agents/citation_recall.py",
+      "mtime": "2026-11-10T08:51:46.565435",
+      "sha256": "7189e7322f31f1c7224c48a5870e875b55b3e98e4b9c04fa2836d501c7f39197",
+      "note": "Updated on 2026-11-10 to add 'day'/'nho nhat' to unsupported_extremum and add unsupported_trend. Earlier w4-v3, w4-v4, w4-v5 drafts were generated under older versions of citation_recall.py."
+    },
+    "llm_writer_module": {
+      "path": "src/agents/llm_writer.py",
+      "version": "w4-v5",
+      "mtime": "2026-11-09T14:47:40.738186",
+      "sha256": "111d37aa2fa2ecd98701719e90e1af200b9a15f9f3d9dcf3dacefdcc89de70bb"
+    },
+    "stage2_blind_labels_file": {
+      "path": "data/report_output/v2_1_fixtures/semantic_verifier_blind_labels_locked.json",
+      "mtime": "2026-11-09T16:27:31.942028",
+      "payload_sha256": "0cbb909e86bb6def2f3f65a8b7b45da155e0c6caa159e4bac6ed77c79c45c46b",
+      "file_sha256": "22bb021467aa4d7ac75025509bd708bde676e1084e20f875f28d672326096360"
+    },
+    "stage2_results_file": {
+      "path": "data/report_output/v2_1_fixtures/semantic_verifier_pre_integration_results.json",
+      "mtime": "2026-11-09T16:30:12.091890",
+      "file_sha256": "be5096c6d8cb4b879bd1ed03c4ceba8279ad32312ac0b6065f1eb9d898c12546"
+    }
+  },
+  "sampling_protocol": {
+    "source_split_file": "configs/eval_dataset_split.json",
+    "safety_audit_file": "docs/audits/metric-coverage-corpus-audit.md",
+    "excluded_already_used_dev_tickers": [
+      "BSR",
+      "BWE",
+      "DCM",
+      "FPT",
+      "GAS",
+      "GEX",
+      "GMD",
+      "HUT",
+      "QNS"
+    ],
+    "excluded_incompatible_dev_tickers": {
+      "banking_schema_0_of_12": [
+        "ABB",
+        "ACB",
+        "BAB",
+        "MSB"
+      ],
+      "scope_transition_0_of_12_consolidated": [
+        "DHG"
+      ]
+    },
+    "eligible_unused_dev_pool": [
+      "GVR",
+      "HAH",
+      "MSN",
+      "MVN",
+      "PET",
+      "PVT",
+      "SAB",
+      "SSH",
+      "VEA",
+      "VIC",
+      "VRE"
+    ],
+    "random_seed": 20261110,
+    "reproduction_command": "python -c \"import random; pool = ['GVR', 'HAH', 'MSN', 'MVN', 'PET', 'PVT', 'SAB', 'SSH', 'VEA', 'VIC', 'VRE']; print(random.Random(20261110).sample(pool, len(pool)))\"",
+    "full_seeded_permutation": [
+      "PET",
+      "MSN",
+      "SSH",
+      "PVT",
+      "VIC",
+      "HAH",
+      "VRE",
+      "SAB",
+      "GVR",
+      "VEA",
+      "MVN"
+    ],
+    "selected_shadow_tickers": [
+      "PET",
+      "MSN",
+      "SSH"
+    ],
+    "locked_expansion_order": [
+      "PVT",
+      "VIC",
+      "HAH",
+      "VRE",
+      "SAB",
+      "GVR",
+      "VEA",
+      "MVN"
+    ],
+    "expansion_stopping_rule": "Run full 7-section reports (S1-S7) on ['PET', 'MSN', 'SSH']. If total non-heading blocks with semantic_status=='passed' is < 64, append tickers strictly one-by-one from locked_expansion_order ('PVT' first, then 'VIC', then 'HAH', etc.), always including all 7 sections (S1-S7) of each added ticker until cumulative passed blocks >= 64.",
+    "sections_per_ticker": [
+      "S1",
+      "S2",
+      "S3",
+      "S4",
+      "S5",
+      "S6",
+      "S7"
+    ]
+  },
+  "pre_registered_thresholds": {
+    "false_positive_rate": {
+      "point_estimate_max": 0.05,
+      "wilson_95_upper_max": 0.10
+    },
+    "false_negative_rate_on_blind_passed_sample": {
+      "min_sampled_passed_blocks": 64,
+      "algebraic_min_for_wilson_6pct": 61,
+      "max_missed_real_errors": 0,
+      "wilson_95_upper_at_0_of_64": 0.0566,
+      "clopper_pearson_95_upper_at_0_of_64": 0.0560,
+      "upper_bound_threshold": 0.06
+    },
+    "implicit_causality_challenge_set": {
+      "min_cases": 30,
+      "authorship_governance": "Must be authored or reviewed/approved by an evaluator who did not author verifier_system.md before running the Verifier",
+      "description": "Causal or explanatory assertions in quantitative sections without explicit causal keywords (do, nho, boi vi, vi, dan den, gop phan)",
+      "wilson_95_lower_min": 0.70,
+      "min_hits_at_n30": 26,
+      "point_estimate_at_26_of_30": 0.8667
+    },
+    "repeatability_3x": {
+      "min_blocks": 70,
+      "max_flip_rate_point_estimate": 0.02,
+      "max_flipped_blocks_at_n70": 1,
+      "threshold_type": "operational_point_estimate_not_ci_bound"
+    },
+    "end_to_end_7_section_benchmark": {
+      "max_sequential_seconds_per_report": 45,
+      "max_parallel_seconds_per_report": 15,
+      "max_tokens_per_report": 35000,
+      "max_model_error_rate": 0.0
+    }
+  }
+}

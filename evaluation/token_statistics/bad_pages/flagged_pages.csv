@@ -1,0 +1,40 @@
+﻿ticker,year,file,page,status,n_tokens,valid_ratio,top_token,top_ratio,cjk_chars,latex_hits,snippet
+MSN,2022,MSN_2022_BCTC_Kiemtoan_Hopnhat_extracted.txt,7,HARD,108,0.491,the,0.046,0,0,"KPMG Auditor's Opinion In our opinion, the consolidated financial statements give a true a"
+VIC,2025,VIC_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt,126,HARD,206,0.505,ey,0.053,0,0,EY | Building a better working world EY is building a better working world by creating new
+VIC,2022,VIC_2022_BCTC_Kiemtoan_Hopnhat_extracted.txt,107,HARD,185,0.514,ey,0.059,0,0,"EY | Building a better working world EY exists to build a better working world, helping to"
+VIC,2023,VIC_2023_BCTC_Kiemtoan_Hopnhat_extracted.txt,114,HARD,185,0.514,ey,0.059,0,0,"EY | Building a better working world EY exists to build a better working world, helping to"
+VIC,2024,VIC_2024_BCTC_Kiemtoan_Hopnhat_extracted.txt,125,HARD,185,0.514,ey,0.059,0,0,"EY | Building a better working world EY exists to build a better working world, helping to"
+GEE,2025,GEE_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt,5,HARD,24,0.542,trân,0.042,0,0,Trân trọng báo cáo Respectfully report. Nơi nhận/ Recipients: - Như trên/ As above; - Lru:
+VIC,2025,VIC_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt,121,SOFT,205,0.561,công,0.073,0,0,PHỤ LỤC 1 – DANH SÁCH CÔNG TY CON TẠI NGÀY 31 THÁNG 12 NĂM 2025 (tiếp theo) TT | Tên công 
+GEX,2025,GEX_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt,5,SOFT,38,0.579,anh,0.053,0,0,Trân trọng báo cáo. Respectfully submitted. Nơi nhận/ Recipients: - Như trên/ As above; - 
+VIC,2024,VIC_2024_BCTC_Kiemtoan_Hopnhat_extracted.txt,119,SOFT,305,0.646,công,0.075,0,0,PHỤ LỰC 1 – DANH SÁCH CÔNG TY CON TẠI NGÀY 31 THÁNG 12 NĂM 2024 (tiếp theo) TT | Tên công 
+MSN,2022,MSN_2022_BCTC_Kiemtoan_Hopnhat_extracted.txt,27,SOFT,159,0.66,starck,0.038,0,0,STT | Tên công ty | Thuyết minh | Hoạt động chính | Trụ sở | Tỷ lệ lợi ích kinh tế 31/12/2
+HAH,2024,HAH_2024_BCTC_Kiemtoan_Hopnhat_extracted.txt,40,SOFT,141,0.667,bcc,0.071,0,0,| Tậpđoản gópvào BCC | Tỷ lệ | Công tyCổ phầnGiao nhậnVận tảiHải An | Tỷ lệ | Công tyCổ ph
+MSN,2022,MSN_2022_BCTC_Kiemtoan_Hopnhat_extracted.txt,60,SOFT,33,0.667,vnd,0.182,0,0,| 31/12/2022 | 1/1/2022 Số lượng | Giá gốcTriệu VND | Dự phònggiảm giảTriệu VND | Giá trịh
+HAH,2023,HAH_2023_BCTC_Kiemtoan_Hopnhat_extracted.txt,50,SOFT,91,0.67,com,0.055,0,0,"Now, for tomorrow A&C AUDITING AND CONSULTING CO., LTD. www.a-c.com.vn HEAD OFFICE 02 Truo"
+SAB,2023,SAB_2023_BCTC_Kiemtoan_Hopnhat_extracted.txt,2,SOFT,37,0.676,nơi,0.027,0,0,Nơi nhận/Recipients: - Như trên/As above; - Lưu: Phòng Quan hệ cổ đông/IR archive. ĐẠI DIỆ
+HAH,2022,HAH_2022_BCTC_Kiemtoan_Hopnhat_extracted.txt,54,SOFT,93,0.677,com,0.054,0,0,"Now, for tomorrow A&C AUDITING AND CONSULTING CO., LTD. www.a-c.com.vn Head Office : 02 Tr"
+MSN,2022,MSN_2022_BCTC_Kiemtoan_Hopnhat_extracted.txt,26,SOFT,142,0.683,ii,0.042,0,0,STT | Tên công ty | Thuyết minh | Hoạt động chính | Trụ sở | Tỷ lệ lợi ích kinh tế 31/12/2
+VIC,2024,VIC_2024_BCTC_Kiemtoan_Hopnhat_extracted.txt,52,SOFT,488,0.689,quad,0.152,0,2,12. CHI PHÍ TRÀ TRƯỚC | Đơn vị tính: triệu VND Số cuối năm | Số đầu năm Ngắn hạn Chi phí b
+GAS,2022,GAS_2022_BCTC_Kiemtoan_Hopnhat_extracted.txt,2,SOFT,162,0.691,gas,0.062,0,0,PETROVIETNAM PV GAS VIETNAM NATIONAL OIL AND GAS GROUP PETROVIETNAM GAS JOINT STOCK CORPOR
+GAS,2024,GAS_2024_BCTC_Kiemtoan_Hopnhat_extracted.txt,2,SOFT,175,0.691,gas,0.063,0,0,PETROVIETNAM PV GAS VIETNAM NATIONAL OIL AND GAS GROUP PETROVIETNAM GAS JOINT STOCK CORPOR
+MSN,2024,MSN_2024_BCTC_Kiemtoan_Hopnhat_extracted.txt,45,SOFT,249,0.695,công,0.044,0,0,5 GIAO DỊCH THANH LÝ CHỦ YÉU TRONG NĂM Mát quyền kiểm soát trong H.C. Starck Holding (Germ
+VIC,2023,VIC_2023_BCTC_Kiemtoan_Hopnhat_extracted.txt,109,SOFT,313,0.7,công,0.07,0,0,PHỤ LỤC 1 – DANH SÁCH CÔNG TY CON TẠI NGÀY 31 THÁNG 12 NĂM 2023 (tiếp theo) TT | Tên công 
+ABB,2025,ABB_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt,29,NOISE,880,0.924,text,0.074,0,44,"4. TÓM TẮT CÁC CHÍNH SÁCH KẾ TOÁN CHỦ YẾU (tiếp theo) 4.12 Góp vốn, đầu tư dài hạn Các kho"
+MCH,2024,MCH_2024_BCTC_Kiemtoan_Hopnhat_extracted.txt,15,NOISE,243,0.934,công,0.062,0,3,Thuyết minh báo cáo tài chính hợp nhất cho năm kết thúc ngày 31 tháng 12 năm 2024 (tiếp th
+NAB,2025,NAB_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt,29,NOISE,440,0.957,text,0.048,0,11,"3. TÓM TẮT CÁC CHÍNH SÁCH KẾ TOÁN CHỦ YẾU (tiếp theo) 3.11 Góp vốn, đầu tư dài hạn Các kho"
+PVI,2025,PVI_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt,22,NOISE,395,0.959,bảo,0.053,0,5,2 CÁC CHÍNH SÁCH KẾ TOÁN CHỦ YẾU (TIẾP THEO) 2.16 Dự phòng nghiệp vụ bảo hiểm (tiếp theo) 
+MSB,2023,MSB_2023_BCTC_Kiemtoan_Hopnhat_extracted.txt,25,NOISE,448,0.96,text,0.045,0,11,4. TÓM TẮT CÁC CHÍNH SÁCH KẾ TOÁN CHỦ YẾU (tiếp theo) 4.6 Chứng khoán kinh doanh Chứng kho
+NAB,2023,NAB_2023_BCTC_Kiemtoan_Hopnhat_extracted.txt,28,NOISE,603,0.965,các,0.032,0,11,"3. TÓM TẮT CÁC CHÍNH SÁCH KẾ TOÁN CHỦ YẾU (tiếp theo) 3.9 Góp vốn, đầu tư dài hạn Các khoả"
+VCR,2025,VCR_2025_BCTC_Kiemtoan_extracted.txt,19,NOISE,311,0.965,công,0.045,0,2,CÔNG TY CỔ PHẦN ĐẦU TƯ VÀ PHÁT TRIÊN DU LỊCH VINACONEX BÁO CÁO TÀI CHÍNH TÔNG HỢP 2. Phải 
+ABB,2023,ABB_2023_BCTC_Kiemtoan_Hopnhat_extracted.txt,27,NOISE,655,0.968,text,0.034,0,9,THUYẾT MINH BÁO CÁO TÀI CHÍNH HỢP NHẤT (tiếp theo) 4. TÓM TẮT CÁC CHÍNH SÁCH KẾ TOÁN CHỦ Y
+ABB,2022,ABB_2022_BCTC_Kiemtoan_Hopnhat_extracted.txt,27,NOISE,631,0.971,giá,0.032,0,11,THUYÊT MINH BÁO CÁO TÀI CHÍNH HỢP NHẤT (tiếp theo) 4. TÓM TẮT CÁC CHÍNH SÁCH KẾ TOÁN CHỦ Y
+MSB,2024,MSB_2024_BCTC_Kiemtoan_Hopnhat_extracted.txt,25,NOISE,640,0.973,text,0.025,0,11,"4. TÓM TẮT CÁC CHÍNH SÁCH KẾ TOÁN CHỦ YẾU (tiếp theo) 4.5 Phân loại nợ và mức trích, phươn"
+MSB,2025,MSB_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt,24,NOISE,641,0.973,text,0.027,0,11,"4. TÓM TẮT CÁC CHÍNH SÁCH KẾ TOÁN CHỦ YÉU (tiếp theo) 4.5 Phân loại nợ và mức trích, phươn"
+MSB,2022,MSB_2022_BCTC_Kiemtoan_Hopnhat_extracted.txt,24,NOISE,703,0.983,chứng,0.04,0,7,THUYẾT MINH BẢO CÁO TÀI CHÍNH HỢP NHẤT (tiếp theo) 4. TÓM TẮT CÁC CHÍNH SÁCH KẾ TOÁN CHỦ Y
+PVI,2025,PVI_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt,23,NOISE,573,0.983,bảo,0.059,0,2,2 CÁC CHÍNH SÁCH KẾ TOÁN CHỦ YẾU (TIẾP THEO) 2.16 Dự phòng nghiệp vụ bảo hiểm (tiếp theo) 
+NAB,2023,NAB_2023_BCTC_Kiemtoan_Hopnhat_extracted.txt,27,NOISE,465,0.991,chứng,0.026,0,2,THUYẾT MINH BẢO CẢO TÀI CHÍNH HỢP NHẤT (tiếp theo) 3. TÓM TẮT CÁC CHÍNH SÁCH KẾ TOÁN CHỦ Y
+ABB,2023,ABB_2023_BCTC_Kiemtoan_Hopnhat_extracted.txt,25,NOISE,492,0.994,trái,0.03,0,2,4. TÓM TẮT CÁC CHÍNH SÁCH KẾ TOÁN CHỦ YẾU (tiếp theo) 4.10 Chứng khoán đầu tư giữ đến ngày
+NAB,2022,NAB_2022_BCTC_Kiemtoan_Hopnhat_extracted.txt,27,NOISE,536,0.994,ngày,0.028,0,2,3. TÓM TẮT CÁC CHÍNH SÁCH KẾ TOÁN CHỦ YẾU (tiếp theo) 3.9 Chứng khoán đầu tư giữ đến ngày 
+ABB,2022,ABB_2022_BCTC_Kiemtoan_Hopnhat_extracted.txt,25,NOISE,568,0.995,trái,0.026,0,2,4. TÓM TẮT CÁC CHÍNH SÁCH KẾ TOÁN CHỦ YẾU (tiếp theo) 4.9 Chứng khoán đầu tư sẵn sàng để b
+ABB,2025,ABB_2025_BCTC_Kiemtoan_Hopnhat_extracted.txt,27,NOISE,491,0.998,phiếu,0.031,0,2,4. TÓM TẮT CÁC CHÍNH SÁCH KẾ TOÁN CHỦ YẾU (tiếp theo) 4.10 Chứng khoán đầu tư giữ đến ngày

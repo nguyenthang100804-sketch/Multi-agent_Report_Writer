@@ -1,0 +1,11 @@
+{
+  "case_id": "fox_outside_corpus",
+  "case_kind": "live_graph",
+  "corpus_version": "v2.1",
+  "request": {"ticker": "FOX", "start_year": 2022, "end_year": 2025, "scope": "consolidated", "audience": "Nhà đầu tư"},
+  "expected_planner_status": "rejected",
+  "expected_run_status_phase_a": "rejected",
+  "expected_stop_reason": "ticker_not_in_corpus",
+  "must_not_create_report": true,
+  "required_points": [], "required_limitations": [], "forbidden_claims": []
+}

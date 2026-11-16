@@ -1,0 +1,118 @@
+{
+  "ticker": "HUT",
+  "corpus_version": "v2.1",
+  "verifier_mode": "shadow",
+  "events": [
+    {
+      "node": "planner",
+      "run_status": "awaiting_approval",
+      "used_fallback": false,
+      "section_count": 5,
+      "notes": [],
+      "note_details": []
+    },
+    {
+      "node": "__interrupt__"
+    },
+    {
+      "node": "approval",
+      "run_status": "running"
+    },
+    {
+      "node": "researcher",
+      "run_status": null,
+      "research_results": 27,
+      "evidence": 81
+    },
+    {
+      "node": "writer",
+      "run_status": null,
+      "drafts": 5,
+      "fallback_sections": [],
+      "errors": {
+        "1:S1:1": [
+          [
+            "quote_not_substantive_or_not_verbatim"
+          ],
+          [
+            "duplicate_task_id"
+          ],
+          []
+        ],
+        "1:S2:1": [
+          [
+            "2 validation errors for QualitativeOutput\nblocks.1.quote\n  String should have at least 30 characters [type=string_too_short, input_value='CÔNG TY TNHH KIỂM TOÁN BDO', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.14/v/string_too_short\nblocks.5.quote\n  String should have at least 30 characters [type=string_too_short, input_value='CÔNG TY TNHH KIỂM TOÁN BDO', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.14/v/string_too_short"
+          ],
+          []
+        ],
+        "1:S3:1": [
+          []
+        ],
+        "1:S4:1": [
+          []
+        ],
+        "1:S5:1": [
+          []
+        ]
+      }
+    },
+    {
+      "node": "verifier",
+      "run_status": "incomplete",
+      "verification": {
+        "(1, 'S1', 1)": {
+          "status": "passed",
+          "level": "deterministic",
+          "issues": []
+        },
+        "(1, 'S2', 1)": {
+          "status": "passed",
+          "level": "deterministic",
+          "issues": []
+        },
+        "(1, 'S3', 1)": {
+          "status": "passed",
+          "level": "deterministic",
+          "issues": []
+        },
+        "(1, 'S4', 1)": {
+          "status": "passed",
+          "level": "deterministic",
+          "issues": []
+        },
+        "(1, 'S5', 1)": {
+          "status": "passed",
+          "level": "deterministic",
+          "issues": []
+        }
+      },
+      "semantic_status": {
+        "1:S1:1": "passed",
+        "1:S2:1": "passed",
+        "1:S3:1": "passed",
+        "1:S4:1": "passed",
+        "1:S5:1": "passed"
+      },
+      "verifier_errors": {
+        "1:S1:1": [
+          []
+        ],
+        "1:S2:1": [
+          []
+        ],
+        "1:S3:1": [
+          []
+        ],
+        "1:S4:1": [
+          []
+        ],
+        "1:S5:1": [
+          []
+        ]
+      }
+    }
+  ],
+  "after_first_invoke": "awaiting_approval",
+  "final_status": "incomplete",
+  "final_report_chars": 9448
+}

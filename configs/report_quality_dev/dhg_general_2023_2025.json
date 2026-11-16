@@ -1,0 +1,23 @@
+{
+  "case_id": "dhg_general_2023_2025",
+  "case_kind": "live_graph",
+  "corpus_version": "v2.1",
+  "request": {"ticker": "DHG", "start_year": 2023, "end_year": 2025, "scope": "general", "audience": "Nhà đầu tư"},
+  "expected_planner_status": "ready",
+  "expected_run_status_phase_a": "incomplete",
+  "required_sections": ["S1", "S2", "S3", "S4", "S5"],
+  "required_points": [
+    {
+      "id": "DHG_GENERAL_REVENUE", "kind": "fact_series", "section_hint": "S3", "metric": "Doanh thu thuần",
+      "item_code": "10", "report_type": "INCOME_STATEMENT", "expected_research_status": "sufficient", "weight": "must",
+      "expected_values": {
+        "2023": {"value": "5015395040721", "unit": "VND", "doc_id": "DHG_2023_Chung", "physical_page": 9, "source_file": "data/raw_docs/top_100/DHG/2023/DHG_2023_BCTC_Kiemtoan_extracted.txt", "source_line": 360, "source_label": "Doanh thu thuần về bán hàng", "verified_against_source": true},
+        "2024": {"value": "4884867655092", "unit": "VND", "doc_id": "DHG_2024_Chung", "physical_page": 11, "source_file": "data/raw_docs/top_100/DHG/2024/DHG_2024_BCTC_Kiemtoan_extracted.txt", "source_line": 328, "source_label": "Doanh thu thuần về bán hàng", "verified_against_source": true},
+        "2025": {"value": "5266962684050", "unit": "VND", "doc_id": "DHG_2025_Chung", "physical_page": 10, "source_file": "data/raw_docs/top_100/DHG/2025/DHG_2025_BCTC_Kiemtoan_extracted.txt", "source_line": 356, "source_label": "Doanh thu thuần về bán hàng", "verified_against_source": true}
+      }
+    },
+    {"id": "DHG_GENERAL_REVENUE_YOY_2025", "kind": "calculation", "calculation_id": "revenue:yoy:2025", "operation": "yoy", "of": "DHG_GENERAL_REVENUE", "start_year": 2024, "end_year": 2025, "rounding_decimals": 2, "expected_status": "ok", "expected_value": "7.82", "tolerance": "0.0001", "weight": "must"}
+  ],
+  "required_limitations": [],
+  "forbidden_claims": []
+}

@@ -1,0 +1,12 @@
+# Khóa trước khi gọi API giai đoạn Shadow (Pre-API Lock Manifest)
+# Thời điểm khóa: 2026-11-10T09:08:30+07:00
+# Ghi chú: Workspace hiện chưa khởi tạo Git (.git), do đó bản kê SHA-256 này được lưu thành file độc lập,
+# ghi vào phần mở đầu của docs/evaluation/semantic-verifier-evaluation.md và gửi trực tiếp cho người dùng
+# trước khi chạy bất kỳ lượt gọi API nào của giai đoạn Shadow.
+
+a3f2ff6f947ea3667ca8d67f85fc024a4057b26a74a6f6ddca280100e3ee4243  src/agents/prompts/verifier_system.md (sv1-v1, mtime 2026-11-09T15:43:47.657776)
+7189e7322f31f1c7224c48a5870e875b55b3e98e4b9c04fa2836d501c7f39197  src/agents/citation_recall.py (mtime 2026-11-10T08:51:46.565435)
+111d37aa2fa2ecd98701719e90e1af200b9a15f9f3d9dcf3dacefdcc89de70bb  src/agents/llm_writer.py (w4-v5, mtime 2026-11-09T14:47:40.738186)
+22bb021467aa4d7ac75025509bd708bde676e1084e20f875f28d672326096360  data/report_output/v2_1_fixtures/semantic_verifier_blind_labels_locked.json (payload_sha256=0cbb909e86bb6def2f3f65a8b7b45da155e0c6caa159e4bac6ed77c79c45c46b, mtime 2026-11-09T16:27:31.942028)
+be5096c6d8cb4b879bd1ed03c4ceba8279ad32312ac0b6065f1eb9d898c12546  data/report_output/v2_1_fixtures/semantic_verifier_pre_integration_results.json (mtime 2026-11-09T16:30:12.091890)
+b8264cb1b59488f37d36d7a4e9d1e079d205eefc7ba8cb472588be31bed62bf7  configs/semantic_verifier_shadow_eval_plan.json (sv1-shadow-eval-plan-v3)

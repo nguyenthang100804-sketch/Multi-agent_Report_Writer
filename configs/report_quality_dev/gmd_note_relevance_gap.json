@@ -1,0 +1,16 @@
+{
+  "case_id": "gmd_note_relevance_gap",
+  "case_kind": "live_graph",
+  "corpus_version": "v2.1",
+  "request": {"ticker": "GMD", "start_year": 2022, "end_year": 2025, "scope": "consolidated", "audience": "Kiểm toán"},
+  "expected_planner_status": "ready",
+  "expected_run_status_phase_a": "incomplete",
+  "required_sections": ["S1", "S2", "S3", "S4", "S5", "S6", "S7"],
+  "required_points": [
+    {"id": "GMD_FINANCIAL_RISKS_2025", "kind": "research_status", "task_id": "S7:financial_risks:2025", "expected_status": "no_evidence", "expected_missing_reason": "not_found_yet", "weight": "must"}
+  ],
+  "required_limitations": [],
+  "forbidden_claims": [
+    {"id": "NOTE_EXTRAPOLATION", "description": "Không biến đoạn truy xuất không liên quan thành kết luận về rủi ro tài chính."}
+  ]
+}

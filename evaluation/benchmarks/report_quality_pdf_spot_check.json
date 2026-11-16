@@ -1,0 +1,23 @@
+{
+  "corpus_version": "v2.1",
+  "review_method": "Direct visual inspection of rendered original PDF pages against locked OCR gold values; no text layer was available in these scanned PDFs.",
+  "source_pdfs": {
+    "HUT_2025": {
+      "path": "data/raw_docs/raw_pdf/3_hut_2026_4_2_943fbf9_vi_baocaotaichinh_2025_hn_sign.pdf",
+      "sha256": "997eb989b1bf2dfa0c45175434352121566ec4b1f0e6f4d7f8d447a5513856cd"
+    },
+    "FPT_2023": {
+      "path": "data/raw_docs/raw_pdf/FPT_Baocaotaichinh_2023_Kiemtoan_Hopnhat.pdf",
+      "sha256": "f9bb9157341f2adbd275d088794b2574586743119989321f9d261ca04376831e"
+    }
+  },
+  "checks": [
+    {"case_id": "hut_full", "point_id": "HUT_ASSETS", "fiscal_year": 2025, "item_code": "270", "pdf": "HUT_2025", "pdf_page": 9, "printed_page": "6", "label": "TỔNG CỘNG TÀI SẢN", "pdf_current_value": "52.231.240.200.353", "ocr_gold_value": "52231240200353", "unit": "VND", "matches": true, "stamp_or_signature_on_page": true, "overlaps_value_cell": false},
+    {"case_id": "hut_full", "point_id": "HUT_REVENUE", "fiscal_year": 2025, "item_code": "10", "pdf": "HUT_2025", "pdf_page": 11, "printed_page": "8", "label": "Doanh thu thuần về bán hàng và cung cấp dịch vụ", "pdf_current_value": "36.317.437.528.063", "ocr_gold_value": "36317437528063", "unit": "VND", "matches": true, "stamp_or_signature_on_page": true, "overlaps_value_cell": false},
+    {"case_id": "fpt_partial", "point_id": "FPT_REVENUE", "fiscal_year": 2023, "item_code": "10", "pdf": "FPT_2023", "pdf_page": 13, "printed_page": "9", "label": "Doanh thu thuần về bán hàng và cung cấp dịch vụ", "pdf_current_value": "52.617.900.827.385", "ocr_gold_value": "52617900827385", "unit": "VND", "matches": true, "stamp_or_signature_on_page": true, "overlaps_value_cell": false},
+    {"case_id": "fpt_partial", "point_id": "FPT_PARENT_PROFIT", "fiscal_year": 2023, "item_code": "61", "pdf": "FPT_2023", "pdf_page": 13, "printed_page": "9", "label": "Cổ đông của công ty mẹ", "pdf_current_value": "6.465.190.432.622", "ocr_gold_value": "6465190432622", "unit": "VND", "matches": true, "stamp_or_signature_on_page": true, "overlaps_value_cell": false}
+  ],
+  "checked_count": 4,
+  "matched_count": 4,
+  "scope_note": "The other ten OCR gold values were not visually checked against PDF. No target value cell was covered by a stamp or signature on these pages."
+}

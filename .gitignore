@@ -1,0 +1,74 @@
+# Secrets and local environment (keep shareable templates)
+.env
+.env.*
+!.env.example
+!.env.sample
+!.env.template
+*.pem
+*.key
+
+# Python environments, bytecode and caches
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+*.egg-info/
+.ipynb_checkpoints/
+
+# Frontend dependencies and generated assets
+node_modules/
+.next/
+.nuxt/
+.turbo/
+.vercel/
+coverage/
+*.tsbuildinfo
+
+# Local models, source corpus, parsed snapshots, databases and vector caches
+/models/
+/data/raw_docs/
+/data/backup_data/
+/data/processed_chunks*/
+/data/facts_storage/
+/data/qdrant_local/
+/data/vector_cache*/
+/data/report_output/
+*.duckdb
+*.duckdb.wal
+*.db
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+*.sqlite-wal
+*.sqlite-shm
+*.sqlite3-wal
+*.sqlite3-shm
+
+# Generated reports, build artifacts and temporary chart data
+/build/
+/dist/
+/output/
+/.chart-data-*/
+*.log
+*.tmp
+*.temp
+
+# OS and editor-local files
+.DS_Store
+Thumbs.db
+Desktop.ini
+.idea/
+.vscode/
+*.swp
+*.swo
+~$*
+
+# Keep configs, data/catalogs, evaluation results, docs, assets and lockfiles.

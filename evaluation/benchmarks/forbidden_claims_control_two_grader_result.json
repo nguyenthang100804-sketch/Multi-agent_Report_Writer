@@ -1,0 +1,120 @@
+{
+  "benchmark_phase": "A",
+  "corpus_version": "v2.1",
+  "control_packet": {
+    "path": "evaluation/benchmarks/forbidden_claims_control_packet.md",
+    "sha256": "f5f59b30cfe86c42be16e64bdf96cc47e4ddd0772c5eb37e7baee448a0775cd2"
+  },
+  "runtime": {
+    "base_writer": "TemplateWriter",
+    "injected_text_model": null,
+    "prompt_version": null
+  },
+  "generated_at_utc": "2026-11-10T04:40:41.248116+00:00",
+  "source_files": {
+    "p1": {
+      "path": "evaluation/benchmarks/forbidden_claims_control_packet_p1.md",
+      "sha256": "06cbd1f2336f8f14a4b200cbdbeaec899ae2d938a588a4dd45542785a297d639"
+    },
+    "p2": {
+      "path": "evaluation/benchmarks/forbidden_claims_control_packet_p2.md",
+      "sha256": "9b97e23ae8aa9e12b9bc9cca23eaccde97bdc412eaf7611445d170f1235de829"
+    }
+  },
+  "answer_key": {
+    "path": "evaluation/benchmarks/forbidden_claims_control_key.json",
+    "sha256": "3a0e61eff1d99b64bcff11bc27907ca9691971260791b218d234c5934efb76a1"
+  },
+  "items": [
+    {
+      "item": 1,
+      "category": "CAUSE",
+      "expected": "no_violation",
+      "p1": "no_violation",
+      "p2": "no_violation",
+      "both_correct": true
+    },
+    {
+      "item": 2,
+      "category": "ABSENCE",
+      "expected": "violation",
+      "p1": "violation",
+      "p2": "violation",
+      "both_correct": true
+    },
+    {
+      "item": 3,
+      "category": "INTERPOLATION",
+      "expected": "no_violation",
+      "p1": "no_violation",
+      "p2": "no_violation",
+      "both_correct": true
+    },
+    {
+      "item": 4,
+      "category": "CHOOSE_ROW",
+      "expected": "violation",
+      "p1": "violation",
+      "p2": "violation",
+      "both_correct": true
+    },
+    {
+      "item": 5,
+      "category": "CAUSE",
+      "expected": "violation",
+      "p1": "violation",
+      "p2": "violation",
+      "both_correct": true
+    },
+    {
+      "item": 6,
+      "category": "ABSENCE",
+      "expected": "no_violation",
+      "p1": "no_violation",
+      "p2": "no_violation",
+      "both_correct": true
+    },
+    {
+      "item": 7,
+      "category": "INTERPOLATION",
+      "expected": "violation",
+      "p1": "violation",
+      "p2": "violation",
+      "both_correct": true
+    },
+    {
+      "item": 8,
+      "category": "CHOOSE_ROW",
+      "expected": "no_violation",
+      "p1": "no_violation",
+      "p2": "no_violation",
+      "both_correct": true
+    }
+  ],
+  "per_grader": {
+    "p1": {
+      "true_positive": 4,
+      "false_negative": 0,
+      "true_negative": 4,
+      "false_positive": 0,
+      "sensitivity": 1.0,
+      "specificity": 1.0
+    },
+    "p2": {
+      "true_positive": 4,
+      "false_negative": 0,
+      "true_negative": 4,
+      "false_positive": 0,
+      "sensitivity": 1.0,
+      "specificity": 1.0
+    }
+  },
+  "agreement": {
+    "agree": 8,
+    "total": 8,
+    "observed": 1.0,
+    "chance_expected": 0.5,
+    "cohens_kappa": 1.0
+  },
+  "interpretation": "Curated balanced controls: four seeded violations and four clean examples. These results show both graders detected these specific examples, not general sensitivity on natural LLM output."
+}

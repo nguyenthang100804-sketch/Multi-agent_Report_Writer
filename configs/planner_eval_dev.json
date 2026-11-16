@@ -1,0 +1,33 @@
+{
+  "description": "Dev-only Planner cases; do not tune on the held-out company split.",
+  "cases": [
+    {
+      "case_id": "hut_full",
+      "request": {"ticker": "HUT", "start_year": 2022, "end_year": 2025, "audience": "Nhà đầu tư"},
+      "expected_status": "ready",
+      "required_sections": ["S1", "S2", "S3", "S4", "S5"]
+    },
+    {
+      "case_id": "gmd_full",
+      "request": {"ticker": "GMD", "start_year": 2022, "end_year": 2025, "audience": "Kiểm toán"},
+      "expected_status": "ready",
+      "required_sections": ["S1", "S2", "S3", "S4", "S5"]
+    },
+    {
+      "case_id": "fpt_partial_metrics",
+      "request": {"ticker": "FPT", "start_year": 2022, "end_year": 2025, "audience": "Nhà đầu tư"},
+      "expected_status": "ready",
+      "required_sections": ["S1", "S2", "S3", "S4"]
+    },
+    {
+      "case_id": "dhg_scope_gap",
+      "request": {"ticker": "DHG", "start_year": 2022, "end_year": 2025, "audience": "Nhà đầu tư"},
+      "expected_status": "needs_clarification"
+    },
+    {
+      "case_id": "fox_outside_corpus",
+      "request": {"ticker": "FOX", "start_year": 2022, "end_year": 2025, "audience": "Nhà đầu tư"},
+      "expected_status": "rejected"
+    }
+  ]
+}

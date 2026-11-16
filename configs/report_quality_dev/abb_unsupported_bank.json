@@ -1,0 +1,13 @@
+{
+  "case_id": "abb_unsupported_bank",
+  "case_kind": "live_graph",
+  "corpus_version": "v2.1",
+  "request": {"ticker": "ABB", "start_year": 2022, "end_year": 2025, "scope": "consolidated", "audience": "Nhà đầu tư"},
+  "expected_planner_status": "rejected",
+  "expected_run_status_phase_a": "rejected",
+  "expected_stop_reason": "unsupported_bank_codes",
+  "must_not_create_report": true,
+  "required_points": [],
+  "required_limitations": [],
+  "forbidden_claims": []
+}
