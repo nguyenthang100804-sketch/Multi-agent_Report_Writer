@@ -26,7 +26,7 @@ from src.tools.schemas import FactEvidence
 
 
 PROMPT_PATH = Path(__file__).parent / "prompts" / "writer_system.md"
-PROMPT_VERSION = "w4-v6"
+PROMPT_VERSION = "w4-v8"
 _HANDWRITTEN_UNIT = re.compile(
     r"^\s*\(?\s*(?:%|(?:nghìn\s+)?tỷ\b|triệu\b|đồng\b|điểm\s+phần\s+trăm\b)", re.I)
 _INTERNAL_ID = re.compile(r"\b[a-z]+(?:_[a-z]+)+(?:[:][\w-]+)*\b", re.I)
@@ -200,6 +200,40 @@ def _validate_templates(output: NarrativeOutput, menu: dict,
         if any(match[1].startswith(("E", "C:", "D:", "T:")) for match in matches) and not any(
             match[1].startswith(("Y:", "P:C:")) for match in matches):
             errors.append(f"{block.block_id}: missing_period_placeholder")
+    if menu["section_id"] in {"S4", "S5"}:
+        change_ids = {key for key, item in menu["calculations"].items()
+                      if item["operation"] in {"yoy", "difference", "cagr"}}
+        change_ids.update(menu["trends"])
+        if change_ids:
+            change_tokens = {f"{kind}:{key}" for key in change_ids
+                             for kind in ("C", "D", "T")}
+            has_comparison = False
+            for block in output.blocks:
+                tokens = [match[1] for match in TOKEN.finditer(block.template)]
+                if any(token in change_tokens for token in tokens):
+                    has_comparison = True
+                    break
+                facts = [menu["facts"].get(token.partition("|")[0]) for token in tokens
+                         if re.fullmatch(r"E[1-9]\d*(?:\|abs)?", token)]
+                years_by_metric = {}
+                for fact in facts:
+                    if fact:
+                        years_by_metric.setdefault(
+                            (fact["label"], fact["unit"]), set()).add(fact["fiscal_year"])
+                if any(len(years) > 1 for years in years_by_metric.values()):
+                    has_comparison = True
+                    break
+            if not has_comparison:
+                errors.append("missing_supported_period_comparison: include one "
+                              "supported change or same-metric comparison across years")
+    if menu["section_id"] == "S4":
+        cash_aliases = {alias for alias, item in menu["facts"].items()
+                        if item["label"] == "Tiền và các khoản tương đương tiền"}
+        if cash_aliases and not any(
+                match[1].partition("|")[0] in cash_aliases
+                for block in output.blocks for match in TOKEN.finditer(block.template)):
+            errors.append("missing_cash_metric: include cash and cash equivalents "
+                          "when sourced facts are available")
     return errors, warnings
 
 
@@ -272,6 +306,8 @@ def build_llm_writer(model: WriterModel, fallback=None, *, max_repairs: int = 2,
                 continue
             menu = build_placeholder_menu(section, state)
             view = build_section_view(section, state, reference)
+            section_view = view.model_dump_json(exclude_none=True)
+            response_schema = NarrativeOutput.model_json_schema()
             started = time.perf_counter()
             errors_by_attempt, warnings_by_attempt, feedback = [], [], []
             raw_outputs, block_counts, attempt_times = [], [], []
@@ -281,8 +317,8 @@ def build_llm_writer(model: WriterModel, fallback=None, *, max_repairs: int = 2,
                 emit("writer_attempt", f"{section.section_id}: Gemini đang viết lượt {attempt}")
                 attempt_started = time.perf_counter()
                 request = WriterRequest(system=system,
-                    section_view=view.model_dump_json(), feedback=feedback,
-                    response_schema=NarrativeOutput.model_json_schema())
+                    section_view=section_view, feedback=feedback,
+                    response_schema=response_schema)
                 try:
                     response = WriterResponse.model_validate(model.generate(request))
                     emit("writer_attempt_done", f"{section.section_id}: Gemini đã trả kết quả lượt {attempt}")

@@ -13,6 +13,20 @@ ROOT = Path(__file__).resolve().parents[2]
 
 
 class NoteGateAuditTests(unittest.TestCase):
+    def test_gmd_2025_loan_terms_survive_note_gate(self):
+        source = json.loads((ROOT / "data/processed_chunks_v2_1/GMD_2025_Hopnhat.json")
+                            .read_text(encoding="utf-8"))
+        chunks = {chunk["chunk_id"]: chunk["text"] for chunk in source["chunks"]}
+        task = NotesTask(task_id="S4:borrowings:2025",
+                         query="Điều khoản và kỳ hạn các khoản vay",
+                         fiscal_year=2025, sections=["NOTES"])
+        for suffix in ("0163", "0166", "0167"):
+            with self.subTest(chunk=suffix):
+                self.assertTrue(_note_matches_topic(
+                    task, chunks[f"GMD_2025_Hopnhat_chunk_{suffix}"]))
+        self.assertFalse(_note_matches_topic(
+            task, "Chính sách kế toán: các khoản vay được ghi nhận khi phát sinh."))
+
     def test_s7_gate_keeps_all_strict_direct_pairs(self):
         folder = ROOT / "data/report_output"
         labels = json.loads((folder / "s7_first_annotator_labels_v2_1.json")

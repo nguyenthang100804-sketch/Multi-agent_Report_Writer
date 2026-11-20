@@ -129,6 +129,11 @@ class TemplateWriterTests(unittest.TestCase):
                             self.assertRegex(block.template, r"\{\{(?:Y:|P:C:)")
                     self.assertGreaterEqual(sum(bool(b.claims) for b in draft.blocks), 3)
                     self.assertLessEqual(sum(bool(b.claims) for b in draft.blocks), 5)
+                    if section.section_id == "S4" and any(
+                            item["label"] == "Tiền và các khoản tương đương tiền"
+                            for item in build_placeholder_menu(section, state)["facts"].values()):
+                        self.assertIn("Tiền và các khoản tương đương tiền",
+                                      " ".join(block.text for block in draft.blocks))
                     result = verify_section_deterministically(
                         draft, state["request"], state["evidence_by_id"],
                         state["calculations_by_id"], state["research_results"],

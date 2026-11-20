@@ -127,6 +127,10 @@ class SemanticVerifierTests(unittest.TestCase):
             fake, sample["evidence_aliases"], section,
         )
         self.assertEqual(len(fake.requests), 1)
+        sent_view = json.loads(fake.requests[0].section_view)
+        self.assertEqual(sent_view["blocks"][0]["claims"][0]["report_type"],
+                         view.blocks[0].claims[0].report_type)
+        self.assertNotIn("operation", sent_view["blocks"][0]["claims"][0])
         self.assertEqual(result.level, "full")
         self.assertEqual(result.status, "passed")
         self.assertTrue(log.semantic_called)

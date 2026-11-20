@@ -26,7 +26,7 @@ from src.tools.metric_resolver import METRICS, metric_name_resolver, normalize_n
 from src.tools.schemas import FactEvidence, MetricResolverInput, NoteEvidence
 
 VERIFIER_PROMPT_PATH = Path(__file__).parent / "prompts" / "verifier_system.md"
-VERIFIER_PROMPT_VERSION = "sv1-v1"
+VERIFIER_PROMPT_VERSION = "sv1-v2"
 
 _MANUAL_CITATION = re.compile(r"\[[^\[\]]+\]")
 _NUMBER = re.compile(r"(?<![\w])[-+−]?\d[\d.,]*(?![\w])")
@@ -249,6 +249,7 @@ def _render_limitations(limitations: list, evidence: dict[str, EvidenceRecord],
               item.calculation_id in calculations}
     handled = set()
     lines = []
+    surveyed_emphasis_years = []
     grouped_gaps: dict[tuple, list[tuple]] = {}
     for item in gap_items:
         result = research_results.get(item.research_task_id)
@@ -258,6 +259,21 @@ def _render_limitations(limitations: list, evidence: dict[str, EvidenceRecord],
                       if task.task_id == item.research_task_id), None)
                 if section is not None else None)
         if isinstance(task, NotesTask):
+            if (":emphasis:" in task.task_id and task.sections == ["AUDIT_REPORT"] and
+                    result.status == "no_evidence" and result.missing and
+                    all(m.reason == "not_in_corpus" and
+                        m.description == "không tìm thấy trong toàn bộ mục kiểm toán đã trích xuất"
+                        for m in result.missing)):
+                surveyed_emphasis_years.append(task.fiscal_year)
+                continue
+            if (":financial_risks:" in task.task_id and result.missing and
+                    all(m.reason == "not_found_yet" and
+                        m.description.startswith("Rủi ro ") for m in result.missing)):
+                topics = ", ".join(m.description.lower() for m in result.missing)
+                lines.append(f"Giới hạn truy xuất. Chưa tìm thấy nội dung trực tiếp về "
+                             f"{topics} trong các đoạn đã truy xuất của báo cáo năm "
+                             f"{task.fiscal_year}.")
+                continue
             scope = ("toàn bộ mục kiểm toán đã trích xuất"
                      if task.sections == ["AUDIT_REPORT"] else
                      "các đoạn đã truy xuất")
@@ -289,6 +305,11 @@ def _render_limitations(limitations: list, evidence: dict[str, EvidenceRecord],
         label = _task_label(item.research_task_id, section)
         grouped_gaps.setdefault((years, issue), []).append((
             item.research_task_id, label + (f" (mã {code})" if code else ""), affected))
+    if surveyed_emphasis_years:
+        years = ", ".join(map(str, sorted(set(surveyed_emphasis_years))))
+        lines.append("Trong toàn bộ mục kiểm toán đã trích xuất của báo cáo năm " +
+                     years + ", chưa tìm thấy đoạn trình bày vấn đề nhấn mạnh " +
+                     "hoặc cơ sở ý kiến ngoại trừ.")
     for (years, issue), group in grouped_gaps.items():
         labels = " và ".join(item[1] for item in group)
         period = " năm " + ", ".join(map(str, years)) if years else ""
@@ -913,6 +934,8 @@ def verify_section_semantically(
         )
 
     system = VERIFIER_PROMPT_PATH.read_text(encoding="utf-8")
+    section_view = view.model_dump_json(exclude_none=True)
+    response_schema = SemanticVerificationOutput.model_json_schema()
     started = time.perf_counter()
     errors_by_attempt: list[list[str]] = []
     raw_outputs: list[str | None] = []
@@ -925,9 +948,9 @@ def verify_section_semantically(
         attempt_started = time.perf_counter()
         req = VerifierRequest(
             system=system,
-            section_view=view.model_dump_json(),
+            section_view=section_view,
             feedback=feedback,
-            response_schema=SemanticVerificationOutput.model_json_schema(),
+            response_schema=response_schema,
         )
         try:
             response = VerifierResponse.model_validate(verifier_model.verify(req))

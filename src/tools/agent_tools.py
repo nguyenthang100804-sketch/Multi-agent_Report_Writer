@@ -79,6 +79,22 @@ class AgentTools:
             LOGGER.exception("Reading audit section failed")
             return ToolResult(status="error", message="Audit-section read failed; no evidence was fabricated.")
 
+    def search_notes_candidates(self, arguments: dict[str, Any]) -> ToolResult:
+        """Researcher-only wider read; Planner's public tool still returns five chunks."""
+        try:
+            args = NotesSearchInput.model_validate(arguments)
+            if self.notes_retriever is None:
+                from .notes_retriever import HybridNotesRetriever
+                self.notes_retriever = HybridNotesRetriever()
+            chunks = self.notes_retriever.search(
+                args, limit=min(30, self.notes_retriever.candidate_pool_size))
+            return ToolResult(status="ok" if chunks else "not_found", chunks=chunks)
+        except ValidationError as exc:
+            return ToolResult(status="invalid_input", message=str(exc))
+        except Exception:
+            LOGGER.exception("Expanded notes search failed")
+            return ToolResult(status="error", message="Expanded notes search failed; no evidence was fabricated.")
+
     def _facts(self, args: FactQueryInput | TimeSeriesQueryInput) -> ToolResult:
         code, report_type = args.item_code, args.report_type
         if args.metric_name is not None:

@@ -1,6 +1,7 @@
 """Deterministic Researcher over the existing financial tools."""
 from __future__ import annotations
 
+import json
 import re
 from collections.abc import Callable
 
@@ -11,10 +12,11 @@ from src.agents.state import (
     ReportState, snapshot_version_for_db, snapshot_version_for_note_index,
 )
 from src.schemas.report_schema import (
-    CalculationResult, FactTask, NotesTask, RatioTask, TimeSeriesTask,
+    CalculationResult, FactTask, MissingItem, NotesTask, RatioTask, TimeSeriesTask,
     calculate_trend, record_tool_result,
 )
 from src.tools.agent_tools import AgentTools
+from src.tools.schemas import ToolResult
 
 
 NOTE_TOPIC_PHRASES = {
@@ -83,9 +85,11 @@ def _note_matches_topic(task: NotesTask, text: str) -> bool:
                     "tuan thu yeu cau cua cac chuan muc ke toan"))
     if topic == "borrowings":
         return any("vay" in (part := _normalize_note_text(paragraph)).split() and
-                   any(_has_phrase(part, phrase) for phrase in
-                       ("du no", "lai suat", "ngay dao han", "ky han")) and
-                   re.search(r"\d{1,3}(?:[.,]\d{3})+|\d+[.,]\d+\s*%", paragraph)
+                   ((any(_has_phrase(part, phrase) for phrase in
+                         ("du no", "lai suat", "ngay dao han", "ky han")) and
+                     re.search(r"\d{1,3}(?:[.,]\d{3})+|\d+[.,]\d+\s*%", paragraph)) or
+                    (_has_phrase(part, "thoi han vay") and
+                     re.search(r"\b\d+\s*(?:thang|nam)\b", part)))
                    for paragraph in text.split("\n\n"))
     if (topic == "financial_risks" and
             _has_phrase(normalized, "cac chinh sach ke toan chu yeu") and
@@ -107,6 +111,70 @@ def _prefetched_result(state: ReportState, name: str, args: dict, version: str):
                 all(observation.arguments.get(key) == args.get(key) for key in fields)):
             return observation.result
     return None
+
+
+FINANCIAL_RISK_QUERIES = (
+    "Rủi ro thanh khoản", "Rủi ro tín dụng", "Rủi ro tỷ giá", "Rủi ro lãi suất",
+)
+
+
+def _note_subqueries(task: NotesTask) -> list[str]:
+    if ":financial_risks:" in task.task_id:
+        return list(FINANCIAL_RISK_QUERIES)
+    parts = re.split(r"\s+và\s+|[,;/]", task.query, flags=re.IGNORECASE)
+    return [part.strip() for part in parts if len(part.split()) >= 3][:4]
+
+
+def _recover_note_result(tools: AgentTools, task: NotesTask, args: dict,
+                         first_result: ToolResult,
+                         search_candidates: Callable[[dict], ToolResult] | None = None
+                         ) -> ToolResult:
+    """One bounded recovery stage after the public top-five search."""
+    first = [chunk for chunk in first_result.chunks if _note_matches_topic(task, chunk.text)]
+    risks = (FINANCIAL_RISK_QUERIES if ":financial_risks:" in task.task_id else ())
+    covered = {query for query in risks if any(
+        _has_phrase(_normalize_note_text(chunk.text), _normalize_note_text(query))
+        for chunk in first)}
+    if (first and (not risks or len(covered) == len(risks))) or not hasattr(
+            tools, "search_notes_candidates"):
+        return first_result.model_copy(update={
+            "chunks": first, "status": first_result.status if first else "not_found"})
+
+    candidates = {chunk.chunk_id: chunk for chunk in first}
+    queries = ([task.query] if not first and not risks else []) + [
+        query for query in _note_subqueries(task)
+        if not risks or query not in covered]
+    failed = False
+    for query in dict.fromkeys(queries[:5]):
+        result = (search_candidates or tools.search_notes_candidates)(
+            {**args, "query": query})
+        if result.status in ("error", "invalid_input"):
+            failed = True
+            continue
+        for chunk in result.chunks:
+            if _note_matches_topic(task, chunk.text):
+                candidates.setdefault(chunk.chunk_id, chunk)
+
+    selected = []
+    if risks:
+        for query in risks:
+            match = next((chunk for chunk in candidates.values()
+                          if chunk.chunk_id not in {item.chunk_id for item in selected} and
+                          _has_phrase(_normalize_note_text(chunk.text),
+                                      _normalize_note_text(query))), None)
+            if match is not None:
+                selected.append(match)
+    selected.extend(chunk for chunk in candidates.values()
+                    if chunk.chunk_id not in {item.chunk_id for item in selected})
+    selected = selected[:5]
+    status = ("ok" if selected else "error" if failed else "not_found")
+    recovered = any(chunk.chunk_id not in {item.chunk_id for item in first}
+                    for chunk in selected)
+    return first_result.model_copy(update={
+        "status": status, "chunks": selected,
+        "message": ("expanded_search_recovered" if recovered else
+                    "expanded_search_no_new_evidence" if selected else
+                    "expanded_search_failed" if failed else "expanded_search_no_match")})
 
 
 def evidence_aliases(evidence_by_id: dict, existing: dict[str, str] | None = None
@@ -146,6 +214,18 @@ def build_researcher(tools: AgentTools, note_snapshot_version: str | None = None
         results = {}
         evidence = {}
         calculations = {}
+        query_cache = {}
+
+        def cached_candidates(args: dict):
+            key = ("search_notes_candidates", note_snapshot_version,
+                   json.dumps(args, ensure_ascii=False, sort_keys=True))
+            if key not in query_cache:
+                found = tools.search_notes_candidates(args)
+                if found.status not in ("error", "invalid_input"):
+                    query_cache[key] = found
+                return found
+            return query_cache[key]
+
         for section in state["outline"].sections:
             for task in section.research_tasks:
                 if isinstance(task, RatioTask):
@@ -170,28 +250,59 @@ def build_researcher(tools: AgentTools, note_snapshot_version: str | None = None
                         args.update(start_year=task.start_year, end_year=task.end_year)
                     version = fact_version
                 audit_section = isinstance(task, NotesTask) and task.sections == ["AUDIT_REPORT"]
-                tool_result = (None if audit_section else
-                               _prefetched_result(state, name, args, version))
+                cache_key = (("audit_section", version, request.ticker,
+                              task.fiscal_year, request.scope) if audit_section else
+                             (name, version,
+                              json.dumps(args, ensure_ascii=False, sort_keys=True)))
+                tool_result = query_cache.get(cache_key)
                 if tool_result is None:
-                    tool_result = (tools.read_audit_section(request.ticker, task.fiscal_year,
-                                                            request.scope) if audit_section else
-                                   tools.execute(name, args))
+                    tool_result = (None if audit_section else
+                                   _prefetched_result(state, name, args, version))
+                    if tool_result is None:
+                        tool_result = (tools.read_audit_section(request.ticker, task.fiscal_year,
+                                                                request.scope) if audit_section else
+                                       tools.execute(name, args))
+                    if tool_result.status not in ("error", "invalid_input"):
+                        query_cache[cache_key] = tool_result
                 if (audit_section and ":emphasis:" in task.task_id and
                         tool_result.status == "ok" and not any(
                             "emphasis" in chunk.topic_roles for chunk in tool_result.chunks)):
                     tool_result = tool_result.model_copy(update={
                         "status": "not_found", "chunks": [],
                         "message": "full_audit_section_surveyed_no_emphasis"})
-                if (isinstance(task, NotesTask) and
-                        not audit_section and tool_result.status in ("ok", "partial") and
-                        tool_result.chunks):
-                    chunks = [chunk for chunk in tool_result.chunks
-                              if _note_matches_topic(task, chunk.text)]
-                    tool_result = tool_result.model_copy(update={
-                        "chunks": chunks,
-                        "status": tool_result.status if chunks else "not_found",
-                    })
+                rejected_first = (isinstance(task, NotesTask) and not audit_section and
+                                  bool(tool_result.chunks) and not any(
+                                      _note_matches_topic(task, chunk.text)
+                                      for chunk in tool_result.chunks))
+                if (isinstance(task, NotesTask) and not audit_section and
+                        tool_result.status in ("ok", "partial", "not_found")):
+                    tool_result = _recover_note_result(
+                        tools, task, args, tool_result, cached_candidates)
                 result, records = record_tool_result(task, tool_result, version)
+                if isinstance(task, NotesTask) and not audit_section:
+                    warnings = list(result.warnings)
+                    if rejected_first:
+                        warnings.append("initial_candidates_rejected_by_topic_gate")
+                    if tool_result.message and tool_result.message.startswith("expanded_search_"):
+                        warnings.append(tool_result.message)
+                    if ":financial_risks:" in task.task_id and result.status != "error":
+                        missing_risks = [query for query in FINANCIAL_RISK_QUERIES
+                                         if not any(_has_phrase(
+                                             _normalize_note_text(chunk.text),
+                                             _normalize_note_text(query))
+                                             for chunk in tool_result.chunks)]
+                        if missing_risks:
+                            result = result.model_copy(update={
+                                "status": "partial" if records else "no_evidence",
+                                "missing": [MissingItem(description=query,
+                                                        reason="not_found_yet")
+                                            for query in missing_risks],
+                                "next_action": "declare_limitation"})
+                    elif (tool_result.message == "expanded_search_no_match" and
+                          result.status == "no_evidence"):
+                        result = result.model_copy(update={
+                            "next_action": "declare_limitation"})
+                    result = result.model_copy(update={"warnings": warnings})
                 results[task.task_id] = result
                 status = {"sufficient": "đủ dữ liệu", "partial": "dữ liệu một phần",
                           "no_evidence": "chưa tìm thấy bằng chứng", "ambiguous": "cần làm rõ",

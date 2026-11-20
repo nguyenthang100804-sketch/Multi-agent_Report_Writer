@@ -1,7 +1,7 @@
 """Researcher integration with the current fact corpus."""
 import unittest
 
-from src.agents.researcher import (_note_matches_topic, build_researcher,
+from src.agents.researcher import (_note_matches_topic, _recover_note_result, build_researcher,
                                    evidence_aliases, resolve_evidence_aliases)
 from src.schemas.report_schema import NotesTask, RatioTask, ReportOutline, ReportRequest, SectionPlan, TimeSeriesTask
 from src.storage.duckdb_manager import DEFAULT_DB_PATH
@@ -10,6 +10,165 @@ from src.tools.schemas import NoteEvidence, ToolResult
 
 
 class ResearcherTests(unittest.TestCase):
+    def test_identical_note_reads_are_reused_within_one_run(self):
+        request = ReportRequest(ticker="GMD", start_year=2025, end_year=2025,
+                                audience="demo")
+        query = "Điều khoản và kỳ hạn các khoản vay"
+        tasks = [NotesTask(task_id=f"{section}:borrowings:2025", query=query,
+                           fiscal_year=2025, sections=["NOTES"])
+                 for section in ("S4", "S7")]
+        outline = ReportOutline(sections=[SectionPlan(
+            section_id=section, title="Nguồn vốn", objective="Demo",
+            research_tasks=[task]) for section, task in zip(("S4", "S7"), tasks)])
+
+        class FakeTools:
+            db_path = DEFAULT_DB_PATH
+
+            def __init__(self):
+                self.public_reads = 0
+                self.expanded_reads = 0
+
+            def execute(self, name, args):
+                self.public_reads += 1
+                return ToolResult(status="not_found")
+
+            def search_notes_candidates(self, args):
+                self.expanded_reads += 1
+                return ToolResult(status="ok", chunks=[NoteEvidence(
+                    chunk_id="loan", doc_id="GMD_2025", ticker="GMD",
+                    fiscal_year=2025, scope="consolidated", section="NOTES",
+                    text="Khoản vay có thời hạn vay 60 tháng kể từ ngày giải ngân.",
+                    source_file="report.pdf", physical_pages=[43],
+                    printed_pages=["43"], citation_tag="[Doc_GMD_2025, p.43]")])
+
+        tools = FakeTools()
+        update = build_researcher(tools, "note-v1")({
+            "request": request, "outline": outline})
+        self.assertEqual(tools.public_reads, 1)
+        self.assertEqual(tools.expanded_reads, 2)
+        for task in tasks:
+            self.assertEqual(update["research_results"][task.task_id].evidence_ids,
+                             ["loan"])
+
+    def test_audit_section_read_is_reused_without_sharing_task_filter(self):
+        request = ReportRequest(ticker="HUT", start_year=2025, end_year=2025,
+                                audience="demo")
+        tasks = [NotesTask(task_id=f"S2:{topic}:2025", query=query,
+                           fiscal_year=2025, sections=["AUDIT_REPORT"])
+                 for topic, query in (("opinion", "Loại ý kiến kiểm toán"),
+                                      ("emphasis", "Vấn đề nhấn mạnh"))]
+        outline = ReportOutline(sections=[SectionPlan(
+            section_id="S2", title="Kiểm toán", objective="Demo",
+            research_tasks=tasks)])
+
+        class FakeTools:
+            db_path = DEFAULT_DB_PATH
+
+            def __init__(self):
+                self.reads = 0
+
+            def read_audit_section(self, ticker, fiscal_year, scope):
+                self.reads += 1
+                return ToolResult(status="ok", chunks=[NoteEvidence(
+                    chunk_id="opinion", doc_id="HUT_2025", ticker=ticker,
+                    fiscal_year=fiscal_year, scope=scope, section="AUDIT_REPORT",
+                    text="Theo ý kiến của chúng tôi, báo cáo phản ánh trung thực.",
+                    source_file="report.pdf", physical_pages=[7],
+                    printed_pages=["7"], citation_tag="[Doc_HUT_2025, p.7]",
+                    topic_roles=["opinion_conclusion"])])
+
+        tools = FakeTools()
+        update = build_researcher(tools, "note-v1")({
+            "request": request, "outline": outline})
+        self.assertEqual(tools.reads, 1)
+        self.assertEqual(update["research_results"][tasks[0].task_id].evidence_ids,
+                         ["opinion"])
+        self.assertEqual(update["research_results"][tasks[1].task_id].evidence_ids,
+                         [])
+
+    def test_failed_expanded_search_is_not_reported_as_missing_evidence(self):
+        task = NotesTask(task_id="S4:borrowings:2025",
+                         query="Điều khoản và kỳ hạn các khoản vay",
+                         fiscal_year=2025, sections=["NOTES"])
+
+        class FailedTools:
+            def search_notes_candidates(self, args):
+                return ToolResult(status="error", message="backend unavailable")
+
+        result = _recover_note_result(FailedTools(), task, {}, ToolResult(status="not_found"))
+        self.assertEqual(result.status, "error")
+
+    def test_note_recovery_checks_wider_candidates_after_topic_rejection(self):
+        task = NotesTask(task_id="S4:borrowings:2025",
+                         query="Điều khoản và kỳ hạn các khoản vay",
+                         fiscal_year=2025, sections=["NOTES"])
+        request = ReportRequest(ticker="GMD", start_year=2025, end_year=2025,
+                                audience="demo")
+        outline = ReportOutline(sections=[SectionPlan(
+            section_id="S4", title="Nguồn vốn", objective="Demo", research_tasks=[task])])
+
+        def chunk(cid, text):
+            return NoteEvidence(chunk_id=cid, doc_id="GMD_2025", ticker="GMD",
+                fiscal_year=2025, scope="consolidated", section="NOTES", text=text,
+                source_file="report.pdf", physical_pages=[43], printed_pages=["43"],
+                citation_tag="[Doc_GMD_2025, p.43]")
+
+        class FakeTools:
+            db_path = DEFAULT_DB_PATH
+            queries = []
+
+            def execute(self, name, args):
+                return ToolResult(status="ok", chunks=[chunk("off", "Chính sách ghi nhận doanh thu")])
+
+            def search_notes_candidates(self, args):
+                self.queries.append(args["query"])
+                return ToolResult(status="ok", chunks=[
+                    chunk("on", "Khoản vay có thời hạn vay 60 tháng kể từ ngày giải ngân.")])
+
+        tools = FakeTools()
+        update = build_researcher(tools, "note-v1")({"request": request, "outline": outline})
+        result = update["research_results"][task.task_id]
+        self.assertEqual(result.status, "sufficient")
+        self.assertEqual(result.evidence_ids, ["on"])
+        self.assertIn("initial_candidates_rejected_by_topic_gate", result.warnings)
+        self.assertIn("expanded_search_recovered", result.warnings)
+        self.assertLessEqual(len(tools.queries), 5)
+
+    def test_financial_risk_recovery_preserves_missing_subtopics(self):
+        task = NotesTask(task_id="S7:financial_risks:2025",
+                         query="Rủi ro thanh khoản tín dụng tỷ giá lãi suất",
+                         fiscal_year=2025, sections=["NOTES"])
+        request = ReportRequest(ticker="GMD", start_year=2025, end_year=2025,
+                                audience="demo")
+        outline = ReportOutline(sections=[SectionPlan(
+            section_id="S7", title="Rủi ro", objective="Demo", research_tasks=[task])])
+
+        class FakeTools:
+            db_path = DEFAULT_DB_PATH
+
+            def execute(self, name, args):
+                return ToolResult(status="not_found")
+
+            def search_notes_candidates(self, args):
+                query = args["query"]
+                if query not in ("Rủi ro thanh khoản", "Rủi ro tỷ giá"):
+                    return ToolResult(status="not_found")
+                return ToolResult(status="ok", chunks=[NoteEvidence(
+                    chunk_id=query, doc_id="GMD_2025", ticker="GMD",
+                    fiscal_year=2025, scope="consolidated", section="NOTES",
+                    text=f"Tập đoàn quản lý {query.lower()} theo chính sách nội bộ.",
+                    source_file="report.pdf", physical_pages=[50], printed_pages=["50"],
+                    citation_tag="[Doc_GMD_2025, p.50]")])
+
+        update = build_researcher(FakeTools(), "note-v1")({
+            "request": request, "outline": outline})
+        result = update["research_results"][task.task_id]
+        self.assertEqual(result.status, "partial")
+        self.assertEqual(len(result.evidence_ids), 2)
+        self.assertEqual(result.next_action, "declare_limitation")
+        self.assertEqual([item.description for item in result.missing],
+                         ["Rủi ro tín dụng", "Rủi ro lãi suất"])
+
     def test_note_gate_finds_opinion_not_heading_with_ocr_tolerance(self):
         task = NotesTask(task_id="S2:opinion:2025", query="Loại ý kiến kiểm toán",
                          fiscal_year=2025, sections=["AUDIT_REPORT"])

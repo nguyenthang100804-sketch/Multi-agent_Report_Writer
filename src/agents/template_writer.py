@@ -142,6 +142,14 @@ def build_template_writer():
                                   calculation.operation]
                     add(f"{prefix}{label} {period} là {{{{C:{key}}}}}.")
 
+            if group_id == "S4":
+                cash = [(alias, item) for alias, item in menu["facts"].items()
+                        if item["label"] == "Tiền và các khoản tương đương tiền"]
+                if cash:
+                    alias, _ = max(cash, key=lambda pair: pair[1]["fiscal_year"])
+                    add(f"Tiền và các khoản tương đương tiền {{{{Y:{alias}}}}} "
+                        f"đạt {{{{{alias}}}}}.")
+
             current = [draft.revision for draft in state.get("section_drafts", {}).values()
                        if draft.section_id == section.section_id and
                        draft.outline_version == state.get("outline_version", 1)]

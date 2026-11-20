@@ -58,6 +58,66 @@ def run_graph(state, model):
 
 
 class LLMWriterTests(unittest.TestCase):
+    def test_s4_s5_repair_single_year_narratives_before_acceptance(self):
+        state = fixture()
+        sections = [section for section in state["outline"].sections
+                    if section.section_id in {"S4", "S5"}]
+        state["outline"] = state["outline"].model_copy(update={"sections": sections})
+        scripts = {}
+        for section in sections:
+            menu = build_placeholder_menu(section, state)
+            latest = [(alias, item) for alias, item in menu["facts"].items()
+                      if item["fiscal_year"] == state["request"].end_year]
+            blocks = [{"block_id": f"b{index}",
+                       "template": f"{item['label']} {{{{Y:{alias}}}}} đạt {{{{{alias}}}}}."}
+                      for index, (alias, item) in enumerate(latest[:3], 1)]
+            scripts[section.section_id] = [json.dumps({"blocks": blocks})]
+        model = FakeWriterModel(state, scripts)
+        output = build_llm_writer(model, max_repairs=1)(state)
+        logs = {log.section_id: log for log in output["writer_run_logs"].values()}
+        for section_id in ("S4", "S5"):
+            self.assertEqual(logs[section_id].attempts, 2)
+            self.assertFalse(logs[section_id].used_fallback)
+            self.assertIn("missing_supported_period_comparison",
+                          " ".join(logs[section_id].errors_by_attempt[0]))
+
+    def test_s4_s5_require_a_supported_period_comparison(self):
+        state = fixture()
+        sections = {section.section_id: section for section in state["outline"].sections}
+        for section_id in ("S4", "S5"):
+            with self.subTest(section_id=section_id):
+                menu = build_placeholder_menu(sections[section_id], state)
+                latest = [(alias, item) for alias, item in menu["facts"].items()
+                          if item["fiscal_year"] == state["request"].end_year]
+                blocks = [{"block_id": f"b{index}",
+                           "template": f"{item['label']} {{{{Y:{alias}}}}} đạt {{{{{alias}}}}}."}
+                          for index, (alias, item) in enumerate(latest[:3], 1)]
+                output = NarrativeOutput.model_validate({"blocks": blocks})
+                errors, _ = _validate_templates(output, menu, state)
+                self.assertTrue(any("missing_supported_period_comparison" in error
+                                    for error in errors))
+                if section_id == "S4":
+                    self.assertIn("missing_cash_metric", " ".join(errors))
+                change_id = next(key for key, item in menu["calculations"].items()
+                                 if item["operation"] in {"yoy", "difference"})
+                blocks[0]["template"] = (f"Mức thay đổi của {latest[0][1]['label']} "
+                                          f"{{{{P:C:{change_id}}}}} là {{{{C:{change_id}}}}}.")
+                repaired = NarrativeOutput.model_validate({"blocks": blocks})
+                errors, _ = _validate_templates(repaired, menu, state)
+                self.assertFalse(any("missing_supported_period_comparison" in error
+                                     for error in errors))
+                if section_id == "S4":
+                    cash_alias, cash_item = next((alias, item) for alias, item in
+                                                 menu["facts"].items()
+                                                 if item["label"] ==
+                                                 "Tiền và các khoản tương đương tiền")
+                    blocks.append({"block_id": "b4", "template":
+                                   f"{cash_item['label']} {{{{Y:{cash_alias}}}}} "
+                                   f"đạt {{{{{cash_alias}}}}}."})
+                    covered = NarrativeOutput.model_validate({"blocks": blocks})
+                    errors, _ = _validate_templates(covered, menu, state)
+                    self.assertNotIn("missing_cash_metric", " ".join(errors))
+
     def test_signed_change_placeholder_and_direction_validation(self):
         root = ROOT / "data/report_output"
         for ticker in ("bwe", "dcm"):

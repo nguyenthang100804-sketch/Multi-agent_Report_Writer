@@ -16,7 +16,7 @@ from src.tools.schemas import NoteEvidence
 
 
 PROMPT_PATH = Path(__file__).parent / "prompts" / "qualitative_writer_system.md"
-PROMPT_VERSION = "w6-v2"
+PROMPT_VERSION = "w6-v4"
 
 
 def build_qualitative_view(section, state: dict) -> dict:
@@ -31,7 +31,24 @@ def build_qualitative_view(section, state: dict) -> dict:
             continue
         result = state["research_results"].get(task.task_id)
         available = []
-        for evidence_id in result.evidence_ids if result else []:
+        evidence_ids = result.evidence_ids if result else []
+        if task.sections == ["AUDIT_REPORT"] and ":opinion:" in task.task_id:
+            relevant = [evidence_id for evidence_id in evidence_ids
+                        if (record := evidence.get(evidence_id)) is not None and
+                        isinstance(record.payload, NoteEvidence) and
+                        set(record.payload.topic_roles) &
+                        {"opinion_conclusion", "opinion_basis", "emphasis"}]
+            if any("opinion_conclusion" in evidence[evidence_id].payload.topic_roles
+                   for evidence_id in relevant):
+                evidence_ids = relevant
+        elif task.sections == ["AUDIT_REPORT"] and ":auditor:" in task.task_id and evidence_ids:
+            signatures = [evidence_id for evidence_id in evidence_ids
+                          if (record := evidence.get(evidence_id)) is not None and
+                          isinstance(record.payload, NoteEvidence) and
+                          "signature" in record.payload.topic_roles]
+            if signatures:
+                evidence_ids = list(dict.fromkeys([evidence_ids[0], *signatures]))
+        for evidence_id in evidence_ids:
             record = evidence.get(evidence_id)
             alias = aliases_by_id.get(evidence_id)
             if alias is None or record is None or not isinstance(record.payload, NoteEvidence):
@@ -49,6 +66,23 @@ def build_qualitative_view(section, state: dict) -> dict:
             "objective": section.objective,
             "subsections": [item.model_dump(mode="json") for item in section.subsections],
             "tasks": tasks, "chunks": chunks}
+
+
+def _discard_unusable_blocks(output: QualitativeOutput) -> tuple[QualitativeOutput, list[str]]:
+    """Keep valid candidates when a response repeats a task or quotes a table row."""
+    selected = []
+    seen_tasks = set()
+    warnings = []
+    for block in output.blocks:
+        if block.quote.count("|") >= 2:
+            warnings.append(f"{block.task_id}: table_quote_dropped")
+            continue
+        if block.task_id in seen_tasks:
+            warnings.append(f"{block.task_id}: duplicate_task_id_dropped")
+            continue
+        selected.append(block)
+        seen_tasks.add(block.task_id)
+    return output.model_copy(update={"blocks": selected}), warnings
 
 
 def _compose(output: QualitativeOutput, section, state: dict,
@@ -108,13 +142,16 @@ def write_qualitative_section(model: WriterModel, section, state: dict,
     accepted = None
     feedback = []
     if view["chunks"]:
+        system = PROMPT_PATH.read_text(encoding="utf-8")
+        section_view = json.dumps(view, ensure_ascii=False, separators=(",", ":"))
+        response_schema = QualitativeOutput.model_json_schema()
         for _ in range(max_repairs + 1):
             attempt_started = time.perf_counter()
             request = WriterRequest(
-                system=PROMPT_PATH.read_text(encoding="utf-8"),
-                section_view=json.dumps(view, ensure_ascii=False),
+                system=system,
+                section_view=section_view,
                 feedback=feedback,
-                response_schema=QualitativeOutput.model_json_schema())
+                response_schema=response_schema)
             try:
                 response = WriterResponse.model_validate(model.generate(request))
             except Exception as exc:
@@ -130,6 +167,7 @@ def write_qualitative_section(model: WriterModel, section, state: dict,
             try:
                 output = QualitativeOutput.model_validate_json(response.text)
                 block_counts.append(len(output.blocks))
+                output, dropped_warnings = _discard_unusable_blocks(output)
                 if not output.blocks:
                     raise ValueError("no_qualitative_blocks")
                 candidate = _compose(output, section, state, fallback)
@@ -139,8 +177,9 @@ def write_qualitative_section(model: WriterModel, section, state: dict,
                     state["evidence_aliases"], section)
                 errors = [f"{issue.error_type}: {issue.reason}"
                           for issue in checked.issues if issue.severity == "error"]
-                warnings = [f"{issue.error_type}: {issue.reason}"
-                            for issue in checked.issues if issue.severity == "warning"]
+                warnings = dropped_warnings + [
+                    f"{issue.error_type}: {issue.reason}"
+                    for issue in checked.issues if issue.severity == "warning"]
                 if checked.status == "passed" and not errors:
                     accepted = candidate
             except Exception as exc:

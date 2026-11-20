@@ -4,6 +4,8 @@ import unittest
 from pathlib import Path
 
 from src.agents.llm_writer import build_llm_writer
+from src.agents.qualitative_llm_writer import build_qualitative_view
+from src.agents.note_excerpts import excerpt_span
 from src.schemas.report_schema import SubsectionPlan
 from src.agents.state import state_from_json
 from src.agents.verification import verify_section_deterministically
@@ -53,6 +55,112 @@ class SelectingModel:
 
 
 class QualitativeLLMWriterTests(unittest.TestCase):
+    def test_repeated_task_is_dropped_without_another_model_call(self):
+        state, _ = fpt_s7_state()
+
+        class RepeatingModel(SelectingModel):
+            def generate(self, request):
+                response = super().generate(request)
+                output = json.loads(response.text)
+                duplicate = {**output["blocks"][0], "block_id": "b2"}
+                output["blocks"].append(duplicate)
+                return WriterResponse(text=json.dumps(output, ensure_ascii=False))
+
+        model = RepeatingModel()
+        output = build_llm_writer(model, max_repairs=1)(state)
+        log = next(iter(output["writer_run_logs"].values()))
+        draft = next(iter(output["section_drafts"].values()))
+        self.assertEqual(len(model.calls), 1)
+        self.assertFalse(log.used_fallback)
+        self.assertEqual(len(draft.blocks), 2)
+        self.assertIn("duplicate_task_id_dropped", log.warnings_by_attempt[0][0])
+
+    def test_table_quote_is_dropped_without_retrying_valid_blocks(self):
+        state = state_from_json((ROOT / "writer_verifier_samples/HUT_state.json")
+                                .read_text(encoding="utf-8"))
+        section = next(item for item in state["outline"].sections
+                       if item.section_id == "S6")
+        state["outline"] = state["outline"].model_copy(update={"sections": [section]})
+
+        class TableModel:
+            calls = 0
+
+            def generate(self, request):
+                self.calls += 1
+                view = json.loads(request.section_view)
+                task = next(item for item in view["tasks"]
+                            if ":depreciation:" in item["task_id"])
+                alias = next(alias for alias in task["evidence_aliases"]
+                             if excerpt_span(section.research_tasks[1],
+                                             view["chunks"][alias]["text"]) is not None)
+                source = view["chunks"][alias]["text"]
+                start, end = excerpt_span(section.research_tasks[1], source)
+                table_task = next(item for item in view["tasks"]
+                                  if ":borrowing_policy:" in item["task_id"])
+                blocks = [{"block_id": "b1", "task_id": task["task_id"],
+                           "evidence_alias": alias, "quote": source[start:end],
+                           "observation": "Tài sản BOT được trích khấu hao theo tỷ trọng doanh thu."},
+                          {"block_id": "b2", "task_id": table_task["task_id"],
+                           "evidence_alias": table_task["evidence_aliases"][0],
+                           "quote": "Kỳ hạn | Lãi suất | Khoản vay có thời hạn 60 tháng.",
+                           "observation": "Khoản vay có kỳ hạn xác định."}]
+                return WriterResponse(text=json.dumps({"blocks": blocks},
+                                                      ensure_ascii=False))
+
+        model = TableModel()
+        output = build_llm_writer(model, max_repairs=1)(state)
+        log = next(iter(output["writer_run_logs"].values()))
+        self.assertEqual(model.calls, 1)
+        self.assertFalse(log.used_fallback)
+        self.assertIn("table_quote_dropped", log.warnings_by_attempt[0][0])
+
+    def test_auditor_view_uses_header_and_signature_chunks(self):
+        state = state_from_json((ROOT / "writer_verifier_samples/HUT_state.json")
+                                .read_text(encoding="utf-8"))
+        section = next(item for item in state["outline"].sections
+                       if item.section_id == "S2")
+        view = build_qualitative_view(section, state)
+        all_ids = {evidence_id for task in section.research_tasks
+                   for evidence_id in state["research_results"][task.task_id].evidence_ids}
+        self.assertLess(len(view["chunks"]), len(all_ids))
+        for task_view in view["tasks"]:
+            if ":auditor:" not in task_view["task_id"]:
+                continue
+            self.assertLessEqual(len(task_view["evidence_aliases"]), 2)
+            self.assertTrue(any("signature" in state["evidence_by_id"][
+                state["evidence_aliases"][alias]].payload.topic_roles
+                for alias in task_view["evidence_aliases"]))
+
+    def test_audit_opinion_view_keeps_relevant_source_passages(self):
+        state = state_from_json((ROOT / "writer_verifier_samples/HUT_state.json")
+                                .read_text(encoding="utf-8"))
+        section = next(item for item in state["outline"].sections
+                       if item.section_id == "S2")
+        opinion_tasks = [task for task in section.research_tasks
+                         if ":opinion:" in task.task_id]
+        section = section.model_copy(update={"research_tasks": opinion_tasks})
+        view = build_qualitative_view(section, state)
+        all_ids = {evidence_id for task in opinion_tasks
+                   for evidence_id in state["research_results"][task.task_id].evidence_ids}
+        all_chars = sum(len(state["evidence_by_id"][evidence_id].payload.text)
+                        for evidence_id in all_ids)
+        shown_chars = sum(len(chunk["text"]) for chunk in view["chunks"].values())
+        self.assertLess(shown_chars, all_chars)
+        for task_view in view["tasks"]:
+            self.assertTrue(task_view["evidence_aliases"])
+            for alias in task_view["evidence_aliases"]:
+                payload = state["evidence_by_id"][state["evidence_aliases"][alias]].payload
+                self.assertTrue(set(payload.topic_roles) &
+                                {"opinion_conclusion", "opinion_basis", "emphasis"})
+        first_ids = state["research_results"][opinion_tasks[0].task_id].evidence_ids
+        for evidence_id in first_ids:
+            roles = state["evidence_by_id"][evidence_id].payload.topic_roles
+            if "opinion_conclusion" in roles:
+                state["evidence_by_id"][evidence_id].payload.topic_roles = []
+        untagged_view = build_qualitative_view(section, state)
+        self.assertEqual(len(untagged_view["tasks"][0]["evidence_aliases"]),
+                         len(first_ids))
+
     def test_verifier_menu_accepts_an_exact_model_selected_note_span(self):
         state, section = fpt_s7_state()
         menu = build_placeholder_menu(section, state)
@@ -83,7 +191,7 @@ class QualitativeLLMWriterTests(unittest.TestCase):
         self.assertEqual(json.loads(model.calls[0].section_view)["subsections"][0]["title"],
                          "Rủi ro tỷ giá")
         self.assertFalse(log.used_fallback)
-        self.assertEqual(log.prompt_version, "w6-v2")
+        self.assertEqual(log.prompt_version, "w6-v4")
         self.assertEqual(log.block_counts_by_attempt, [1])
         self.assertIsNotNone(log.raw_outputs_by_attempt[0])
         self.assertIn("Tập đoàn dùng giao dịch ngoại tệ", draft.blocks[1].text)

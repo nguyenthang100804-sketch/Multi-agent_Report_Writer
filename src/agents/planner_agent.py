@@ -20,7 +20,7 @@ from src.tools.schemas import MetricResolverInput
 from src.tools.schemas import FactQueryInput, NotesSearchInput, TimeSeriesQueryInput
 
 PROMPT_PATH = Path(__file__).parent / "prompts" / "planner_system.md"
-PROMPT_VERSION = "v5"
+PROMPT_VERSION = "v6"
 
 
 def _tool_argument_schemas() -> dict:
@@ -195,7 +195,14 @@ def build_planner_agent(model: PlannerModel, tools: AgentTools,
                 "turn_format": {"observe": {"action": "observe", "tool_calls": [
                     {"tool_name": "name", "arguments": {}}]},
                     "propose": {"action": "propose", "proposal": {
-                        "outline": "ReportOutline", "decisions": [], "notes": []}}}}
+                        "outline": "ReportOutline", "decisions": [], "notes": []}},
+                    "decision_item_format": {"action": "keep|omit|merge|split|add",
+                                             "reason": "Lý do", "basis": "data|audience|instruction",
+                                             "template_section_ids": [],
+                                             "resulting_section_ids": [],
+                                             "observation_ids": []},
+                    "note_item_format": {"code": "Mã ghi chú",
+                                         "message": "Nội dung", "section_id": "S1"}}}
         history = [base]
         call_count = 0
         repair_count = 0

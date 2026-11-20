@@ -90,8 +90,10 @@ class HybridNotesRetriever:
         bm25.index_chunks(list(chunks.values()))
         self.chunks, self.bm25 = chunks, bm25
 
-    def search(self, args: NotesSearchInput) -> list[NoteEvidence]:
-        """Return at most five citation-bearing chunks; errors propagate to tools."""
+    def search(self, args: NotesSearchInput, *, limit: int = 5) -> list[NoteEvidence]:
+        """Return ranked citation-bearing chunks; the public tool keeps its five-chunk cap."""
+        if not 1 <= limit <= self.candidate_pool_size:
+            raise ValueError("limit must be within the candidate pool")
         self._prepare_corpus()
         eligible = {
             cid for cid, c in self.chunks.items()
@@ -123,7 +125,7 @@ class HybridNotesRetriever:
         sparse = self.bm25.search(
             args.query, top_k=self.candidate_pool_size, filter_ticker=args.ticker,
             filter_year=args.fiscal_year, filter_scope=args.scope, filter_sections=args.sections)
-        ranked_ids = rrf_fusion(dense, sparse, 5)
+        ranked_ids = rrf_fusion(dense, sparse, limit)
         if not ranked_ids:
             return []
         return [NoteEvidence(**{key: self.chunks[cid][key] for key in (

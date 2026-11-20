@@ -150,6 +150,58 @@ class FakeModels:
 
 
 class PlannerAgentTests(unittest.TestCase):
+    def test_planner_repairs_trace_shaped_decision_and_note_error(self):
+        class SchemaRepairModel(AdaptiveModel):
+            def generate(self, system_prompt, context):
+                turn = json.loads(super().generate(system_prompt, context))
+                if self.calls == 2:
+                    turn["proposal"]["decisions"] = [{
+                        "decision": "Giữ bảy mục", "reason": "Phù hợp phạm vi"}]
+                    turn["proposal"]["notes"] = ["Đã rà soát dữ liệu"]
+                if self.calls == 3:
+                    feedback = json.loads(context)[-1]["validation_error"]
+                    self_test.assertIn("proposal.decisions.0.action", feedback)
+                    self_test.assertIn("proposal.notes.0", feedback)
+                return json.dumps(turn, ensure_ascii=False)
+
+        self_test = self
+        result = build_planner_agent(SchemaRepairModel(), FakeTools(),
+                                     note_snapshot_version="notes-v1",
+                                     max_turns=3)(REQUEST)
+        self.assertEqual(result.status, "ready")
+        self.assertEqual(result.repair_count, 1)
+        self.assertFalse(result.used_fallback)
+
+    def test_planner_accepts_structured_decisions_and_notes_without_repair(self):
+        class StructuredModel(AdaptiveModel):
+            def generate(self, system_prompt, context):
+                self_test.assertIn("Không dùng trường `decision`", system_prompt)
+                item_format = json.loads(context)[0]["turn_format"]
+                self_test.assertIn("action", item_format["decision_item_format"])
+                self_test.assertEqual(set(item_format["note_item_format"]),
+                                      {"code", "message", "section_id"})
+                turn = json.loads(super().generate(system_prompt, context))
+                if turn["action"] == "propose":
+                    turn["proposal"]["decisions"] = [{
+                        "action": "keep", "basis": "audience",
+                        "template_section_ids": ["S1"],
+                        "resulting_section_ids": ["S1"],
+                        "reason": "Giữ phạm vi người đọc"}]
+                    turn["proposal"]["notes"] = [{
+                        "code": "scope_review", "message": "Đã rà soát phạm vi",
+                        "section_id": "S1"}]
+                return json.dumps(turn, ensure_ascii=False)
+
+        self_test = self
+        result = build_planner_agent(StructuredModel(), FakeTools(),
+                                     note_snapshot_version="notes-v1",
+                                     max_turns=3)(REQUEST)
+        self.assertEqual(result.status, "ready")
+        self.assertEqual(result.repair_count, 0)
+        self.assertFalse(result.used_fallback)
+        self.assertEqual(result.decisions[0].action, "keep")
+        self.assertEqual(result.notes[0].code, "scope_review")
+
     def test_model_receives_planner_tool_schemas_without_code_or_max_chunks(self):
         class InspectModel:
             def generate(self, _prompt, context):

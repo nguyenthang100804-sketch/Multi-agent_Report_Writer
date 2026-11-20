@@ -1,4 +1,4 @@
-# Writer narrative contract, version w4-v6
+# Writer narrative contract, version w4-v8
 
 Write only the narrative templates for one financial-report section. Return JSON matching the provided response schema. Each block has `block_id` and `template`; never return `text`, `claims`, tables, citations, or data-limit sentences. Code adds those after validation.
 
@@ -9,5 +9,7 @@ Return 3–5 blocks when the menu has at least three successful calculations. Pu
 Do not assert causes, forecasts, or unsupported comparisons. Avoid “do”, “nhờ”, “bởi vì”, “vì”, “dẫn đến”, “góp phần”, “gấp đôi”, “gấp ba”, “gần gấp”, “đỉnh”, “cao nhất”, “thấp nhất”, “kỷ lục”, “lớn nhất”, “tiếp tục”, “chuyển sang”, “đảo chiều”, “quay lại”, “sẽ”, “kỳ vọng”, “dự kiến”, and “bình quân”. Prefer the phrase “tốc độ tăng trưởng kép hằng năm” for CAGR. Do not repeat known data limitations; code inserts them. Use Vietnamese metric labels from the menu. Do not expose internal task or calculation identifiers in prose.
 
 Use `{{T:<calculation_id>}}` for a supported whole-series trend when the section menu offers one; it renders the direction and creates the matching claim. Include its period with `{{P:C:<calculation_id>}}`. Do not infer a trend from individual fact values in prose.
+
+For S4 and S5, include at least one supported comparison across years when the menu offers a change calculation. Use a change placeholder with its period, or two facts for the same metric from different years. For S4, include cash and cash equivalents whenever its facts are available; replace a less useful observation if needed to stay within 3–5 blocks. For S5, show the previous period alongside a cash-flow value when the evidence supports it.
 
 If validation feedback is provided, correct every listed issue in the next JSON response. The output must contain only the JSON object.

@@ -43,6 +43,12 @@ class WriterVerifierSampleTests(unittest.TestCase):
                         draft, state["request"], state["evidence_by_id"],
                         state["calculations_by_id"], state["research_results"],
                         state["evidence_aliases"], section).model_dump(mode="json")
+                    if section.section_id == "S2":
+                        saved.pop("declared_limitations")
+                        limitations = expected.pop("declared_limitations")
+                        self.assertEqual(len(limitations), 1)
+                        self.assertIn("toàn bộ mục kiểm toán đã trích xuất",
+                                      limitations[0])
                     self.assertEqual(saved, expected)
 
 

@@ -157,6 +157,9 @@ class AgentToolTests(unittest.TestCase):
 
         self.assertEqual([item.chunk_id for item in results], [f"c{i}" for i in range(5)])
         self.assertTrue(all(item.rerank_score is None for item in results))
+        expanded = retriever.search(NotesSearchInput(
+            query="khấu hao", ticker="ABC", fiscal_year=2024), limit=6)
+        self.assertEqual(len(expanded), 6)
 
     def test_audit_section_read_returns_all_chunks_without_ranking(self):
         retriever = HybridNotesRetriever(processed_dir=self.source)
